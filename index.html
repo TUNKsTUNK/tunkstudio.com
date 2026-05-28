@@ -1,0 +1,732 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>TUNK Studio — Website Kit</title>
+  
+  <link rel="stylesheet" href="fonts.css"/>
+  <script src="content.js"></script>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+/* =========================================================================
+   TUNK STUDIO — colors & type
+   Minimal, laboratory-precise. Black/white base, project-bound material accents.
+   No gradients. No rounded corners. No decorative flourishes.
+   ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   FONTS — Gotham (licensed) substituted with Montserrat from Google Fonts.
+   See README.md → Type for the substitution flag.
+   When real Gotham .otf files arrive, drop them in /fonts and switch the
+   --font-sans value to "Gotham".
+   ------------------------------------------------------------------------- */
+/* Fonts loaded via fonts.css (linked in <head>). */
+
+:root {
+  /* ---------- COLOR — base ---------- */
+  --ink:        #0A0A0A;   /* primary foreground; not pure black to soften on screen */
+  --paper:      #FFFFFF;   /* base background */
+  --bone:       #F4F3EF;   /* secondary surface — warm off-white */
+  --concrete:   #E8E7E2;   /* divider / hairline tint */
+  --aluminium:  #B8B8B5;   /* steel grey, neutral accent */
+  --graphite:   #5A5A57;   /* secondary text / metadata */
+  --carbon:     #1C1C1B;   /* dark surface / inverse panel */
+
+  /* ---------- COLOR — material accents (project-bound only) ---------- */
+  --blue-glass:     #1C3FBF;   /* cool cobalt — translucent glass projects */
+  --blue-glass-tr:  rgba(28, 63, 191, 0.18);
+  --red-plexi:      #D4271E;   /* deep saturated red — plexiglass installations */
+  --red-plexi-tr:   rgba(212, 39, 30, 0.18);
+  --amber:          #C97A1A;   /* warm honey — timber / brass / amber projects */
+  --amber-tr:       rgba(201, 122, 26, 0.18);
+
+  /* ---------- SEMANTIC ---------- */
+  --fg-1: var(--ink);
+  --fg-2: var(--graphite);
+  --fg-3: var(--aluminium);
+  --fg-inverse: var(--paper);
+  --bg-1: var(--paper);
+  --bg-2: var(--bone);
+  --bg-inverse: var(--carbon);
+  --hairline: var(--concrete);
+  --rule: var(--ink);
+
+  /* ---------- TYPE — families ---------- */
+  --font-sans: 'Gotham', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  /* ---------- TYPE — scale (tight, utilitarian) ---------- */
+  --t-display:   clamp(56px, 7.5vw, 128px);  /* hero */
+  --t-h1:        clamp(40px, 5vw, 72px);
+  --t-h2:        clamp(28px, 3.2vw, 44px);
+  --t-h3:        20px;
+  --t-h4:        16px;
+  --t-body:      14px;
+  --t-small:     12px;
+  --t-micro:     10px;        /* lab-tag metadata */
+
+  /* ---------- TYPE — weights (Gotham → Montserrat mapping) ---------- */
+  --w-thin:    300;   /* Gotham Thin/XLight → Montserrat 300 */
+  --w-book:    400;   /* Gotham Book/Light → Montserrat 400 */
+  --w-medium:  500;
+  --w-bold:    700;   /* Gotham Bold → Montserrat 700 */
+  --w-black:   900;   /* Gotham Black/Ultra → Montserrat 900 */
+
+  /* ---------- TYPE — tracking ---------- */
+  --tr-display:  -0.02em;   /* tight on display */
+  --tr-tight:    -0.01em;
+  --tr-normal:   0;
+  --tr-label:    0.12em;    /* lab tags & nav */
+  --tr-wide:     0.18em;    /* section markers */
+
+  /* ---------- LAYOUT ---------- */
+  --grid-cols: 12;
+  --gutter: 24px;
+  --margin: 32px;
+  --max-w: 1680px;
+
+  /* ---------- SPACING (4px base, no half-steps) ---------- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+  --s-10: 128px;
+
+  /* ---------- BORDERS (always 1px, always square) ---------- */
+  --border: 1px solid var(--ink);
+  --hairline-rule: 1px solid var(--hairline);
+  --radius: 0;     /* never rounded */
+
+  /* ---------- MOTION ---------- */
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --dur-fast: 120ms;
+  --dur: 200ms;
+  --dur-slow: 400ms;
+}
+
+/* =========================================================================
+   SEMANTIC ELEMENT STYLES
+   Apply via class or directly on tags inside scoped contexts.
+   ========================================================================= */
+.t-display, h1.display {
+  font-family: var(--font-sans);
+  font-weight: var(--w-black);
+  font-size: var(--t-display);
+  letter-spacing: var(--tr-display);
+  line-height: 0.92;
+  text-transform: uppercase;
+  color: var(--fg-1);
+}
+.t-h1, h1 {
+  font-family: var(--font-sans);
+  font-weight: var(--w-bold);
+  font-size: var(--t-h1);
+  letter-spacing: var(--tr-tight);
+  line-height: 1.0;
+  color: var(--fg-1);
+}
+.t-h2, h2 {
+  font-family: var(--font-sans);
+  font-weight: var(--w-bold);
+  font-size: var(--t-h2);
+  letter-spacing: var(--tr-tight);
+  line-height: 1.05;
+  color: var(--fg-1);
+}
+.t-h3, h3 {
+  font-family: var(--font-sans);
+  font-weight: var(--w-medium);
+  font-size: var(--t-h3);
+  line-height: 1.2;
+  color: var(--fg-1);
+}
+.t-body, p {
+  font-family: var(--font-sans);
+  font-weight: var(--w-book);
+  font-size: var(--t-body);
+  line-height: 1.55;
+  color: var(--fg-1);
+}
+.t-small {
+  font-family: var(--font-sans);
+  font-weight: var(--w-book);
+  font-size: var(--t-small);
+  line-height: 1.5;
+  color: var(--fg-2);
+}
+.t-label {
+  font-family: var(--font-sans);
+  font-weight: var(--w-medium);
+  font-size: var(--t-micro);
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--fg-1);
+}
+.t-meta {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: var(--t-micro);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--fg-2);
+}
+.t-mono {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: var(--t-small);
+  color: var(--fg-1);
+}
+
+/* utility */
+.rule { border-top: var(--border); }
+.hairline { border-top: var(--hairline-rule); }
+
+/* TUNK website — local kit overrides */
+
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.page { min-height: 100vh; display: flex; flex-direction: column; }
+.shell { padding: 0 32px; }
+@media (min-width: 1200px) { .shell { padding: 0 64px; } }
+
+/* nav */
+.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--ink);
+  background: var(--paper);
+  position: sticky; top: 0; z-index: 10;
+}
+.nav .wordmark { font-weight: 900; font-size: 22px; letter-spacing: -0.04em; }
+.nav .links { display: flex; gap: 32px; }
+.nav .links a { font-weight: 500; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 0; border-bottom: 1px solid transparent; transition: border-color 200ms var(--ease); }
+.nav .links a:hover, .nav .links a.is-active { border-bottom-color: var(--ink); }
+.nav .lang { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; color: var(--graphite); text-transform: uppercase; }
+
+/* footer */
+.footer { background: var(--carbon); color: var(--paper); padding: 64px; margin-top: 96px; }
+.footer .grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 32px; }
+.footer .h { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--aluminium); margin-bottom: 12px; }
+.footer .word { font-weight: 900; font-size: 56px; letter-spacing: -0.04em; line-height: 1; }
+.footer .links { display: grid; gap: 8px; font-weight: 500; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; }
+.footer .mono { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em; line-height: 1.7; text-transform: uppercase; color: var(--paper); }
+.footer .legal { border-top: 1px solid var(--graphite); margin-top: 48px; padding-top: 16px; display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; color: var(--aluminium); text-transform: uppercase; }
+
+/* lab-tag */
+.tag { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--graphite); }
+.tag-ink { color: var(--ink); }
+
+/* placeholder image */
+.ph {
+  background: #E8E7E2;
+  position: relative;
+  overflow: hidden;
+}
+.ph::before {
+  content: '';
+  position: absolute; inset: 12px;
+  border: 1px solid rgba(10,10,10,0.25);
+}
+.ph .ph-meta {
+  position: absolute; left: 16px; bottom: 12px;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em;
+  color: var(--graphite);
+  text-transform: uppercase;
+}
+.ph .ph-num {
+  position: absolute; right: 16px; top: 12px;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em;
+  color: var(--graphite);
+  text-transform: uppercase;
+}
+
+/* hero */
+.hero { padding: 96px 0 64px; }
+.hero-title {
+  font-weight: 900;
+  font-size: clamp(64px, 9vw, 144px);
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+.hero-sub { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--ink); }
+.hero-sub p { font-size: 14px; line-height: 1.55; max-width: 320px; }
+
+/* section markers */
+.section { padding: 64px 0; }
+.section-head { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 16px; border-bottom: 1px solid var(--ink); margin-bottom: 32px; }
+.section-head .num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--graphite); }
+.section-head h2 { font-weight: 700; font-size: clamp(28px, 3.2vw, 44px); letter-spacing: -0.01em; }
+.section-head .more { font-weight: 500; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; }
+
+/* project tile */
+.tile { display: flex; flex-direction: column; gap: 0; cursor: pointer; }
+.tile .ph { aspect-ratio: 4/3; transition: opacity 200ms var(--ease); }
+.tile:hover .ph { opacity: 0.85; }
+.tile .meta { display: flex; justify-content: space-between; align-items: baseline; padding-top: 10px; border-top: 1px solid var(--ink); margin-top: 12px; }
+.tile .name { font-weight: 700; font-size: 16px; letter-spacing: -0.01em; }
+.tile .num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; color: var(--graphite); text-transform: uppercase; }
+.tile .sub { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; color: var(--graphite); text-transform: uppercase; margin-top: 6px; }
+
+/* button */
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; font-weight: 500; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; border: 1px solid var(--ink); background: transparent; color: var(--ink); transition: all 200ms var(--ease); }
+.btn:hover { background: var(--ink); color: var(--paper); }
+.btn.primary { background: var(--ink); color: var(--paper); }
+.btn.primary:hover { opacity: 0.85; }
+.btn.ghost { border-color: transparent; padding-left: 0; padding-right: 0; }
+.btn.ghost:hover { background: transparent; color: var(--ink); border-bottom: 1px solid var(--ink); padding-bottom: 11px; }
+
+/* index list */
+.idx-row { display: grid; grid-template-columns: 60px 1fr 200px 120px 120px 32px; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--concrete); align-items: center; cursor: pointer; transition: padding 200ms var(--ease); }
+.idx-row:hover { padding-left: 12px; }
+.idx-row .num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--graphite); text-transform: uppercase; }
+.idx-row .name { font-weight: 700; font-size: 18px; letter-spacing: -0.01em; }
+.idx-row .meta { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; color: var(--graphite); text-transform: uppercase; }
+.idx-row .arrow { font-family: var(--font-mono); font-size: 14px; color: var(--ink); justify-self: end; }
+
+/* filter bar */
+.filter { display: flex; gap: 4px; flex-wrap: wrap; padding: 16px 0; border-bottom: 1px solid var(--ink); margin-bottom: 16px; align-items: center; }
+.filter .label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--graphite); margin-right: 16px; }
+.chip { padding: 6px 14px; font-weight: 500; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid var(--concrete); background: var(--paper); cursor: pointer; transition: all 150ms var(--ease); }
+.chip:hover { border-color: var(--ink); }
+.chip.is-active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+</style>
+</head>
+<body>
+  <div id="root"></div>
+  <script>
+window.TUNK_LOGO_BLACK = "assets/logo-tunk-black.png";
+window.TUNK_LOGO_WHITE = "assets/logo-tunk-white.png";
+</script>
+<script type="text/babel" data-presets="react">
+/* TUNK website — shared components & data */
+
+/* Editable content is loaded from content.js (defaults) and optionally
+   overridden from localStorage (admin.html preview edits).            */
+const CONTENT = (window.TUNK_GET_CONTENT && window.TUNK_GET_CONTENT()) || (window.TUNK_DEFAULT_CONTENT || {});
+const PROJECTS = CONTENT.projects || [];
+
+const NAV_LINKS = [
+  { id: 'home', label: 'Studio' },
+  { id: 'work', label: 'Work' },
+  { id: 'about', label: 'About' },
+  { id: 'press', label: 'Press' },
+  { id: 'contact', label: 'Contact' },
+];
+
+function Nav({ page, setPage }) {
+  return (
+    <header className="nav shell">
+      <a onClick={() => setPage({ id: 'home' })} style={{cursor:'pointer',display:'block'}}><img src={window.TUNK_LOGO_BLACK} alt="TUNK" style={{height:28,display:'block'}}/></a>
+      <nav className="links">
+        {NAV_LINKS.map(l => (
+          <a key={l.id}
+             className={page.id === l.id || (l.id === 'work' && page.id === 'project') ? 'is-active' : ''}
+             onClick={() => setPage({ id: l.id })}
+             style={{cursor:'pointer'}}>
+            {l.label}
+          </a>
+        ))}
+      </nav>
+      <span className="lang">EN · TR</span>
+    </header>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="footer">
+      <div className="grid">
+        <div>
+          <img src={window.TUNK_LOGO_WHITE} alt="TUNK" style={{height:70,display:'block'}}/>
+          <div style={{fontFamily:'var(--font-mono)',fontSize:11,letterSpacing:'0.06em',textTransform:'uppercase',color:'var(--aluminium)',marginTop:14,lineHeight:1.7}}>
+            {CONTENT.footer.tagline}<br/>
+            {CONTENT.footer.location}
+          </div>
+        </div>
+        <div>
+          <div className="h">Studio</div>
+          <div className="links">
+            <a>Work</a><a>About</a><a>Press</a>
+          </div>
+        </div>
+        <div>
+          <div className="h">Contact</div>
+          <div className="mono">
+            {CONTENT.contact.phone}<br/>
+            {CONTENT.contact.email}
+          </div>
+        </div>
+        <div>
+          <div className="h">Follow</div>
+          <div className="links">
+            <a>{CONTENT.footer.instagram}</a>
+          </div>
+        </div>
+      </div>
+      <div className="legal">
+        <span>© TUNK STUDIO · 2019—2024</span>
+      </div>
+    </footer>
+  );
+}
+
+function Placeholder({ ratio = '4/3', meta = '1280 × 960', num = '№ 00', accent = null, fill = false, children }) {
+  const overlay = accent ? { backgroundColor: `var(--${accent}-tr)` } : null;
+  return (
+    <div className="ph" style={{aspectRatio: ratio}}>
+      <span className="ph-num">{num}</span>
+      <span className="ph-meta">{meta}</span>
+      {accent && <div style={{position:'absolute', inset:0, ...overlay, mixBlendMode:'multiply', pointerEvents:'none'}}/>}
+      {children}
+    </div>
+  );
+}
+
+function Tile({ project, onOpen }) {
+  return (
+    <div className="tile" onClick={() => onOpen(project)}>
+      <Placeholder
+        ratio="4/3"
+        meta={`${project.location.toUpperCase()} · ${project.kind.toUpperCase()}`}
+        num={project.id}
+        accent={project.accent}
+      />
+      <div className="meta">
+        <div className="name">{project.name}</div>
+        <div className="num">{project.year}</div>
+      </div>
+      <div className="sub">{project.kind} · {project.area}</div>
+    </div>
+  );
+}
+
+function IdxRow({ project, onOpen }) {
+  return (
+    <div className="idx-row" onClick={() => onOpen(project)}>
+      <div className="num">{project.id}</div>
+      <div>
+        <div className="name">{project.name}</div>
+      </div>
+      <div className="meta">{project.kind.toUpperCase()}</div>
+      <div className="meta">{project.location.toUpperCase()}</div>
+      <div className="meta">{project.year}</div>
+      <div className="arrow">→</div>
+    </div>
+  );
+}
+
+function SectionHead({ num, title, more }) {
+  return (
+    <div className="section-head">
+      <div style={{display:'flex',gap:24,alignItems:'baseline'}}>
+        <span className="num">№ {num}</span>
+        <h2>{title}</h2>
+      </div>
+      {more && <a className="more" style={{cursor:'pointer'}}>{more} →</a>}
+    </div>
+  );
+}
+
+Object.assign(window, { PROJECTS, NAV_LINKS, Nav, Footer, Placeholder, Tile, IdxRow, SectionHead });
+
+
+/* TUNK website — pages */
+
+function HomePage({ setPage }) {
+  return (
+    <main>
+      <section className="hero shell">
+        <div className="tag tag-ink" style={{marginBottom: 32}}>№ 00 — STUDIO</div>
+        <h1 className="hero-title" style={{whiteSpace:'pre-line'}}>{CONTENT.hero.title}</h1>
+        <div className="hero-sub">
+          <p>{CONTENT.hero.intro1}</p>
+          <p>{CONTENT.hero.intro2}</p>
+          <div style={{display:'flex',flexDirection:'column',gap:8,fontFamily:'var(--font-mono)',fontSize:11,letterSpacing:'0.04em',textTransform:'uppercase',color:'var(--graphite)'}}>
+            {CONTENT.hero.stats.map((s,i) => <span key={i}>{s}</span>)}
+          </div>
+        </div>
+      </section>
+
+      <section className="section shell">
+        <SectionHead num="01" title="Selected work" more={<span onClick={() => setPage({id:'work'})}>All projects</span>} />
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'48px 32px'}}>
+          {PROJECTS.slice(0,4).map(p => <Tile key={p.id} project={p} onOpen={() => setPage({id:'project', project:p})} />)}
+        </div>
+      </section>
+
+      <section className="section shell">
+        <SectionHead num="02" title="Practice" />
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1.4fr',gap:64}}>
+          <div>
+            <div className="tag" style={{marginBottom:12}}>METHOD</div>
+            <p style={{fontSize:18,lineHeight:1.5,letterSpacing:'-0.005em'}}>The studio works between architecture and exhibition design. Each project begins with a survey of what is already there — structure, light, materials in use — before any new gesture is proposed.</p>
+          </div>
+          <div style={{borderLeft:'1px solid var(--ink)',paddingLeft:48}}>
+            <div className="tag" style={{marginBottom:12}}>RECENT NOTES</div>
+            <div style={{display:'grid',gap:24}}>
+              <div style={{borderBottom:'1px solid var(--concrete)',paddingBottom:14}}>
+                <div className="tag" style={{color:'var(--graphite)'}}>2024.03 · ESSAY</div>
+                <div style={{fontWeight:600,fontSize:16,marginTop:6}}>On the use of red plexiglass</div>
+              </div>
+              <div style={{borderBottom:'1px solid var(--concrete)',paddingBottom:14}}>
+                <div className="tag" style={{color:'var(--graphite)'}}>2024.02 · INTERVIEW</div>
+                <div style={{fontWeight:600,fontSize:16,marginTop:6}}>Conversation with Cemal Emden</div>
+              </div>
+              <div style={{borderBottom:'1px solid var(--concrete)',paddingBottom:14}}>
+                <div className="tag" style={{color:'var(--graphite)'}}>2023.12 · PRESS</div>
+                <div style={{fontWeight:600,fontSize:16,marginTop:6}}>Membrane reviewed in Domus</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function WorkPage({ setPage }) {
+  const [view, setView] = React.useState('grid');
+  const [filter, setFilter] = React.useState('All');
+  const filters = ['All', 'Retail', 'Exhibition', 'Residential', 'Installation', 'Adaptive Reuse'];
+  const filtered = filter === 'All' ? PROJECTS : PROJECTS.filter(p => p.tags.includes(filter));
+  return (
+    <main className="shell" style={{paddingTop:48, paddingBottom:48}}>
+      <div className="tag tag-ink" style={{marginBottom:24}}>№ 01 — WORK</div>
+      <h1 style={{fontWeight:900,fontSize:'clamp(56px,7vw,112px)',letterSpacing:'-0.04em',lineHeight:0.92,textTransform:'uppercase'}}>All projects</h1>
+
+      <div className="filter" style={{marginTop:64}}>
+        <span className="label">FILTER</span>
+        {filters.map(f => (
+          <span key={f} className={`chip ${filter === f ? 'is-active' : ''}`} onClick={() => setFilter(f)}>{f}</span>
+        ))}
+        <span style={{marginLeft:'auto',display:'flex',gap:4}}>
+          <span className={`chip ${view==='grid'?'is-active':''}`} onClick={()=>setView('grid')}>Grid</span>
+          <span className={`chip ${view==='index'?'is-active':''}`} onClick={()=>setView('index')}>Index</span>
+        </span>
+      </div>
+
+      <div className="tag" style={{marginTop:8,marginBottom:24}}>{filtered.length.toString().padStart(2,'0')} projects · 2019—2024</div>
+
+      {view === 'grid' ? (
+        <div style={{display:'grid',gridTemplateColumns:'repeat(3, 1fr)',gap:'48px 24px'}}>
+          {filtered.map(p => <Tile key={p.id} project={p} onOpen={() => setPage({id:'project', project:p})} />)}
+        </div>
+      ) : (
+        <div>
+          <div className="idx-row" style={{borderTop:'1px solid var(--ink)',cursor:'default',padding:'12px 0'}}>
+            <div className="num">№</div>
+            <div className="num">PROJECT</div>
+            <div className="num">KIND</div>
+            <div className="num">LOCATION</div>
+            <div className="num">YEAR</div>
+            <div></div>
+          </div>
+          {filtered.map(p => <IdxRow key={p.id} project={p} onOpen={() => setPage({id:'project', project:p})} />)}
+        </div>
+      )}
+    </main>
+  );
+}
+
+function ProjectPage({ project, setPage }) {
+  if (!project) project = PROJECTS[0];
+  const accentBar = project.accent ? `var(--${project.accent})` : 'var(--ink)';
+  return (
+    <main>
+      <section className="shell" style={{paddingTop:32, paddingBottom:24}}>
+        <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',borderBottom:'1px solid var(--ink)',paddingBottom:12}}>
+          <div className="tag tag-ink">{project.id} · {project.year}</div>
+          <a className="tag" style={{cursor:'pointer'}} onClick={()=>setPage({id:'work'})}>← All projects</a>
+        </div>
+      </section>
+      <section className="shell">
+        <Placeholder ratio="16/9" meta={`${project.location.toUpperCase()} · ${project.kind.toUpperCase()}`} num={project.id} accent={project.accent} />
+      </section>
+      <section className="shell" style={{paddingTop:48}}>
+        <h1 style={{fontWeight:900,fontSize:'clamp(48px,6.5vw,104px)',letterSpacing:'-0.04em',lineHeight:0.95,textTransform:'uppercase'}}>{project.name}</h1>
+        <div style={{display:'grid',gridTemplateColumns:'2fr 1fr',gap:64,marginTop:48,paddingTop:24,borderTop:`1px solid ${accentBar}`}}>
+          <div>
+            <p style={{fontSize:18,lineHeight:1.55,maxWidth:620}}>{project.summary}</p>
+          </div>
+          <div style={{display:'grid',gap:14,fontFamily:'var(--font-mono)',fontSize:11,letterSpacing:'0.04em',textTransform:'uppercase',color:'var(--graphite)',lineHeight:1.6}}>
+            <div><div style={{color:'var(--ink)'}}>Type</div>{project.kind}</div>
+            <div><div style={{color:'var(--ink)'}}>Year</div>{project.year}</div>
+            <div><div style={{color:'var(--ink)'}}>Location</div>{project.location}</div>
+            <div><div style={{color:'var(--ink)'}}>Area</div>{project.area}</div>
+            <div><div style={{color:'var(--ink)'}}>Materials</div>{project.materials.join(' · ')}</div>
+            <div><div style={{color:'var(--ink)'}}>Photo</div>Cemal Emden</div>
+          </div>
+        </div>
+      </section>
+      <section className="shell" style={{paddingTop:64,display:'grid',gridTemplateColumns:'1fr 1fr',gap:24}}>
+        <Placeholder ratio="3/4" meta="DETAIL" num={`${project.id} / 02`} accent={project.accent}/>
+        <Placeholder ratio="3/4" meta="DETAIL" num={`${project.id} / 03`} accent={project.accent}/>
+      </section>
+      <section className="shell" style={{paddingTop:24}}>
+        <Placeholder ratio="21/9" meta="LONG SHOT" num={`${project.id} / 04`} accent={project.accent}/>
+      </section>
+      <section className="shell" style={{paddingTop:64,paddingBottom:48,display:'flex',justifyContent:'space-between',borderTop:'1px solid var(--ink)',marginTop:64,paddingTop:16}}>
+        <a className="tag tag-ink" style={{cursor:'pointer'}} onClick={()=>{
+          const idx = PROJECTS.findIndex(p=>p.id===project.id);
+          const prev = PROJECTS[(idx-1+PROJECTS.length)%PROJECTS.length];
+          setPage({id:'project', project:prev});
+        }}>← Previous</a>
+        <a className="tag tag-ink" style={{cursor:'pointer'}} onClick={()=>{
+          const idx = PROJECTS.findIndex(p=>p.id===project.id);
+          const next = PROJECTS[(idx+1)%PROJECTS.length];
+          setPage({id:'project', project:next});
+        }}>Next →</a>
+      </section>
+    </main>
+  );
+}
+
+function AboutPage() {
+  return (
+    <main className="shell" style={{paddingTop:48, paddingBottom:64}}>
+      <div className="tag tag-ink" style={{marginBottom:24}}>№ 02 — ABOUT</div>
+      <h1 style={{fontWeight:900,fontSize:'clamp(56px,7vw,112px)',letterSpacing:'-0.04em',lineHeight:0.92,textTransform:'uppercase',maxWidth:1200}}>{CONTENT.about.heading}</h1>
+
+      <div style={{display:'grid',gridTemplateColumns:'1fr 1.6fr',gap:96,marginTop:96,borderTop:'1px solid var(--ink)',paddingTop:32}}>
+        <div className="tag tag-ink">PRACTICE</div>
+        <div>
+          <p style={{fontSize:18,lineHeight:1.55,marginBottom:18}}>{CONTENT.about.p1}</p>
+          <p style={{fontSize:14,lineHeight:1.7,color:'var(--graphite)'}}>{CONTENT.about.p2}</p>
+        </div>
+      </div>
+
+      <div style={{display:'grid',gridTemplateColumns:'1fr 1.6fr',gap:96,marginTop:64,borderTop:'1px solid var(--concrete)',paddingTop:32}}>
+        <div className="tag tag-ink">PEOPLE</div>
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:32}}>
+          {CONTENT.about.team.map(p => (
+            <div key={p.name} style={{borderTop:'1px solid var(--concrete)',paddingTop:10}}>
+              <div style={{fontWeight:700,fontSize:15}}>{p.name}</div>
+              <div style={{fontFamily:'var(--font-mono)',fontSize:10,letterSpacing:'0.06em',textTransform:'uppercase',color:'var(--graphite)',marginTop:4}}>{p.role}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div style={{display:'grid',gridTemplateColumns:'1fr 1.6fr',gap:96,marginTop:64,borderTop:'1px solid var(--concrete)',paddingTop:32}}>
+        <div className="tag tag-ink">SELECTED CLIENTS</div>
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'8px 32px',fontFamily:'var(--font-mono)',fontSize:12,letterSpacing:'0.04em',textTransform:'uppercase',lineHeight:1.7}}>
+          {CONTENT.about.clients.map(c => <span key={c}>{c}</span>)}
+        </div>
+      </div>
+    </main>
+  );
+}
+
+function ContactPage() {
+  return (
+    <main className="shell" style={{paddingTop:48, paddingBottom:64}}>
+      <div className="tag tag-ink" style={{marginBottom:24}}>№ 04 — CONTACT</div>
+      <h1 style={{fontWeight:900,fontSize:'clamp(56px,7vw,112px)',letterSpacing:'-0.04em',lineHeight:0.92,textTransform:'uppercase'}}>Get in touch.</h1>
+      <div style={{display:'grid',gridTemplateColumns:'1fr 1.4fr',gap:96,marginTop:96,borderTop:'1px solid var(--ink)',paddingTop:32}}>
+        <div>
+          <div className="tag tag-ink" style={{marginBottom:18}}>STUDIO</div>
+          <div style={{fontFamily:'var(--font-mono)',fontSize:13,lineHeight:1.7,letterSpacing:'0.02em',textTransform:'uppercase',whiteSpace:'pre-line'}}>
+            {CONTENT.contact.address}
+            <br/><br/>
+            {CONTENT.contact.phone}<br/>{CONTENT.contact.email}<br/>{CONTENT.contact.pressEmail}
+          </div>
+        </div>
+        <div>
+          <div className="tag tag-ink" style={{marginBottom:18}}>ENQUIRE</div>
+          <form onSubmit={(e)=>{e.preventDefault();alert('Submitted (demo).');}} style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'32px 40px'}}>
+            {[
+              ['Name','Defne Aksu'],
+              ['Email','hello@studio.com'],
+              ['Subject','New project'],
+              ['Budget','€'],
+            ].map(([l,v])=>(
+              <div key={l} style={{display:'grid',gap:6}}>
+                <label style={{fontFamily:'var(--font-sans)',fontWeight:500,fontSize:10,letterSpacing:'0.12em',textTransform:'uppercase'}}>{l}</label>
+                <input defaultValue={v} style={{font:'inherit',fontSize:14,background:'transparent',border:0,borderBottom:'1px solid var(--ink)',padding:'8px 0',outline:'none',borderRadius:0}}/>
+              </div>
+            ))}
+            <div style={{gridColumn:'1 / -1',display:'grid',gap:6}}>
+              <label style={{fontFamily:'var(--font-sans)',fontWeight:500,fontSize:10,letterSpacing:'0.12em',textTransform:'uppercase'}}>Message</label>
+              <textarea rows="4" defaultValue="A short description of the project, site and timeline." style={{font:'inherit',fontSize:14,background:'transparent',border:0,borderBottom:'1px solid var(--ink)',padding:'8px 0',outline:'none',borderRadius:0,resize:'vertical'}}/>
+            </div>
+            <button type="submit" className="btn primary" style={{justifySelf:'start'}}>Send enquiry →</button>
+          </form>
+        </div>
+      </div>
+    </main>
+  );
+}
+
+Object.assign(window, { HomePage, WorkPage, ProjectPage, AboutPage, ContactPage });
+
+
+function PressPage() {
+  const releases = [
+    {n:'01', name:'Press release — Karaköy Cosmetics', meta:'PDF · 2024.03 · 1.2 MB', langs:'EN · TR'},
+    {n:'02', name:'Image set — high res', meta:'ZIP · 24 IMAGES · 184 MB', langs:'CMYK · RGB'},
+    {n:'03', name:'Studio biography', meta:'DOCX · 6 KB', langs:'EN'},
+    {n:'04', name:'Press release — Membrane', meta:'PDF · 2024.02 · 0.9 MB', langs:'EN · TR'},
+    {n:'05', name:'Studio logo pack', meta:'ZIP · SVG · PDF · 2.4 MB', langs:'—'},
+  ];
+  return (
+    <main className="shell" style={{paddingTop:48, paddingBottom:64}}>
+      <div className="tag tag-ink" style={{marginBottom:24}}>№ 03 — PRESS</div>
+      <h1 style={{fontWeight:900,fontSize:'clamp(56px,7vw,112px)',letterSpacing:'-0.04em',lineHeight:0.92,textTransform:'uppercase'}}>Press &amp; downloads.</h1>
+      <p style={{maxWidth:560,fontSize:15,lineHeight:1.55,marginTop:48}}>For press enquiries, image requests and interview availability, write to <b>press@tunk.studio</b>. The materials below are provided for editorial use without further permission, with credit to the studio and named photographer.</p>
+      <div style={{marginTop:64,borderTop:'1px solid var(--ink)'}}>
+        {releases.map(r => (
+          <div key={r.n} style={{display:'grid',gridTemplateColumns:'80px 1fr 200px 120px 120px',gap:20,padding:'18px 0',alignItems:'center',borderBottom:'1px solid var(--concrete)',cursor:'pointer'}}>
+            <div className="tag" style={{color:'var(--graphite)'}}>№ {r.n}</div>
+            <div><div style={{fontWeight:700,fontSize:16}}>{r.name}</div></div>
+            <div className="tag" style={{color:'var(--graphite)'}}>{r.meta}</div>
+            <div className="tag" style={{color:'var(--graphite)'}}>{r.langs}</div>
+            <div style={{fontFamily:'var(--font-sans)',fontWeight:500,fontSize:11,letterSpacing:'0.12em',textTransform:'uppercase',justifySelf:'end'}}>Download <span style={{fontFamily:'var(--font-mono)'}}>→</span></div>
+          </div>
+        ))}
+      </div>
+    </main>
+  );
+}
+
+function App() {
+  const [page, setPage] = React.useState({ id: 'home' });
+  React.useEffect(() => { window.scrollTo(0,0); }, [page]);
+  return (
+    <div className="page" data-screen-label={`TUNK Site · ${page.id}`}>
+      <Nav page={page} setPage={setPage} />
+      {page.id === 'home' && <HomePage setPage={setPage} />}
+      {page.id === 'work' && <WorkPage setPage={setPage} />}
+      {page.id === 'project' && <ProjectPage project={page.project} setPage={setPage} />}
+      {page.id === 'about' && <AboutPage />}
+      {page.id === 'press' && <PressPage />}
+      {page.id === 'contact' && <ContactPage />}
+      <Footer />
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+  </script>
+</body>
+</html>

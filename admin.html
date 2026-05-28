@@ -1,0 +1,806 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>TUNK Studio — Admin</title>
+
+  <link rel="stylesheet" href="fonts.css"/>
+  <script src="content.js"></script>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<style>
+/* Fonts loaded via fonts.css linked in head. */
+
+:root {
+  --ink: #0A0A0A;
+  --paper: #FFFFFF;
+  --bone: #F4F3EF;
+  --concrete: #E8E7E2;
+  --aluminium: #B8B8B5;
+  --graphite: #5A5A57;
+  --carbon: #1C1C1B;
+  --red-plexi: #D4271E;
+  --blue-glass: #1C3FBF;
+  --amber: #C97A1A;
+
+  --font-sans: 'Gotham', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--bone); color: var(--ink); font-family: var(--font-sans); font-size: 13px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; cursor: pointer; }
+button { font: inherit; cursor: pointer; }
+
+/* layout */
+.app { min-height: 100vh; display: grid; grid-template-rows: auto 1fr; }
+
+/* top bar */
+.bar {
+  display: grid;
+  grid-template-columns: 280px 1fr auto;
+  align-items: center;
+  background: var(--ink);
+  color: var(--paper);
+  border-bottom: 1px solid var(--ink);
+  padding: 14px 24px;
+  gap: 24px;
+  position: sticky; top: 0; z-index: 10;
+}
+.bar .brand { display: flex; align-items: center; gap: 14px; }
+.bar .brand .word { font-weight: 900; font-size: 22px; letter-spacing: -0.04em; }
+.bar .brand .tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--aluminium); padding-left: 14px; border-left: 1px solid var(--graphite); }
+.bar .status { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--aluminium); }
+.bar .status .dot { display: inline-block; width: 6px; height: 6px; background: #5BC76C; margin-right: 8px; vertical-align: middle; }
+.bar .actions { display: flex; gap: 8px; }
+
+/* buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 16px;
+  border: 1px solid var(--paper);
+  background: transparent;
+  color: var(--paper);
+  font-weight: 500; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  transition: all 150ms var(--ease);
+}
+.btn:hover { background: var(--paper); color: var(--ink); }
+.btn.primary { background: var(--paper); color: var(--ink); }
+.btn.primary:hover { opacity: 0.85; }
+.btn.dark { border-color: var(--ink); color: var(--ink); }
+.btn.dark:hover { background: var(--ink); color: var(--paper); }
+.btn.dark.primary { background: var(--ink); color: var(--paper); }
+.btn.dark.primary:hover { opacity: 0.85; }
+.btn.danger { border-color: var(--red-plexi); color: var(--red-plexi); }
+.btn.danger:hover { background: var(--red-plexi); color: var(--paper); }
+.btn.sm { padding: 6px 12px; font-size: 9px; }
+
+/* main */
+.main { display: grid; grid-template-columns: 280px 1fr; min-height: 0; }
+
+/* sidebar */
+.side { background: var(--paper); border-right: 1px solid var(--concrete); padding: 24px 0; }
+.side .group { padding: 0 24px 8px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--graphite); margin-top: 16px; }
+.side .item {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 24px;
+  font-weight: 500; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase;
+  border-left: 2px solid transparent;
+  transition: all 150ms var(--ease);
+}
+.side .item:hover { background: var(--bone); }
+.side .item.active { border-left-color: var(--ink); background: var(--bone); }
+.side .item .count { font-family: var(--font-mono); font-size: 10px; color: var(--graphite); }
+
+/* content area */
+.content { padding: 32px 48px; max-width: 1280px; }
+.content h1 { font-weight: 900; font-size: 36px; letter-spacing: -0.02em; text-transform: uppercase; margin-bottom: 4px; }
+.content .sub { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--graphite); margin-bottom: 32px; }
+.content h2 { font-weight: 700; font-size: 20px; letter-spacing: -0.01em; margin: 32px 0 16px; padding-top: 24px; border-top: 1px solid var(--ink); }
+
+/* form */
+.field { display: grid; gap: 6px; margin-bottom: 18px; }
+.field label { font-family: var(--font-sans); font-weight: 500; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); }
+.field .hint { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.04em; color: var(--graphite); text-transform: uppercase; }
+input[type=text], input[type=number], input[type=email], select, textarea {
+  font: inherit;
+  font-size: 14px;
+  background: var(--paper);
+  border: 1px solid var(--concrete);
+  padding: 10px 12px;
+  outline: none;
+  border-radius: 0;
+  color: var(--ink);
+  width: 100%;
+}
+input:focus, textarea:focus, select:focus { border-color: var(--ink); }
+textarea { resize: vertical; min-height: 80px; line-height: 1.55; font-family: var(--font-sans); }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+/* tables */
+.table { background: var(--paper); border: 1px solid var(--concrete); }
+.table-row { display: grid; grid-template-columns: 80px 1fr 200px 100px 100px 120px; gap: 16px; padding: 14px 16px; border-bottom: 1px solid var(--concrete); align-items: center; }
+.table-row:last-child { border-bottom: none; }
+.table-row.head { background: var(--bone); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--graphite); padding: 10px 16px; }
+.table-row .id { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; color: var(--graphite); text-transform: uppercase; }
+.table-row .name { font-weight: 700; font-size: 14px; letter-spacing: -0.01em; }
+.table-row .meta { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; color: var(--graphite); text-transform: uppercase; }
+.table-row .actions { display: flex; gap: 6px; justify-content: flex-end; }
+
+/* drag handle */
+.dh { font-family: var(--font-mono); font-size: 16px; color: var(--aluminium); cursor: grab; user-select: none; line-height: 1; }
+.dh:active { cursor: grabbing; }
+
+/* card pile (project edit form) */
+.panel { background: var(--paper); border: 1px solid var(--ink); padding: 32px; }
+.panel .head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid var(--ink); }
+.panel .head h3 { font-weight: 700; font-size: 18px; letter-spacing: -0.01em; }
+
+/* swatches for accent */
+.swatches { display: flex; gap: 8px; flex-wrap: wrap; }
+.swatch { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid var(--concrete); background: var(--paper); cursor: pointer; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; transition: all 150ms var(--ease); }
+.swatch:hover { border-color: var(--ink); }
+.swatch.is-active { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+.swatch .sw { width: 14px; height: 14px; border: 1px solid rgba(0,0,0,0.2); }
+
+/* chips for materials etc */
+.chip-input { display: flex; flex-wrap: wrap; gap: 6px; padding: 8px; border: 1px solid var(--concrete); background: var(--paper); min-height: 44px; }
+.chip-input input { border: none; padding: 4px 8px; font-size: 13px; flex: 1; min-width: 100px; background: transparent; }
+.chip-tag { display: inline-flex; align-items: center; gap: 6px; padding: 4px 8px; background: var(--ink); color: var(--paper); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; }
+.chip-tag .x { cursor: pointer; opacity: 0.6; }
+.chip-tag .x:hover { opacity: 1; }
+
+/* publish blocks */
+.pub-block { background: var(--paper); border: 1px solid var(--concrete); padding: 24px; margin-bottom: 16px; }
+.pub-block h3 { font-weight: 700; font-size: 16px; margin-bottom: 4px; letter-spacing: -0.01em; }
+.pub-block .desc { font-size: 13px; color: var(--graphite); line-height: 1.55; margin-bottom: 16px; max-width: 640px; }
+.pub-block .actions { display: flex; gap: 8px; }
+
+/* tag for changed indicator */
+.modified-pill { display: inline-block; padding: 2px 8px; background: var(--amber); color: var(--paper); font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; margin-left: 8px; }
+
+/* steps */
+.steps { display: grid; gap: 20px; }
+.step { display: grid; grid-template-columns: 40px 1fr; gap: 16px; }
+.step .num { font-family: var(--font-mono); font-size: 22px; font-weight: 700; color: var(--ink); line-height: 1; }
+.step .body { font-size: 13px; line-height: 1.7; color: var(--graphite); }
+.step .body b { color: var(--ink); font-weight: 700; }
+
+/* keyboard kbd */
+kbd { font-family: var(--font-mono); font-size: 11px; padding: 1px 6px; border: 1px solid var(--concrete); background: var(--bone); }
+
+/* empty state */
+.empty { padding: 64px 32px; text-align: center; color: var(--graphite); border: 1px dashed var(--concrete); background: var(--paper); }
+.empty .ttl { font-weight: 700; font-size: 16px; color: var(--ink); margin-bottom: 8px; }
+
+/* utility */
+.row-actions { display: flex; gap: 8px; align-items: center; }
+.spread { display: flex; justify-content: space-between; align-items: center; }
+.mt-4 { margin-top: 16px; }
+.mt-6 { margin-top: 24px; }
+</style>
+</head>
+<body>
+  <div id="root"></div>
+<script type="text/babel" data-presets="react">
+
+/* ---------- helpers ---------- */
+function cloneDeep(x) { return JSON.parse(JSON.stringify(x)); }
+function isModified(content, defaults) { return JSON.stringify(content) !== JSON.stringify(defaults); }
+function download(filename, text, mime = 'text/plain') {
+  const blob = new Blob([text], { type: mime });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 100);
+}
+
+/* ---------- generate content.js from a content object ---------- */
+function generateContentJs(content) {
+  const json = JSON.stringify(content, null, 2)
+    // soft-wrap long strings won't help; keep as-is
+    ;
+  return `/* =========================================================================
+   TUNK STUDIO — content.js
+   ----------------------------------------------------------------------
+   Generated by admin.html on ${new Date().toISOString()}.
+   Edit through admin.html (recommended), or by hand if you prefer.
+
+   To publish updates: upload this file next to index.html.
+   ========================================================================= */
+
+window.TUNK_DEFAULT_CONTENT = ${json};
+
+window.TUNK_GET_CONTENT = function () {
+  var d = window.TUNK_DEFAULT_CONTENT;
+  try {
+    var saved = JSON.parse(localStorage.getItem("tunk_content") || "null");
+    if (!saved) return d;
+    return {
+      hero:     Object.assign({}, d.hero,     saved.hero     || {}),
+      about:    Object.assign({}, d.about,    saved.about    || {}),
+      contact:  Object.assign({}, d.contact,  saved.contact  || {}),
+      footer:   Object.assign({}, d.footer,   saved.footer   || {}),
+      projects: saved.projects || d.projects
+    };
+  } catch (e) { return d; }
+};
+
+window.TUNK_SAVE_CONTENT = function (content) {
+  localStorage.setItem("tunk_content", JSON.stringify(content));
+};
+
+window.TUNK_CLEAR_CONTENT = function () {
+  localStorage.removeItem("tunk_content");
+};
+`;
+}
+
+/* ---------- accents ---------- */
+const ACCENTS = [
+  { value: null,          label: 'None',        color: 'transparent', border: 'var(--concrete)' },
+  { value: 'red-plexi',   label: 'Red plexi',   color: 'var(--red-plexi)' },
+  { value: 'blue-glass',  label: 'Blue glass',  color: 'var(--blue-glass)' },
+  { value: 'amber',       label: 'Amber',       color: 'var(--amber)' },
+];
+
+const KIND_OPTIONS = ['Retail Interior', 'Exhibition', 'Residential', 'Adaptive Reuse', 'Installation', 'Cultural', 'Public', 'Other'];
+const TAG_OPTIONS  = ['Retail', 'Interior', 'Exhibition', 'Installation', 'Residential', 'Adaptive Reuse', 'Cultural', 'Public'];
+
+/* ---------- chip input ---------- */
+function ChipInput({ value, onChange, placeholder = 'Add and press Enter' }) {
+  const [draft, setDraft] = React.useState('');
+  function add(v) {
+    const t = (v || draft).trim();
+    if (!t) return;
+    if (value.includes(t)) { setDraft(''); return; }
+    onChange([...value, t]);
+    setDraft('');
+  }
+  return (
+    <div className="chip-input">
+      {value.map((tag, i) => (
+        <span key={i} className="chip-tag">
+          {tag}
+          <span className="x" onClick={() => onChange(value.filter((_, j) => j !== i))}>×</span>
+        </span>
+      ))}
+      <input
+        value={draft}
+        placeholder={placeholder}
+        onChange={e => setDraft(e.target.value)}
+        onKeyDown={e => { if (e.key === 'Enter' || e.key === ',') { e.preventDefault(); add(); } }}
+        onBlur={() => add()}
+      />
+    </div>
+  );
+}
+
+/* ---------- project edit form ---------- */
+function ProjectForm({ project, onChange, onDelete, onClose, isNew }) {
+  const set = (k, v) => onChange({ ...project, [k]: v });
+  return (
+    <div className="panel">
+      <div className="head">
+        <h3>{isNew ? 'New project' : `Edit · ${project.name || 'Untitled'}`}</h3>
+        <div className="row-actions">
+          {!isNew && <button className="btn dark danger sm" onClick={onDelete}>Delete</button>}
+          <button className="btn dark sm" onClick={onClose}>Close</button>
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="field">
+          <label>Project ID</label>
+          <input type="text" value={project.id} onChange={e => set('id', e.target.value)} placeholder="PRJ-024" />
+          <div className="hint">Lab-tag identifier. Format PRJ-### recommended.</div>
+        </div>
+        <div className="field">
+          <label>Year</label>
+          <input type="number" value={project.year} onChange={e => set('year', parseInt(e.target.value) || '')} />
+        </div>
+      </div>
+
+      <div className="field">
+        <label>Project name</label>
+        <input type="text" value={project.name} onChange={e => set('name', e.target.value)} placeholder="Karaköy Cosmetics" />
+      </div>
+
+      <div className="row3">
+        <div className="field">
+          <label>Kind</label>
+          <select value={project.kind} onChange={e => set('kind', e.target.value)}>
+            {KIND_OPTIONS.map(k => <option key={k} value={k}>{k}</option>)}
+          </select>
+        </div>
+        <div className="field">
+          <label>Location</label>
+          <input type="text" value={project.location} onChange={e => set('location', e.target.value)} placeholder="Istanbul" />
+        </div>
+        <div className="field">
+          <label>Area</label>
+          <input type="text" value={project.area} onChange={e => set('area', e.target.value)} placeholder="84 m²" />
+        </div>
+      </div>
+
+      <div className="field">
+        <label>Summary</label>
+        <textarea rows="4" value={project.summary} onChange={e => set('summary', e.target.value)} placeholder="A short, direct description. One paragraph." />
+        <div className="hint">Lead with what the thing is (materials, room counts), not what it means.</div>
+      </div>
+
+      <div className="field">
+        <label>Materials</label>
+        <ChipInput value={project.materials || []} onChange={v => set('materials', v)} placeholder="Add material and press Enter" />
+        <div className="hint">e.g. red plexiglass, brushed steel, oak. Most projects use 3 – 5.</div>
+      </div>
+
+      <div className="field">
+        <label>Tags</label>
+        <ChipInput value={project.tags || []} onChange={v => set('tags', v)} placeholder="Add tag" />
+        <div className="hint">Used for filters on the Work page. Suggestions: {TAG_OPTIONS.join(', ')}.</div>
+      </div>
+
+      <div className="field">
+        <label>Material accent</label>
+        <div className="swatches">
+          {ACCENTS.map(a => (
+            <div key={a.value || 'none'}
+                 className={`swatch ${project.accent === a.value ? 'is-active' : ''}`}
+                 onClick={() => set('accent', a.value)}>
+              <span className="sw" style={{background: a.color, border: a.border ? `1px solid ${a.border}` : ''}} />
+              {a.label}
+            </div>
+          ))}
+        </div>
+        <div className="hint">Set only when a real material in the project justifies it. Tints project image and rule on detail page.</div>
+      </div>
+
+      <div className="row">
+        <div className="field">
+          <label>URL slug</label>
+          <input type="text" value={project.slug || ''} onChange={e => set('slug', e.target.value.toLowerCase().replace(/[^a-z0-9-]/g,'-'))} placeholder="karakoy-cosmetics" />
+          <div className="hint">Used in URLs. Lowercase, hyphens only.</div>
+        </div>
+        <div className="field">
+          <label>Photo count</label>
+          <input type="number" value={project.photos || ''} onChange={e => set('photos', parseInt(e.target.value) || 0)} />
+          <div className="hint">Number of photos in the project archive.</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ---------- pages ---------- */
+function ProjectsPage({ content, setContent }) {
+  const [editing, setEditing] = React.useState(null);  // index or 'new'
+  const projects = content.projects || [];
+
+  function updateProject(idx, p) {
+    const next = [...projects];
+    next[idx] = p;
+    setContent({ ...content, projects: next });
+  }
+  function addProject() {
+    const newProject = {
+      id: `PRJ-${String(Math.floor(Math.random()*900)+100)}`,
+      slug: '',
+      name: '',
+      kind: 'Retail Interior',
+      year: new Date().getFullYear(),
+      location: 'Istanbul',
+      area: '',
+      materials: [],
+      accent: null,
+      summary: '',
+      photos: 0,
+      tags: [],
+    };
+    setContent({ ...content, projects: [...projects, newProject] });
+    setEditing(projects.length);
+  }
+  function deleteProject(idx) {
+    if (!confirm('Delete this project? This cannot be undone (until you publish a new version).')) return;
+    const next = projects.filter((_, i) => i !== idx);
+    setContent({ ...content, projects: next });
+    setEditing(null);
+  }
+  function move(idx, dir) {
+    const j = idx + dir;
+    if (j < 0 || j >= projects.length) return;
+    const next = [...projects];
+    [next[idx], next[j]] = [next[j], next[idx]];
+    setContent({ ...content, projects: next });
+    if (editing === idx) setEditing(j);
+    else if (editing === j) setEditing(idx);
+  }
+
+  return (
+    <div>
+      <h1>Projects</h1>
+      <div className="sub">№ 01 · {projects.length.toString().padStart(2,'0')} projects</div>
+
+      {editing === null && (
+        <>
+          <div className="spread mt-4" style={{marginBottom:16}}>
+            <div className="hint" style={{fontFamily:'var(--font-mono)',fontSize:11,letterSpacing:'0.06em',textTransform:'uppercase',color:'var(--graphite)'}}>
+              Order here = order on the Work page.
+            </div>
+            <button className="btn dark primary sm" onClick={addProject}>+ New project</button>
+          </div>
+
+          {projects.length === 0 ? (
+            <div className="empty">
+              <div className="ttl">No projects yet</div>
+              <div>Click <b>+ New project</b> to add your first one.</div>
+            </div>
+          ) : (
+            <div className="table">
+              <div className="table-row head">
+                <span>№</span><span>Project</span><span>Kind</span><span>Year</span><span>Location</span><span style={{textAlign:'right'}}>Actions</span>
+              </div>
+              {projects.map((p, i) => (
+                <div key={i} className="table-row">
+                  <span className="id">{p.id}</span>
+                  <div>
+                    <div className="name">{p.name || <span style={{color:'var(--graphite)',fontStyle:'italic',fontWeight:400}}>(untitled)</span>}</div>
+                  </div>
+                  <span className="meta">{p.kind}</span>
+                  <span className="meta">{p.year}</span>
+                  <span className="meta">{p.location}</span>
+                  <div className="actions">
+                    <button className="btn dark sm" onClick={() => move(i, -1)} title="Move up" disabled={i===0} style={i===0?{opacity:0.3}:{}}>↑</button>
+                    <button className="btn dark sm" onClick={() => move(i, 1)}  title="Move down" disabled={i===projects.length-1} style={i===projects.length-1?{opacity:0.3}:{}}>↓</button>
+                    <button className="btn dark primary sm" onClick={() => setEditing(i)}>Edit →</button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </>
+      )}
+
+      {editing !== null && projects[editing] && (
+        <ProjectForm
+          project={projects[editing]}
+          onChange={(p) => updateProject(editing, p)}
+          onDelete={() => deleteProject(editing)}
+          onClose={() => setEditing(null)}
+        />
+      )}
+    </div>
+  );
+}
+
+function StudioPage({ content, setContent }) {
+  const setHero = (k, v) => setContent({ ...content, hero: { ...content.hero, [k]: v } });
+  const setAbout = (k, v) => setContent({ ...content, about: { ...content.about, [k]: v } });
+  const team = content.about.team || [];
+  function updateTeam(idx, p) { const next = [...team]; next[idx] = p; setAbout('team', next); }
+  function addTeam() { setAbout('team', [...team, { name: '', role: '' }]); }
+  function deleteTeam(idx) { setAbout('team', team.filter((_, i) => i !== idx)); }
+
+  return (
+    <div>
+      <h1>Studio</h1>
+      <div className="sub">№ 02 · Hero, about, team, clients</div>
+
+      <h2>Hero (home page)</h2>
+      <div className="field">
+        <label>Hero title</label>
+        <textarea rows="3" value={content.hero.title} onChange={e => setHero('title', e.target.value)} />
+        <div className="hint">Each line break becomes a new line in the display. Three lines recommended.</div>
+      </div>
+      <div className="row">
+        <div className="field">
+          <label>Intro paragraph 1</label>
+          <textarea rows="3" value={content.hero.intro1} onChange={e => setHero('intro1', e.target.value)} />
+        </div>
+        <div className="field">
+          <label>Intro paragraph 2</label>
+          <textarea rows="3" value={content.hero.intro2} onChange={e => setHero('intro2', e.target.value)} />
+        </div>
+      </div>
+      <div className="field">
+        <label>Stats (lab-tag list)</label>
+        <ChipInput value={content.hero.stats || []} onChange={v => setHero('stats', v)} placeholder="EST · 2019" />
+        <div className="hint">e.g. EST · 2019. Use a middle dot (·) as separator. 3 – 5 entries.</div>
+      </div>
+
+      <h2>About page</h2>
+      <div className="field">
+        <label>About page heading</label>
+        <textarea rows="2" value={content.about.heading} onChange={e => setAbout('heading', e.target.value)} />
+      </div>
+      <div className="field">
+        <label>About paragraph 1</label>
+        <textarea rows="3" value={content.about.p1} onChange={e => setAbout('p1', e.target.value)} />
+      </div>
+      <div className="field">
+        <label>About paragraph 2</label>
+        <textarea rows="4" value={content.about.p2} onChange={e => setAbout('p2', e.target.value)} />
+      </div>
+
+      <h2>Team</h2>
+      <div className="table" style={{marginBottom:16}}>
+        <div className="table-row head" style={{gridTemplateColumns:'1fr 1.5fr 100px'}}>
+          <span>Name</span><span>Role</span><span style={{textAlign:'right'}}>Actions</span>
+        </div>
+        {team.map((t, i) => (
+          <div key={i} className="table-row" style={{gridTemplateColumns:'1fr 1.5fr 100px',padding:'10px 16px'}}>
+            <input type="text" value={t.name} onChange={e => updateTeam(i, { ...t, name: e.target.value })} placeholder="Name" />
+            <input type="text" value={t.role} onChange={e => updateTeam(i, { ...t, role: e.target.value })} placeholder="Role" />
+            <div className="actions"><button className="btn dark danger sm" onClick={() => deleteTeam(i)}>Remove</button></div>
+          </div>
+        ))}
+      </div>
+      <button className="btn dark sm" onClick={addTeam}>+ Add person</button>
+
+      <h2>Clients</h2>
+      <div className="field">
+        <label>Selected clients</label>
+        <ChipInput value={content.about.clients || []} onChange={v => setAbout('clients', v)} placeholder="Add client and press Enter" />
+        <div className="hint">Order matters. They display left-to-right, top-to-bottom in a 3-column grid.</div>
+      </div>
+    </div>
+  );
+}
+
+function ContactPage({ content, setContent }) {
+  const setContact = (k, v) => setContent({ ...content, contact: { ...content.contact, [k]: v } });
+  const setFooter  = (k, v) => setContent({ ...content, footer:  { ...content.footer,  [k]: v } });
+  return (
+    <div>
+      <h1>Contact</h1>
+      <div className="sub">№ 03 · Contact details, footer copy</div>
+
+      <h2>Contact details</h2>
+      <div className="row">
+        <div className="field">
+          <label>Phone</label>
+          <input type="text" value={content.contact.phone} onChange={e => setContact('phone', e.target.value)} />
+        </div>
+        <div className="field">
+          <label>Email · general</label>
+          <input type="text" value={content.contact.email} onChange={e => setContact('email', e.target.value)} />
+        </div>
+      </div>
+      <div className="field">
+        <label>Email · press</label>
+        <input type="text" value={content.contact.pressEmail} onChange={e => setContact('pressEmail', e.target.value)} />
+      </div>
+      <div className="field">
+        <label>Address</label>
+        <textarea rows="4" value={content.contact.address} onChange={e => setContact('address', e.target.value)} />
+        <div className="hint">Line breaks preserved. e.g. street / city / country.</div>
+      </div>
+
+      <h2>Footer</h2>
+      <div className="row">
+        <div className="field">
+          <label>Footer tagline</label>
+          <input type="text" value={content.footer.tagline} onChange={e => setFooter('tagline', e.target.value)} />
+        </div>
+        <div className="field">
+          <label>Footer location</label>
+          <input type="text" value={content.footer.location} onChange={e => setFooter('location', e.target.value)} />
+        </div>
+      </div>
+      <div className="field">
+        <label>Instagram link label</label>
+        <input type="text" value={content.footer.instagram} onChange={e => setFooter('instagram', e.target.value)} />
+        <div className="hint">Shown in footer. e.g. "Instagram →".</div>
+      </div>
+    </div>
+  );
+}
+
+function PublishPage({ content, defaults, onReset, onImport }) {
+  const fileInput = React.useRef(null);
+  const modified = isModified(content, defaults);
+
+  function publish() {
+    const js = generateContentJs(content);
+    download('content.js', js, 'text/javascript');
+  }
+  function exportJson() {
+    download('tunk-content-' + new Date().toISOString().slice(0,10) + '.json', JSON.stringify(content, null, 2), 'application/json');
+  }
+  function importJson(file) {
+    const r = new FileReader();
+    r.onload = () => {
+      try {
+        const parsed = JSON.parse(r.result);
+        if (!parsed.hero || !parsed.projects) throw new Error('Missing required keys');
+        onImport(parsed);
+        alert('Imported successfully.');
+      } catch (e) {
+        alert('Could not import: ' + e.message);
+      }
+    };
+    r.readAsText(file);
+  }
+
+  return (
+    <div>
+      <h1>Publish</h1>
+      <div className="sub">№ 04 · Download, backup, restore</div>
+
+      <div className="pub-block">
+        <h3>1 · Preview your changes</h3>
+        <p className="desc">Open the live site in a new tab. Edits are saved in this browser only — anyone visiting the deployed site still sees the previously-published version.</p>
+        <div className="actions">
+          <a href="index.html" target="_blank" className="btn dark primary sm">Open preview →</a>
+        </div>
+      </div>
+
+      <div className="pub-block">
+        <h3>2 · Publish to your site {modified && <span className="modified-pill">Unpublished changes</span>}</h3>
+        <p className="desc">Download a fresh <kbd>content.js</kbd> with your current edits baked in. Upload it next to <kbd>index.html</kbd> on your host (Netlify drag-drop, GitHub, etc.) — replace the existing <kbd>content.js</kbd>. That's it. Visitors will see your edits on next page load.</p>
+        <div className="actions">
+          <button className="btn dark primary sm" onClick={publish}>Download content.js →</button>
+        </div>
+      </div>
+
+      <div className="pub-block">
+        <h3>3 · Backup &amp; restore</h3>
+        <p className="desc">Export a JSON copy of your current edits for safekeeping (recommended before big changes). Import to restore from a backup, or to move edits between devices.</p>
+        <div className="actions">
+          <button className="btn dark sm" onClick={exportJson}>Export JSON</button>
+          <button className="btn dark sm" onClick={() => fileInput.current.click()}>Import JSON</button>
+          <input ref={fileInput} type="file" accept="application/json" style={{display:'none'}}
+                 onChange={e => { if (e.target.files[0]) importJson(e.target.files[0]); e.target.value = ''; }} />
+        </div>
+      </div>
+
+      <div className="pub-block">
+        <h3>4 · Reset</h3>
+        <p className="desc">Discard all edits in this browser and revert to whatever's in content.js (the published version).</p>
+        <div className="actions">
+          <button className="btn dark danger sm" onClick={() => { if (confirm('Discard all unpublished edits? This cannot be undone.')) onReset(); }}>Reset to published</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function HelpPage() {
+  return (
+    <div>
+      <h1>Help</h1>
+      <div className="sub">№ 05 · How this works</div>
+
+      <div className="steps">
+        <div className="step">
+          <div className="num">1</div>
+          <div className="body">
+            <b>Make changes.</b> Use the <b>Projects</b>, <b>Studio</b> and <b>Contact</b> tabs to edit anything on the site. Changes are auto-saved as you type — the green dot in the top bar confirms it.
+          </div>
+        </div>
+        <div className="step">
+          <div className="num">2</div>
+          <div className="body">
+            <b>Preview live.</b> Open <b>Publish → Open preview</b>. Your edits show up in the site — only in this browser, only for you. The actual published site is unchanged.
+          </div>
+        </div>
+        <div className="step">
+          <div className="num">3</div>
+          <div className="body">
+            <b>Publish.</b> Go to <b>Publish → Download content.js</b>. You get a small file. Upload it to your host (Netlify, GitHub Pages, etc.), replacing the existing <kbd>content.js</kbd>. Visitors see your changes on next page load.
+          </div>
+        </div>
+        <div className="step">
+          <div className="num">4</div>
+          <div className="body">
+            <b>Back things up.</b> Before any big change, use <b>Publish → Export JSON</b> to save a snapshot. You can restore it any time.
+          </div>
+        </div>
+      </div>
+
+      <h2>Tips</h2>
+      <ul style={{paddingLeft:20,lineHeight:1.9,fontSize:13,color:'var(--graphite)'}}>
+        <li><b style={{color:'var(--ink)'}}>Voice.</b> Keep copy direct and material-first. Avoid metaphors, avoid "we are passionate about…". The README has examples.</li>
+        <li><b style={{color:'var(--ink)'}}>Project order.</b> The first 4 projects appear on the homepage. Drag (or use arrow buttons) on the Projects tab to reorder.</li>
+        <li><b style={{color:'var(--ink)'}}>Material accents.</b> Only set an accent on a project that actually uses that material. Most projects have no accent.</li>
+        <li><b style={{color:'var(--ink)'}}>Photos.</b> Real photographs replace the grey placeholder when the site is built. Photo upload isn't wired into the admin yet — when you have shots, send them and I'll wire them in.</li>
+        <li><b style={{color:'var(--ink)'}}>Two browsers, two devices.</b> Edits are stored in this browser. To move them, Export JSON and Import on the other device.</li>
+      </ul>
+    </div>
+  );
+}
+
+/* ---------- main app ---------- */
+function App() {
+  const defaults = window.TUNK_DEFAULT_CONTENT;
+  const [content, setContentRaw] = React.useState(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem('tunk_content') || 'null');
+      return saved ? {
+        hero:     { ...defaults.hero,    ...(saved.hero    || {}) },
+        about:    { ...defaults.about,   ...(saved.about   || {}) },
+        contact:  { ...defaults.contact, ...(saved.contact || {}) },
+        footer:   { ...defaults.footer,  ...(saved.footer  || {}) },
+        projects: saved.projects || defaults.projects,
+      } : cloneDeep(defaults);
+    } catch (e) { return cloneDeep(defaults); }
+  });
+  const [tab, setTab] = React.useState('projects');
+  const [savedAt, setSavedAt] = React.useState(Date.now());
+
+  // auto-save to localStorage on every change
+  React.useEffect(() => {
+    localStorage.setItem('tunk_content', JSON.stringify(content));
+    setSavedAt(Date.now());
+  }, [content]);
+
+  const modified = isModified(content, defaults);
+
+  function setContent(next) { setContentRaw(typeof next === 'function' ? next(content) : next); }
+  function resetAll() {
+    localStorage.removeItem('tunk_content');
+    setContentRaw(cloneDeep(defaults));
+  }
+
+  return (
+    <div className="app">
+      <div className="bar">
+        <div className="brand">
+          <span className="word">TUNK</span>
+          <span className="tag">Admin</span>
+        </div>
+        <div className="status">
+          <span className="dot"/>{modified ? 'Auto-saved · unpublished changes' : 'Auto-saved · in sync with published'}
+        </div>
+        <div className="actions">
+          <a href="index.html" target="_blank" className="btn">Preview site →</a>
+          <button className="btn primary" onClick={() => setTab('publish')}>Publish</button>
+        </div>
+      </div>
+
+      <div className="main">
+        <aside className="side">
+          <div className="group">Content</div>
+          <div className={`item ${tab==='projects'?'active':''}`} onClick={() => setTab('projects')}>
+            <span>Projects</span>
+            <span className="count">{(content.projects||[]).length.toString().padStart(2,'0')}</span>
+          </div>
+          <div className={`item ${tab==='studio'?'active':''}`} onClick={() => setTab('studio')}>
+            <span>Studio</span><span className="count">→</span>
+          </div>
+          <div className={`item ${tab==='contact'?'active':''}`} onClick={() => setTab('contact')}>
+            <span>Contact</span><span className="count">→</span>
+          </div>
+
+          <div className="group">Manage</div>
+          <div className={`item ${tab==='publish'?'active':''}`} onClick={() => setTab('publish')}>
+            <span>Publish</span>
+            {modified && <span className="count" style={{color:'var(--amber)'}}>●</span>}
+          </div>
+          <div className={`item ${tab==='help'?'active':''}`} onClick={() => setTab('help')}>
+            <span>Help</span><span className="count">?</span>
+          </div>
+        </aside>
+
+        <main className="content">
+          {tab === 'projects' && <ProjectsPage content={content} setContent={setContent} />}
+          {tab === 'studio'   && <StudioPage   content={content} setContent={setContent} />}
+          {tab === 'contact'  && <ContactPage  content={content} setContent={setContent} />}
+          {tab === 'publish'  && <PublishPage  content={content} defaults={defaults} onReset={resetAll} onImport={setContent} />}
+          {tab === 'help'     && <HelpPage />}
+        </main>
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>
