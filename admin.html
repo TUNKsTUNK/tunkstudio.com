@@ -5,14 +5,321 @@
   <title>TUNK Studio — Admin</title>
 
   <link rel="stylesheet" href="fonts.css"/>
-  <script src="content.js"></script>
-  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <!-- INLINE_CONTENT_DEFAULTS -->
+<script>
+/* =========================================================================
+   TUNK STUDIO — content.js
+   ----------------------------------------------------------------------
+   This file holds EVERY editable detail of the website:
+     • site identity (title, description, copyright, language toggle)
+     • navigation labels and order
+     • theme — colors, font families, logo sizes
+     • copy for all pages — home, work, about, press, contact, project
+     • projects (the portfolio data)
+     • footer
+
+   Edit through admin.html (recommended) — or by hand if you prefer.
+   When you publish, just upload this file next to index.html.
+   ========================================================================= */
+
+window.TUNK_DEFAULT_CONTENT = {
+
+  /* ──────────────────────────── SITE ──────────────────────────── */
+  site: {
+    title: "TUNK Studio",
+    description: "Architecture, installation & design — Istanbul.",
+    language: "EN · TR",
+    copyright: "© TUNK STUDIO · 2019—2024",
+    logoNavHeight: 28,
+    logoFooterHeight: 70
+  },
+
+  /* ──────────────────────────── NAVIGATION ──────────────────────────── */
+  nav: [
+    { id: "home",    label: "Studio"  },
+    { id: "work",    label: "Work"    },
+    { id: "about",   label: "About"   },
+    { id: "press",   label: "Press"   },
+    { id: "contact", label: "Contact" }
+  ],
+
+  /* ──────────────────────────── THEME ──────────────────────────── */
+  theme: {
+    colors: {
+      ink:        "#0A0A0A",
+      paper:      "#FFFFFF",
+      bone:       "#F4F3EF",
+      concrete:   "#E8E7E2",
+      aluminium:  "#B8B8B5",
+      graphite:   "#5A5A57",
+      carbon:     "#1C1C1B",
+      blueGlass:  "#1C3FBF",
+      redPlexi:   "#D4271E",
+      amber:      "#C97A1A"
+    },
+    fonts: {
+      sans: "'Gotham', 'Helvetica Neue', Arial, sans-serif",
+      mono: "'JetBrains Mono', ui-monospace, Menlo, monospace"
+    }
+  },
+
+  /* ──────────────────────────── HOME ──────────────────────────── */
+  home: {
+    heroEyebrow: "№ 00 — STUDIO",
+    heroTitle:   "Architecture,\ninstallation & design.\nIstanbul.",
+    heroIntro1:  "TUNK is a studio for architecture, installation and design, based in Istanbul. The work moves between retail interiors, exhibitions and installations.",
+    heroIntro2:  "Founded in 2019. Recent commissions for retail clients in Istanbul and Berlin, and exhibition design for two institutions.",
+    heroStats: [
+      "EST · 2019",
+      "BUILT · 24 PROJECTS",
+      "STAFF · 6",
+      "EXHIBITED · ARTER · SALT · KANYON"
+    ],
+    selectedWorkLabel: "Selected work",
+    selectedWorkMore:  "All projects",
+    practiceLabel:   "Practice",
+    practiceEyebrow: "METHOD",
+    practiceText:    "The studio works between architecture and exhibition design. Each project begins with a survey of what is already there — structure, light, materials in use — before any new gesture is proposed.",
+    notesEyebrow: "RECENT NOTES",
+    notes: [
+      { date: "2024.03", kind: "ESSAY",     title: "On the use of red plexiglass" },
+      { date: "2024.02", kind: "INTERVIEW", title: "Conversation with Cemal Emden" },
+      { date: "2023.12", kind: "PRESS",     title: "Membrane reviewed in Domus" }
+    ]
+  },
+
+  /* ──────────────────────────── WORK ──────────────────────────── */
+  work: {
+    eyebrow: "№ 01 — WORK",
+    title: "All projects",
+    filterLabel: "FILTER",
+    filters: ["All", "Retail", "Exhibition", "Residential", "Installation", "Adaptive Reuse"],
+    gridLabel: "Grid",
+    indexLabel: "Index",
+    rangeNote: "2019—2024",
+    countNoun: "projects"
+  },
+
+  /* ──────────────────────────── ABOUT ──────────────────────────── */
+  about: {
+    eyebrow: "№ 02 — ABOUT",
+    heading: "A studio for architecture, installation & design.",
+    practiceLabel: "PRACTICE",
+    p1: "TUNK was founded in Istanbul in 2019. The studio works between architecture, exhibition design and installation, with a particular interest in retail interiors and spatial installations.",
+    p2: "Each project begins with a survey of what is already there — structure, light, materials in use — before any new gesture is proposed. The work tries to use as few materials as possible, deployed precisely. Where colour appears, it is bound to a real material in the project — red plexiglass, blue glass, brass — never applied as decoration.",
+    peopleLabel: "PEOPLE",
+    team: [
+      { name: "Defne Aksu",   role: "Founding partner · architecture" },
+      { name: "Ekin Tunç",    role: "Founding partner · spatial design" },
+      { name: "Mert Özbek",   role: "Senior architect" },
+      { name: "Naz Kalender", role: "Designer" },
+      { name: "Sinan Demir",  role: "Project manager" },
+      { name: "Yağmur Polat", role: "Studio coordinator" }
+    ],
+    clientsLabel: "SELECTED CLIENTS",
+    clients: [
+      "Arter", "Salt Beyoğlu", "Kanyon",
+      "Vakko", "Mavi", "Yapı Kredi",
+      "Domus Türkiye", "Atelier Brut", "İKSV"
+    ]
+  },
+
+  /* ──────────────────────────── PRESS ──────────────────────────── */
+  press: {
+    eyebrow: "№ 03 — PRESS",
+    title: "Press & downloads.",
+    intro: "For press enquiries, image requests and interview availability, write to press@tunk.studio. The materials below are provided for editorial use without further permission, with credit to the studio and named photographer.",
+    items: [
+      { n: "01", name: "Press release — Karaköy Cosmetics", meta: "PDF · 2024.03 · 1.2 MB", langs: "EN · TR" },
+      { n: "02", name: "Image set — high res",              meta: "ZIP · 24 IMAGES · 184 MB", langs: "CMYK · RGB" },
+      { n: "03", name: "Studio biography",                  meta: "DOCX · 6 KB",              langs: "EN" },
+      { n: "04", name: "Press release — Membrane",          meta: "PDF · 2024.02 · 0.9 MB",   langs: "EN · TR" },
+      { n: "05", name: "Studio logo pack",                  meta: "ZIP · SVG · PDF · 2.4 MB", langs: "—" }
+    ],
+    downloadLabel: "Download"
+  },
+
+  /* ──────────────────────────── CONTACT ──────────────────────────── */
+  contact: {
+    eyebrow: "№ 04 — CONTACT",
+    title: "Get in touch.",
+    studioLabel:  "STUDIO",
+    enquireLabel: "ENQUIRE",
+    address:    "Karaköy\nIstanbul · 34425\nTürkiye",
+    phone:      "+90 212 000 0000",
+    email:      "HELLO@TUNK.STUDIO",
+    pressEmail: "PRESS@TUNK.STUDIO",
+    form: {
+      nameLabel:    "Name",     namePlaceholder:    "Defne Aksu",
+      emailLabel:   "Email",    emailPlaceholder:   "hello@studio.com",
+      subjectLabel: "Subject",  subjectPlaceholder: "New project",
+      budgetLabel:  "Budget",   budgetPlaceholder:  "€",
+      messageLabel: "Message",  messagePlaceholder: "A short description of the project, site and timeline.",
+      submitLabel:  "Send enquiry"
+    }
+  },
+
+  /* ──────────────────────────── PROJECT DETAIL PAGE ──────────────────────────── */
+  projectPage: {
+    backLabel:     "← All projects",
+    prevLabel:     "← Previous",
+    nextLabel:     "Next →",
+    typeLabel:     "Type",
+    yearLabel:     "Year",
+    locationLabel: "Location",
+    areaLabel:     "Area",
+    materialsLabel:"Materials",
+    photoLabel:    "Photo",
+    photographer:  "Cemal Emden",
+    detailLabel:   "DETAIL",
+    longShotLabel: "LONG SHOT"
+  },
+
+  /* ──────────────────────────── FOOTER ──────────────────────────── */
+  footer: {
+    tagline:   "Architecture · Installation · Design",
+    location:  "Karaköy, Istanbul, TR",
+    studioLabel:  "Studio",
+    studioLinks:  ["Work", "About", "Press"],
+    contactLabel: "Contact",
+    followLabel:  "Follow",
+    instagram:    "Instagram →"
+  },
+
+  /* ──────────────────────────── PROJECTS ──────────────────────────── */
+  projects: [
+    {
+      id: "PRJ-024", slug: "karakoy-cosmetics",
+      name: "Karaköy Cosmetics", kind: "Retail Interior",
+      year: 2024, location: "Istanbul", area: "84 m²",
+      materials: ["Red plexiglass", "Brushed steel", "Oak", "Existing concrete"],
+      accent: "red-plexi",
+      summary: "A 84-square-metre cosmetics shop in Karaköy. The interior is built from three materials — red plexiglass, brushed steel, oak — set against existing concrete.",
+      photos: 12,
+      tags: ["Retail", "Interior"]
+    },
+    {
+      id: "PRJ-031", slug: "arter-membrane",
+      name: "Arter — Membrane", kind: "Exhibition",
+      year: 2024, location: "Istanbul", area: "420 m²",
+      materials: ["Blue glass", "Steel mesh", "Concrete"],
+      accent: "blue-glass",
+      summary: "Exhibition design for Membrane, a group show on threshold and porosity. Three rooms of cobalt-tinted glass partitions, suspended from existing structure.",
+      photos: 18,
+      tags: ["Exhibition", "Installation"]
+    },
+    {
+      id: "PRJ-019", slug: "beyoglu-apartment",
+      name: "Beyoğlu Apartment", kind: "Residential",
+      year: 2023, location: "Istanbul", area: "142 m²",
+      materials: ["Lime plaster", "Oak", "Brass"],
+      accent: null,
+      summary: "A renovation of a 1930s flat in Beyoğlu. Existing parquet retained; new partitions in lime plaster; a single brass threshold marks the boundary between public and private.",
+      photos: 9,
+      tags: ["Residential", "Interior"]
+    },
+    {
+      id: "PRJ-027", slug: "tobacco-warehouse",
+      name: "Tobacco Warehouse", kind: "Adaptive Reuse",
+      year: 2024, location: "Izmir", area: "1,240 m²",
+      materials: ["Reclaimed timber", "Steel", "Glass"],
+      accent: "amber",
+      summary: "Adaptive reuse of a 1920s tobacco warehouse for a publishing studio and event space. Existing iron columns left in place; new mezzanine floats clear of historic walls.",
+      photos: 22,
+      tags: ["Adaptive Reuse", "Cultural"]
+    },
+    {
+      id: "PRJ-022", slug: "kanyon-installation",
+      name: "Kanyon — Volume", kind: "Installation",
+      year: 2023, location: "Istanbul", area: "60 m²",
+      materials: ["Anodised aluminium", "LED"],
+      accent: null,
+      summary: "A temporary installation in the Kanyon atrium. 1,400 anodised aluminium fins, suspended on monofilament, indexing daylight through the void.",
+      photos: 14,
+      tags: ["Installation", "Public"]
+    },
+    {
+      id: "PRJ-018", slug: "fener-bookshop",
+      name: "Fener Bookshop", kind: "Retail Interior",
+      year: 2023, location: "Istanbul", area: "54 m²",
+      materials: ["Birch ply", "Mild steel", "Glass"],
+      accent: null,
+      summary: "A small bookshop on a sloping street in Fener. The shelving steps with the floor; a single steel ladder unifies the wall.",
+      photos: 8,
+      tags: ["Retail", "Interior"]
+    }
+  ]
+};
+
+/* -------------------------------------------------------------------------
+   Deep-merge helper — local edits override defaults at any depth.
+   ------------------------------------------------------------------------- */
+function TUNK_DEEP_MERGE(base, override) {
+  if (override === undefined || override === null) return base;
+  if (Array.isArray(base) || Array.isArray(override)) return override;
+  if (typeof base !== "object" || typeof override !== "object") return override;
+  const out = {};
+  const keys = new Set([...Object.keys(base || {}), ...Object.keys(override || {})]);
+  keys.forEach(k => { out[k] = TUNK_DEEP_MERGE(base ? base[k] : undefined, override[k]); });
+  return out;
+}
+
+window.TUNK_GET_CONTENT = function () {
+  const d = window.TUNK_DEFAULT_CONTENT;
+  try {
+    const saved = JSON.parse(localStorage.getItem("tunk_content") || "null");
+    return saved ? TUNK_DEEP_MERGE(d, saved) : d;
+  } catch (e) { return d; }
+};
+
+window.TUNK_SAVE_CONTENT = function (c) { localStorage.setItem("tunk_content", JSON.stringify(c)); };
+window.TUNK_CLEAR_CONTENT = function () { localStorage.removeItem("tunk_content"); };
+
+/* -------------------------------------------------------------------------
+   Theme injection — writes a <style id="tunk-theme"> tag with the
+   current colors and font choices, mapped to the design-system
+   CSS variables. Called on page load and whenever admin edits the theme.
+   ------------------------------------------------------------------------- */
+window.TUNK_APPLY_THEME = function (content) {
+  const t = (content || window.TUNK_GET_CONTENT()).theme || {};
+  const c = t.colors || {};
+  const f = t.fonts  || {};
+  const hex2rgba = (hex, a) => {
+    const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex || "");
+    if (!m) return "rgba(0,0,0," + a + ")";
+    return `rgba(${parseInt(m[1],16)}, ${parseInt(m[2],16)}, ${parseInt(m[3],16)}, ${a})`;
+  };
+  const css = `:root {
+    --ink: ${c.ink};
+    --paper: ${c.paper};
+    --bone: ${c.bone};
+    --concrete: ${c.concrete};
+    --aluminium: ${c.aluminium};
+    --graphite: ${c.graphite};
+    --carbon: ${c.carbon};
+    --blue-glass: ${c.blueGlass};
+    --blue-glass-tr: ${hex2rgba(c.blueGlass, 0.18)};
+    --red-plexi: ${c.redPlexi};
+    --red-plexi-tr: ${hex2rgba(c.redPlexi, 0.18)};
+    --amber: ${c.amber};
+    --amber-tr: ${hex2rgba(c.amber, 0.18)};
+    --font-sans: ${f.sans};
+    --font-mono: ${f.mono};
+  }`;
+  let tag = document.getElementById("tunk-theme");
+  if (!tag) { tag = document.createElement("style"); tag.id = "tunk-theme"; document.head.appendChild(tag); }
+  tag.textContent = css;
+};
+
+</script>
+<!-- /INLINE_CONTENT_DEFAULTS -->
+<!-- content.js: when deployed, this file overrides the inline defaults above so the admin's Published edits apply -->
+<script src="content.js" onerror="void 0"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 
 <style>
-/* Fonts loaded via fonts.css linked in head. */
-
 :root {
   --ink: #0A0A0A;
   --paper: #FFFFFF;
@@ -24,10 +331,8 @@
   --red-plexi: #D4271E;
   --blue-glass: #1C3FBF;
   --amber: #C97A1A;
-
   --font-sans: 'Gotham', 'Helvetica Neue', Arial, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
-
   --ease: cubic-bezier(0.2, 0, 0, 1);
 }
 
@@ -36,19 +341,13 @@ html, body { background: var(--bone); color: var(--ink); font-family: var(--font
 a { color: inherit; text-decoration: none; cursor: pointer; }
 button { font: inherit; cursor: pointer; }
 
-/* layout */
 .app { min-height: 100vh; display: grid; grid-template-rows: auto 1fr; }
 
-/* top bar */
 .bar {
-  display: grid;
-  grid-template-columns: 280px 1fr auto;
+  display: grid; grid-template-columns: 280px 1fr auto;
   align-items: center;
-  background: var(--ink);
-  color: var(--paper);
-  border-bottom: 1px solid var(--ink);
-  padding: 14px 24px;
-  gap: 24px;
+  background: var(--ink); color: var(--paper);
+  padding: 14px 24px; gap: 24px;
   position: sticky; top: 0; z-index: 10;
 }
 .bar .brand { display: flex; align-items: center; gap: 14px; }
@@ -58,13 +357,13 @@ button { font: inherit; cursor: pointer; }
 .bar .status .dot { display: inline-block; width: 6px; height: 6px; background: #5BC76C; margin-right: 8px; vertical-align: middle; }
 .bar .actions { display: flex; gap: 8px; }
 
-/* buttons */
 .btn {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 9px 16px;
   border: 1px solid var(--paper);
   background: transparent;
   color: var(--paper);
+  font-family: var(--font-sans);
   font-weight: 500; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
   transition: all 150ms var(--ease);
 }
@@ -78,17 +377,17 @@ button { font: inherit; cursor: pointer; }
 .btn.danger { border-color: var(--red-plexi); color: var(--red-plexi); }
 .btn.danger:hover { background: var(--red-plexi); color: var(--paper); }
 .btn.sm { padding: 6px 12px; font-size: 9px; }
+.btn:disabled { cursor: not-allowed; }
 
-/* main */
 .main { display: grid; grid-template-columns: 280px 1fr; min-height: 0; }
 
-/* sidebar */
-.side { background: var(--paper); border-right: 1px solid var(--concrete); padding: 24px 0; }
-.side .group { padding: 0 24px 8px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--graphite); margin-top: 16px; }
+.side { background: var(--paper); border-right: 1px solid var(--concrete); padding: 24px 0 64px; overflow-y: auto; max-height: calc(100vh - 70px); position: sticky; top: 70px; }
+.side .group { padding: 0 24px 4px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--graphite); margin-top: 24px; }
 .side .item {
   display: flex; justify-content: space-between; align-items: center;
-  padding: 12px 24px;
-  font-weight: 500; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase;
+  padding: 11px 24px;
+  font-family: var(--font-sans);
+  font-weight: 500; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
   border-left: 2px solid transparent;
   transition: all 150ms var(--ease);
 }
@@ -96,35 +395,38 @@ button { font: inherit; cursor: pointer; }
 .side .item.active { border-left-color: var(--ink); background: var(--bone); }
 .side .item .count { font-family: var(--font-mono); font-size: 10px; color: var(--graphite); }
 
-/* content area */
-.content { padding: 32px 48px; max-width: 1280px; }
-.content h1 { font-weight: 900; font-size: 36px; letter-spacing: -0.02em; text-transform: uppercase; margin-bottom: 4px; }
+.content { padding: 32px 48px 96px; max-width: 1080px; }
+.content h1 { font-family: var(--font-sans); font-weight: 900; font-size: 36px; letter-spacing: -0.02em; text-transform: uppercase; margin-bottom: 4px; }
 .content .sub { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--graphite); margin-bottom: 32px; }
-.content h2 { font-weight: 700; font-size: 20px; letter-spacing: -0.01em; margin: 32px 0 16px; padding-top: 24px; border-top: 1px solid var(--ink); }
+.content h2 { font-family: var(--font-sans); font-weight: 700; font-size: 18px; letter-spacing: -0.01em; margin: 36px 0 16px; padding-top: 24px; border-top: 1px solid var(--ink); }
 
 /* form */
 .field { display: grid; gap: 6px; margin-bottom: 18px; }
 .field label { font-family: var(--font-sans); font-weight: 500; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); }
-.field .hint { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.04em; color: var(--graphite); text-transform: uppercase; }
+.field .hint { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.02em; color: var(--graphite); text-transform: uppercase; }
 input[type=text], input[type=number], input[type=email], select, textarea {
-  font: inherit;
-  font-size: 14px;
+  font: inherit; font-family: var(--font-sans); font-size: 14px;
   background: var(--paper);
   border: 1px solid var(--concrete);
   padding: 10px 12px;
-  outline: none;
-  border-radius: 0;
+  outline: none; border-radius: 0;
   color: var(--ink);
   width: 100%;
 }
 input:focus, textarea:focus, select:focus { border-color: var(--ink); }
-textarea { resize: vertical; min-height: 80px; line-height: 1.55; font-family: var(--font-sans); }
+textarea { resize: vertical; min-height: 80px; line-height: 1.55; }
 .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
 
+/* color input */
+.color-in { display: flex; align-items: center; gap: 8px; border: 1px solid var(--concrete); background: var(--paper); padding: 4px 10px 4px 4px; }
+.color-in input[type=color] { width: 36px; height: 32px; padding: 0; border: none; cursor: pointer; background: transparent; }
+.color-in input[type=text] { flex: 1; border: none; padding: 8px 0; font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.04em; }
+.color-in .sw-preview { width: 18px; height: 18px; border: 1px solid var(--concrete); }
+
 /* tables */
 .table { background: var(--paper); border: 1px solid var(--concrete); }
-.table-row { display: grid; grid-template-columns: 80px 1fr 200px 100px 100px 120px; gap: 16px; padding: 14px 16px; border-bottom: 1px solid var(--concrete); align-items: center; }
+.table-row { display: grid; grid-template-columns: 80px 1fr 200px 100px 100px 160px; gap: 16px; padding: 14px 16px; border-bottom: 1px solid var(--concrete); align-items: center; }
 .table-row:last-child { border-bottom: none; }
 .table-row.head { background: var(--bone); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--graphite); padding: 10px 16px; }
 .table-row .id { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; color: var(--graphite); text-transform: uppercase; }
@@ -132,53 +434,40 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.55; font-family: v
 .table-row .meta { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; color: var(--graphite); text-transform: uppercase; }
 .table-row .actions { display: flex; gap: 6px; justify-content: flex-end; }
 
-/* drag handle */
-.dh { font-family: var(--font-mono); font-size: 16px; color: var(--aluminium); cursor: grab; user-select: none; line-height: 1; }
-.dh:active { cursor: grabbing; }
-
-/* card pile (project edit form) */
 .panel { background: var(--paper); border: 1px solid var(--ink); padding: 32px; }
 .panel .head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid var(--ink); }
 .panel .head h3 { font-weight: 700; font-size: 18px; letter-spacing: -0.01em; }
 
-/* swatches for accent */
 .swatches { display: flex; gap: 8px; flex-wrap: wrap; }
 .swatch { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid var(--concrete); background: var(--paper); cursor: pointer; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; transition: all 150ms var(--ease); }
 .swatch:hover { border-color: var(--ink); }
 .swatch.is-active { border-color: var(--ink); background: var(--ink); color: var(--paper); }
 .swatch .sw { width: 14px; height: 14px; border: 1px solid rgba(0,0,0,0.2); }
 
-/* chips for materials etc */
 .chip-input { display: flex; flex-wrap: wrap; gap: 6px; padding: 8px; border: 1px solid var(--concrete); background: var(--paper); min-height: 44px; }
 .chip-input input { border: none; padding: 4px 8px; font-size: 13px; flex: 1; min-width: 100px; background: transparent; }
 .chip-tag { display: inline-flex; align-items: center; gap: 6px; padding: 4px 8px; background: var(--ink); color: var(--paper); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; }
 .chip-tag .x { cursor: pointer; opacity: 0.6; }
 .chip-tag .x:hover { opacity: 1; }
 
-/* publish blocks */
 .pub-block { background: var(--paper); border: 1px solid var(--concrete); padding: 24px; margin-bottom: 16px; }
 .pub-block h3 { font-weight: 700; font-size: 16px; margin-bottom: 4px; letter-spacing: -0.01em; }
 .pub-block .desc { font-size: 13px; color: var(--graphite); line-height: 1.55; margin-bottom: 16px; max-width: 640px; }
 .pub-block .actions { display: flex; gap: 8px; }
 
-/* tag for changed indicator */
 .modified-pill { display: inline-block; padding: 2px 8px; background: var(--amber); color: var(--paper); font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; margin-left: 8px; }
 
-/* steps */
 .steps { display: grid; gap: 20px; }
 .step { display: grid; grid-template-columns: 40px 1fr; gap: 16px; }
 .step .num { font-family: var(--font-mono); font-size: 22px; font-weight: 700; color: var(--ink); line-height: 1; }
 .step .body { font-size: 13px; line-height: 1.7; color: var(--graphite); }
 .step .body b { color: var(--ink); font-weight: 700; }
 
-/* keyboard kbd */
 kbd { font-family: var(--font-mono); font-size: 11px; padding: 1px 6px; border: 1px solid var(--concrete); background: var(--bone); }
 
-/* empty state */
 .empty { padding: 64px 32px; text-align: center; color: var(--graphite); border: 1px dashed var(--concrete); background: var(--paper); }
 .empty .ttl { font-weight: 700; font-size: 16px; color: var(--ink); margin-bottom: 8px; }
 
-/* utility */
 .row-actions { display: flex; gap: 8px; align-items: center; }
 .spread { display: flex; justify-content: space-between; align-items: center; }
 .mt-4 { margin-top: 16px; }
@@ -187,11 +476,14 @@ kbd { font-family: var(--font-mono); font-size: 11px; padding: 1px 6px; border: 
 </head>
 <body>
   <div id="root"></div>
-<script type="text/babel" data-presets="react">
 
-/* ---------- helpers ---------- */
+  <script type="text/babel" data-presets="react">
+/* TUNK admin — shared form primitives */
+
 function cloneDeep(x) { return JSON.parse(JSON.stringify(x)); }
+
 function isModified(content, defaults) { return JSON.stringify(content) !== JSON.stringify(defaults); }
+
 function download(filename, text, mime = 'text/plain') {
   const blob = new Blob([text], { type: mime });
   const url = URL.createObjectURL(blob);
@@ -201,48 +493,172 @@ function download(filename, text, mime = 'text/plain') {
   setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 100);
 }
 
-/* ---------- generate content.js from a content object ---------- */
 function generateContentJs(content) {
-  const json = JSON.stringify(content, null, 2)
-    // soft-wrap long strings won't help; keep as-is
-    ;
+  const json = JSON.stringify(content, null, 2);
   return `/* =========================================================================
    TUNK STUDIO — content.js
-   ----------------------------------------------------------------------
    Generated by admin.html on ${new Date().toISOString()}.
-   Edit through admin.html (recommended), or by hand if you prefer.
-
-   To publish updates: upload this file next to index.html.
    ========================================================================= */
 
 window.TUNK_DEFAULT_CONTENT = ${json};
 
+function TUNK_DEEP_MERGE(base, override) {
+  if (override === undefined || override === null) return base;
+  if (Array.isArray(base) || Array.isArray(override)) return override;
+  if (typeof base !== "object" || typeof override !== "object") return override;
+  const out = {};
+  const keys = new Set([...Object.keys(base || {}), ...Object.keys(override || {})]);
+  keys.forEach(k => { out[k] = TUNK_DEEP_MERGE(base ? base[k] : undefined, override[k]); });
+  return out;
+}
+
 window.TUNK_GET_CONTENT = function () {
-  var d = window.TUNK_DEFAULT_CONTENT;
+  const d = window.TUNK_DEFAULT_CONTENT;
   try {
-    var saved = JSON.parse(localStorage.getItem("tunk_content") || "null");
-    if (!saved) return d;
-    return {
-      hero:     Object.assign({}, d.hero,     saved.hero     || {}),
-      about:    Object.assign({}, d.about,    saved.about    || {}),
-      contact:  Object.assign({}, d.contact,  saved.contact  || {}),
-      footer:   Object.assign({}, d.footer,   saved.footer   || {}),
-      projects: saved.projects || d.projects
-    };
+    const saved = JSON.parse(localStorage.getItem("tunk_content") || "null");
+    return saved ? TUNK_DEEP_MERGE(d, saved) : d;
   } catch (e) { return d; }
 };
+window.TUNK_SAVE_CONTENT = function (c) { localStorage.setItem("tunk_content", JSON.stringify(c)); };
+window.TUNK_CLEAR_CONTENT = function () { localStorage.removeItem("tunk_content"); };
 
-window.TUNK_SAVE_CONTENT = function (content) {
-  localStorage.setItem("tunk_content", JSON.stringify(content));
-};
-
-window.TUNK_CLEAR_CONTENT = function () {
-  localStorage.removeItem("tunk_content");
+window.TUNK_APPLY_THEME = function (content) {
+  const t = (content || window.TUNK_GET_CONTENT()).theme || {};
+  const c = t.colors || {}; const f = t.fonts || {};
+  const hex2rgba = (hex, a) => {
+    const m = /^#?([a-f\\d]{2})([a-f\\d]{2})([a-f\\d]{2})$/i.exec(hex || "");
+    if (!m) return "rgba(0,0,0," + a + ")";
+    return \`rgba(\${parseInt(m[1],16)}, \${parseInt(m[2],16)}, \${parseInt(m[3],16)}, \${a})\`;
+  };
+  const css = \`:root {
+    --ink: \${c.ink};
+    --paper: \${c.paper};
+    --bone: \${c.bone};
+    --concrete: \${c.concrete};
+    --aluminium: \${c.aluminium};
+    --graphite: \${c.graphite};
+    --carbon: \${c.carbon};
+    --blue-glass: \${c.blueGlass};
+    --blue-glass-tr: \${hex2rgba(c.blueGlass, 0.18)};
+    --red-plexi: \${c.redPlexi};
+    --red-plexi-tr: \${hex2rgba(c.redPlexi, 0.18)};
+    --amber: \${c.amber};
+    --amber-tr: \${hex2rgba(c.amber, 0.18)};
+    --font-sans: \${f.sans};
+    --font-mono: \${f.mono};
+  }\`;
+  let tag = document.getElementById("tunk-theme");
+  if (!tag) { tag = document.createElement("style"); tag.id = "tunk-theme"; document.head.appendChild(tag); }
+  tag.textContent = css;
 };
 `;
 }
 
-/* ---------- accents ---------- */
+/* Field — label + hint wrapper */
+function Field({ label, hint, children, span = 1 }) {
+  return (
+    <div className="field" style={span > 1 ? { gridColumn: `span ${span}` } : {}}>
+      <label>{label}</label>
+      {children}
+      {hint && <div className="hint">{hint}</div>}
+    </div>
+  );
+}
+
+/* TextIn — text input */
+function TextIn({ value, onChange, placeholder, type = 'text' }) {
+  return <input type={type} value={value ?? ''} placeholder={placeholder}
+                onChange={e => onChange(type === 'number' ? (parseFloat(e.target.value) || 0) : e.target.value)} />;
+}
+
+/* TextArea */
+function TextArea({ value, onChange, rows = 3, placeholder }) {
+  return <textarea rows={rows} value={value ?? ''} placeholder={placeholder}
+                   onChange={e => onChange(e.target.value)} />;
+}
+
+/* ColorIn — hex + swatch */
+function ColorIn({ value, onChange }) {
+  return (
+    <div className="color-in">
+      <input type="color" value={value || '#000000'} onChange={e => onChange(e.target.value)} />
+      <input type="text" value={value || ''} onChange={e => onChange(e.target.value)} placeholder="#000000" />
+      <span className="sw-preview" style={{background: value}} />
+    </div>
+  );
+}
+
+/* ChipInput — comma-separated tags */
+function ChipInput({ value, onChange, placeholder = 'Add and press Enter' }) {
+  const [draft, setDraft] = React.useState('');
+  function add(v) {
+    const t = (v || draft).trim(); if (!t) return;
+    if ((value || []).includes(t)) { setDraft(''); return; }
+    onChange([...(value || []), t]); setDraft('');
+  }
+  return (
+    <div className="chip-input">
+      {(value || []).map((tag, i) => (
+        <span key={i} className="chip-tag">
+          {tag}
+          <span className="x" onClick={() => onChange(value.filter((_, j) => j !== i))}>×</span>
+        </span>
+      ))}
+      <input value={draft} placeholder={placeholder}
+             onChange={e => setDraft(e.target.value)}
+             onKeyDown={e => { if (e.key === 'Enter' || e.key === ',') { e.preventDefault(); add(); } }}
+             onBlur={() => add()} />
+    </div>
+  );
+}
+
+/* List editor — generic add/remove/reorder rows for an array of objects */
+function ListEditor({ items, onChange, columns, addLabel = '+ Add row', emptyLabel = 'No items yet.' }) {
+  function set(i, k, v) { const next = [...items]; next[i] = { ...next[i], [k]: v }; onChange(next); }
+  function remove(i) { onChange(items.filter((_, j) => j !== i)); }
+  function move(i, d) {
+    const j = i + d; if (j < 0 || j >= items.length) return;
+    const next = [...items]; [next[i], next[j]] = [next[j], next[i]]; onChange(next);
+  }
+  function add() {
+    const blank = {}; columns.forEach(c => blank[c.key] = c.default || '');
+    onChange([...(items || []), blank]);
+  }
+  const gridCols = columns.map(c => c.width || '1fr').join(' ') + ' 120px';
+  return (
+    <div>
+      <div className="table" style={{marginBottom:12}}>
+        <div className="table-row head" style={{gridTemplateColumns: gridCols}}>
+          {columns.map(c => <span key={c.key}>{c.label}</span>)}
+          <span style={{textAlign:'right'}}>Actions</span>
+        </div>
+        {(items || []).length === 0 && <div style={{padding:'24px 16px',color:'var(--graphite)',fontStyle:'italic',textAlign:'center'}}>{emptyLabel}</div>}
+        {(items || []).map((row, i) => (
+          <div key={i} className="table-row" style={{gridTemplateColumns: gridCols, padding:'10px 16px'}}>
+            {columns.map(c => (
+              c.type === 'textarea'
+                ? <textarea key={c.key} rows="2" value={row[c.key] ?? ''} onChange={e => set(i, c.key, e.target.value)} placeholder={c.placeholder} />
+                : <input key={c.key} type={c.type || 'text'} value={row[c.key] ?? ''} onChange={e => set(i, c.key, e.target.value)} placeholder={c.placeholder} />
+            ))}
+            <div className="actions">
+              <button className="btn dark sm" onClick={() => move(i, -1)} disabled={i===0} style={i===0?{opacity:0.3}:{}}>↑</button>
+              <button className="btn dark sm" onClick={() => move(i, 1)}  disabled={i===items.length-1} style={i===items.length-1?{opacity:0.3}:{}}>↓</button>
+              <button className="btn dark danger sm" onClick={() => remove(i)}>×</button>
+            </div>
+          </div>
+        ))}
+      </div>
+      <button className="btn dark sm" onClick={add}>{addLabel}</button>
+    </div>
+  );
+}
+
+Object.assign(window, { cloneDeep, isModified, download, generateContentJs, Field, TextIn, TextArea, ColorIn, ChipInput, ListEditor });
+
+</script>
+  <script type="text/babel" data-presets="react">
+/* TUNK admin — Projects tab */
+
 const ACCENTS = [
   { value: null,          label: 'None',        color: 'transparent', border: 'var(--concrete)' },
   { value: 'red-plexi',   label: 'Red plexi',   color: 'var(--red-plexi)' },
@@ -251,39 +667,8 @@ const ACCENTS = [
 ];
 
 const KIND_OPTIONS = ['Retail Interior', 'Exhibition', 'Residential', 'Adaptive Reuse', 'Installation', 'Cultural', 'Public', 'Other'];
-const TAG_OPTIONS  = ['Retail', 'Interior', 'Exhibition', 'Installation', 'Residential', 'Adaptive Reuse', 'Cultural', 'Public'];
 
-/* ---------- chip input ---------- */
-function ChipInput({ value, onChange, placeholder = 'Add and press Enter' }) {
-  const [draft, setDraft] = React.useState('');
-  function add(v) {
-    const t = (v || draft).trim();
-    if (!t) return;
-    if (value.includes(t)) { setDraft(''); return; }
-    onChange([...value, t]);
-    setDraft('');
-  }
-  return (
-    <div className="chip-input">
-      {value.map((tag, i) => (
-        <span key={i} className="chip-tag">
-          {tag}
-          <span className="x" onClick={() => onChange(value.filter((_, j) => j !== i))}>×</span>
-        </span>
-      ))}
-      <input
-        value={draft}
-        placeholder={placeholder}
-        onChange={e => setDraft(e.target.value)}
-        onKeyDown={e => { if (e.key === 'Enter' || e.key === ',') { e.preventDefault(); add(); } }}
-        onBlur={() => add()}
-      />
-    </div>
-  );
-}
-
-/* ---------- project edit form ---------- */
-function ProjectForm({ project, onChange, onDelete, onClose, isNew }) {
+function ProjectForm({ project, suggestedTags, onChange, onDelete, onClose, isNew }) {
   const set = (k, v) => onChange({ ...project, [k]: v });
   return (
     <div className="panel">
@@ -296,59 +681,41 @@ function ProjectForm({ project, onChange, onDelete, onClose, isNew }) {
       </div>
 
       <div className="row">
-        <div className="field">
-          <label>Project ID</label>
-          <input type="text" value={project.id} onChange={e => set('id', e.target.value)} placeholder="PRJ-024" />
-          <div className="hint">Lab-tag identifier. Format PRJ-### recommended.</div>
-        </div>
-        <div className="field">
-          <label>Year</label>
-          <input type="number" value={project.year} onChange={e => set('year', parseInt(e.target.value) || '')} />
-        </div>
+        <Field label="Project ID" hint="Lab-tag identifier. Format PRJ-### recommended.">
+          <TextIn value={project.id} onChange={v => set('id', v)} placeholder="PRJ-024" />
+        </Field>
+        <Field label="Year">
+          <TextIn type="number" value={project.year} onChange={v => set('year', v)} />
+        </Field>
       </div>
 
-      <div className="field">
-        <label>Project name</label>
-        <input type="text" value={project.name} onChange={e => set('name', e.target.value)} placeholder="Karaköy Cosmetics" />
-      </div>
+      <Field label="Project name">
+        <TextIn value={project.name} onChange={v => set('name', v)} placeholder="Karaköy Cosmetics" />
+      </Field>
 
       <div className="row3">
-        <div className="field">
-          <label>Kind</label>
+        <Field label="Kind">
           <select value={project.kind} onChange={e => set('kind', e.target.value)}>
             {KIND_OPTIONS.map(k => <option key={k} value={k}>{k}</option>)}
           </select>
-        </div>
-        <div className="field">
-          <label>Location</label>
-          <input type="text" value={project.location} onChange={e => set('location', e.target.value)} placeholder="Istanbul" />
-        </div>
-        <div className="field">
-          <label>Area</label>
-          <input type="text" value={project.area} onChange={e => set('area', e.target.value)} placeholder="84 m²" />
-        </div>
+        </Field>
+        <Field label="Location"><TextIn value={project.location} onChange={v => set('location', v)} /></Field>
+        <Field label="Area"><TextIn value={project.area} onChange={v => set('area', v)} placeholder="84 m²" /></Field>
       </div>
 
-      <div className="field">
-        <label>Summary</label>
-        <textarea rows="4" value={project.summary} onChange={e => set('summary', e.target.value)} placeholder="A short, direct description. One paragraph." />
-        <div className="hint">Lead with what the thing is (materials, room counts), not what it means.</div>
-      </div>
+      <Field label="Summary" hint="Lead with what the thing is (materials, room counts), not what it means.">
+        <TextArea rows={4} value={project.summary} onChange={v => set('summary', v)} />
+      </Field>
 
-      <div className="field">
-        <label>Materials</label>
-        <ChipInput value={project.materials || []} onChange={v => set('materials', v)} placeholder="Add material and press Enter" />
-        <div className="hint">e.g. red plexiglass, brushed steel, oak. Most projects use 3 – 5.</div>
-      </div>
+      <Field label="Materials" hint="e.g. red plexiglass, brushed steel, oak. Most projects use 3 – 5.">
+        <ChipInput value={project.materials} onChange={v => set('materials', v)} placeholder="Add material and press Enter" />
+      </Field>
 
-      <div className="field">
-        <label>Tags</label>
-        <ChipInput value={project.tags || []} onChange={v => set('tags', v)} placeholder="Add tag" />
-        <div className="hint">Used for filters on the Work page. Suggestions: {TAG_OPTIONS.join(', ')}.</div>
-      </div>
+      <Field label="Tags" hint={`Used for filters on the Work page. Suggestions: ${(suggestedTags||[]).join(', ')}.`}>
+        <ChipInput value={project.tags} onChange={v => set('tags', v)} placeholder="Add tag" />
+      </Field>
 
-      <div className="field">
-        <label>Material accent</label>
+      <Field label="Material accent" hint="Set only when a real material in the project justifies it.">
         <div className="swatches">
           {ACCENTS.map(a => (
             <div key={a.value || 'none'}
@@ -359,67 +726,48 @@ function ProjectForm({ project, onChange, onDelete, onClose, isNew }) {
             </div>
           ))}
         </div>
-        <div className="hint">Set only when a real material in the project justifies it. Tints project image and rule on detail page.</div>
-      </div>
+      </Field>
 
       <div className="row">
-        <div className="field">
-          <label>URL slug</label>
-          <input type="text" value={project.slug || ''} onChange={e => set('slug', e.target.value.toLowerCase().replace(/[^a-z0-9-]/g,'-'))} placeholder="karakoy-cosmetics" />
-          <div className="hint">Used in URLs. Lowercase, hyphens only.</div>
-        </div>
-        <div className="field">
-          <label>Photo count</label>
-          <input type="number" value={project.photos || ''} onChange={e => set('photos', parseInt(e.target.value) || 0)} />
-          <div className="hint">Number of photos in the project archive.</div>
-        </div>
+        <Field label="URL slug" hint="Lowercase, hyphens only.">
+          <TextIn value={project.slug} onChange={v => set('slug', v.toLowerCase().replace(/[^a-z0-9-]/g,'-'))} />
+        </Field>
+        <Field label="Photo count">
+          <TextIn type="number" value={project.photos} onChange={v => set('photos', v)} />
+        </Field>
       </div>
     </div>
   );
 }
 
-/* ---------- pages ---------- */
 function ProjectsPage({ content, setContent }) {
-  const [editing, setEditing] = React.useState(null);  // index or 'new'
+  const [editing, setEditing] = React.useState(null);
   const projects = content.projects || [];
 
   function updateProject(idx, p) {
-    const next = [...projects];
-    next[idx] = p;
+    const next = [...projects]; next[idx] = p;
     setContent({ ...content, projects: next });
   }
   function addProject() {
-    const newProject = {
+    const np = {
       id: `PRJ-${String(Math.floor(Math.random()*900)+100)}`,
-      slug: '',
-      name: '',
-      kind: 'Retail Interior',
-      year: new Date().getFullYear(),
-      location: 'Istanbul',
-      area: '',
-      materials: [],
-      accent: null,
-      summary: '',
-      photos: 0,
-      tags: [],
+      slug: '', name: '', kind: 'Retail Interior',
+      year: new Date().getFullYear(), location: 'Istanbul', area: '',
+      materials: [], accent: null, summary: '', photos: 0, tags: [],
     };
-    setContent({ ...content, projects: [...projects, newProject] });
+    setContent({ ...content, projects: [...projects, np] });
     setEditing(projects.length);
   }
   function deleteProject(idx) {
-    if (!confirm('Delete this project? This cannot be undone (until you publish a new version).')) return;
-    const next = projects.filter((_, i) => i !== idx);
-    setContent({ ...content, projects: next });
+    if (!confirm('Delete this project? Cannot be undone (until you publish a new version).')) return;
+    setContent({ ...content, projects: projects.filter((_, i) => i !== idx) });
     setEditing(null);
   }
   function move(idx, dir) {
-    const j = idx + dir;
-    if (j < 0 || j >= projects.length) return;
-    const next = [...projects];
-    [next[idx], next[j]] = [next[j], next[idx]];
+    const j = idx + dir; if (j < 0 || j >= projects.length) return;
+    const next = [...projects]; [next[idx], next[j]] = [next[j], next[idx]];
     setContent({ ...content, projects: next });
-    if (editing === idx) setEditing(j);
-    else if (editing === j) setEditing(idx);
+    if (editing === idx) setEditing(j); else if (editing === j) setEditing(idx);
   }
 
   return (
@@ -430,7 +778,7 @@ function ProjectsPage({ content, setContent }) {
       {editing === null && (
         <>
           <div className="spread mt-4" style={{marginBottom:16}}>
-            <div className="hint" style={{fontFamily:'var(--font-mono)',fontSize:11,letterSpacing:'0.06em',textTransform:'uppercase',color:'var(--graphite)'}}>
+            <div style={{fontFamily:'var(--font-mono)',fontSize:11,letterSpacing:'0.06em',textTransform:'uppercase',color:'var(--graphite)'}}>
               Order here = order on the Work page.
             </div>
             <button className="btn dark primary sm" onClick={addProject}>+ New project</button>
@@ -444,7 +792,8 @@ function ProjectsPage({ content, setContent }) {
           ) : (
             <div className="table">
               <div className="table-row head">
-                <span>№</span><span>Project</span><span>Kind</span><span>Year</span><span>Location</span><span style={{textAlign:'right'}}>Actions</span>
+                <span>№</span><span>Project</span><span>Kind</span><span>Year</span><span>Location</span>
+                <span style={{textAlign:'right'}}>Actions</span>
               </div>
               {projects.map((p, i) => (
                 <div key={i} className="table-row">
@@ -456,8 +805,8 @@ function ProjectsPage({ content, setContent }) {
                   <span className="meta">{p.year}</span>
                   <span className="meta">{p.location}</span>
                   <div className="actions">
-                    <button className="btn dark sm" onClick={() => move(i, -1)} title="Move up" disabled={i===0} style={i===0?{opacity:0.3}:{}}>↑</button>
-                    <button className="btn dark sm" onClick={() => move(i, 1)}  title="Move down" disabled={i===projects.length-1} style={i===projects.length-1?{opacity:0.3}:{}}>↓</button>
+                    <button className="btn dark sm" onClick={() => move(i, -1)} disabled={i===0} style={i===0?{opacity:0.3}:{}}>↑</button>
+                    <button className="btn dark sm" onClick={() => move(i, 1)}  disabled={i===projects.length-1} style={i===projects.length-1?{opacity:0.3}:{}}>↓</button>
                     <button className="btn dark primary sm" onClick={() => setEditing(i)}>Edit →</button>
                   </div>
                 </div>
@@ -470,7 +819,8 @@ function ProjectsPage({ content, setContent }) {
       {editing !== null && projects[editing] && (
         <ProjectForm
           project={projects[editing]}
-          onChange={(p) => updateProject(editing, p)}
+          suggestedTags={content.work && content.work.filters && content.work.filters.slice(1) || []}
+          onChange={p => updateProject(editing, p)}
           onDelete={() => deleteProject(editing)}
           onClose={() => setEditing(null)}
         />
@@ -479,151 +829,434 @@ function ProjectsPage({ content, setContent }) {
   );
 }
 
-function StudioPage({ content, setContent }) {
-  const setHero = (k, v) => setContent({ ...content, hero: { ...content.hero, [k]: v } });
-  const setAbout = (k, v) => setContent({ ...content, about: { ...content.about, [k]: v } });
-  const team = content.about.team || [];
-  function updateTeam(idx, p) { const next = [...team]; next[idx] = p; setAbout('team', next); }
-  function addTeam() { setAbout('team', [...team, { name: '', role: '' }]); }
-  function deleteTeam(idx) { setAbout('team', team.filter((_, i) => i !== idx)); }
+Object.assign(window, { ProjectsPage });
+
+</script>
+  <script type="text/babel" data-presets="react">
+/* TUNK admin — Settings tabs: site, nav, theme, footer, project details */
+
+function SitePage({ content, setContent }) {
+  const set = (k, v) => setContent({ ...content, site: { ...content.site, [k]: v } });
+  const s = content.site || {};
+  return (
+    <div>
+      <h1>Site &amp; SEO</h1>
+      <div className="sub">№ 11 · Title, description, language, copyright</div>
+      <Field label="Site title" hint="Shown in the browser tab and search results.">
+        <TextIn value={s.title} onChange={v => set('title', v)} />
+      </Field>
+      <Field label="Meta description" hint="Search-engine snippet. 150 chars max.">
+        <TextArea rows={2} value={s.description} onChange={v => set('description', v)} />
+      </Field>
+      <div className="row">
+        <Field label="Language toggle" hint="Shown in top-right of nav. e.g. EN · TR.">
+          <TextIn value={s.language} onChange={v => set('language', v)} />
+        </Field>
+        <Field label="Copyright line" hint="Shown at bottom of footer.">
+          <TextIn value={s.copyright} onChange={v => set('copyright', v)} />
+        </Field>
+      </div>
+      <h2>Logo sizing</h2>
+      <div className="row">
+        <Field label="Nav logo height (px)" hint="Size of TUNK wordmark in top nav. Default 28.">
+          <TextIn type="number" value={s.logoNavHeight} onChange={v => set('logoNavHeight', v)} />
+        </Field>
+        <Field label="Footer logo height (px)" hint="Size of TUNK wordmark in footer. Default 70.">
+          <TextIn type="number" value={s.logoFooterHeight} onChange={v => set('logoFooterHeight', v)} />
+        </Field>
+      </div>
+    </div>
+  );
+}
+
+function NavPage({ content, setContent }) {
+  return (
+    <div>
+      <h1>Navigation</h1>
+      <div className="sub">№ 12 · Top-nav menu labels and order</div>
+      <p style={{fontSize:13,color:'var(--graphite)',marginBottom:24,lineHeight:1.55}}>
+        Add, rename, reorder or remove menu items. The <kbd>id</kbd> determines which page opens; valid ids are <kbd>home · work · about · press · contact</kbd>.
+      </p>
+      <ListEditor
+        items={content.nav}
+        onChange={v => setContent({ ...content, nav: v })}
+        columns={[
+          { key: 'label', label: 'Label', placeholder: 'Work', width: '1fr' },
+          { key: 'id',    label: 'Page id', placeholder: 'work', width: '180px' },
+        ]}
+        addLabel="+ Add menu item"
+      />
+    </div>
+  );
+}
+
+function ThemePage({ content, setContent, applyTheme }) {
+  const colors = content.theme && content.theme.colors || {};
+  const fonts  = content.theme && content.theme.fonts || {};
+  const setColor = (k, v) => {
+    const next = { ...content, theme: { ...content.theme, colors: { ...colors, [k]: v } } };
+    setContent(next); applyTheme(next);
+  };
+  const setFont = (k, v) => {
+    const next = { ...content, theme: { ...content.theme, fonts: { ...fonts, [k]: v } } };
+    setContent(next); applyTheme(next);
+  };
+
+  const colorFields = [
+    { key: 'ink',       label: 'Ink',         hint: 'Primary text and rules.' },
+    { key: 'paper',     label: 'Paper',       hint: 'Page background.' },
+    { key: 'bone',      label: 'Bone',        hint: 'Secondary surface (warm off-white).' },
+    { key: 'concrete',  label: 'Concrete',    hint: 'Dividers and hairlines.' },
+    { key: 'aluminium', label: 'Aluminium',   hint: 'Steel grey for secondary marks.' },
+    { key: 'graphite',  label: 'Graphite',    hint: 'Secondary text, captions, meta.' },
+    { key: 'carbon',    label: 'Carbon',      hint: 'Dark surface (footer panel).' },
+    { key: 'blueGlass', label: 'Blue glass',  hint: 'Material accent · cobalt projects.' },
+    { key: 'redPlexi',  label: 'Red plexi',   hint: 'Material accent · plexiglass projects.' },
+    { key: 'amber',     label: 'Amber',       hint: 'Material accent · timber/brass projects.' },
+  ];
 
   return (
     <div>
-      <h1>Studio</h1>
-      <div className="sub">№ 02 · Hero, about, team, clients</div>
+      <h1>Theme</h1>
+      <div className="sub">№ 13 · Colors and fonts</div>
+      <p style={{fontSize:13,color:'var(--graphite)',marginBottom:24,lineHeight:1.55}}>
+        Changes preview live on the public site (open it in a new tab while editing). The values map to the design-system CSS variables — change one and it cascades everywhere.
+      </p>
 
-      <h2>Hero (home page)</h2>
-      <div className="field">
-        <label>Hero title</label>
-        <textarea rows="3" value={content.hero.title} onChange={e => setHero('title', e.target.value)} />
-        <div className="hint">Each line break becomes a new line in the display. Three lines recommended.</div>
-      </div>
+      <h2>Base palette</h2>
       <div className="row">
-        <div className="field">
-          <label>Intro paragraph 1</label>
-          <textarea rows="3" value={content.hero.intro1} onChange={e => setHero('intro1', e.target.value)} />
-        </div>
-        <div className="field">
-          <label>Intro paragraph 2</label>
-          <textarea rows="3" value={content.hero.intro2} onChange={e => setHero('intro2', e.target.value)} />
-        </div>
-      </div>
-      <div className="field">
-        <label>Stats (lab-tag list)</label>
-        <ChipInput value={content.hero.stats || []} onChange={v => setHero('stats', v)} placeholder="EST · 2019" />
-        <div className="hint">e.g. EST · 2019. Use a middle dot (·) as separator. 3 – 5 entries.</div>
-      </div>
-
-      <h2>About page</h2>
-      <div className="field">
-        <label>About page heading</label>
-        <textarea rows="2" value={content.about.heading} onChange={e => setAbout('heading', e.target.value)} />
-      </div>
-      <div className="field">
-        <label>About paragraph 1</label>
-        <textarea rows="3" value={content.about.p1} onChange={e => setAbout('p1', e.target.value)} />
-      </div>
-      <div className="field">
-        <label>About paragraph 2</label>
-        <textarea rows="4" value={content.about.p2} onChange={e => setAbout('p2', e.target.value)} />
-      </div>
-
-      <h2>Team</h2>
-      <div className="table" style={{marginBottom:16}}>
-        <div className="table-row head" style={{gridTemplateColumns:'1fr 1.5fr 100px'}}>
-          <span>Name</span><span>Role</span><span style={{textAlign:'right'}}>Actions</span>
-        </div>
-        {team.map((t, i) => (
-          <div key={i} className="table-row" style={{gridTemplateColumns:'1fr 1.5fr 100px',padding:'10px 16px'}}>
-            <input type="text" value={t.name} onChange={e => updateTeam(i, { ...t, name: e.target.value })} placeholder="Name" />
-            <input type="text" value={t.role} onChange={e => updateTeam(i, { ...t, role: e.target.value })} placeholder="Role" />
-            <div className="actions"><button className="btn dark danger sm" onClick={() => deleteTeam(i)}>Remove</button></div>
-          </div>
+        {colorFields.slice(0, 7).map(c => (
+          <Field key={c.key} label={c.label} hint={c.hint}>
+            <ColorIn value={colors[c.key]} onChange={v => setColor(c.key, v)} />
+          </Field>
         ))}
       </div>
-      <button className="btn dark sm" onClick={addTeam}>+ Add person</button>
 
-      <h2>Clients</h2>
-      <div className="field">
-        <label>Selected clients</label>
-        <ChipInput value={content.about.clients || []} onChange={v => setAbout('clients', v)} placeholder="Add client and press Enter" />
-        <div className="hint">Order matters. They display left-to-right, top-to-bottom in a 3-column grid.</div>
+      <h2>Material accents</h2>
+      <p style={{fontSize:12,color:'var(--graphite)',marginBottom:16,lineHeight:1.55,marginTop:-8}}>
+        Used as tints behind project photography and on accent rules. Bound to a real material in the project.
+      </p>
+      <div className="row3">
+        {colorFields.slice(7).map(c => (
+          <Field key={c.key} label={c.label} hint={c.hint}>
+            <ColorIn value={colors[c.key]} onChange={v => setColor(c.key, v)} />
+          </Field>
+        ))}
       </div>
+
+      <h2>Fonts</h2>
+      <Field label="Sans-serif stack" hint="Primary typeface. Default: Gotham.">
+        <TextIn value={fonts.sans} onChange={v => setFont('sans', v)} />
+      </Field>
+      <Field label="Monospace stack" hint="Lab-tag / metadata typeface. Default: JetBrains Mono.">
+        <TextIn value={fonts.mono} onChange={v => setFont('mono', v)} />
+      </Field>
     </div>
   );
 }
 
-function ContactPage({ content, setContent }) {
-  const setContact = (k, v) => setContent({ ...content, contact: { ...content.contact, [k]: v } });
-  const setFooter  = (k, v) => setContent({ ...content, footer:  { ...content.footer,  [k]: v } });
+function FooterPage({ content, setContent }) {
+  const set = (k, v) => setContent({ ...content, footer: { ...content.footer, [k]: v } });
+  const f = content.footer || {};
   return (
     <div>
-      <h1>Contact</h1>
-      <div className="sub">№ 03 · Contact details, footer copy</div>
-
-      <h2>Contact details</h2>
+      <h1>Footer</h1>
+      <div className="sub">№ 14 · Footer copy and link labels</div>
       <div className="row">
-        <div className="field">
-          <label>Phone</label>
-          <input type="text" value={content.contact.phone} onChange={e => setContact('phone', e.target.value)} />
-        </div>
-        <div className="field">
-          <label>Email · general</label>
-          <input type="text" value={content.contact.email} onChange={e => setContact('email', e.target.value)} />
-        </div>
+        <Field label="Tagline" hint="Shown next to the footer logo."><TextIn value={f.tagline} onChange={v => set('tagline', v)} /></Field>
+        <Field label="Location"><TextIn value={f.location} onChange={v => set('location', v)} /></Field>
       </div>
-      <div className="field">
-        <label>Email · press</label>
-        <input type="text" value={content.contact.pressEmail} onChange={e => setContact('pressEmail', e.target.value)} />
+      <div className="row3">
+        <Field label="Studio column label"><TextIn value={f.studioLabel} onChange={v => set('studioLabel', v)} /></Field>
+        <Field label="Contact column label"><TextIn value={f.contactLabel} onChange={v => set('contactLabel', v)} /></Field>
+        <Field label="Follow column label"><TextIn value={f.followLabel} onChange={v => set('followLabel', v)} /></Field>
       </div>
-      <div className="field">
-        <label>Address</label>
-        <textarea rows="4" value={content.contact.address} onChange={e => setContact('address', e.target.value)} />
-        <div className="hint">Line breaks preserved. e.g. street / city / country.</div>
-      </div>
+      <Field label="Studio column links" hint="Labels for the Studio column. Add and reorder.">
+        <ChipInput value={f.studioLinks} onChange={v => set('studioLinks', v)} placeholder="Add link label" />
+      </Field>
+      <Field label="Instagram link label" hint='e.g. "Instagram →".'><TextIn value={f.instagram} onChange={v => set('instagram', v)} /></Field>
+    </div>
+  );
+}
 
-      <h2>Footer</h2>
-      <div className="row">
-        <div className="field">
-          <label>Footer tagline</label>
-          <input type="text" value={content.footer.tagline} onChange={e => setFooter('tagline', e.target.value)} />
-        </div>
-        <div className="field">
-          <label>Footer location</label>
-          <input type="text" value={content.footer.location} onChange={e => setFooter('location', e.target.value)} />
-        </div>
+function DetailsPage({ content, setContent }) {
+  const set = (k, v) => setContent({ ...content, projectPage: { ...content.projectPage, [k]: v } });
+  const p = content.projectPage || {};
+  return (
+    <div>
+      <h1>Project detail page</h1>
+      <div className="sub">№ 15 · Labels and credits on individual project pages</div>
+      <h2>Navigation labels</h2>
+      <div className="row3">
+        <Field label="Back link"><TextIn value={p.backLabel} onChange={v => set('backLabel', v)} /></Field>
+        <Field label="Previous link"><TextIn value={p.prevLabel} onChange={v => set('prevLabel', v)} /></Field>
+        <Field label="Next link"><TextIn value={p.nextLabel} onChange={v => set('nextLabel', v)} /></Field>
       </div>
-      <div className="field">
-        <label>Instagram link label</label>
-        <input type="text" value={content.footer.instagram} onChange={e => setFooter('instagram', e.target.value)} />
-        <div className="hint">Shown in footer. e.g. "Instagram →".</div>
+      <h2>Metadata labels</h2>
+      <p style={{fontSize:12,color:'var(--graphite)',marginBottom:16,marginTop:-8}}>The grey labels above each fact in the project's sidebar.</p>
+      <div className="row3">
+        <Field label="Type"><TextIn value={p.typeLabel} onChange={v => set('typeLabel', v)} /></Field>
+        <Field label="Year"><TextIn value={p.yearLabel} onChange={v => set('yearLabel', v)} /></Field>
+        <Field label="Location"><TextIn value={p.locationLabel} onChange={v => set('locationLabel', v)} /></Field>
+        <Field label="Area"><TextIn value={p.areaLabel} onChange={v => set('areaLabel', v)} /></Field>
+        <Field label="Materials"><TextIn value={p.materialsLabel} onChange={v => set('materialsLabel', v)} /></Field>
+        <Field label="Photo credit label"><TextIn value={p.photoLabel} onChange={v => set('photoLabel', v)} /></Field>
+      </div>
+      <h2>Default photographer</h2>
+      <Field label="Photographer credit" hint="Shown on every project page. Override per-project once we add image uploads.">
+        <TextIn value={p.photographer} onChange={v => set('photographer', v)} />
+      </Field>
+      <h2>Placeholder image labels</h2>
+      <div className="row">
+        <Field label="Detail image label"><TextIn value={p.detailLabel} onChange={v => set('detailLabel', v)} /></Field>
+        <Field label="Long-shot image label"><TextIn value={p.longShotLabel} onChange={v => set('longShotLabel', v)} /></Field>
       </div>
     </div>
   );
 }
+
+Object.assign(window, { SitePage, NavPage, ThemePage, FooterPage, DetailsPage });
+
+</script>
+  <script type="text/babel" data-presets="react">
+/* TUNK admin — Page tabs: home, work, about, press, contact */
+
+function HomeAdmin({ content, setContent }) {
+  const set = (k, v) => setContent({ ...content, home: { ...content.home, [k]: v } });
+  const h = content.home || {};
+  return (
+    <div>
+      <h1>Home page</h1>
+      <div className="sub">№ 02 · Hero, selected work, practice, notes</div>
+
+      <h2>Hero</h2>
+      <div className="row">
+        <Field label="Eyebrow" hint='Small lab-tag above title. e.g. "№ 00 — STUDIO".'>
+          <TextIn value={h.heroEyebrow} onChange={v => set('heroEyebrow', v)} />
+        </Field>
+      </div>
+      <Field label="Hero title" hint="Each line break becomes a new line in the display.">
+        <TextArea rows={3} value={h.heroTitle} onChange={v => set('heroTitle', v)} />
+      </Field>
+      <div className="row">
+        <Field label="Intro paragraph 1"><TextArea rows={3} value={h.heroIntro1} onChange={v => set('heroIntro1', v)} /></Field>
+        <Field label="Intro paragraph 2"><TextArea rows={3} value={h.heroIntro2} onChange={v => set('heroIntro2', v)} /></Field>
+      </div>
+      <Field label="Stats" hint='e.g. "EST · 2019". Use middle dot (·) as separator. 3 – 5 entries.'>
+        <ChipInput value={h.heroStats} onChange={v => set('heroStats', v)} placeholder="EST · 2019" />
+      </Field>
+
+      <h2>Selected work section</h2>
+      <div className="row">
+        <Field label="Section title" hint='Default "Selected work".'><TextIn value={h.selectedWorkLabel} onChange={v => set('selectedWorkLabel', v)} /></Field>
+        <Field label="Link to all projects" hint='Default "All projects".'><TextIn value={h.selectedWorkMore} onChange={v => set('selectedWorkMore', v)} /></Field>
+      </div>
+
+      <h2>Practice section</h2>
+      <div className="row3">
+        <Field label="Section title"><TextIn value={h.practiceLabel} onChange={v => set('practiceLabel', v)} /></Field>
+        <Field label="Eyebrow (left)"><TextIn value={h.practiceEyebrow} onChange={v => set('practiceEyebrow', v)} /></Field>
+        <Field label="Eyebrow (right)"><TextIn value={h.notesEyebrow} onChange={v => set('notesEyebrow', v)} /></Field>
+      </div>
+      <Field label="Practice paragraph">
+        <TextArea rows={4} value={h.practiceText} onChange={v => set('practiceText', v)} />
+      </Field>
+
+      <h2>Recent notes</h2>
+      <p style={{fontSize:12,color:'var(--graphite)',marginBottom:12,marginTop:-8}}>The three items in the right column. Add, reorder, or remove.</p>
+      <ListEditor
+        items={h.notes}
+        onChange={v => set('notes', v)}
+        columns={[
+          { key: 'date',  label: 'Date',  placeholder: '2024.03', width: '120px' },
+          { key: 'kind',  label: 'Kind',  placeholder: 'ESSAY', width: '120px' },
+          { key: 'title', label: 'Title', placeholder: 'On the use of red plexiglass', width: '1fr' },
+        ]}
+        addLabel="+ Add note"
+      />
+    </div>
+  );
+}
+
+function WorkAdmin({ content, setContent }) {
+  const set = (k, v) => setContent({ ...content, work: { ...content.work, [k]: v } });
+  const w = content.work || {};
+  return (
+    <div>
+      <h1>Work page</h1>
+      <div className="sub">№ 03 · Eyebrow, title, filter chips</div>
+      <div className="row">
+        <Field label="Eyebrow"><TextIn value={w.eyebrow} onChange={v => set('eyebrow', v)} /></Field>
+        <Field label="Page title"><TextIn value={w.title} onChange={v => set('title', v)} /></Field>
+      </div>
+      <h2>Filters</h2>
+      <div className="row3">
+        <Field label='Filter label (e.g. "FILTER")'><TextIn value={w.filterLabel} onChange={v => set('filterLabel', v)} /></Field>
+        <Field label='Grid view label'><TextIn value={w.gridLabel} onChange={v => set('gridLabel', v)} /></Field>
+        <Field label='Index view label'><TextIn value={w.indexLabel} onChange={v => set('indexLabel', v)} /></Field>
+      </div>
+      <Field label='Filter chips' hint='First one is the "All" reset. Match the tags used in your projects.'>
+        <ChipInput value={w.filters} onChange={v => set('filters', v)} placeholder="Add filter" />
+      </Field>
+      <div className="row">
+        <Field label='Project-count noun' hint='e.g. "projects".'><TextIn value={w.countNoun} onChange={v => set('countNoun', v)} /></Field>
+        <Field label='Range note' hint='e.g. "2019—2024".'><TextIn value={w.rangeNote} onChange={v => set('rangeNote', v)} /></Field>
+      </div>
+    </div>
+  );
+}
+
+function AboutAdmin({ content, setContent }) {
+  const setA = (k, v) => setContent({ ...content, about: { ...content.about, [k]: v } });
+  const a = content.about || {};
+  return (
+    <div>
+      <h1>About page</h1>
+      <div className="sub">№ 04 · Heading, paragraphs, team, clients</div>
+      <Field label="Eyebrow"><TextIn value={a.eyebrow} onChange={v => setA('eyebrow', v)} /></Field>
+      <Field label="Page heading"><TextArea rows={2} value={a.heading} onChange={v => setA('heading', v)} /></Field>
+
+      <h2>Practice section</h2>
+      <Field label='Eyebrow label' hint='e.g. "PRACTICE".'><TextIn value={a.practiceLabel} onChange={v => setA('practiceLabel', v)} /></Field>
+      <Field label="Paragraph 1"><TextArea rows={3} value={a.p1} onChange={v => setA('p1', v)} /></Field>
+      <Field label="Paragraph 2"><TextArea rows={4} value={a.p2} onChange={v => setA('p2', v)} /></Field>
+
+      <h2>People section</h2>
+      <Field label='Eyebrow label'><TextIn value={a.peopleLabel} onChange={v => setA('peopleLabel', v)} /></Field>
+      <ListEditor
+        items={a.team}
+        onChange={v => setA('team', v)}
+        columns={[
+          { key: 'name', label: 'Name', placeholder: 'Defne Aksu', width: '1fr' },
+          { key: 'role', label: 'Role', placeholder: 'Founding partner · architecture', width: '1.5fr' },
+        ]}
+        addLabel="+ Add person"
+      />
+
+      <h2>Clients section</h2>
+      <Field label='Eyebrow label'><TextIn value={a.clientsLabel} onChange={v => setA('clientsLabel', v)} /></Field>
+      <Field label="Selected clients" hint="Order matters. Display in 3-column grid.">
+        <ChipInput value={a.clients} onChange={v => setA('clients', v)} placeholder="Add client" />
+      </Field>
+    </div>
+  );
+}
+
+function PressAdmin({ content, setContent }) {
+  const set = (k, v) => setContent({ ...content, press: { ...content.press, [k]: v } });
+  const p = content.press || {};
+  return (
+    <div>
+      <h1>Press page</h1>
+      <div className="sub">№ 05 · Press release rows, downloads</div>
+      <div className="row">
+        <Field label="Eyebrow"><TextIn value={p.eyebrow} onChange={v => set('eyebrow', v)} /></Field>
+        <Field label="Page title"><TextIn value={p.title} onChange={v => set('title', v)} /></Field>
+      </div>
+      <Field label="Intro paragraph">
+        <TextArea rows={3} value={p.intro} onChange={v => set('intro', v)} />
+      </Field>
+      <Field label="Download link label" hint='e.g. "Download".'>
+        <TextIn value={p.downloadLabel} onChange={v => set('downloadLabel', v)} />
+      </Field>
+
+      <h2>Press items</h2>
+      <p style={{fontSize:12,color:'var(--graphite)',marginBottom:12,marginTop:-8}}>Each row appears on the press page. Add, reorder, remove.</p>
+      <ListEditor
+        items={p.items}
+        onChange={v => set('items', v)}
+        columns={[
+          { key: 'n',    label: '№',       placeholder: '01', width: '60px' },
+          { key: 'name', label: 'Title',   placeholder: 'Press release — Project name', width: '1.6fr' },
+          { key: 'meta', label: 'Meta',    placeholder: 'PDF · 2024.03 · 1.2 MB', width: '1fr' },
+          { key: 'langs',label: 'Langs',   placeholder: 'EN · TR', width: '120px' },
+        ]}
+        addLabel="+ Add press item"
+      />
+    </div>
+  );
+}
+
+function ContactAdmin({ content, setContent }) {
+  const set  = (k, v) => setContent({ ...content, contact: { ...content.contact, [k]: v } });
+  const setF = (k, v) => setContent({ ...content, contact: { ...content.contact, form: { ...content.contact.form, [k]: v } } });
+  const c = content.contact || {};
+  const f = c.form || {};
+  return (
+    <div>
+      <h1>Contact page</h1>
+      <div className="sub">№ 06 · Contact details and enquire form</div>
+      <div className="row">
+        <Field label="Eyebrow"><TextIn value={c.eyebrow} onChange={v => set('eyebrow', v)} /></Field>
+        <Field label="Page title"><TextIn value={c.title} onChange={v => set('title', v)} /></Field>
+      </div>
+
+      <h2>Studio details</h2>
+      <div className="row">
+        <Field label='Eyebrow (left)' hint='e.g. "STUDIO".'><TextIn value={c.studioLabel} onChange={v => set('studioLabel', v)} /></Field>
+        <Field label='Eyebrow (right)' hint='e.g. "ENQUIRE".'><TextIn value={c.enquireLabel} onChange={v => set('enquireLabel', v)} /></Field>
+      </div>
+      <Field label="Address" hint="Line breaks preserved.">
+        <TextArea rows={4} value={c.address} onChange={v => set('address', v)} />
+      </Field>
+      <div className="row3">
+        <Field label="Phone"><TextIn value={c.phone} onChange={v => set('phone', v)} /></Field>
+        <Field label="Email · general"><TextIn value={c.email} onChange={v => set('email', v)} /></Field>
+        <Field label="Email · press"><TextIn value={c.pressEmail} onChange={v => set('pressEmail', v)} /></Field>
+      </div>
+
+      <h2>Enquire form labels</h2>
+      <div className="row">
+        <Field label="Name label"><TextIn value={f.nameLabel} onChange={v => setF('nameLabel', v)} /></Field>
+        <Field label="Name placeholder"><TextIn value={f.namePlaceholder} onChange={v => setF('namePlaceholder', v)} /></Field>
+      </div>
+      <div className="row">
+        <Field label="Email label"><TextIn value={f.emailLabel} onChange={v => setF('emailLabel', v)} /></Field>
+        <Field label="Email placeholder"><TextIn value={f.emailPlaceholder} onChange={v => setF('emailPlaceholder', v)} /></Field>
+      </div>
+      <div className="row">
+        <Field label="Subject label"><TextIn value={f.subjectLabel} onChange={v => setF('subjectLabel', v)} /></Field>
+        <Field label="Subject placeholder"><TextIn value={f.subjectPlaceholder} onChange={v => setF('subjectPlaceholder', v)} /></Field>
+      </div>
+      <div className="row">
+        <Field label="Budget label"><TextIn value={f.budgetLabel} onChange={v => setF('budgetLabel', v)} /></Field>
+        <Field label="Budget placeholder"><TextIn value={f.budgetPlaceholder} onChange={v => setF('budgetPlaceholder', v)} /></Field>
+      </div>
+      <div className="row">
+        <Field label="Message label"><TextIn value={f.messageLabel} onChange={v => setF('messageLabel', v)} /></Field>
+        <Field label="Submit button"><TextIn value={f.submitLabel} onChange={v => setF('submitLabel', v)} /></Field>
+      </div>
+      <Field label="Message placeholder">
+        <TextArea rows={3} value={f.messagePlaceholder} onChange={v => setF('messagePlaceholder', v)} />
+      </Field>
+    </div>
+  );
+}
+
+Object.assign(window, { HomeAdmin, WorkAdmin, AboutAdmin, PressAdmin, ContactAdmin });
+
+</script>
+  <script type="text/babel" data-presets="react">
+/* TUNK admin — Publish + Help tabs */
 
 function PublishPage({ content, defaults, onReset, onImport }) {
   const fileInput = React.useRef(null);
   const modified = isModified(content, defaults);
 
-  function publish() {
-    const js = generateContentJs(content);
-    download('content.js', js, 'text/javascript');
-  }
+  function publish() { download('content.js', generateContentJs(content), 'text/javascript'); }
   function exportJson() {
-    download('tunk-content-' + new Date().toISOString().slice(0,10) + '.json', JSON.stringify(content, null, 2), 'application/json');
+    download('tunk-content-' + new Date().toISOString().slice(0,10) + '.json',
+             JSON.stringify(content, null, 2), 'application/json');
   }
   function importJson(file) {
     const r = new FileReader();
     r.onload = () => {
       try {
         const parsed = JSON.parse(r.result);
-        if (!parsed.hero || !parsed.projects) throw new Error('Missing required keys');
+        if (!parsed.projects) throw new Error('Missing required keys');
         onImport(parsed);
         alert('Imported successfully.');
-      } catch (e) {
-        alert('Could not import: ' + e.message);
-      }
+      } catch (e) { alert('Could not import: ' + e.message); }
     };
     r.readAsText(file);
   }
@@ -631,7 +1264,7 @@ function PublishPage({ content, defaults, onReset, onImport }) {
   return (
     <div>
       <h1>Publish</h1>
-      <div className="sub">№ 04 · Download, backup, restore</div>
+      <div className="sub">№ 99 · Download, backup, restore</div>
 
       <div className="pub-block">
         <h3>1 · Preview your changes</h3>
@@ -651,7 +1284,7 @@ function PublishPage({ content, defaults, onReset, onImport }) {
 
       <div className="pub-block">
         <h3>3 · Backup &amp; restore</h3>
-        <p className="desc">Export a JSON copy of your current edits for safekeeping (recommended before big changes). Import to restore from a backup, or to move edits between devices.</p>
+        <p className="desc">Export a JSON copy for safekeeping (recommended before big changes). Import to restore, or to move edits between devices.</p>
         <div className="actions">
           <button className="btn dark sm" onClick={exportJson}>Export JSON</button>
           <button className="btn dark sm" onClick={() => fileInput.current.click()}>Import JSON</button>
@@ -675,78 +1308,89 @@ function HelpPage() {
   return (
     <div>
       <h1>Help</h1>
-      <div className="sub">№ 05 · How this works</div>
+      <div className="sub">№ 00 · How this works</div>
 
       <div className="steps">
-        <div className="step">
-          <div className="num">1</div>
-          <div className="body">
-            <b>Make changes.</b> Use the <b>Projects</b>, <b>Studio</b> and <b>Contact</b> tabs to edit anything on the site. Changes are auto-saved as you type — the green dot in the top bar confirms it.
-          </div>
-        </div>
-        <div className="step">
-          <div className="num">2</div>
-          <div className="body">
-            <b>Preview live.</b> Open <b>Publish → Open preview</b>. Your edits show up in the site — only in this browser, only for you. The actual published site is unchanged.
-          </div>
-        </div>
-        <div className="step">
-          <div className="num">3</div>
-          <div className="body">
-            <b>Publish.</b> Go to <b>Publish → Download content.js</b>. You get a small file. Upload it to your host (Netlify, GitHub Pages, etc.), replacing the existing <kbd>content.js</kbd>. Visitors see your changes on next page load.
-          </div>
-        </div>
-        <div className="step">
-          <div className="num">4</div>
-          <div className="body">
-            <b>Back things up.</b> Before any big change, use <b>Publish → Export JSON</b> to save a snapshot. You can restore it any time.
-          </div>
-        </div>
+        <div className="step"><div className="num">1</div><div className="body">
+          <b>Make changes.</b> Every tab in the sidebar controls a different part of the site. Edits auto-save as you type — the green dot in the top bar confirms it.
+        </div></div>
+        <div className="step"><div className="num">2</div><div className="body">
+          <b>Preview live.</b> Click <b>Preview site →</b> in the top bar. Your edits show up — only in this browser. The deployed site is unchanged.
+        </div></div>
+        <div className="step"><div className="num">3</div><div className="body">
+          <b>Publish.</b> Open <b>Publish → Download content.js</b>. You get a small file. Upload it to your host (Netlify, GitHub Pages, etc.), replacing the existing <kbd>content.js</kbd>. Visitors see your changes on next page load.
+        </div></div>
+        <div className="step"><div className="num">4</div><div className="body">
+          <b>Back things up.</b> Before any big change, use <b>Publish → Export JSON</b> to save a snapshot. You can restore it any time.
+        </div></div>
       </div>
+
+      <h2>Tabs</h2>
+      <ul style={{paddingLeft:20,lineHeight:1.9,fontSize:13,color:'var(--graphite)'}}>
+        <li><b style={{color:'var(--ink)'}}>Projects.</b> Add / edit / delete / reorder portfolio projects.</li>
+        <li><b style={{color:'var(--ink)'}}>Home / Work / About / Press / Contact.</b> All copy on each page.</li>
+        <li><b style={{color:'var(--ink)'}}>Site &amp; SEO.</b> Browser title, meta description, language toggle, copyright.</li>
+        <li><b style={{color:'var(--ink)'}}>Navigation.</b> Top-nav menu labels and order.</li>
+        <li><b style={{color:'var(--ink)'}}>Theme.</b> All ten colors and the two font stacks. Preview live.</li>
+        <li><b style={{color:'var(--ink)'}}>Footer.</b> Footer columns, links, tagline.</li>
+        <li><b style={{color:'var(--ink)'}}>Project detail.</b> Labels on individual project pages (Type, Year, Materials, Photo credit, etc.).</li>
+      </ul>
 
       <h2>Tips</h2>
       <ul style={{paddingLeft:20,lineHeight:1.9,fontSize:13,color:'var(--graphite)'}}>
-        <li><b style={{color:'var(--ink)'}}>Voice.</b> Keep copy direct and material-first. Avoid metaphors, avoid "we are passionate about…". The README has examples.</li>
-        <li><b style={{color:'var(--ink)'}}>Project order.</b> The first 4 projects appear on the homepage. Drag (or use arrow buttons) on the Projects tab to reorder.</li>
-        <li><b style={{color:'var(--ink)'}}>Material accents.</b> Only set an accent on a project that actually uses that material. Most projects have no accent.</li>
-        <li><b style={{color:'var(--ink)'}}>Photos.</b> Real photographs replace the grey placeholder when the site is built. Photo upload isn't wired into the admin yet — when you have shots, send them and I'll wire them in.</li>
-        <li><b style={{color:'var(--ink)'}}>Two browsers, two devices.</b> Edits are stored in this browser. To move them, Export JSON and Import on the other device.</li>
+        <li><b style={{color:'var(--ink)'}}>Voice.</b> Keep copy direct and material-first.</li>
+        <li><b style={{color:'var(--ink)'}}>Project order.</b> The first 4 projects appear on the homepage. Reorder on the Projects tab.</li>
+        <li><b style={{color:'var(--ink)'}}>Material accents.</b> Only set on a project that uses that material.</li>
+        <li><b style={{color:'var(--ink)'}}>Two devices.</b> Edits are stored per-browser. To move them, Export JSON and Import on the other device.</li>
+        <li><b style={{color:'var(--ink)'}}>Photos.</b> Real photographs replace the grey placeholder when uploaded — image upload isn't wired into the admin yet. When you have shots, send them and I'll add the upload field.</li>
       </ul>
     </div>
   );
 }
 
-/* ---------- main app ---------- */
+Object.assign(window, { PublishPage, HelpPage });
+
+</script>
+
+  <script type="text/babel" data-presets="react">
 function App() {
   const defaults = window.TUNK_DEFAULT_CONTENT;
   const [content, setContentRaw] = React.useState(() => {
     try {
       const saved = JSON.parse(localStorage.getItem('tunk_content') || 'null');
-      return saved ? {
-        hero:     { ...defaults.hero,    ...(saved.hero    || {}) },
-        about:    { ...defaults.about,   ...(saved.about   || {}) },
-        contact:  { ...defaults.contact, ...(saved.contact || {}) },
-        footer:   { ...defaults.footer,  ...(saved.footer  || {}) },
-        projects: saved.projects || defaults.projects,
-      } : cloneDeep(defaults);
+      return saved ? window.TUNK_GET_CONTENT() : cloneDeep(defaults);
     } catch (e) { return cloneDeep(defaults); }
   });
   const [tab, setTab] = React.useState('projects');
-  const [savedAt, setSavedAt] = React.useState(Date.now());
-
-  // auto-save to localStorage on every change
-  React.useEffect(() => {
-    localStorage.setItem('tunk_content', JSON.stringify(content));
-    setSavedAt(Date.now());
-  }, [content]);
-
   const modified = isModified(content, defaults);
 
   function setContent(next) { setContentRaw(typeof next === 'function' ? next(content) : next); }
-  function resetAll() {
-    localStorage.removeItem('tunk_content');
-    setContentRaw(cloneDeep(defaults));
-  }
+  function resetAll() { localStorage.removeItem('tunk_content'); setContentRaw(cloneDeep(defaults)); }
+  function applyTheme(c) { if (window.TUNK_APPLY_THEME) window.TUNK_APPLY_THEME(c); }
+
+  React.useEffect(() => { localStorage.setItem('tunk_content', JSON.stringify(content)); }, [content]);
+
+  const groups = [
+    { label: 'Content', items: [
+      { id: 'projects', name: 'Projects', count: (content.projects||[]).length.toString().padStart(2,'0') },
+      { id: 'home',     name: 'Home',     count: '→' },
+      { id: 'work',     name: 'Work',     count: '→' },
+      { id: 'about',    name: 'About',    count: '→' },
+      { id: 'press',    name: 'Press',    count: '→' },
+      { id: 'contact',  name: 'Contact',  count: '→' },
+    ]},
+    { label: 'Settings', items: [
+      { id: 'site',    name: 'Site & SEO',     count: '⚙' },
+      { id: 'nav',     name: 'Navigation',     count: '⚙' },
+      { id: 'theme',   name: 'Theme',          count: '⚙' },
+      { id: 'footer',  name: 'Footer',         count: '⚙' },
+      { id: 'details', name: 'Project detail', count: '⚙' },
+    ]},
+    { label: 'Manage', items: [
+      { id: 'publish', name: 'Publish', count: modified ? '●' : '○' },
+      { id: 'help',    name: 'Help',    count: '?' },
+    ]},
+  ];
 
   return (
     <div className="app">
@@ -766,32 +1410,33 @@ function App() {
 
       <div className="main">
         <aside className="side">
-          <div className="group">Content</div>
-          <div className={`item ${tab==='projects'?'active':''}`} onClick={() => setTab('projects')}>
-            <span>Projects</span>
-            <span className="count">{(content.projects||[]).length.toString().padStart(2,'0')}</span>
-          </div>
-          <div className={`item ${tab==='studio'?'active':''}`} onClick={() => setTab('studio')}>
-            <span>Studio</span><span className="count">→</span>
-          </div>
-          <div className={`item ${tab==='contact'?'active':''}`} onClick={() => setTab('contact')}>
-            <span>Contact</span><span className="count">→</span>
-          </div>
-
-          <div className="group">Manage</div>
-          <div className={`item ${tab==='publish'?'active':''}`} onClick={() => setTab('publish')}>
-            <span>Publish</span>
-            {modified && <span className="count" style={{color:'var(--amber)'}}>●</span>}
-          </div>
-          <div className={`item ${tab==='help'?'active':''}`} onClick={() => setTab('help')}>
-            <span>Help</span><span className="count">?</span>
-          </div>
+          {groups.map(g => (
+            <React.Fragment key={g.label}>
+              <div className="group">{g.label}</div>
+              {g.items.map(it => (
+                <div key={it.id}
+                     className={`item ${tab===it.id?'active':''}`}
+                     onClick={() => setTab(it.id)}>
+                  <span>{it.name}</span>
+                  <span className="count" style={it.count==='●'?{color:'var(--amber)'}:{}}>{it.count}</span>
+                </div>
+              ))}
+            </React.Fragment>
+          ))}
         </aside>
 
         <main className="content">
           {tab === 'projects' && <ProjectsPage content={content} setContent={setContent} />}
-          {tab === 'studio'   && <StudioPage   content={content} setContent={setContent} />}
-          {tab === 'contact'  && <ContactPage  content={content} setContent={setContent} />}
+          {tab === 'home'     && <HomeAdmin    content={content} setContent={setContent} />}
+          {tab === 'work'     && <WorkAdmin    content={content} setContent={setContent} />}
+          {tab === 'about'    && <AboutAdmin   content={content} setContent={setContent} />}
+          {tab === 'press'    && <PressAdmin   content={content} setContent={setContent} />}
+          {tab === 'contact'  && <ContactAdmin content={content} setContent={setContent} />}
+          {tab === 'site'     && <SitePage     content={content} setContent={setContent} />}
+          {tab === 'nav'      && <NavPage      content={content} setContent={setContent} />}
+          {tab === 'theme'    && <ThemePage    content={content} setContent={setContent} applyTheme={applyTheme} />}
+          {tab === 'footer'   && <FooterPage   content={content} setContent={setContent} />}
+          {tab === 'details'  && <DetailsPage  content={content} setContent={setContent} />}
           {tab === 'publish'  && <PublishPage  content={content} defaults={defaults} onReset={resetAll} onImport={setContent} />}
           {tab === 'help'     && <HelpPage />}
         </main>
@@ -801,6 +1446,6 @@ function App() {
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
-</script>
+  </script>
 </body>
 </html>
