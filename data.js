@@ -18,15 +18,15 @@ window.DATA = {
   ],
 
   home: {
-    eyebrow: "STUDIO · GALATA",
+    eyebrow: "STUDIO · ISTANBUL",
     statement: "Architecture, exhibition, product & installation.",
     statementShort: "Spatial work,\nbuilt precisely.",
     intro1: "TUNK is a studio for architecture, art and design, based in Galata, Istanbul. The work moves across four disciplines — architecture, exhibition design, product design and installation.",
     intro2: "From houses on the Aegean coast to museum exhibitions at the Pera Museum, retail concepts, furniture and lighting, and light-and-sound installations made with collaborators such as NOHlab.",
     metaCols: [
-      { k: "Studio", v: "2014—23 as Müdahale\n2023 — TUNK\nIstanbul, TR" },
+      { k: "Studio", v: "2014—23 as Müdahale\n2023 — TUNK\nIstanbul" },
       { k: "Work", v: "36 projects\n2014—2028" },
-      { k: "Based", v: "Galata\nIstanbul, TR" },
+      { k: "Based", v: "Galata\nIstanbul" },
       { k: "Exhibited", v: "Pera Museum\nAkbank Sanat" },
     ],
     selectedLabel: "Selected work",
@@ -79,7 +79,7 @@ window.DATA = {
   contact: {
     eyebrow: "№ 04 — CONTACT",
     title: "Get in touch.",
-    address: "Galata\nIstanbul · Türkiye",
+    address: "Galata\nIstanbul",
     phone: "",
     email: "TUNC@TUNKSTUDIO.COM",
     pressEmail: "TUNC@TUNKSTUDIO.COM",
@@ -87,7 +87,7 @@ window.DATA = {
 
   footer: {
     tagline: "Architecture · Exhibition · Product · Installation",
-    location: "Galata, Istanbul, Türkiye",
+    location: "Galata, Istanbul",
     studioLinks: ["Work", "About", "Press"],
     instagram: "Instagram →",
     newsletter: "Newsletter →",
@@ -195,11 +195,18 @@ window.DATA = {
       year: 2020, yearLabel: "2020", location: "Göcek, Muğla", status: "Completed",
       scope: ["Furniture"],
       tags: ["Architecture", "Product Design"],
-      hero: "assets/projects/yesim-hero.jpg",
-      gallery: ["assets/projects/yesim-02.jpg", "assets/projects/yesim-03.jpg", "assets/projects/yesim-04.jpg"],
+      hero: "assets/projects/submarine/hero.jpg",
+      gallery: [
+        "assets/projects/submarine/01.jpg", "assets/projects/submarine/02.jpg", "assets/projects/submarine/03.jpg",
+        "assets/projects/submarine/04.jpg", "assets/projects/submarine/05.jpg", "assets/projects/submarine/06.jpg",
+        "assets/projects/submarine/07.jpg", "assets/projects/submarine/08.jpg", "assets/projects/submarine/09.jpg",
+        "assets/projects/submarine/10.jpg", "assets/projects/submarine/11.jpg", "assets/projects/submarine/12.jpg",
+        "assets/projects/submarine/13.jpg", "assets/projects/submarine/14.jpg", "assets/projects/submarine/15.jpg",
+        "assets/projects/submarine/16.jpg", "assets/projects/submarine/17.jpg", "assets/projects/submarine/18.jpg"
+      ],
       photographer: "TUNK",
-      summary: "A house at Gökçeovacık, near Göcek on the Aegean coast.",
-      para: "A coastal house set into an olive grove above Göcek. Rendered volumes open through full-height glass to the slope and the sunset; a custom furniture collection in steel and oak was designed for its rooms.",
+      summary: "A house set into an olive grove at Gökçeovacık, above Göcek on the Aegean coast.",
+      para: "Concrete volumes step into the slope and open through full-height glass to the bay and the sunset. A circular oculus is cut through the upper floor, drawing daylight down into the stone-walled rooms below. A custom furniture collection in mild steel and oak — shelving, a hall console, a bench — was drawn for the interior and fabricated to the same line as the architecture.",
     },
     {
       cat: "12", slug: "gaziantep", name: "Gaziantep House",
@@ -236,17 +243,25 @@ window.DATA = {
     },
     {
       cat: "16", slug: "hali-atolyesi", name: "MSGSU Weaving",
-      category: "Architecture", kind: "Commercial Interior",
+      category: "Architecture", kind: "Education Interior",
       year: 2022, yearLabel: "2022", location: "Istanbul", status: "Completed",
       press: ["Arkitera"],
       tags: ["Architecture"],
-      summary: "Reorganisation and system design for a carpet-weaving workshop.",
-      para: "The MSGSÜ weaving workshop was re-planned and given a new working system — looms, storage and circulation re-set around the craft. Published by Arkitera.",
+      hero: "assets/projects/msgsu/hero.jpg",
+      gallery: [
+        "assets/projects/msgsu/01.jpg", "assets/projects/msgsu/02.jpg", "assets/projects/msgsu/03.jpg",
+        "assets/projects/msgsu/04.jpg", "assets/projects/msgsu/05.jpg", "assets/projects/msgsu/06.jpg",
+        "assets/projects/msgsu/07.jpg", "assets/projects/msgsu/08.jpg", "assets/projects/msgsu/09.jpg",
+        "assets/projects/msgsu/10.jpg", "assets/projects/msgsu/11.jpg", "assets/projects/msgsu/12.jpg",
+        "assets/projects/msgsu/13.jpg", "assets/projects/msgsu/14.jpg", "assets/projects/msgsu/15.jpg"
+      ],
+      summary: "A new working system for the weaving workshop at Mimar Sinan Fine Arts University — looms, dye storage and circulation re-set around the craft.",
+      para: "The existing studio was re-planned around how the work is actually made. A blue steel armature carries the stair, the tool screens and the open shelving; dyed yarn is sorted into a wall of stacked translucent bins, read at a glance by colour. Everything new is fabricated in mild steel and left exposed — welded on site, levelled against the original arched windows and timber ceiling. Published by Arkitera.",
     },
     {
-      cat: "17", slug: "parfumlab-pneuma", name: "Parfumlab — Pneuma",
+      cat: "17", slug: "parfumlab-pneuma", name: "PNEUMA for Parfumlab",
       category: "Architecture", kind: "Retail Design",
-      year: 2026, yearLabel: "2026", location: "Türkiye", status: "Completed",
+      year: 2026, yearLabel: "2026", location: "Istanbul", status: "Completed",
       tags: ["Architecture"],
       hero: "assets/projects/pneuma-hero.jpg",
       gallery: ["assets/projects/pneuma-02.jpg", "assets/projects/pneuma-03.jpg", "assets/projects/pneuma-04.jpg"],
@@ -256,7 +271,7 @@ window.DATA = {
       para: "The store is laid out as a laboratory: a white pipework grid runs across ceiling and walls, blue-glass panels carry the formula displays, and a mirrored island holds the bottles. Colour belongs entirely to the cobalt glass and the lab apparatus.",
     },
     {
-      cat: "18", slug: "parfumlab-mersin", name: "Parfumlab — Mersin",
+      cat: "18", slug: "parfumlab-mersin", name: "MERSIN for Parfumlab",
       category: "Architecture", kind: "Retail Design",
       year: 2025, yearLabel: "2025", location: "Mersin", status: "Completed",
       tags: ["Architecture"],
@@ -264,7 +279,7 @@ window.DATA = {
       para: "A Parfumlab store completed in Mersin as part of the retail programme.",
     },
     {
-      cat: "19", slug: "parfumlab-hilltown", name: "Parfumlab — Hilltown",
+      cat: "19", slug: "parfumlab-hilltown", name: "HILLTOWN for Parfumlab",
       category: "Architecture", kind: "Retail Design",
       year: 2025, yearLabel: "2025", location: "Istanbul", status: "Completed",
       tags: ["Architecture"],
@@ -272,7 +287,7 @@ window.DATA = {
       para: "A Parfumlab store completed at Hilltown as part of the retail programme.",
     },
     {
-      cat: "20", slug: "parfumlab-moi", name: "Parfumlab — Mall of Istanbul",
+      cat: "20", slug: "parfumlab-moi", name: "MALL OF ISTANBUL for Parfumlab",
       category: "Architecture", kind: "Retail Design",
       year: 2025, yearLabel: "2025", location: "Istanbul", status: "Completed",
       tags: ["Architecture"],
@@ -280,7 +295,7 @@ window.DATA = {
       para: "A Parfumlab store completed at Mall of Istanbul as part of the retail programme.",
     },
     {
-      cat: "21", slug: "parfumlab-cepa", name: "Parfumlab — Cepa",
+      cat: "21", slug: "parfumlab-cepa", name: "CEPA for Parfumlab",
       category: "Architecture", kind: "Retail Design",
       year: 2026, yearLabel: "2026", location: "Ankara", status: "Forthcoming",
       tags: ["Architecture"],
@@ -288,9 +303,9 @@ window.DATA = {
       para: "A forthcoming Parfumlab store at Cepa in Ankara, part of the retail programme.",
     },
     {
-      cat: "22", slug: "parfumlab-atlantis", name: "Parfumlab — Atlantis",
+      cat: "22", slug: "parfumlab-atlantis", name: "ATLANTIS for Parfumlab",
       category: "Architecture", kind: "Retail Design",
-      year: 2026, yearLabel: "2026", location: "Türkiye", status: "Forthcoming",
+      year: 2026, yearLabel: "2026", location: "Istanbul", status: "Forthcoming",
       tags: ["Architecture"],
       summary: "A Parfumlab store — Atlantis.",
       para: "A forthcoming Parfumlab store, part of the retail programme.",

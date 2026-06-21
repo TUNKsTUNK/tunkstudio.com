@@ -67,21 +67,21 @@ function Frame({ ratio = '4/3', num = '№ 00', meta = '', dim = '', accent = nu
   if (bare) {
     return (
       <div className={`frame bare ${img ? 'has-img' : ''}`} style={{ aspectRatio: ratio, ...style }}>
-        {img
-          ? <img className="frame-img" src={img} alt={alt} loading="lazy" />
-          : <React.Fragment><div className="grain" /><div className="inset" /></React.Fragment>}
+        {img ?
+        <img className="frame-img" src={img} alt={alt} loading="lazy" /> :
+        <React.Fragment><div className="grain" /><div className="inset" /></React.Fragment>}
       </div>);
   }
   return (
     <div className={`frame ${img ? 'has-img' : ''}`} style={{ aspectRatio: ratio, ...style }}>
-      {img ? (
-        <img className="frame-img" src={img} alt={alt} loading="lazy" />
-      ) : (
-        <React.Fragment>
+      {img ?
+      <img className="frame-img" src={img} alt={alt} loading="lazy" /> :
+
+      <React.Fragment>
           <div className="grain" />
           <div className="inset" />
         </React.Fragment>
-      )}
+      }
       <span className="crop-tl" /><span className="crop-br" />
       {wm && <div className="wm">{wm}</div>}
       <span className="f-num lab">{num}</span>
@@ -97,7 +97,7 @@ function Nav({ page, go, dark = false }) {
   const [solid, setSolid] = useState(false);
   useEffect(() => {
     const onScroll = () => setSolid(window.scrollY > 24);
-    onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
   // Over the slideshow / image hero (not scrolled): transparent nav, white
@@ -109,8 +109,8 @@ function Nav({ page, go, dark = false }) {
   return (
     <header className={cls} style={{ color: col, height: "66px" }}>
       <div className="brand" onClick={() => go({ id: 'home' })}>
-        <img src={logo} alt="TUNK" />
-        <span className="disc">{DATA.site.discipline}</span>
+        <img src={logo} alt="TUNK" style={{ height: "30px" }} />
+        <span className="disc" style={{ opacity: "1" }}>{DATA.site.discipline}</span>
       </div>
       <nav className="links">
         {DATA.nav.map((l) =>
@@ -184,22 +184,22 @@ function Tile({ p, go }) {
 /* ---------- lightbox — fullscreen image viewer with prev/next + swipe ---------- */
 function Lightbox({ images = [], index = 0, title = '', onClose }) {
   const [i, setI] = useState(index);
-  useEffect(() => { setI(index); }, [index]);
+  useEffect(() => {setI(index);}, [index]);
   const n = images.length;
-  const go = (d) => setI(v => (v + d + n) % n);
+  const go = (d) => setI((v) => (v + d + n) % n);
   useEffect(() => {
     const onKey = (e) => {
-      if (e.key === 'Escape') onClose();
-      else if (e.key === 'ArrowRight') go(1);
-      else if (e.key === 'ArrowLeft') go(-1);
+      if (e.key === 'Escape') onClose();else
+      if (e.key === 'ArrowRight') go(1);else
+      if (e.key === 'ArrowLeft') go(-1);
     };
     window.addEventListener('keydown', onKey);
     document.body.style.overflow = 'hidden';
-    return () => { window.removeEventListener('keydown', onKey); document.body.style.overflow = ''; };
+    return () => {window.removeEventListener('keydown', onKey);document.body.style.overflow = '';};
   }, [n]);
   // swipe
   const tx = useRef(null);
-  const onTS = (e) => { tx.current = e.touches[0].clientX; };
+  const onTS = (e) => {tx.current = e.touches[0].clientX;};
   const onTE = (e) => {
     if (tx.current == null) return;
     const dx = e.changedTouches[0].clientX - tx.current;
@@ -214,16 +214,16 @@ function Lightbox({ images = [], index = 0, title = '', onClose }) {
         <span className="lab" style={{ color: 'var(--paper)' }}>{String(i + 1).padStart(2, '0')} / {String(n).padStart(2, '0')}</span>
         <button className="lb-x" aria-label="Close" onClick={onClose}>✕</button>
       </div>
-      <button className="lb-arrow prev" aria-label="Previous" onClick={(e) => { e.stopPropagation(); go(-1); }}>←</button>
+      <button className="lb-arrow prev" aria-label="Previous" onClick={(e) => {e.stopPropagation();go(-1);}}>←</button>
       <img className="lb-img" src={images[i]} alt={`${title} ${i + 1}`} onClick={(e) => e.stopPropagation()} />
-      <button className="lb-arrow next" aria-label="Next" onClick={(e) => { e.stopPropagation(); go(1); }}>→</button>
+      <button className="lb-arrow next" aria-label="Next" onClick={(e) => {e.stopPropagation();go(1);}}>→</button>
       <div className="lb-dots" onClick={(e) => e.stopPropagation()}>
-        {images.map((s, k) => (
-          <button key={k} className={`dot ${k === i ? 'on' : ''}`} aria-label={`Image ${k + 1}`} onClick={() => setI(k)} />
-        ))}
+        {images.map((s, k) =>
+        <button key={k} className={`dot ${k === i ? 'on' : ''}`} aria-label={`Image ${k + 1}`} onClick={() => setI(k)} />
+        )}
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 Object.assign(window, { Reveal, Clock, Frame, Nav, Footer, Tile, Lightbox });

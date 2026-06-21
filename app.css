@@ -13,20 +13,8 @@
 @media (min-width: 900px)  { :root { --m: 64px; } }
 @media (min-width: 1400px) { :root { --m: 96px; } }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body {
-  overflow-x: hidden;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-  font-size: 14px;
-  line-height: 1.55;
-}
-a { color: inherit; text-decoration: none; }
-h1, h2, h3, h4, h5, h6 { font-family: var(--font-sans); }
-button, input, textarea, select { font-family: var(--font-sans); }
+body { overflow-x: hidden; }
 
 /* honor the live margin everywhere the kit used .shell */
 .shell { padding-left: var(--m); padding-right: var(--m); }
@@ -54,9 +42,9 @@ button, input, textarea, select { font-family: var(--font-sans); }
 .nav2.solid { background: var(--paper); border-bottom-color: var(--ink); }
 .nav2.solid.inverse { background: var(--carbon); border-bottom-color: var(--graphite); }
 .nav2 .brand { display: flex; align-items: center; gap: 14px; cursor: pointer; }
-.nav2 .brand img { height: 22px; display: block; transition: opacity var(--dur) var(--ease); }
+.nav2 .brand img { height: 24px; display: block; transition: opacity var(--dur) var(--ease); }
 .nav2 .brand .disc {
-  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  font-family: var(--font-sans); font-weight: 400; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
   color: currentColor; padding-left: 14px; border-left: 1px solid currentColor; opacity: .5;
 }
 .nav2 .links { display: flex; gap: 28px; align-items: center; }
@@ -188,16 +176,20 @@ button, input, textarea, select { font-family: var(--font-sans); }
 .frame .f-dim  { position: absolute; right: 16px; bottom: 12px; }
 .frame .accent-wash { position: absolute; inset: 0; mix-blend-mode: multiply; pointer-events: none; }
 
-/* real-image frame — keep the lab-tag overlay identity on top of photos */
+/* real-image frame — show the photograph clean; lab-tag chrome (number,
+   caption, crop marks, watermark) is hidden so nothing spills past the crop.
+   Project metadata still appears below each tile. */
 .frame.has-img { background: var(--ink); }
 .frame .frame-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-.frame.has-img::after {
-  content: ''; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(to bottom, rgba(10,10,10,.28) 0%, rgba(10,10,10,0) 26%, rgba(10,10,10,0) 58%, rgba(10,10,10,.42) 100%);
-}
+.frame.has-img::after { display: none; }
 .frame.has-img .lab { color: rgba(255,255,255,.92); position: relative; z-index: 2; }
-.frame.has-img .crop-tl, .frame.has-img .crop-br { border-color: rgba(255,255,255,.7); z-index: 2; }
-.frame.has-img .wm { color: rgba(255,255,255,.16); z-index: 2; }
+.frame.has-img .crop-tl,
+.frame.has-img .crop-br,
+.frame.has-img .wm,
+.frame.has-img .f-num,
+.frame.has-img .f-meta,
+.frame.has-img .f-dim,
+.frame.has-img .accent-wash { display: none; }
 
 /* bare frame — just the photograph, no chrome/overlay */
 .frame.bare { background: var(--carbon); }
@@ -338,6 +330,21 @@ button, input, textarea, select { font-family: var(--font-sans); }
 .pj-gallery { padding: 64px var(--m) 0; display: grid; gap: 24px; }
 .pj-gallery .two { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 @media (max-width: 700px) { .pj-gallery .two { grid-template-columns: 1fr; } }
+
+/* masonry — preserves each photo's native aspect, no crop */
+.pj-masonry { column-count: 3; column-gap: 24px; }
+@media (max-width: 1000px) { .pj-masonry { column-count: 2; } }
+@media (max-width: 600px)  { .pj-masonry { column-count: 1; } }
+.pj-masonry .pj-mtile {
+  break-inside: avoid; cursor: zoom-in;
+  background: var(--concrete); overflow: hidden;
+}
+.pj-masonry > * { break-inside: avoid; margin-bottom: 24px; }
+.pj-masonry .pj-mtile img {
+  display: block; width: 100%; height: auto;
+  transition: opacity var(--dur) var(--ease);
+}
+.pj-masonry .pj-mtile:hover img { opacity: .88; }
 .pj-nav { display: flex; justify-content: space-between; align-items: center; padding: 64px var(--m); margin-top: 64px; border-top: 1px solid var(--ink); }
 .pj-nav a { cursor: pointer; }
 .pj-nav .nx { text-align: right; }

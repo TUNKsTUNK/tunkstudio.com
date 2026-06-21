@@ -113,11 +113,15 @@ function ProjectPage({ project, go }) {
       </section>
 
       <section className="pj-gallery wrap">
-        <div className="two">
-          <Reveal><div onClick={() => openLb(gal[0])} style={{ cursor: gal[0] ? 'zoom-in' : 'default' }}><Frame ratio="3/4" img={gal[0]} accent={p.accent} bare /></div></Reveal>
-          <Reveal delay={80}><div onClick={() => openLb(gal[1])} style={{ cursor: gal[1] ? 'zoom-in' : 'default' }}><Frame ratio="3/4" img={gal[1]} accent={p.accent} bare /></div></Reveal>
+        <div className="pj-masonry">
+          {gal.map((g, k) => (
+            <Reveal key={k} delay={(k % 3) * 60}>
+              <div className="pj-mtile" onClick={() => openLb(g)}>
+                <img src={g} alt={`${p.name} — ${String(k + 1).padStart(2, '0')}`} loading="lazy" />
+              </div>
+            </Reveal>
+          ))}
         </div>
-        <Reveal><div onClick={() => openLb(gal[2])} style={{ cursor: gal[2] ? 'zoom-in' : 'default' }}><Frame ratio="21/9" img={gal[2]} accent={p.accent} bare /></div></Reveal>
       </section>
 
       {lb >= 0 && <Lightbox images={lbImages} index={lb} title={p.name} onClose={() => setLb(-1)} />}
