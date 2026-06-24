@@ -3,17 +3,20 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>TUNK Studio</title>
+  <title>TUNK — Architecture, Installation & Design · Istanbul</title>
   <meta name="description" content="Architecture, exhibition, product & installation — Istanbul."/>
   <link rel="icon" href="favicon.ico" sizes="any"/>
   <link rel="icon" href="favicon-32x32.png" type="image/png" sizes="32x32"/>
   <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
   <link rel="stylesheet" href="colors_and_type.css"/>
   <link rel="stylesheet" href="app.css"/>
+  <script>
+    window.TUNK_LOGO_BLACK = 'assets/logo-tunk-black.png';
+    window.TUNK_LOGO_WHITE = 'assets/logo-tunk-white.png';
+  </script>
 </head>
 <body>
   <div id="root"></div>
-  <script src="logos.js"></script>
   <script src="data.js"></script>
   <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
@@ -734,7 +737,7 @@ function Tile({ p, go }) {
   return (
     <div className="tile2" onClick={() => go({ id: 'project', project: p })}>
       <Frame ratio="4/3" num={`№ ${p.cat}`} meta={`${loc} · ${p.kind.toUpperCase()}`}
-      img={p.hero} alt={p.name} accent={p.accent} wm={p.cat} />
+      img={p.thumb || p.hero} alt={p.name} accent={p.accent} wm={p.cat} />
       <div className="meta">
         <div className="nm">{p.name}</div>
         <div className="yr">{p.yearLabel}</div>
