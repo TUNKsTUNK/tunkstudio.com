@@ -134,9 +134,10 @@ function HeroIndex({ go }) {
 
 function SelectedWork({ go }) {
   const h = DATA.home;
-  // Curated order (set by studio): Pneuma, Submarine, Postane, MSGSU, Oculus, Samih Rıfat, Cepa.
+  // Curated order (set by studio). Only projects with photography are shown for now;
+  // the rest stay hidden from the home selection until their images are uploaded.
   const order = ['parfumlab-pneuma', 'yesim-evi', 'postane', 'hali-atolyesi', 'oculus', 'samih-rifat', 'parfumlab-cepa'];
-  const list = order.map((s) => DATA.projects.find((p) => p.slug === s)).filter(Boolean);
+  const list = order.map((s) => DATA.projects.find((p) => p.slug === s)).filter((p) => p && hasPhotos(p));
   return (
     <section className="sec" style={{ paddingTop: 96 }}>
       <div className="wrap">
@@ -156,7 +157,7 @@ function SelectedWork({ go }) {
                 </div>
                 <div className="media" onClick={() => go({ id: 'project', project: p })}>
                   <Frame ratio={big ? '21/9' : '16/9'} num={`№ ${p.cat}`}
-                  meta={`${loc} · ${p.kind.toUpperCase()}`} img={p.hero} alt={p.name}
+                  meta={`${loc} · ${p.kind.toUpperCase()}`} img={p.thumb || p.hero} alt={p.name}
                   accent={p.accent} wm={p.cat} />
                 </div>
                 <div className="title-line" onClick={() => go({ id: 'project', project: p })} style={{ cursor: 'pointer' }}>

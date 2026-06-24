@@ -3,7 +3,16 @@
 function WorkPage({ go }) {
   const [view, setView] = useState('grid');
   const [filter, setFilter] = useState('All');
-  const filtered = filter === 'All' ? DATA.projects : DATA.projects.filter(p => p.tags.includes(filter));
+  const base = filter === 'All' ? DATA.projects : DATA.projects.filter(p => p.tags.includes(filter));
+  const filtered = [...base].sort((a, b) => {
+    // Projects with photography come first; un-photographed ones fall to the end.
+    const pa = hasPhotos(a), pb = hasPhotos(b);
+    if (pa !== pb) return pa ? -1 : 1;
+    if (a.year == null && b.year == null) return 0;
+    if (a.year == null) return 1;
+    if (b.year == null) return -1;
+    return b.year - a.year; // most recent first
+  });
   return (
     <main className="route">
       <div className="work-head">
@@ -63,8 +72,9 @@ function ProjectPage({ project, go }) {
   const accentVar = p.accent ? `var(--${p.accent})` : 'var(--ink)';
   const loc = p.location ? p.location.toUpperCase() : 'ISTANBUL';
   const gal = p.gallery || [];
-  // all images for this project, for the lightbox
-  const lbImages = [p.hero, ...gal].filter(Boolean);
+  const isVid = (s) => /\.(mp4|webm|mov)$/i.test(s);
+  // all images for this project, for the lightbox (videos excluded)
+  const lbImages = [p.hero, ...gal].filter(Boolean).filter((s) => !isVid(s));
   const [lb, setLb] = useState(-1); // -1 = closed, else index into lbImages
   const openLb = (img) => { const k = lbImages.indexOf(img); if (k >= 0) setLb(k); };
 
@@ -74,7 +84,6 @@ function ProjectPage({ project, go }) {
     ['Year', p.yearLabel],
     p.location ? ['Location', p.location] : null,
     p.status ? ['Status', p.status] : null,
-    p.scope ? ['Scope', p.scope.join(' · ')] : null,
     p.collab ? ['Collaboration', p.collab] : null,
     p.press ? ['Press', p.press.join(' · ')] : null,
   ].filter(Boolean);
@@ -102,8 +111,10 @@ function ProjectPage({ project, go }) {
           <p className="lede">{p.summary}</p>
           <p className="para">{p.para}</p>
           {p.photographer
-            ? <p className="para" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.04em', textTransform: 'uppercase', color: 'var(--graphite)', marginTop: 32 }}>Photography — {p.photographer}</p>
-            : <p className="para" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.04em', textTransform: 'uppercase', color: 'var(--aluminium)', marginTop: 32 }}>Photography pending — images to follow</p>}
+            ? <p className="para" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.04em', textTransform: 'uppercase', color: 'var(--graphite)', marginTop: 32 }}>Photography — {p.photographer}{p.graphics ? <><br />Graphics — {p.graphics}</> : null}</p>
+            : (!p.gallery || !p.gallery.length)
+              ? <p className="para" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.04em', textTransform: 'uppercase', color: 'var(--aluminium)', marginTop: 32 }}>Photography pending — images to follow</p>
+              : null}
         </div>
         <div className="pj-specs">
           {specs.map(([k, v]) => (
@@ -113,13 +124,17 @@ function ProjectPage({ project, go }) {
       </section>
 
       <section className="pj-gallery wrap">
-        <div className="pj-masonry">
+        <div className="pj-grid-g">
           {gal.map((g, k) => (
-            <Reveal key={k} delay={(k % 3) * 60}>
-              <div className="pj-mtile" onClick={() => openLb(g)}>
-                <img src={g} alt={`${p.name} — ${String(k + 1).padStart(2, '0')}`} loading="lazy" />
-              </div>
-            </Reveal>
+            isVid(g)
+              ? <Reveal as="figure" className="g-cell g-vid" key={k} delay={(k % 3) * 60}>
+                  <video src={g} controls playsInline preload="metadata" loop muted />
+                  <figcaption className="pl-cap">{String(k + 1).padStart(2, '0')} · FILM</figcaption>
+                </Reveal>
+              : <Reveal as="figure" className="g-cell" key={k} delay={(k % 3) * 60} onClick={() => openLb(g)}>
+                  <img src={g} alt={`${p.name} — ${String(k + 1).padStart(2, '0')}`} loading="lazy" />
+                  <figcaption className="pl-cap">{String(k + 1).padStart(2, '0')}</figcaption>
+                </Reveal>
           ))}
         </div>
       </section>

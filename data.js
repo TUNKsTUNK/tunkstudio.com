@@ -2,6 +2,8 @@
    Source of truth: TUNK_PROJE_LISTESI (client project list).
    Imagery is placeholder per brand; copy written in TUNK museum-label voice.
    Only facts present in the source are stated — no fabricated materials. */
+// A project is "published with photography" once it has a real gallery.
+window.hasPhotos = (p) => !!(p && p.gallery && p.gallery.length);
 window.DATA = {
   site: {
     discipline: "ARCHITECTURE · EXHIBITION · PRODUCT · INSTALLATION",
@@ -102,13 +104,27 @@ window.DATA = {
      --------------------------------------------------------------------- */
   projects: [
     {
-      cat: "01", slug: "postane", name: "Postane",
-      category: "Architecture", kind: "Education Interior",
+      cat: "01", slug: "postane", name: "POSTANE",
+      category: "Architecture", kind: "Interior & Lighting",
       year: 2021, yearLabel: "2021", location: "Istanbul", status: "Completed",
       scope: ["Furniture", "Lighting"], press: ["Arkitera"],
       tags: ["Architecture", "Product Design"],
-      summary: "A cultural space in Istanbul — restaurant, bar and event venue in one building.",
-      para: "The brief brought three programmes under one roof. Custom furniture and a bespoke lighting scheme were designed for the rooms, tuning each from daytime workspace to evening venue.",
+      hero: "assets/projects/postane/hero.jpg",
+      gallery: [
+        "assets/projects/postane/g/01.jpg", "assets/projects/postane/g/02.jpg", "assets/projects/postane/g/03.jpg",
+        "assets/projects/postane/g/04.jpg", "assets/projects/postane/g/05.jpg", "assets/projects/postane/g/06.jpg",
+        "assets/projects/postane/g/07.jpg", "assets/projects/postane/g/08.jpg", "assets/projects/postane/g/09.jpg",
+        "assets/projects/postane/g/10.jpg", "assets/projects/postane/g/11.jpg", "assets/projects/postane/g/12.jpg",
+        "assets/projects/postane/g/13.jpg", "assets/projects/postane/g/14.jpg", "assets/projects/postane/g/15.jpg",
+        "assets/projects/postane/g/16.jpg", "assets/projects/postane/g/17.jpg", "assets/projects/postane/g/18.jpg",
+        "assets/projects/postane/g/19.jpg", "assets/projects/postane/g/20.jpg", "assets/projects/postane/g/21.jpg",
+        "assets/projects/postane/g/22.jpg", "assets/projects/postane/g/23.jpg", "assets/projects/postane/g/24.jpg",
+        "assets/projects/postane/g/25.jpg", "assets/projects/postane/g/26.jpg", "assets/projects/postane/g/27.jpg",
+        "assets/projects/postane/g/28.jpg", "assets/projects/postane/g/29.jpg"
+      ],
+      photographer: "Emirkan Corut",
+      summary: "Interior and lighting for Postane — a social and cultural hub in the Old British Post Office in Galata, completed in 1859.",
+      para: "The design was drawn from what the building revealed in restoration — the volta vaulted ceiling, the wall niches, the radial motif above the door, the gridded window frames. For the two ground-floor fair-trade shops, Postane Shop and Café, each piece was designed and fabricated alongside its craftsman: a produce stand raised from the window's cast light, a gallery light tracing the grid, a deployable publications display, a bookcase angled 10° to follow the vault, and a hand-bent sun light. The studio also carried the lighting for the whole building — facade, four floors, terrace. 73 m².",
     },
     {
       cat: "02", slug: "40-kapili-oda", name: "40 Kapılı Oda",
@@ -148,7 +164,7 @@ window.DATA = {
     {
       cat: "06", slug: "remix", name: "Remix",
       category: "Exhibition Architecture", kind: "Exhibition",
-      year: 2028, yearLabel: "2028 · forthcoming", location: "Istanbul", status: "Forthcoming",
+      year: 2019, yearLabel: "2019", location: "Istanbul", status: "Forthcoming",
       tags: ["Exhibition Architecture"],
       summary: "A multi-sensory exhibition architecture. Forthcoming.",
       para: "A multi-sensory exhibition in development, working across sound, light and movement through the rooms.",
@@ -176,11 +192,21 @@ window.DATA = {
       year: 2016, yearLabel: "2016", location: "Istanbul", status: "Completed",
       collab: "NOHlab", press: ["ArchDaily", "Designboom"],
       tags: ["Installation"],
-      summary: "An interactive light and sound performance, made in collaboration with NOHlab.",
-      para: "Oculus turns a room into a single responsive instrument of light and sound. Made with NOHlab; featured by ArchDaily and Designboom.",
+      hero: "assets/projects/oculus/g/07.jpg",
+      thumb: "assets/projects/oculus/g/01.jpg",
+      gallery: [
+        "assets/projects/oculus/g/01.jpg", "assets/projects/oculus/g/03.jpg", "assets/projects/oculus/g/04.jpg",
+        "assets/projects/oculus/g/06.jpg", "assets/projects/oculus/g/08.jpg", "assets/projects/oculus/g/09.jpg",
+        "assets/projects/oculus/g/05.jpg", "assets/projects/oculus/g/02.jpg", "assets/projects/oculus/g/11.jpg",
+        "assets/projects/oculus/g/12.jpg", "assets/projects/oculus/g/13.jpg", "assets/projects/oculus/g/14.jpg",
+        "assets/projects/oculus/g/10.jpg", "assets/projects/oculus/g/15.jpg"
+      ],
+      summary: "An interactive light and sound performance.",
+      photographer: "Cemal Emden",
+      para: "Oculus turns a room into a single responsive instrument of light and sound.",
     },
     {
-      cat: "10", slug: "galata-ormanci", name: "Galata Ormancı Apt",
+      cat: "10", slug: "galata-ormanci", name: "Galata Apt",
       category: "Architecture", kind: "Residential Interior",
       year: 2025, yearLabel: "2025", location: "Galata, Istanbul", status: "Completed",
       tags: ["Architecture"],
@@ -190,21 +216,22 @@ window.DATA = {
 
     /* ---- remaining catalogue ---- */
     {
-      cat: "11", slug: "yesim-evi", name: "Submarine",
+      cat: "11", slug: "yesim-evi", name: "SUBMARINE",
       category: "Architecture", kind: "Residential",
       year: 2020, yearLabel: "2020", location: "Göcek, Muğla", status: "Completed",
       scope: ["Furniture"],
       tags: ["Architecture", "Product Design"],
       hero: "assets/projects/submarine/hero.jpg",
       gallery: [
-        "assets/projects/submarine/01.jpg", "assets/projects/submarine/02.jpg", "assets/projects/submarine/03.jpg",
-        "assets/projects/submarine/04.jpg", "assets/projects/submarine/05.jpg", "assets/projects/submarine/06.jpg",
-        "assets/projects/submarine/07.jpg", "assets/projects/submarine/08.jpg", "assets/projects/submarine/09.jpg",
-        "assets/projects/submarine/10.jpg", "assets/projects/submarine/11.jpg", "assets/projects/submarine/12.jpg",
-        "assets/projects/submarine/13.jpg", "assets/projects/submarine/14.jpg", "assets/projects/submarine/15.jpg",
-        "assets/projects/submarine/16.jpg", "assets/projects/submarine/17.jpg", "assets/projects/submarine/18.jpg"
+        "assets/projects/submarine/g/01.jpg", "assets/projects/submarine/g/02.jpg", "assets/projects/submarine/g/03.jpg",
+        "assets/projects/submarine/g/04.jpg", "assets/projects/submarine/g/05.jpg", "assets/projects/submarine/g/06.jpg",
+        "assets/projects/submarine/g/07.jpg", "assets/projects/submarine/g/08.png", "assets/projects/submarine/g/09.jpg",
+        "assets/projects/submarine/g/10.jpg", "assets/projects/submarine/g/11.jpg", "assets/projects/submarine/g/12.jpg",
+        "assets/projects/submarine/g/13.jpg", "assets/projects/submarine/g/14.jpg", "assets/projects/submarine/g/15.jpg",
+        "assets/projects/submarine/g/16.jpg", "assets/projects/submarine/g/17.jpg", "assets/projects/submarine/g/18.jpg",
+        "assets/projects/submarine/g/19.jpg", "assets/projects/submarine/g/20.jpg", "assets/projects/submarine/g/21.jpg"
       ],
-      photographer: "TUNK",
+      photographer: "TUNK", graphics: "TUNK",
       summary: "A house set into an olive grove at Gökçeovacık, above Göcek on the Aegean coast.",
       para: "Concrete volumes step into the slope and open through full-height glass to the bay and the sunset. A circular oculus is cut through the upper floor, drawing daylight down into the stone-walled rooms below. A custom furniture collection in mild steel and oak — shelving, a hall console, a bench — was drawn for the interior and fabricated to the same line as the architecture.",
     },
@@ -247,31 +274,32 @@ window.DATA = {
       year: 2022, yearLabel: "2022", location: "Istanbul", status: "Completed",
       press: ["Arkitera"],
       tags: ["Architecture"],
-      hero: "assets/projects/msgsu/hero.jpg",
+      hero: "assets/projects/msgsu/02.jpg",
       gallery: [
-        "assets/projects/msgsu/01.jpg", "assets/projects/msgsu/02.jpg", "assets/projects/msgsu/03.jpg",
+        "assets/projects/msgsu/01.jpg", "assets/projects/msgsu/03.jpg",
         "assets/projects/msgsu/04.jpg", "assets/projects/msgsu/05.jpg", "assets/projects/msgsu/06.jpg",
         "assets/projects/msgsu/07.jpg", "assets/projects/msgsu/08.jpg", "assets/projects/msgsu/09.jpg",
         "assets/projects/msgsu/10.jpg", "assets/projects/msgsu/11.jpg", "assets/projects/msgsu/12.jpg",
         "assets/projects/msgsu/13.jpg", "assets/projects/msgsu/14.jpg", "assets/projects/msgsu/15.jpg"
       ],
+      photographer: "Emirkan Corut",
       summary: "A new working system for the weaving workshop at Mimar Sinan Fine Arts University — looms, dye storage and circulation re-set around the craft.",
       para: "The existing studio was re-planned around how the work is actually made. A blue steel armature carries the stair, the tool screens and the open shelving; dyed yarn is sorted into a wall of stacked translucent bins, read at a glance by colour. Everything new is fabricated in mild steel and left exposed — welded on site, levelled against the original arched windows and timber ceiling. Published by Arkitera.",
     },
     {
-      cat: "17", slug: "parfumlab-pneuma", name: "PNEUMA for Parfumlab",
+      cat: "17", slug: "parfumlab-pneuma", name: "PNEUMA I Parfumlab",
       category: "Architecture", kind: "Retail Design",
       year: 2026, yearLabel: "2026", location: "Istanbul", status: "Completed",
       tags: ["Architecture"],
       hero: "assets/projects/pneuma-hero.jpg",
       gallery: ["assets/projects/pneuma-02.jpg", "assets/projects/pneuma-03.jpg", "assets/projects/pneuma-04.jpg"],
       album: ["assets/projects/pneuma-hero.jpg", "assets/projects/pneuma-04.jpg", "assets/projects/pneuma-05.jpg", "assets/projects/pneuma-06.jpg", "assets/projects/pneuma-02.jpg", "assets/projects/pneuma-03.jpg"],
-      photographer: "TUNK",
+      photographer: "Hadiye Cangökçe",
       summary: "A Parfumlab retail concept — the Pneuma store, built as a working perfume laboratory.",
       para: "The store is laid out as a laboratory: a white pipework grid runs across ceiling and walls, blue-glass panels carry the formula displays, and a mirrored island holds the bottles. Colour belongs entirely to the cobalt glass and the lab apparatus.",
     },
     {
-      cat: "18", slug: "parfumlab-mersin", name: "MERSIN for Parfumlab",
+      cat: "18", slug: "parfumlab-mersin", name: "PNEUMA II",
       category: "Architecture", kind: "Retail Design",
       year: 2025, yearLabel: "2025", location: "Mersin", status: "Completed",
       tags: ["Architecture"],
@@ -279,23 +307,7 @@ window.DATA = {
       para: "A Parfumlab store completed in Mersin as part of the retail programme.",
     },
     {
-      cat: "19", slug: "parfumlab-hilltown", name: "HILLTOWN for Parfumlab",
-      category: "Architecture", kind: "Retail Design",
-      year: 2025, yearLabel: "2025", location: "Istanbul", status: "Completed",
-      tags: ["Architecture"],
-      summary: "A Parfumlab store at Hilltown.",
-      para: "A Parfumlab store completed at Hilltown as part of the retail programme.",
-    },
-    {
-      cat: "20", slug: "parfumlab-moi", name: "MALL OF ISTANBUL for Parfumlab",
-      category: "Architecture", kind: "Retail Design",
-      year: 2025, yearLabel: "2025", location: "Istanbul", status: "Completed",
-      tags: ["Architecture"],
-      summary: "A Parfumlab store at Mall of Istanbul.",
-      para: "A Parfumlab store completed at Mall of Istanbul as part of the retail programme.",
-    },
-    {
-      cat: "21", slug: "parfumlab-cepa", name: "CEPA for Parfumlab",
+      cat: "21", slug: "parfumlab-cepa", name: "PNEUMA KIOSK",
       category: "Architecture", kind: "Retail Design",
       year: 2026, yearLabel: "2026", location: "Ankara", status: "Forthcoming",
       tags: ["Architecture"],
@@ -303,7 +315,7 @@ window.DATA = {
       para: "A forthcoming Parfumlab store at Cepa in Ankara, part of the retail programme.",
     },
     {
-      cat: "22", slug: "parfumlab-atlantis", name: "ATLANTIS for Parfumlab",
+      cat: "22", slug: "parfumlab-atlantis", name: "PNEUMA DISPLAY",
       category: "Architecture", kind: "Retail Design",
       year: 2026, yearLabel: "2026", location: "Istanbul", status: "Forthcoming",
       tags: ["Architecture"],
@@ -327,13 +339,21 @@ window.DATA = {
       para: "Exhibition architecture for a show of Şakir Eczacıbaşı's work.",
     },
     {
-      cat: "25", slug: "samih-rifat", name: "Samih Rıfat",
+      cat: "25", slug: "samih-rifat", name: "Samih Rıfat — “Much Is to Be Done”",
       category: "Exhibition Architecture", kind: "Exhibition Design",
       year: 2025, yearLabel: "2025", location: "Istanbul", status: "Completed",
       scope: ["Lighting"],
       tags: ["Exhibition Architecture", "Product Design"],
+      hero: "assets/projects/samih/p/01.jpg",
+      thumb: "assets/projects/samih/p/02.jpg",
+      gallery: [
+        "assets/projects/samih/p/02.jpg", "assets/projects/samih/p/03.jpg", "assets/projects/samih/p/04.jpg",
+        "assets/projects/samih/p/05.jpg", "assets/projects/samih/p/06.jpg", "assets/projects/samih/p/07.jpg",
+        "assets/projects/samih/g/09.jpg", "assets/projects/samih/g/10.jpg"
+      ],
+      photographer: "Hadiye Cangökçe",
       summary: "Exhibition design with a custom lighting scheme.",
-      para: "Exhibition architecture for a Samih Rıfat show, with lighting designed specifically for the works on display.",
+      para: "Exhibition architecture for a Samih Rıfat show — blue partition walls with gold edges, each work individually lit. Lighting designed specifically for the works on display.",
     },
     {
       cat: "26", slug: "gorunmeyen-anitlar", name: "Görünmeyen Anıtlar",
@@ -349,6 +369,16 @@ window.DATA = {
       year: null, yearLabel: "—", location: null, status: "Completed",
       scope: ["Lighting"],
       tags: ["Product Design"],
+      hero: "assets/projects/liminal/g/04.jpg",
+      thumb: "assets/projects/liminal/g/15.jpg",
+      gallery: [
+        "assets/projects/liminal/g/01.jpg", "assets/projects/liminal/g/02.jpg", "assets/projects/liminal/g/03.jpg",
+        "assets/projects/liminal/g/05.jpg", "assets/projects/liminal/credits.mp4",
+        "assets/projects/liminal/g/06.jpg", "assets/projects/liminal/g/07.jpg", "assets/projects/liminal/g/08.jpg",
+        "assets/projects/liminal/g/09.jpg", "assets/projects/liminal/g/12.jpg", "assets/projects/liminal/g/13.jpg",
+        "assets/projects/liminal/g/14.jpg", "assets/projects/liminal/g/15.jpg", "assets/projects/liminal/g/16.jpg",
+        "assets/projects/liminal/g/10.jpg", "assets/projects/liminal/g/11.jpg"
+      ],
       summary: "A custom lighting design.",
       para: "A lighting piece developed by the studio.",
     },
@@ -369,10 +399,22 @@ window.DATA = {
       para: "An installation realised in 2019 in collaboration with artist Yağız Özgen.",
     },
     {
-      cat: "30", slug: "paintshop", name: "Paintshop",
+      cat: "30", slug: "paintshop", name: "The Painter",
       category: "Installation", kind: "Installation",
       year: 2023, yearLabel: "2023", location: "Istanbul", status: "Completed",
       tags: ["Installation"],
+      hero: "assets/projects/painter/g/03.jpg",
+      thumb: "assets/projects/painter/g/02.jpg",
+      gallery: [
+        "assets/projects/painter/g/11.jpg", "assets/projects/painter/g/12.jpg",
+        "assets/projects/painter/store.mp4",
+        "assets/projects/painter/g/05.jpg", "assets/projects/painter/g/02.jpg", "assets/projects/painter/g/06.jpg",
+        "assets/projects/painter/g/07.jpg", "assets/projects/painter/g/08.jpg", "assets/projects/painter/g/09.jpg",
+        "assets/projects/painter/g/10.jpg", "assets/projects/painter/g/16.jpg", "assets/projects/painter/g/01.jpg",
+        "assets/projects/painter/g/13.jpg", "assets/projects/painter/g/14.jpg",
+        "assets/projects/painter/g/18.jpg", "assets/projects/painter/g/19.jpg"
+      ],
+      photographer: "Büşra Tunç",
       summary: "Installation design — Boyacı.",
       para: "An installation realised in 2023 in collaboration with artist Yağız Özgen.",
     },
