@@ -16,9 +16,49 @@ const DENSITY_M = {
 
 function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
-  const [page, setPage] = useState({ id: 'home' });
 
-  const go = (p) => { setPage(p); window.scrollTo({ top: 0, behavior: 'auto' }); };
+  // Encode/decode page state to a URL hash so the browser back/forward
+  // buttons work like real navigation, not just in-app state.
+  const encodePage = (p) => {
+    if (p.id === 'project' && p.project) return '#/project/' + encodeURIComponent(p.project.slug);
+    if (p.id === 'home') return '#/';
+    return '#/' + p.id;
+  };
+  const decodeHash = (hash) => {
+    const h = (hash || '').replace(/^#\/?/, '');
+    if (!h) return { id: 'home' };
+    const parts = h.split('/');
+    if (parts[0] === 'project' && parts[1]) {
+      const slug = decodeURIComponent(parts[1]);
+      const project = DATA.projects.find((pr) => pr.slug === slug);
+      if (project) return { id: 'project', project };
+      return { id: 'home' };
+    }
+    if (['work', 'about', 'press', 'contact'].includes(parts[0])) return { id: parts[0] };
+    return { id: 'home' };
+  };
+
+  const [page, setPage] = useState(() => decodeHash(window.location.hash));
+
+  // Pushes a new history entry (real navigation, e.g. clicking a link/tile).
+  const go = (p) => {
+    setPage(p);
+    const hash = encodePage(p);
+    if (window.location.hash !== hash) window.history.pushState({ page: p.id }, '', hash);
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  };
+
+  // Back/forward button: read the new hash, update state, but don't push again.
+  useEffect(() => {
+    const onPop = () => {
+      setPage(decodeHash(window.location.hash));
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    };
+    window.addEventListener('popstate', onPop);
+    // normalise the very first load so a bookmarked/shared hash has a history entry
+    if (!window.location.hash) window.history.replaceState({ page: 'home' }, '', '#/');
+    return () => window.removeEventListener('popstate', onPop);
+  }, []);
 
   // apply tweaks to :root
   useEffect(() => {

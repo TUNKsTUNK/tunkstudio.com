@@ -62,20 +62,20 @@ function Clock() {
 }
 
 /* ---------- placeholder / real-image frame ---------- */
-function Frame({ ratio = '4/3', num = '№ 00', meta = '', dim = '', accent = null, wm = null, img = null, alt = '', bare = false, style = {} }) {
+function Frame({ ratio = '4/3', num = '№ 00', meta = '', dim = '', accent = null, wm = null, img = null, alt = '', bare = false, style = {}, fit = 'cover' }) {
   // bare = just the photograph: no frame chrome, crop marks, numbers, labels.
   if (bare) {
     return (
       <div className={`frame bare ${img ? 'has-img' : ''}`} style={{ aspectRatio: ratio, ...style }}>
         {img ?
-        <img className="frame-img" src={img} alt={alt} loading="lazy" /> :
+        <img className="frame-img" src={img} alt={alt} loading="lazy" style={{ objectFit: fit }} /> :
         <React.Fragment><div className="grain" /><div className="inset" /></React.Fragment>}
       </div>);
   }
   return (
     <div className={`frame ${img ? 'has-img' : ''}`} style={{ aspectRatio: ratio, ...style }}>
       {img ?
-      <img className="frame-img" src={img} alt={alt} loading="lazy" /> :
+      <img className="frame-img" src={img} alt={alt} loading="lazy" style={{ objectFit: fit }} /> :
 
       <React.Fragment>
           <div className="grain" />
@@ -151,18 +151,49 @@ function Footer({ go }) {
           <div>
             <div className="h">Follow</div>
             <div className="links">
-              <a>{f.instagram}</a>
+              <a href={f.instagramUrl || 'https://www.instagram.com/tunkstudiotunk/'} target="_blank" rel="noopener noreferrer">{f.instagram}</a>
               <a>{f.newsletter}</a>
             </div>
           </div>
         </div>
         <div className="legal">
           <span>{DATA.site.copyright}</span>
-          <span>VAT 0000000000 · Legal · Cookies</span>
+          <span></span>
         </div>
       </div>
     </footer>);
 
+}
+
+/* ---------- lazy video — only downloads/plays once scrolled near viewport ---------- */
+function LazyVideo({ src, className = '', onSized }) {
+  const ref = useRef(null);
+  const [armed, setArmed] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) { setArmed(true); io.disconnect(); }
+    }, { rootMargin: '600px 0px' }); // start loading a bit before it's on screen
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return (
+    <video
+      ref={ref}
+      className={className}
+      src={armed ? src : undefined}
+      autoPlay={armed} playsInline preload="none" loop muted
+      onLoadedMetadata={(e) => {
+        const v = e.target;
+        if (v.videoWidth && v.videoHeight) {
+          const fig = v.closest('.g-vid');
+          if (fig) fig.style.aspectRatio = v.videoWidth + ' / ' + v.videoHeight;
+        }
+        if (onSized) onSized(v.videoWidth, v.videoHeight);
+      }}
+    />
+  );
 }
 
 /* ---------- work tile ---------- */

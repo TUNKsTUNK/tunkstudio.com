@@ -27,10 +27,15 @@ function HeroStatement({ go }) {
 
 function HeroFeature({ go }) {
   const h = DATA.home;
-  // Homepage slideshow: only the Pneuma project's images.
-  const feat = DATA.projects.find((p) => p.slug === 'parfumlab-pneuma') || DATA.projects.find((p) => p.hero);
-  const imgs = feat ? feat.album || [feat.hero, ...(feat.gallery || [])] : [];
-  const slides = imgs.length ? imgs.map((img) => ({ img, p: feat })) : [{ img: null, p: DATA.projects[0] }];
+  // Homepage slideshow: one strong image per photographed project, in curated order.
+  // Each slide links to its own project, so the hero showcases the whole studio.
+  const order = ['parfumlab-pneuma', 'yesim-evi', 'oculus', 'postane', 'samih-rifat', 'hali-atolyesi', 'paintshop', 'liminal'];
+  const featured = order
+    .map((s) => DATA.projects.find((p) => p.slug === s))
+    .filter((p) => p && hasPhotos(p));
+  const slides = featured.length
+    ? featured.map((p) => ({ img: p.hero, p }))
+    : [{ img: null, p: DATA.projects[0] }];
 
   const [i, setI] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -41,6 +46,13 @@ function HeroFeature({ go }) {
     const id = setInterval(() => setI((n) => (n + 1) % slides.length), 4000);
     return () => clearInterval(id);
   }, [paused, slides.length]);
+  // Preload only the NEXT slide's image (not all of them) so the crossfade stays
+  // instant without forcing the browser to download every project's hero at once
+  // on first paint — that alone was several MB of unseen images.
+  useEffect(() => {
+    const next = slides[(i + 1) % slides.length];
+    if (next && next.img) { const im = new Image(); im.src = next.img; }
+  }, [i, slides]);
   // Smooth crossfade: bottom layer holds the previous image at full opacity while
   // the incoming image fades in on top (many small JS steps — CSS transitions
   // freeze in this preview compositor, but timers run, so this stays smooth).
@@ -65,10 +77,6 @@ function HeroFeature({ go }) {
   return (
     <section className="hero-full">
       <div className="heroB" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
-        {/* preload so swaps are instant */}
-        <div style={{ display: 'none' }}>
-          {slides.map((s, n) => s.img ? <img key={n} src={s.img} alt="" /> : null)}
-        </div>
         {/* bottom layer: previous image, held full-opacity (no dark gap) */}
         <div className="album-photo" style={{ backgroundImage: prevImg ? `url(${prevImg})` : 'none' }} />
         {/* top layer: incoming image fading in */}
@@ -158,7 +166,7 @@ function SelectedWork({ go }) {
                 <div className="media" onClick={() => go({ id: 'project', project: p })}>
                   <Frame ratio={big ? '21/9' : '16/9'} num={`№ ${p.cat}`}
                   meta={`${loc} · ${p.kind.toUpperCase()}`} img={p.thumb || p.hero} alt={p.name}
-                  accent={p.accent} wm={p.cat} />
+                  accent={p.accent} wm={p.cat} fit={p.slug === 'yesim-evi' ? 'contain' : 'cover'} />
                 </div>
                 <div className="title-line" onClick={() => go({ id: 'project', project: p })} style={{ cursor: 'pointer' }}>
                   <span className="title">{p.name}</span>

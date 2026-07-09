@@ -80,7 +80,6 @@ function ProjectPage({ project, go }) {
 
   const specs = [
     ['Discipline', p.category],
-    ['Type', p.kind],
     ['Year', p.yearLabel],
     p.location ? ['Location', p.location] : null,
     p.status ? ['Status', p.status] : null,
@@ -91,9 +90,19 @@ function ProjectPage({ project, go }) {
   return (
     <main className="route" style={{ '--accent': accentVar }}>
       <section className="pj-hero">
-        <div onClick={() => p.hero && openLb(p.hero)} style={{ position: 'absolute', inset: 0, zIndex: 1, cursor: p.hero ? 'zoom-in' : 'default' }}>
-          <Frame ratio="auto" num={`№ ${p.cat}`} meta="" img={p.hero} alt={p.name} accent={p.accent}
-                 bare wm={p.cat} style={{ position: 'absolute', inset: 0, aspectRatio: 'auto' }} />
+        <div onClick={() => !p.heroVideo && p.hero && openLb(p.hero)} style={{ position: 'absolute', inset: 0, zIndex: 1, cursor: p.heroVideo ? 'default' : (p.hero ? 'zoom-in' : 'default') }}>
+          {p.heroVideo ? (
+            <iframe
+              src={`https://player.vimeo.com/video/${p.heroVideo}?autoplay=1&muted=1&loop=1&background=1&app_id=122963#t=9s`}
+              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0, pointerEvents: 'none' }}
+              allow="autoplay; fullscreen; picture-in-picture"
+              title={`${p.name} — film`}
+            />
+          ) : (
+            <Frame ratio="auto" num={`№ ${p.cat}`} meta="" img={p.hero} alt={p.name} accent={p.accent}
+                   bare wm={p.cat} style={{ position: 'absolute', inset: 0, aspectRatio: 'auto' }}
+                   fit={p.slug === 'yesim-evi' ? 'contain' : 'cover'} />
+          )}
         </div>
         <div className="scrim" style={{ position: 'absolute', inset: 0, background: 'rgba(10,10,10,.34)', zIndex: 2, pointerEvents: 'none' }} />
         <div className="pj-bar" style={{ zIndex: 4 }}>
@@ -128,7 +137,7 @@ function ProjectPage({ project, go }) {
           {gal.map((g, k) => (
             isVid(g)
               ? <Reveal as="figure" className="g-cell g-vid" key={k} delay={(k % 3) * 60}>
-                  <video src={g} controls playsInline preload="metadata" loop muted />
+                  <LazyVideo src={g} />
                   <figcaption className="pl-cap">{String(k + 1).padStart(2, '0')} · FILM</figcaption>
                 </Reveal>
               : <Reveal as="figure" className="g-cell" key={k} delay={(k % 3) * 60} onClick={() => openLb(g)}>

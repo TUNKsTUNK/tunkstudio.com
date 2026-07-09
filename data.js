@@ -8,7 +8,7 @@ window.DATA = {
   site: {
     discipline: "ARCHITECTURE · EXHIBITION · PRODUCT · INSTALLATION",
     language: "EN · TR",
-    copyright: "© TUNK STUDIO · GALATA, ISTANBUL · 2014—",
+    copyright: "© TUNK STUDIO · ISTANBUL · 2014—",
   },
 
   nav: [
@@ -89,9 +89,10 @@ window.DATA = {
 
   footer: {
     tagline: "Architecture · Exhibition · Product · Installation",
-    location: "Galata, Istanbul",
+    location: "Istanbul",
     studioLinks: ["Work", "About", "Press"],
     instagram: "Instagram →",
+    instagramUrl: "https://www.instagram.com/tunkstudiotunk/",
     newsletter: "Newsletter →",
   },
 
@@ -189,8 +190,9 @@ window.DATA = {
     {
       cat: "09", slug: "oculus", name: "Oculus",
       category: "Installation", kind: "Installation · Performance",
-      year: 2016, yearLabel: "2016", location: "Istanbul", status: "Completed",
-      collab: "NOHlab", press: ["ArchDaily", "Designboom"],
+      year: 2016, yearLabel: "2016", location: "Istanbul Imperial Arsenal, Istanbul", status: "Completed",
+      collab: "NOHlab, HAS Architects", press: ["ArchDaily", "Designboom"],
+      heroVideo: "193355265",
       tags: ["Installation"],
       hero: "assets/projects/oculus/g/07.jpg",
       thumb: "assets/projects/oculus/g/01.jpg",
@@ -201,9 +203,9 @@ window.DATA = {
         "assets/projects/oculus/g/12.jpg", "assets/projects/oculus/g/13.jpg", "assets/projects/oculus/g/14.jpg",
         "assets/projects/oculus/g/10.jpg", "assets/projects/oculus/g/15.jpg"
       ],
-      summary: "An interactive light and sound performance.",
+      summary: "An interactive light and sound performance, for the Third Istanbul Design Biennial.",
       photographer: "Cemal Emden",
-      para: "Oculus turns a room into a single responsive instrument of light and sound.",
+      para: "Set in the Single-Dome Hall of the Istanbul Imperial Arsenal for the Third Istanbul Design Biennial, Oculus reinterprets the 16th-century hall's geometry as a geodesic \u201clight dome\u201d \u2014 a temporary structure of triangular screens standing inside the historic dome. Visitors step into the semicircle of interlocking panels, enclosed by shifting light, sound and animation drawn from a selection of HAS Architects' work. The top of the structure is left open, so a single ray of light still finds the room's original oculus. Old and new, real and virtual, run side by side rather than one replacing the other.",
     },
     {
       cat: "10", slug: "galata-ormanci", name: "Galata Apt",
@@ -274,9 +276,9 @@ window.DATA = {
       year: 2022, yearLabel: "2022", location: "Istanbul", status: "Completed",
       press: ["Arkitera"],
       tags: ["Architecture"],
-      hero: "assets/projects/msgsu/02.jpg",
+      hero: "assets/projects/msgsu/01.jpg",
       gallery: [
-        "assets/projects/msgsu/01.jpg", "assets/projects/msgsu/03.jpg",
+        "assets/projects/msgsu/02.jpg", "assets/projects/msgsu/03.jpg",
         "assets/projects/msgsu/04.jpg", "assets/projects/msgsu/05.jpg", "assets/projects/msgsu/06.jpg",
         "assets/projects/msgsu/07.jpg", "assets/projects/msgsu/08.jpg", "assets/projects/msgsu/09.jpg",
         "assets/projects/msgsu/10.jpg", "assets/projects/msgsu/11.jpg", "assets/projects/msgsu/12.jpg",
@@ -339,7 +341,7 @@ window.DATA = {
       para: "Exhibition architecture for a show of Şakir Eczacıbaşı's work.",
     },
     {
-      cat: "25", slug: "samih-rifat", name: "Samih Rıfat — “Much Is to Be Done”",
+      cat: "25", slug: "samih-rifat", name: "Samih Rıfat “Much Is to Be Done”",
       category: "Exhibition Architecture", kind: "Exhibition Design",
       year: 2025, yearLabel: "2025", location: "Istanbul", status: "Completed",
       scope: ["Lighting"],
@@ -414,9 +416,9 @@ window.DATA = {
         "assets/projects/painter/g/13.jpg", "assets/projects/painter/g/14.jpg",
         "assets/projects/painter/g/18.jpg", "assets/projects/painter/g/19.jpg"
       ],
-      photographer: "Büşra Tunç",
-      summary: "Installation design — Boyacı.",
-      para: "An installation realised in 2023 in collaboration with artist Yağız Özgen.",
+      photographer: "Emirkan Corut, Zeynep Fırat",
+      summary: "Installation design. The painter",
+      para: "An installation realised in 2023 for artist Yağız Özgen's solo exhibition the Painter.",
     },
     {
       cat: "31", slug: "maslak-venue", name: "Maslak Venue",
