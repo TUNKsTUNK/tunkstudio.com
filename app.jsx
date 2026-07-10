@@ -17,48 +17,52 @@ const DENSITY_M = {
 function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
 
-  // Encode/decode page state to a URL hash so the browser back/forward
-  // buttons work like real navigation, not just in-app state.
+  // Real, crawlable paths (not #hash) — search engines index /work/postane as
+  // its own URL. Netlify's _redirects file sends any path to index.html so
+  // direct loads/refreshes/shared links still resolve.
   const encodePage = (p) => {
-    if (p.id === 'project' && p.project) return '#/project/' + encodeURIComponent(p.project.slug);
-    if (p.id === 'home') return '#/';
-    return '#/' + p.id;
+    if (p.id === 'project' && p.project) return '/work/' + encodeURIComponent(p.project.slug);
+    if (p.id === 'home') return '/';
+    return '/' + p.id;
   };
-  const decodeHash = (hash) => {
-    const h = (hash || '').replace(/^#\/?/, '');
+  const decodePath = (pathname) => {
+    const h = (pathname || '/').replace(/^\/|\/$/g, '');
     if (!h) return { id: 'home' };
     const parts = h.split('/');
-    if (parts[0] === 'project' && parts[1]) {
+    if (parts[0] === 'work' && parts[1]) {
       const slug = decodeURIComponent(parts[1]);
       const project = DATA.projects.find((pr) => pr.slug === slug);
       if (project) return { id: 'project', project };
-      return { id: 'home' };
+      return { id: 'work' };
     }
     if (['work', 'about', 'press', 'contact'].includes(parts[0])) return { id: parts[0] };
     return { id: 'home' };
   };
 
-  const [page, setPage] = useState(() => decodeHash(window.location.hash));
+  const [page, setPage] = useState(() => decodePath(window.location.pathname));
 
   // Pushes a new history entry (real navigation, e.g. clicking a link/tile).
   const go = (p) => {
     setPage(p);
-    const hash = encodePage(p);
-    if (window.location.hash !== hash) window.history.pushState({ page: p.id }, '', hash);
+    const path = encodePage(p);
+    if (window.location.pathname !== path) window.history.pushState({ page: p.id }, '', path);
     window.scrollTo({ top: 0, behavior: 'auto' });
   };
 
-  // Back/forward button: read the new hash, update state, but don't push again.
+  // Back/forward button: read the new path, update state, but don't push again.
   useEffect(() => {
     const onPop = () => {
-      setPage(decodeHash(window.location.hash));
+      setPage(decodePath(window.location.pathname));
       window.scrollTo({ top: 0, behavior: 'auto' });
     };
     window.addEventListener('popstate', onPop);
-    // normalise the very first load so a bookmarked/shared hash has a history entry
-    if (!window.location.hash) window.history.replaceState({ page: 'home' }, '', '#/');
     return () => window.removeEventListener('popstate', onPop);
   }, []);
+
+  // Per-page SEO: title, meta description, canonical, Open Graph/Twitter
+  // cards, and a JSON-LD block (Organization sitewide, CreativeWork per
+  // project) — this is what search engines and shared-link previews read.
+  useEffect(() => { applySEO(page); }, [page]);
 
   // apply tweaks to :root
   useEffect(() => {

@@ -14,14 +14,8 @@
 @media (min-width: 1400px) { :root { --m: 96px; } }
 
 html { scroll-behavior: smooth; }
-body {
-  overflow-x: hidden;
-  font-family: var(--font-sans);
-  color: var(--ink);
-  background: var(--paper);
-  -webkit-font-smoothing: antialiased;
-}
-h1, h2, h3, h4, h5, h6, button, input, textarea, select { font-family: var(--font-sans); }
+body { overflow-x: hidden; font-family: var(--font-sans); color: var(--ink); background: var(--paper); -webkit-font-smoothing: antialiased; }
+h1,h2,h3,h4,h5,h6,button,input,textarea,select { font-family: var(--font-sans); }
 
 /* honor the live margin everywhere the kit used .shell */
 .shell { padding-left: var(--m); padding-right: var(--m); }
@@ -322,6 +316,14 @@ h1, h2, h3, h4, h5, h6, button, input, textarea, select { font-family: var(--fon
    ========================================================================= */
 .pj-hero { position: relative; height: 88vh; min-height: 560px; }
 .pj-hero .frame { position: absolute; inset: 0; }
+/* Video heroes (Oculus's Vimeo film, Pneuma Kiosk's local clip) don't need — and
+   look worse in — the full 88vh photographic hero box. A smaller, letterboxed
+   frame reads clearly as "a film playing" instead of a giant crop that hides
+   part of the content, and stays sane on narrow mobile viewports. */
+.pj-hero-video-sec { height: min(66vh, 720px); min-height: 320px; }
+@media (max-width: 760px) { .pj-hero-video-sec { height: 44vh; min-height: 260px; } }
+.pj-hero-video { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: var(--ink); overflow: hidden; }
+.pj-hero-video video { display: block; width: 100%; height: 100%; object-fit: contain; }
 /* Submarine's oculus photo is far wider than the hero box — instead of
    letterboxing it (dark bars top/bottom via object-fit:contain), cap the
    photo's own box to its real aspect ratio and center it in the hero area. */

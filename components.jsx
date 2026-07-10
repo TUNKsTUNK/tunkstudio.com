@@ -212,7 +212,7 @@ function Tile({ p, go }) {
   return (
     <div className="tile2" onClick={() => go({ id: 'project', project: p })}>
       <Frame ratio="4/3" num={`№ ${p.cat}`} meta={`${loc} · ${p.kind.toUpperCase()}`}
-      img={p.thumb || p.hero} alt={p.name} accent={p.accent} wm={p.cat} />
+      img={p.thumb || p.hero} alt={`${p.name} — ${p.kind}, ${p.location || 'Istanbul'}`} accent={p.accent} wm={p.cat} />
       <div className="meta">
         <div className="nm">{p.name}</div>
         <div className="yr">{p.yearLabel}</div>

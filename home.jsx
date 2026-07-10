@@ -165,7 +165,7 @@ function SelectedWork({ go }) {
                 </div>
                 <div className={`media ${p.slug === 'yesim-evi' ? 'media-natural' : ''}`} onClick={() => go({ id: 'project', project: p })}>
                   <Frame ratio={big ? '21/9' : '16/9'} num={`№ ${p.cat}`}
-                  meta={`${loc} · ${p.kind.toUpperCase()}`} img={p.thumb || p.hero} alt={p.name}
+                  meta={`${loc} · ${p.kind.toUpperCase()}`} img={p.thumb || p.hero} alt={`${p.name} — ${p.kind}, ${p.location || 'Istanbul'}`}
                   accent={p.accent} wm={p.cat} fit={p.slug === 'yesim-evi' ? 'contain' : 'cover'} />
                 </div>
                 <div className="title-line" onClick={() => go({ id: 'project', project: p })} style={{ cursor: 'pointer' }}>

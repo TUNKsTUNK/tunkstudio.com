@@ -89,7 +89,7 @@ function ProjectPage({ project, go }) {
 
   return (
     <main className="route" style={{ '--accent': accentVar }}>
-      <section className="pj-hero">
+      <section className={`pj-hero ${(p.heroVideo || p.heroVideoLocal) ? 'pj-hero-video-sec' : ''}`}>
         <div onClick={() => !p.heroVideo && !p.heroVideoLocal && p.hero && openLb(p.hero)}
              className={p.slug === 'yesim-evi' ? 'pj-hero-natural' : ''}
              style={{ position: 'absolute', inset: 0, zIndex: 1, cursor: (p.heroVideo || p.heroVideoLocal) ? 'default' : (p.hero ? 'zoom-in' : 'default') }}>
@@ -101,12 +101,13 @@ function ProjectPage({ project, go }) {
               title={`${p.name} — film`}
             />
           ) : p.heroVideoLocal ? (
-            <video
-              src={p.heroVideoLocal} autoPlay playsInline preload="auto" loop muted
-              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', background: 'var(--ink)' }}
-            />
+            <div className="pj-hero-video">
+              <video
+                src={p.heroVideoLocal} autoPlay playsInline preload="auto" loop muted
+              />
+            </div>
           ) : (
-            <Frame ratio="auto" num={`№ ${p.cat}`} meta="" img={p.hero} alt={p.name} accent={p.accent}
+            <Frame ratio="auto" num={`№ ${p.cat}`} meta="" img={p.hero} alt={`${p.name} — ${p.kind}, ${p.location || 'Istanbul'}`} accent={p.accent}
                    bare wm={p.cat} style={{ position: 'absolute', inset: 0, aspectRatio: 'auto' }}
                    fit={p.slug === 'yesim-evi' ? 'contain' : 'cover'} />
           )}
