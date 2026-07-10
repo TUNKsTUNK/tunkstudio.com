@@ -220,6 +220,7 @@ h1, h2, h3, h4, h5, h6, button, input, textarea, select { font-family: var(--fon
 .feat .head .idx { font-family: var(--font-mono); font-size: 12px; letter-spacing: .12em; color: var(--graphite); }
 .feat .row .media { position: relative; cursor: pointer; }
 .feat .row .media .frame { aspect-ratio: auto !important; height: clamp(340px, calc(100vh - 300px), 820px); transition: opacity var(--dur) var(--ease); }
+.feat .row .media.media-natural .frame { aspect-ratio: 2600 / 1144 !important; height: auto !important; max-height: clamp(340px, calc(100vh - 300px), 820px); width: 100%; max-width: calc((100vh - 300px) * 2600 / 1144); margin: 0 auto; }
 .feat .row:hover .media .frame { opacity: .9; }
 .feat .row .title { font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em; line-height: .92;
   font-size: calc(clamp(34px, 4.4vw, 64px) * var(--tscale)); }
@@ -321,6 +322,11 @@ h1, h2, h3, h4, h5, h6, button, input, textarea, select { font-family: var(--fon
    ========================================================================= */
 .pj-hero { position: relative; height: 88vh; min-height: 560px; }
 .pj-hero .frame { position: absolute; inset: 0; }
+/* Submarine's oculus photo is far wider than the hero box — instead of
+   letterboxing it (dark bars top/bottom via object-fit:contain), cap the
+   photo's own box to its real aspect ratio and center it in the hero area. */
+.pj-hero-natural { display: flex; align-items: center; justify-content: center; background: var(--ink); }
+.pj-hero-natural .frame { position: relative !important; inset: auto !important; aspect-ratio: 2600 / 1144 !important; height: 100%; width: auto; max-width: 100%; }
 .pj-bar { position: absolute; top: 92px; left: var(--m); right: var(--m); display: flex; justify-content: space-between; z-index: 4; }
 .pj-bar .lab { color: var(--paper); }
 .pj-title-wrap { position: absolute; bottom: 40px; left: var(--m); right: var(--m); z-index: 4; }
@@ -365,6 +371,14 @@ h1, h2, h3, h4, h5, h6, button, input, textarea, select { font-family: var(--fon
 .pj-grid-g .g-cell:hover .pl-cap { opacity: 1; transform: translateY(0); }
 .pj-grid-g .g-vid { grid-column: 1 / -1; aspect-ratio: 16 / 9; cursor: default; background: var(--paper); }
 .pj-grid-g .g-vid video { display: block; width: 100%; height: 100%; object-fit: contain; }
+.lazyvid-wrap { position: relative; width: 100%; height: 100%; }
+.lazyvid-mute {
+  position: absolute; right: 12px; bottom: 12px; z-index: 2;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--paper); background: var(--ink); border: 0; padding: 6px 10px; cursor: pointer;
+  opacity: .82; transition: opacity var(--dur) var(--ease);
+}
+.lazyvid-mute:hover { opacity: 1; }
 @media (max-width: 900px) { .pj-grid-g { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 540px) { .pj-grid-g { grid-template-columns: 1fr; } }
 .pj-nav { display: flex; justify-content: space-between; align-items: center; padding: 64px var(--m); margin-top: 64px; border-top: 1px solid var(--ink); }

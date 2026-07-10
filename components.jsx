@@ -169,6 +169,7 @@ function Footer({ go }) {
 function LazyVideo({ src, className = '', onSized }) {
   const ref = useRef(null);
   const [armed, setArmed] = useState(false);
+  const [muted, setMuted] = useState(true);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -179,20 +180,29 @@ function LazyVideo({ src, className = '', onSized }) {
     return () => io.disconnect();
   }, []);
   return (
-    <video
-      ref={ref}
-      className={className}
-      src={armed ? src : undefined}
-      autoPlay={armed} playsInline preload="none" loop muted
-      onLoadedMetadata={(e) => {
-        const v = e.target;
-        if (v.videoWidth && v.videoHeight) {
-          const fig = v.closest('.g-vid');
-          if (fig) fig.style.aspectRatio = v.videoWidth + ' / ' + v.videoHeight;
-        }
-        if (onSized) onSized(v.videoWidth, v.videoHeight);
-      }}
-    />
+    <div className="lazyvid-wrap">
+      <video
+        ref={ref}
+        className={className}
+        src={armed ? src : undefined}
+        autoPlay={armed} playsInline preload="none" loop muted={muted}
+        onLoadedMetadata={(e) => {
+          const v = e.target;
+          if (v.videoWidth && v.videoHeight) {
+            const fig = v.closest('.g-vid');
+            if (fig) fig.style.aspectRatio = v.videoWidth + ' / ' + v.videoHeight;
+          }
+          if (onSized) onSized(v.videoWidth, v.videoHeight);
+        }}
+      />
+      {/* browsers only allow autoplay when muted — this lets the visitor opt into sound with one tap */}
+      <button
+        className="lazyvid-mute" aria-label={muted ? 'Unmute' : 'Mute'}
+        onClick={(e) => { e.stopPropagation(); setMuted((m) => !m); }}
+      >
+        {muted ? 'SOUND OFF' : 'SOUND ON'}
+      </button>
+    </div>
   );
 }
 

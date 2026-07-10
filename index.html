@@ -735,6 +735,7 @@ function Footer({ go }) {
 function LazyVideo({ src, className = '', onSized }) {
   const ref = useRef(null);
   const [armed, setArmed] = useState(false);
+  const [muted, setMuted] = useState(true);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -745,20 +746,29 @@ function LazyVideo({ src, className = '', onSized }) {
     return () => io.disconnect();
   }, []);
   return (
-    <video
-      ref={ref}
-      className={className}
-      src={armed ? src : undefined}
-      autoPlay={armed} playsInline preload="none" loop muted
-      onLoadedMetadata={(e) => {
-        const v = e.target;
-        if (v.videoWidth && v.videoHeight) {
-          const fig = v.closest('.g-vid');
-          if (fig) fig.style.aspectRatio = v.videoWidth + ' / ' + v.videoHeight;
-        }
-        if (onSized) onSized(v.videoWidth, v.videoHeight);
-      }}
-    />
+    <div className="lazyvid-wrap">
+      <video
+        ref={ref}
+        className={className}
+        src={armed ? src : undefined}
+        autoPlay={armed} playsInline preload="none" loop muted={muted}
+        onLoadedMetadata={(e) => {
+          const v = e.target;
+          if (v.videoWidth && v.videoHeight) {
+            const fig = v.closest('.g-vid');
+            if (fig) fig.style.aspectRatio = v.videoWidth + ' / ' + v.videoHeight;
+          }
+          if (onSized) onSized(v.videoWidth, v.videoHeight);
+        }}
+      />
+      {/* browsers only allow autoplay when muted — this lets the visitor opt into sound with one tap */}
+      <button
+        className="lazyvid-mute" aria-label={muted ? 'Unmute' : 'Mute'}
+        onClick={(e) => { e.stopPropagation(); setMuted((m) => !m); }}
+      >
+        {muted ? 'SOUND OFF' : 'SOUND ON'}
+      </button>
+    </div>
   );
 }
 
@@ -989,7 +999,7 @@ function SelectedWork({ go }) {
                   <span className="idx">№ {(i + 1).toString().padStart(2, '0')} / {DATA.projects.length}</span>
                   <span className="lab">{p.category.toUpperCase()}</span>
                 </div>
-                <div className="media" onClick={() => go({ id: 'project', project: p })}>
+                <div className={`media ${p.slug === 'yesim-evi' ? 'media-natural' : ''}`} onClick={() => go({ id: 'project', project: p })}>
                   <Frame ratio={big ? '21/9' : '16/9'} num={`№ ${p.cat}`}
                   meta={`${loc} · ${p.kind.toUpperCase()}`} img={p.thumb || p.hero} alt={p.name}
                   accent={p.accent} wm={p.cat} fit={p.slug === 'yesim-evi' ? 'contain' : 'cover'} />
@@ -1141,13 +1151,20 @@ function ProjectPage({ project, go }) {
   return (
     <main className="route" style={{ '--accent': accentVar }}>
       <section className="pj-hero">
-        <div onClick={() => !p.heroVideo && p.hero && openLb(p.hero)} style={{ position: 'absolute', inset: 0, zIndex: 1, cursor: p.heroVideo ? 'default' : (p.hero ? 'zoom-in' : 'default') }}>
+        <div onClick={() => !p.heroVideo && !p.heroVideoLocal && p.hero && openLb(p.hero)}
+             className={p.slug === 'yesim-evi' ? 'pj-hero-natural' : ''}
+             style={{ position: 'absolute', inset: 0, zIndex: 1, cursor: (p.heroVideo || p.heroVideoLocal) ? 'default' : (p.hero ? 'zoom-in' : 'default') }}>
           {p.heroVideo ? (
             <iframe
-              src={`https://player.vimeo.com/video/${p.heroVideo}?autoplay=1&muted=1&loop=1&background=1&app_id=122963#t=9s`}
+              src={`https://player.vimeo.com/video/${p.heroVideo}?autoplay=1&muted=1&loop=1&background=1&app_id=122963#t=10s`}
               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0, pointerEvents: 'none' }}
               allow="autoplay; fullscreen; picture-in-picture"
               title={`${p.name} — film`}
+            />
+          ) : p.heroVideoLocal ? (
+            <video
+              src={p.heroVideoLocal} autoPlay playsInline preload="auto" loop muted
+              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', background: 'var(--ink)' }}
             />
           ) : (
             <Frame ratio="auto" num={`№ ${p.cat}`} meta="" img={p.hero} alt={p.name} accent={p.accent}

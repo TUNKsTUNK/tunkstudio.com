@@ -128,7 +128,7 @@ window.DATA = {
       para: "The design was drawn from what the building revealed in restoration — the volta vaulted ceiling, the wall niches, the radial motif above the door, the gridded window frames. For the two ground-floor fair-trade shops, Postane Shop and Café, each piece was designed and fabricated alongside its craftsman: a produce stand raised from the window's cast light, a gallery light tracing the grid, a deployable publications display, a bookcase angled 10° to follow the vault, and a hand-bent sun light. The studio also carried the lighting for the whole building — facade, four floors, terrace. 73 m².",
     },
     {
-      cat: "02", slug: "40-kapili-oda", name: "40 Kapılı Oda",
+      cat: "02", slug: "40-kapili-oda", name: "THE ROOM WITH FORTY DOORS",
       category: "Exhibition Architecture", kind: "Immersive Exhibition",
       year: 2022, yearLabel: "2022", location: "Istanbul", status: "Completed",
       tags: ["Exhibition Architecture"],
@@ -136,7 +136,7 @@ window.DATA = {
       para: "The Room of Forty Doors stages a sequence of thresholds drawn from Ottoman architecture, abstracted into a single walkable volume the visitor passes through door by door.",
     },
     {
-      cat: "03", slug: "louis-kahn", name: "Louis Kahn",
+      cat: "03", slug: "louis-kahn", name: "RE/FRAMING LOUIS KAHN",
       category: "Exhibition Architecture", kind: "Exhibition Design",
       year: 2016, yearLabel: "2016", location: "Pera Museum, Istanbul", status: "Completed",
       press: ["Pera Museum"],
@@ -145,7 +145,7 @@ window.DATA = {
       para: "The exhibition architecture carries drawings, models and photographs of Kahn's work, holding the galleries to the same quiet, ordered measure as the buildings on the walls.",
     },
     {
-      cat: "04", slug: "parajanov", name: "Parajanov",
+      cat: "04", slug: "parajanov", name: "PARAJANOV WITH SARKIS",
       category: "Exhibition Architecture", kind: "Exhibition Design",
       year: 2018, yearLabel: "2018", location: "Pera Museum, Istanbul", status: "Completed",
       press: ["Pera Museum"],
@@ -179,7 +179,7 @@ window.DATA = {
       para: "A renovation that keeps the apartment's existing proportions and reworks the plan around light and a small number of fixed moves.",
     },
     {
-      cat: "08", slug: "cagan", name: "Cağan",
+      cat: "08", slug: "cagan", name: "CAGAN",
       category: "Architecture", kind: "Office Interior",
       year: 2020, yearLabel: "2020", location: "Istanbul", status: "Completed",
       scope: ["Furniture"],
@@ -301,7 +301,7 @@ window.DATA = {
       para: "The store is laid out as a laboratory: a white pipework grid runs across ceiling and walls, blue-glass panels carry the formula displays, and a mirrored island holds the bottles. Colour belongs entirely to the cobalt glass and the lab apparatus.",
     },
     {
-      cat: "18", slug: "parfumlab-mersin", name: "PNEUMA II",
+      cat: "18", slug: "parfumlab-mersin", name: "PNEUMA I MERSIN",
       category: "Architecture", kind: "Retail Design",
       year: 2025, yearLabel: "2025", location: "Mersin", status: "Completed",
       tags: ["Architecture"],
@@ -309,12 +309,21 @@ window.DATA = {
       para: "A Parfumlab store completed in Mersin as part of the retail programme.",
     },
     {
-      cat: "21", slug: "parfumlab-cepa", name: "PNEUMA KIOSK",
+      cat: "21", slug: "parfumlab-cepa", name: "PNEUMA I KIOSK",
       category: "Architecture", kind: "Retail Design",
-      year: 2026, yearLabel: "2026", location: "Ankara", status: "Forthcoming",
+      year: 2025, yearLabel: "2025\u20132026", location: "Ankara, Istanbul", status: "Completed",
       tags: ["Architecture"],
-      summary: "A Parfumlab store at Cepa, Ankara.",
-      para: "A forthcoming Parfumlab store at Cepa in Ankara, part of the retail programme.",
+      hero: "assets/projects/kiosk/01.jpg",
+      heroVideoLocal: "assets/projects/kiosk/xray.mp4",
+      thumb: "assets/projects/kiosk/02.jpg",
+      gallery: [
+        "assets/projects/kiosk/02.jpg", "assets/projects/kiosk/03.jpg",
+        "assets/projects/kiosk/perspective.mp4",
+        "assets/projects/kiosk/04.jpg", "assets/projects/kiosk/05.jpg",
+        "assets/projects/kiosk/axon1.mp4"
+      ],
+      summary: "A repeatable kiosk format for Parfumlab, built in three footprints.",
+      para: "A modular kiosk system for Parfumlab, repeated across Ankara and Istanbul through 2025\u20132026 at three footprints \u2014 4\u00d73 m, 4\u00d74 m and 5\u00d74 m \u2014 to fit each site. A pneumatic system, display counter and a family of display units and cubes form one kit of parts, reconfigured per location.",
     },
     {
       cat: "22", slug: "parfumlab-atlantis", name: "PNEUMA DISPLAY",
@@ -325,7 +334,7 @@ window.DATA = {
       para: "A forthcoming Parfumlab store, part of the retail programme.",
     },
     {
-      cat: "23", slug: "akbank-30", name: "30 Yıl — Akbank",
+      cat: "23", slug: "akbank-30", name: "A SPACE OF INSIGHT",
       category: "Exhibition Architecture", kind: "Exhibition Design",
       year: 2023, yearLabel: "2023", location: "Akbank Sanat, Istanbul", status: "Completed",
       tags: ["Exhibition Architecture"],
@@ -333,7 +342,7 @@ window.DATA = {
       para: "Exhibition architecture for the 30th-anniversary edition of Akbank Sanat's Contemporary Artists exhibition.",
     },
     {
-      cat: "24", slug: "sakir-eczacibasi", name: "Şakir Eczacıbaşı",
+      cat: "24", slug: "sakir-eczacibasi", name: "SELECTED MOMENTS",
       category: "Exhibition Architecture", kind: "Exhibition Design",
       year: null, yearLabel: "—", location: "Istanbul", status: "Completed",
       tags: ["Exhibition Architecture"],
@@ -358,7 +367,7 @@ window.DATA = {
       para: "Exhibition architecture for a Samih Rıfat show — blue partition walls with gold edges, each work individually lit. Lighting designed specifically for the works on display.",
     },
     {
-      cat: "26", slug: "gorunmeyen-anitlar", name: "Görünmeyen Anıtlar",
+      cat: "26", slug: "gorunmeyen-anitlar", name: "INVISIBLE MONUMENTS",
       category: "Exhibition Architecture", kind: "Exhibition Design",
       year: 2025, yearLabel: "2025", location: "Istanbul", status: "Completed",
       tags: ["Exhibition Architecture"],
@@ -393,7 +402,7 @@ window.DATA = {
       para: "An installation realised in 2019.",
     },
     {
-      cat: "29", slug: "yonergeler", name: "Yönergeler",
+      cat: "29", slug: "yonergeler", name: "INSTRUCTIONS",
       category: "Installation", kind: "Installation",
       year: 2019, yearLabel: "2019", location: "Istanbul", status: "Completed",
       tags: ["Installation"],
@@ -429,7 +438,7 @@ window.DATA = {
       para: "A built-in installation for a Maslak night club.",
     },
     {
-      cat: "32", slug: "pana-helical", name: "Pana Yapı Helical",
+      cat: "32", slug: "pana-helical", name: "HELICAL",
       category: "Installation", kind: "Permanent Installation",
       year: null, yearLabel: "—", location: "Istanbul", status: "Completed",
       collab: "Pana Yapı",
@@ -438,7 +447,7 @@ window.DATA = {
       para: "A permanent, built-in helical installation produced with Pana Yapı.",
     },
     {
-      cat: "33", slug: "kohenler-oid", name: "Kohenler OID",
+      cat: "33", slug: "kohenler-oid", name: "OID",
       category: "Installation", kind: "Permanent Installation",
       year: null, yearLabel: "—", location: "Istanbul", status: "Completed",
       tags: ["Installation"],
@@ -454,7 +463,7 @@ window.DATA = {
       para: "A demountable installation built for an event at a congress centre — assembled, used and struck within the run of the programme.",
     },
     {
-      cat: "35", slug: "tersane-duvar", name: "Tersane Duvar",
+      cat: "35", slug: "tersane-duvar", name: "TERSANE",
       category: "Installation", kind: "Proposal · Unrealised",
       year: null, yearLabel: "—", location: "Istanbul", status: "Unrealised",
       tags: ["Installation"],
@@ -462,7 +471,7 @@ window.DATA = {
       para: "A studio proposal developed for the Tersane site that was not realised.",
     },
     {
-      cat: "36", slug: "ozdilek", name: "Özdilek",
+      cat: "36", slug: "ozdilek", name: "OZDILEK",
       category: "Installation", kind: "Proposal · Unrealised",
       year: null, yearLabel: "—", location: null, status: "Unrealised",
       tags: ["Installation"],

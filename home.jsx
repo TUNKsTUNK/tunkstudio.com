@@ -163,7 +163,7 @@ function SelectedWork({ go }) {
                   <span className="idx">№ {(i + 1).toString().padStart(2, '0')} / {DATA.projects.length}</span>
                   <span className="lab">{p.category.toUpperCase()}</span>
                 </div>
-                <div className="media" onClick={() => go({ id: 'project', project: p })}>
+                <div className={`media ${p.slug === 'yesim-evi' ? 'media-natural' : ''}`} onClick={() => go({ id: 'project', project: p })}>
                   <Frame ratio={big ? '21/9' : '16/9'} num={`№ ${p.cat}`}
                   meta={`${loc} · ${p.kind.toUpperCase()}`} img={p.thumb || p.hero} alt={p.name}
                   accent={p.accent} wm={p.cat} fit={p.slug === 'yesim-evi' ? 'contain' : 'cover'} />

@@ -90,13 +90,20 @@ function ProjectPage({ project, go }) {
   return (
     <main className="route" style={{ '--accent': accentVar }}>
       <section className="pj-hero">
-        <div onClick={() => !p.heroVideo && p.hero && openLb(p.hero)} style={{ position: 'absolute', inset: 0, zIndex: 1, cursor: p.heroVideo ? 'default' : (p.hero ? 'zoom-in' : 'default') }}>
+        <div onClick={() => !p.heroVideo && !p.heroVideoLocal && p.hero && openLb(p.hero)}
+             className={p.slug === 'yesim-evi' ? 'pj-hero-natural' : ''}
+             style={{ position: 'absolute', inset: 0, zIndex: 1, cursor: (p.heroVideo || p.heroVideoLocal) ? 'default' : (p.hero ? 'zoom-in' : 'default') }}>
           {p.heroVideo ? (
             <iframe
-              src={`https://player.vimeo.com/video/${p.heroVideo}?autoplay=1&muted=1&loop=1&background=1&app_id=122963#t=9s`}
+              src={`https://player.vimeo.com/video/${p.heroVideo}?autoplay=1&muted=1&loop=1&background=1&app_id=122963#t=10s`}
               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0, pointerEvents: 'none' }}
               allow="autoplay; fullscreen; picture-in-picture"
               title={`${p.name} — film`}
+            />
+          ) : p.heroVideoLocal ? (
+            <video
+              src={p.heroVideoLocal} autoPlay playsInline preload="auto" loop muted
+              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', background: 'var(--ink)' }}
             />
           ) : (
             <Frame ratio="auto" num={`№ ${p.cat}`} meta="" img={p.hero} alt={p.name} accent={p.accent}
