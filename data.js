@@ -65,12 +65,12 @@ window.DATA = {
     title: "Press & coverage.",
     intro: "For press enquiries, image requests and interview availability, write to press@tunk.studio. Selected coverage below; high-resolution images are available on request, with credit to the studio and named photographer.",
     items: [
-      { n: "01", name: "Oculus",            pub: "ArchDaily",    year: "2016", type: "Installation feature", url: "https://www.archdaily.com/874142/nohlab-and-busra-tunc-create-immersive-installation-based-on-centuries-old-architecture" },
-      { n: "02", name: "Oculus",            pub: "Designboom",   year: "2016", type: "Installation feature", url: "https://www.designboom.com/art/nohlab-busra-tunc-oculus-sound-light-performance-has-architects-istanbul-05-23-2017/" },
-      { n: "03", name: "Postane",           pub: "Arkitera",     year: "2021", type: "Project feature", url: "https://www.arkitera.com/proje/adil-dukkanlar-ic-mekan-ve-aydinlatma-tasarimi/" },
-      { n: "04", name: "Halı Atölyesi",     pub: "Arkitera",     year: "2022", type: "Project feature", url: "https://www.arkitera.com/proje/msgsu-dokuma-atolyesi-yeniden-duzenlenmesi-ve-sistem-tasarimi/" },
-      { n: "05", name: "Louis Kahn",        pub: "Pera Museum",  year: "2016", type: "Exhibition design", url: "https://www.peramuseum.org/exhibition/re-framing-louis-kahn/217" },
-      { n: "06", name: "Parajanov",         pub: "Pera Museum",  year: "2018", type: "Exhibition design", url: "https://www.peramuseum.org/exhibition/parajanov-with-sarkis/235" },
+      { n: "01", name: "OCULUS",            pub: "ArchDaily",    year: "2016", type: "Installation feature", url: "https://www.archdaily.com/874142/nohlab-and-busra-tunc-create-immersive-installation-based-on-centuries-old-architecture" },
+      { n: "02", name: "OCULUS",            pub: "Designboom",   year: "2016", type: "Installation feature", url: "https://www.designboom.com/art/nohlab-busra-tunc-oculus-sound-light-performance-has-architects-istanbul-05-23-2017/" },
+      { n: "03", name: "POSTANE",           pub: "Arkitera",     year: "2021", type: "Project feature", url: "https://www.arkitera.com/proje/adil-dukkanlar-ic-mekan-ve-aydinlatma-tasarimi/" },
+      { n: "04", name: "MSGSÜ WEAVING WORKSHOP", pub: "Arkitera", year: "2022", type: "Project feature", url: "https://www.arkitera.com/proje/msgsu-dokuma-atolyesi-yeniden-duzenlenmesi-ve-sistem-tasarimi/" },
+      { n: "05", name: "RE/FRAMING LOUIS KAHN", pub: "Pera Museum",  year: "2016", type: "Exhibition design", url: "https://www.peramuseum.org/exhibition/re-framing-louis-kahn/217" },
+      { n: "06", name: "PARAJANOV WITH SARKIS", pub: "Pera Museum",  year: "2018", type: "Exhibition design", url: "https://www.peramuseum.org/exhibition/parajanov-with-sarkis/235" },
     ],
     downloads: [
       { n: "01", name: "Studio biography",  meta: "DOCX · 6 KB",  langs: "EN · TR" },
