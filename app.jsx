@@ -9,9 +9,9 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 
 const DENSITY_M = {
-  compact:  "clamp(20px, 3.5vw, 56px)",
-  regular:  "clamp(28px, 5vw, 96px)",
-  spacious: "clamp(40px, 7vw, 132px)",
+  compact:  "clamp(12px, 3.5vw, 56px)",
+  regular:  "clamp(14px, 5vw, 96px)",
+  spacious: "clamp(20px, 7vw, 132px)",
 };
 
 function App() {

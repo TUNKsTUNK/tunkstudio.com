@@ -87,6 +87,23 @@ function ProjectPage({ project, go }) {
     p.press ? ['Press', p.press.join(' · ')] : null,
   ].filter(Boolean);
 
+  const [heroMuted, setHeroMuted] = useState(true);
+  const heroIframeRef = useRef(null);
+  const heroVideoRef = useRef(null);
+  useEffect(() => {
+    // reset per-project so navigating between two video-hero projects still starts with sound on
+    setHeroMuted(true);
+  }, [p.slug]);
+  useEffect(() => {
+    if (p.heroVideo && heroIframeRef.current) {
+      // Vimeo's player postMessage API — no player.js needed for this one call
+      heroIframeRef.current.contentWindow.postMessage(JSON.stringify({ method: 'setMuted', value: heroMuted }), 'https://player.vimeo.com');
+    }
+    if (p.heroVideoLocal && heroVideoRef.current) {
+      heroVideoRef.current.muted = heroMuted;
+    }
+  }, [heroMuted, p.heroVideo, p.heroVideoLocal]);
+
   return (
     <main className="route" style={{ '--accent': accentVar }}>
       <section className={`pj-hero ${(p.heroVideo || p.heroVideoLocal) ? 'pj-hero-video-sec' : ''}`}>
@@ -95,7 +112,8 @@ function ProjectPage({ project, go }) {
              style={{ position: 'absolute', inset: 0, zIndex: 1, cursor: (p.heroVideo || p.heroVideoLocal) ? 'default' : (p.hero ? 'zoom-in' : 'default') }}>
           {p.heroVideo ? (
             <iframe
-              src={`https://player.vimeo.com/video/${p.heroVideo}?autoplay=1&muted=1&loop=1&background=1&app_id=122963#t=10s`}
+              ref={heroIframeRef}
+              src={`https://player.vimeo.com/video/${p.heroVideo}?autoplay=1&muted=1&loop=1&controls=0&app_id=122963#t=10s`}
               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0, pointerEvents: 'none' }}
               allow="autoplay; fullscreen; picture-in-picture"
               title={`${p.name} — film`}
@@ -103,6 +121,7 @@ function ProjectPage({ project, go }) {
           ) : p.heroVideoLocal ? (
             <div className="pj-hero-video">
               <video
+                ref={heroVideoRef}
                 src={p.heroVideoLocal} autoPlay playsInline preload="auto" loop muted
               />
             </div>
@@ -113,6 +132,15 @@ function ProjectPage({ project, go }) {
           )}
         </div>
         <div className="scrim" style={{ position: 'absolute', inset: 0, background: 'rgba(10,10,10,.34)', zIndex: 2, pointerEvents: 'none' }} />
+        {(p.heroVideo || p.heroVideoLocal) && (
+          <button
+            className="lazyvid-mute pj-hero-mute" aria-label={heroMuted ? 'Unmute' : 'Mute'}
+            style={{ zIndex: 5 }}
+            onClick={(e) => { e.stopPropagation(); setHeroMuted((m) => !m); }}
+          >
+            {heroMuted ? 'SOUND OFF' : 'SOUND ON'}
+          </button>
+        )}
         <div className="pj-bar" style={{ zIndex: 4 }}>
           <span className="lab" style={{ color: 'var(--paper)' }}>№ {p.cat} · {p.yearLabel}</span>
           <span className="lab" style={{ color: 'var(--paper)', cursor: 'pointer' }} onClick={() => go({ id: 'work' })}>← ALL PROJECTS</span>
@@ -255,7 +283,7 @@ function PressPage({ go }) {
 
 function ContactPage({ go }) {
   const c = DATA.contact;
-  const fields = [['Name', 'Defne Aksu'], ['Email', 'hello@studio.com'], ['Subject', 'New project'], ['Budget', 'Approx. range']];
+  const fields = [['Name', ''], ['Email', ''], ['Subject', 'New project'], ['Budget', 'Approx. range']];
   return (
     <main className="route">
       <div className="lede-block">
@@ -269,7 +297,7 @@ function ContactPage({ go }) {
           <div>
             <div className="lab lab-ink" style={{ marginBottom: 20 }}>Studio</div>
             <div className="mono" style={{ fontFamily: 'var(--font-mono)', fontSize: 13, lineHeight: 1.8, letterSpacing: '.02em', textTransform: 'uppercase', whiteSpace: 'pre-line' }}>
-              {c.address}{'\n\n'}{c.email}
+              {c.address}{'\n\n'}<a href={`mailto:${c.email}`} className="contact-email">{c.email}</a>
             </div>
           </div>
           <div>

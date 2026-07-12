@@ -12,6 +12,8 @@
 }
 @media (min-width: 900px)  { :root { --m: 64px; } }
 @media (min-width: 1400px) { :root { --m: 96px; } }
+/* mobile: tighter outer margin + gutters so images render larger */
+@media (max-width: 640px) { :root { --m: 14px; --gutter: 12px; } }
 
 html { scroll-behavior: smooth; }
 body { overflow-x: hidden; font-family: var(--font-sans); color: var(--ink); background: var(--paper); -webkit-font-smoothing: antialiased; }
@@ -282,7 +284,7 @@ h1,h2,h3,h4,h5,h6,button,input,textarea,select { font-family: var(--font-sans); 
 .work-head { padding: 132px var(--m) 0; }
 .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px 24px; }
 @media (max-width: 1000px) { .work-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 640px) { .work-grid { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .work-grid { grid-template-columns: 1fr; gap: 32px 12px; } }
 
 .tile2 { cursor: pointer; }
 .tile2 .frame { aspect-ratio: 4/3; transition: opacity var(--dur) var(--ease); }
@@ -344,7 +346,7 @@ h1,h2,h3,h4,h5,h6,button,input,textarea,select { font-family: var(--font-sans); 
 
 .pj-gallery { padding: 64px var(--m) 0; display: grid; gap: 24px; }
 .pj-gallery .two { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-@media (max-width: 700px) { .pj-gallery .two { grid-template-columns: 1fr; } }
+@media (max-width: 700px) { .pj-gallery .two { grid-template-columns: 1fr; gap: 12px; } }
 
 /* gallery — uniform grid: every cell identical size, strict source order,
    reads left→right, top→bottom. Square cells, photo cropped to fill. Calm,
@@ -371,7 +373,12 @@ h1,h2,h3,h4,h5,h6,button,input,textarea,select { font-family: var(--font-sans); 
   opacity: 0; transform: translateY(4px); transition: all var(--dur) var(--ease);
 }
 .pj-grid-g .g-cell:hover .pl-cap { opacity: 1; transform: translateY(0); }
-.pj-grid-g .g-vid { grid-column: 1 / -1; aspect-ratio: 16 / 9; cursor: default; background: var(--paper); }
+.pj-grid-g .g-vid {
+  grid-column: 1 / -1; aspect-ratio: 16 / 9; cursor: default; background: var(--paper);
+  /* cap so the whole clip is visible on screen at once — never taller than the
+     viewport, regardless of the source video's real aspect ratio. */
+  max-height: min(72vh, 760px); width: auto; max-width: 100%; margin: 0 auto; justify-self: center;
+}
 .pj-grid-g .g-vid video { display: block; width: 100%; height: 100%; object-fit: contain; }
 .lazyvid-wrap { position: relative; width: 100%; height: 100%; }
 .lazyvid-mute {
@@ -381,8 +388,11 @@ h1,h2,h3,h4,h5,h6,button,input,textarea,select { font-family: var(--font-sans); 
   opacity: .82; transition: opacity var(--dur) var(--ease);
 }
 .lazyvid-mute:hover { opacity: 1; }
+.pj-hero-mute { position: absolute; right: var(--m); bottom: 24px; }
+.contact-email { color: var(--ink); font-weight: 700; border-bottom: 1px solid var(--ink); padding-bottom: 1px; transition: opacity var(--dur) var(--ease); }
+.contact-email:hover { opacity: .6; }
 @media (max-width: 900px) { .pj-grid-g { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 540px) { .pj-grid-g { grid-template-columns: 1fr; } }
+@media (max-width: 540px) { .pj-grid-g { grid-template-columns: 1fr; gap: 12px; } .pj-grid-g .g-vid { max-height: min(60vh, 520px); } }
 .pj-nav { display: flex; justify-content: space-between; align-items: center; padding: 64px var(--m); margin-top: 64px; border-top: 1px solid var(--ink); }
 .pj-nav a { cursor: pointer; }
 .pj-nav .nx { text-align: right; }
