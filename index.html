@@ -100,24 +100,1504 @@
 </head>
 <body>
   <div id="root"></div>
-
-  <template id="__bundler_thumbnail">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-      <rect width="100" height="100" fill="#0A0A0A"/>
-      <text x="50" y="50" dy="0.34em" text-anchor="middle" fill="#FFFFFF"
-            font-family="Helvetica, Arial, sans-serif" font-weight="900" font-size="30" letter-spacing="2">TUNK</text>
-    </svg>
-  </template>
-
-  <!-- data (plain JS) -->
   <script src="data.js"></script>
   <script src="seo.js"></script>
+  <script type="text/babel" data-presets="react">
+// @ds-adherence-ignore -- omelette starter scaffold (raw elements/hex/px by design)
 
-  <!-- app (babel) -->
-  <script type="text/babel" src="tweaks-panel.jsx"></script>
-  <script type="text/babel" src="components.jsx"></script>
-  <script type="text/babel" src="home.jsx"></script>
-  <script type="text/babel" src="pages.jsx"></script>
-  <script type="text/babel" src="app.jsx"></script>
+/* BEGIN USAGE */
+// tweaks-panel.jsx
+// Reusable Tweaks shell + form-control helpers.
+// Exports (to window): useTweaks, TweaksPanel, TweakSection, TweakRow, TweakSlider,
+//   TweakToggle, TweakRadio, TweakSelect, TweakText, TweakNumber, TweakColor, TweakButton.
+//
+// Owns the host protocol (listens for __activate_edit_mode / __deactivate_edit_mode,
+// posts __edit_mode_available / __edit_mode_set_keys / __edit_mode_dismissed) so
+// individual prototypes don't re-roll it. Ships a consistent set of controls so you
+// don't hand-draw <input type="range">, segmented radios, steppers, etc.
+//
+// Usage (in an HTML file that loads React + Babel):
+//
+//   const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+//     "primaryColor": "#D97757",
+//     "palette": ["#D97757", "#29261b", "#f6f4ef"],
+//     "fontSize": 16,
+//     "density": "regular",
+//     "dark": false
+//   }/*EDITMODE-END*/;
+//
+//   function App() {
+//     const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+//     return (
+//       <div style={{ fontSize: t.fontSize, color: t.primaryColor }}>
+//         Hello
+//         <TweaksPanel>
+//           <TweakSection label="Typography" />
+//           <TweakSlider label="Font size" value={t.fontSize} min={10} max={32} unit="px"
+//                        onChange={(v) => setTweak('fontSize', v)} />
+//           <TweakRadio  label="Density" value={t.density}
+//                        options={['compact', 'regular', 'comfy']}
+//                        onChange={(v) => setTweak('density', v)} />
+//           <TweakSection label="Theme" />
+//           <TweakColor  label="Primary" value={t.primaryColor}
+//                        options={['#D97757', '#2A6FDB', '#1F8A5B', '#7A5AE0']}
+//                        onChange={(v) => setTweak('primaryColor', v)} />
+//           <TweakColor  label="Palette" value={t.palette}
+//                        options={[['#D97757', '#29261b', '#f6f4ef'],
+//                                  ['#475569', '#0f172a', '#f1f5f9']]}
+//                        onChange={(v) => setTweak('palette', v)} />
+//           <TweakToggle label="Dark mode" value={t.dark}
+//                        onChange={(v) => setTweak('dark', v)} />
+//         </TweaksPanel>
+//       </div>
+//     );
+//   }
+//
+// TweakRadio is the segmented control for 2–3 short options (auto-falls-back to
+// TweakSelect past ~16/~10 chars per label); reach for TweakSelect directly when
+// options are many or long. For color tweaks always curate 3-4 options rather than
+// a free picker; an option can also be a whole 2–5 color palette (the stored value
+// is the array). The Tweak* controls are a floor, not a ceiling — build custom
+// controls inside the panel if a tweak calls for UI they don't cover.
+/* END USAGE */
+// ─────────────────────────────────────────────────────────────────────────────
+
+const __TWEAKS_STYLE = `
+  .twk-panel{position:fixed;right:16px;bottom:16px;z-index:2147483646;width:280px;
+    max-height:calc(100vh - 32px);display:flex;flex-direction:column;
+    transform:scale(var(--dc-inv-zoom,1));transform-origin:bottom right;
+    background:rgba(250,249,247,.78);color:#29261b;
+    -webkit-backdrop-filter:blur(24px) saturate(160%);backdrop-filter:blur(24px) saturate(160%);
+    border:.5px solid rgba(255,255,255,.6);border-radius:14px;
+    box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 12px 40px rgba(0,0,0,.18);
+    font:11.5px/1.4 ui-sans-serif,system-ui,-apple-system,sans-serif;overflow:hidden}
+  .twk-hd{display:flex;align-items:center;justify-content:space-between;
+    padding:10px 8px 10px 14px;cursor:move;user-select:none}
+  .twk-hd b{font-size:12px;font-weight:600;letter-spacing:.01em}
+  .twk-x{appearance:none;border:0;background:transparent;color:rgba(41,38,27,.55);
+    width:22px;height:22px;border-radius:6px;cursor:default;font-size:13px;line-height:1}
+  .twk-x:hover{background:rgba(0,0,0,.06);color:#29261b}
+  .twk-body{padding:2px 14px 14px;display:flex;flex-direction:column;gap:10px;
+    overflow-y:auto;overflow-x:hidden;min-height:0;
+    scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.15) transparent}
+  .twk-body::-webkit-scrollbar{width:8px}
+  .twk-body::-webkit-scrollbar-track{background:transparent;margin:2px}
+  .twk-body::-webkit-scrollbar-thumb{background:rgba(0,0,0,.15);border-radius:4px;
+    border:2px solid transparent;background-clip:content-box}
+  .twk-body::-webkit-scrollbar-thumb:hover{background:rgba(0,0,0,.25);
+    border:2px solid transparent;background-clip:content-box}
+  .twk-row{display:flex;flex-direction:column;gap:5px}
+  .twk-row-h{flex-direction:row;align-items:center;justify-content:space-between;gap:10px}
+  .twk-lbl{display:flex;justify-content:space-between;align-items:baseline;
+    color:rgba(41,38,27,.72)}
+  .twk-lbl>span:first-child{font-weight:500}
+  .twk-val{color:rgba(41,38,27,.5);font-variant-numeric:tabular-nums}
+
+  .twk-sect{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    color:rgba(41,38,27,.45);padding:10px 0 0}
+  .twk-sect:first-child{padding-top:0}
+
+  .twk-field{appearance:none;box-sizing:border-box;width:100%;min-width:0;height:26px;padding:0 8px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:7px;
+    background:rgba(255,255,255,.6);color:inherit;font:inherit;outline:none}
+  .twk-field:focus{border-color:rgba(0,0,0,.25);background:rgba(255,255,255,.85)}
+  select.twk-field{padding-right:22px;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='rgba(0,0,0,.5)' d='M0 0h10L5 6z'/></svg>");
+    background-repeat:no-repeat;background-position:right 8px center}
+
+  .twk-slider{appearance:none;-webkit-appearance:none;width:100%;height:4px;margin:6px 0;
+    border-radius:999px;background:rgba(0,0,0,.12);outline:none}
+  .twk-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;
+    width:14px;height:14px;border-radius:50%;background:#fff;
+    border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:default}
+  .twk-slider::-moz-range-thumb{width:14px;height:14px;border-radius:50%;
+    background:#fff;border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:default}
+
+  .twk-seg{position:relative;display:flex;padding:2px;border-radius:8px;
+    background:rgba(0,0,0,.06);user-select:none}
+  .twk-seg-thumb{position:absolute;top:2px;bottom:2px;border-radius:6px;
+    background:rgba(255,255,255,.9);box-shadow:0 1px 2px rgba(0,0,0,.12);
+    transition:left .15s cubic-bezier(.3,.7,.4,1),width .15s}
+  .twk-seg.dragging .twk-seg-thumb{transition:none}
+  .twk-seg button{appearance:none;position:relative;z-index:1;flex:1;border:0;
+    background:transparent;color:inherit;font:inherit;font-weight:500;min-height:22px;
+    border-radius:6px;cursor:default;padding:4px 6px;line-height:1.2;
+    overflow-wrap:anywhere}
+
+  .twk-toggle{position:relative;width:32px;height:18px;border:0;border-radius:999px;
+    background:rgba(0,0,0,.15);transition:background .15s;cursor:default;padding:0}
+  .twk-toggle[data-on="1"]{background:#34c759}
+  .twk-toggle i{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;
+    background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .15s}
+  .twk-toggle[data-on="1"] i{transform:translateX(14px)}
+
+  .twk-num{display:flex;align-items:center;box-sizing:border-box;min-width:0;height:26px;padding:0 0 0 8px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:7px;background:rgba(255,255,255,.6)}
+  .twk-num-lbl{font-weight:500;color:rgba(41,38,27,.6);cursor:ew-resize;
+    user-select:none;padding-right:8px}
+  .twk-num input{flex:1;min-width:0;height:100%;border:0;background:transparent;
+    font:inherit;font-variant-numeric:tabular-nums;text-align:right;padding:0 8px 0 0;
+    outline:none;color:inherit;-moz-appearance:textfield}
+  .twk-num input::-webkit-inner-spin-button,.twk-num input::-webkit-outer-spin-button{
+    -webkit-appearance:none;margin:0}
+  .twk-num-unit{padding-right:8px;color:rgba(41,38,27,.45)}
+
+  .twk-btn{appearance:none;height:26px;padding:0 12px;border:0;border-radius:7px;
+    background:rgba(0,0,0,.78);color:#fff;font:inherit;font-weight:500;cursor:default}
+  .twk-btn:hover{background:rgba(0,0,0,.88)}
+  .twk-btn.secondary{background:rgba(0,0,0,.06);color:inherit}
+  .twk-btn.secondary:hover{background:rgba(0,0,0,.1)}
+
+  .twk-swatch{appearance:none;-webkit-appearance:none;width:56px;height:22px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:6px;padding:0;cursor:default;
+    background:transparent;flex-shrink:0}
+  .twk-swatch::-webkit-color-swatch-wrapper{padding:0}
+  .twk-swatch::-webkit-color-swatch{border:0;border-radius:5.5px}
+  .twk-swatch::-moz-color-swatch{border:0;border-radius:5.5px}
+
+  .twk-chips{display:flex;gap:6px}
+  .twk-chip{position:relative;appearance:none;flex:1;min-width:0;height:46px;
+    padding:0;border:0;border-radius:6px;overflow:hidden;cursor:default;
+    box-shadow:0 0 0 .5px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.06);
+    transition:transform .12s cubic-bezier(.3,.7,.4,1),box-shadow .12s}
+  .twk-chip:hover{transform:translateY(-1px);
+    box-shadow:0 0 0 .5px rgba(0,0,0,.18),0 4px 10px rgba(0,0,0,.12)}
+  .twk-chip[data-on="1"]{box-shadow:0 0 0 1.5px rgba(0,0,0,.85),
+    0 2px 6px rgba(0,0,0,.15)}
+  .twk-chip>span{position:absolute;top:0;bottom:0;right:0;width:34%;
+    display:flex;flex-direction:column;box-shadow:-1px 0 0 rgba(0,0,0,.1)}
+  .twk-chip>span>i{flex:1;box-shadow:0 -1px 0 rgba(0,0,0,.1)}
+  .twk-chip>span>i:first-child{box-shadow:none}
+  .twk-chip svg{position:absolute;top:6px;left:6px;width:13px;height:13px;
+    filter:drop-shadow(0 1px 1px rgba(0,0,0,.3))}
+`;
+
+// ── useTweaks ───────────────────────────────────────────────────────────────
+// Single source of truth for tweak values. setTweak persists via the host
+// (__edit_mode_set_keys → host rewrites the EDITMODE block on disk).
+function useTweaks(defaults) {
+  const [values, setValues] = React.useState(defaults);
+  // Accepts either setTweak('key', value) or setTweak({ key: value, ... }) so a
+  // useState-style call doesn't write a "[object Object]" key into the persisted
+  // JSON block.
+  const setTweak = React.useCallback((keyOrEdits, val) => {
+    const edits = typeof keyOrEdits === 'object' && keyOrEdits !== null
+      ? keyOrEdits : { [keyOrEdits]: val };
+    setValues((prev) => ({ ...prev, ...edits }));
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits }, '*');
+    // Same-window signal so in-page listeners (deck-stage rail thumbnails)
+    // can react — the parent message only reaches the host, not peers.
+    window.dispatchEvent(new CustomEvent('tweakchange', { detail: edits }));
+  }, []);
+  return [values, setTweak];
+}
+
+// ── TweaksPanel ─────────────────────────────────────────────────────────────
+// Floating shell. Registers the protocol listener BEFORE announcing
+// availability — if the announce ran first, the host's activate could land
+// before our handler exists and the toolbar toggle would silently no-op.
+// The close button posts __edit_mode_dismissed so the host's toolbar toggle
+// flips off in lockstep; the host echoes __deactivate_edit_mode back which
+// is what actually hides the panel.
+function TweaksPanel({ title = 'Tweaks', children }) {
+  const [open, setOpen] = React.useState(false);
+  const dragRef = React.useRef(null);
+  const offsetRef = React.useRef({ x: 16, y: 16 });
+  const PAD = 16;
+
+  const clampToViewport = React.useCallback(() => {
+    const panel = dragRef.current;
+    if (!panel) return;
+    const w = panel.offsetWidth, h = panel.offsetHeight;
+    const maxRight = Math.max(PAD, window.innerWidth - w - PAD);
+    const maxBottom = Math.max(PAD, window.innerHeight - h - PAD);
+    offsetRef.current = {
+      x: Math.min(maxRight, Math.max(PAD, offsetRef.current.x)),
+      y: Math.min(maxBottom, Math.max(PAD, offsetRef.current.y)),
+    };
+    panel.style.right = offsetRef.current.x + 'px';
+    panel.style.bottom = offsetRef.current.y + 'px';
+  }, []);
+
+  React.useEffect(() => {
+    if (!open) return;
+    clampToViewport();
+    if (typeof ResizeObserver === 'undefined') {
+      window.addEventListener('resize', clampToViewport);
+      return () => window.removeEventListener('resize', clampToViewport);
+    }
+    const ro = new ResizeObserver(clampToViewport);
+    ro.observe(document.documentElement);
+    return () => ro.disconnect();
+  }, [open, clampToViewport]);
+
+  React.useEffect(() => {
+    const onMsg = (e) => {
+      const t = e?.data?.type;
+      if (t === '__activate_edit_mode') setOpen(true);
+      else if (t === '__deactivate_edit_mode') setOpen(false);
+    };
+    window.addEventListener('message', onMsg);
+    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+    return () => window.removeEventListener('message', onMsg);
+  }, []);
+
+  const dismiss = () => {
+    setOpen(false);
+    window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*');
+  };
+
+  const onDragStart = (e) => {
+    const panel = dragRef.current;
+    if (!panel) return;
+    const r = panel.getBoundingClientRect();
+    const sx = e.clientX, sy = e.clientY;
+    const startRight = window.innerWidth - r.right;
+    const startBottom = window.innerHeight - r.bottom;
+    const move = (ev) => {
+      offsetRef.current = {
+        x: startRight - (ev.clientX - sx),
+        y: startBottom - (ev.clientY - sy),
+      };
+      clampToViewport();
+    };
+    const up = () => {
+      window.removeEventListener('mousemove', move);
+      window.removeEventListener('mouseup', up);
+    };
+    window.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', up);
+  };
+
+  if (!open) return null;
+  return (
+    <>
+      <style>{__TWEAKS_STYLE}</style>
+      <div ref={dragRef} className="twk-panel" data-omelette-chrome=""
+           style={{ right: offsetRef.current.x, bottom: offsetRef.current.y }}>
+        <div className="twk-hd" onMouseDown={onDragStart}>
+          <b>{title}</b>
+          <button className="twk-x" aria-label="Close tweaks"
+                  onMouseDown={(e) => e.stopPropagation()}
+                  onClick={dismiss}>✕</button>
+        </div>
+        <div className="twk-body">
+          {children}
+        </div>
+      </div>
+    </>
+  );
+}
+
+// ── Layout helpers ──────────────────────────────────────────────────────────
+
+function TweakSection({ label, children }) {
+  return (
+    <>
+      <div className="twk-sect">{label}</div>
+      {children}
+    </>
+  );
+}
+
+function TweakRow({ label, value, children, inline = false }) {
+  return (
+    <div className={inline ? 'twk-row twk-row-h' : 'twk-row'}>
+      <div className="twk-lbl">
+        <span>{label}</span>
+        {value != null && <span className="twk-val">{value}</span>}
+      </div>
+      {children}
+    </div>
+  );
+}
+
+// ── Controls ────────────────────────────────────────────────────────────────
+
+function TweakSlider({ label, value, min = 0, max = 100, step = 1, unit = '', onChange }) {
+  return (
+    <TweakRow label={label} value={`${value}${unit}`}>
+      <input type="range" className="twk-slider" min={min} max={max} step={step}
+             value={value} onChange={(e) => onChange(Number(e.target.value))} />
+    </TweakRow>
+  );
+}
+
+function TweakToggle({ label, value, onChange }) {
+  return (
+    <div className="twk-row twk-row-h">
+      <div className="twk-lbl"><span>{label}</span></div>
+      <button type="button" className="twk-toggle" data-on={value ? '1' : '0'}
+              role="switch" aria-checked={!!value}
+              onClick={() => onChange(!value)}><i /></button>
+    </div>
+  );
+}
+
+function TweakRadio({ label, value, options, onChange }) {
+  const trackRef = React.useRef(null);
+  const [dragging, setDragging] = React.useState(false);
+  // The active value is read by pointer-move handlers attached for the lifetime
+  // of a drag — ref it so a stale closure doesn't fire onChange for every move.
+  const valueRef = React.useRef(value);
+  valueRef.current = value;
+
+  // Segments wrap mid-word once per-segment width runs out. The track is
+  // ~248px (280 panel − 28 body pad − 4 seg pad), each button loses 12px
+  // to its own padding, and 11.5px system-ui averages ~6.3px/char — so 2
+  // options fit ~16 chars each, 3 fit ~10. Past that (or >3 options), fall
+  // back to a dropdown rather than wrap.
+  const labelLen = (o) => String(typeof o === 'object' ? o.label : o).length;
+  const maxLen = options.reduce((m, o) => Math.max(m, labelLen(o)), 0);
+  const fitsAsSegments = maxLen <= ({ 2: 16, 3: 10 }[options.length] ?? 0);
+  if (!fitsAsSegments) {
+    // <select> emits strings — map back to the original option value so the
+    // fallback stays type-preserving (numbers, booleans) like the segment path.
+    const resolve = (s) => {
+      const m = options.find((o) => String(typeof o === 'object' ? o.value : o) === s);
+      return m === undefined ? s : typeof m === 'object' ? m.value : m;
+    };
+    return <TweakSelect label={label} value={value} options={options}
+                        onChange={(s) => onChange(resolve(s))} />;
+  }
+  const opts = options.map((o) => (typeof o === 'object' ? o : { value: o, label: o }));
+  const idx = Math.max(0, opts.findIndex((o) => o.value === value));
+  const n = opts.length;
+
+  const segAt = (clientX) => {
+    const r = trackRef.current.getBoundingClientRect();
+    const inner = r.width - 4;
+    const i = Math.floor(((clientX - r.left - 2) / inner) * n);
+    return opts[Math.max(0, Math.min(n - 1, i))].value;
+  };
+
+  const onPointerDown = (e) => {
+    setDragging(true);
+    const v0 = segAt(e.clientX);
+    if (v0 !== valueRef.current) onChange(v0);
+    const move = (ev) => {
+      if (!trackRef.current) return;
+      const v = segAt(ev.clientX);
+      if (v !== valueRef.current) onChange(v);
+    };
+    const up = () => {
+      setDragging(false);
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
+
+  return (
+    <TweakRow label={label}>
+      <div ref={trackRef} role="radiogroup" onPointerDown={onPointerDown}
+           className={dragging ? 'twk-seg dragging' : 'twk-seg'}>
+        <div className="twk-seg-thumb"
+             style={{ left: `calc(2px + ${idx} * (100% - 4px) / ${n})`,
+                      width: `calc((100% - 4px) / ${n})` }} />
+        {opts.map((o) => (
+          <button key={o.value} type="button" role="radio" aria-checked={o.value === value}>
+            {o.label}
+          </button>
+        ))}
+      </div>
+    </TweakRow>
+  );
+}
+
+function TweakSelect({ label, value, options, onChange }) {
+  return (
+    <TweakRow label={label}>
+      <select className="twk-field" value={value} onChange={(e) => onChange(e.target.value)}>
+        {options.map((o) => {
+          const v = typeof o === 'object' ? o.value : o;
+          const l = typeof o === 'object' ? o.label : o;
+          return <option key={v} value={v}>{l}</option>;
+        })}
+      </select>
+    </TweakRow>
+  );
+}
+
+function TweakText({ label, value, placeholder, onChange }) {
+  return (
+    <TweakRow label={label}>
+      <input className="twk-field" type="text" value={value} placeholder={placeholder}
+             onChange={(e) => onChange(e.target.value)} />
+    </TweakRow>
+  );
+}
+
+function TweakNumber({ label, value, min, max, step = 1, unit = '', onChange }) {
+  const clamp = (n) => {
+    if (min != null && n < min) return min;
+    if (max != null && n > max) return max;
+    return n;
+  };
+  const startRef = React.useRef({ x: 0, val: 0 });
+  const onScrubStart = (e) => {
+    e.preventDefault();
+    startRef.current = { x: e.clientX, val: value };
+    const decimals = (String(step).split('.')[1] || '').length;
+    const move = (ev) => {
+      const dx = ev.clientX - startRef.current.x;
+      const raw = startRef.current.val + dx * step;
+      const snapped = Math.round(raw / step) * step;
+      onChange(clamp(Number(snapped.toFixed(decimals))));
+    };
+    const up = () => {
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
+  return (
+    <div className="twk-num">
+      <span className="twk-num-lbl" onPointerDown={onScrubStart}>{label}</span>
+      <input type="number" value={value} min={min} max={max} step={step}
+             onChange={(e) => onChange(clamp(Number(e.target.value)))} />
+      {unit && <span className="twk-num-unit">{unit}</span>}
+    </div>
+  );
+}
+
+// Relative-luminance contrast pick — checkmarks drawn over a swatch need to
+// read on both #111 and #fafafa without per-option configuration. Hex input
+// only (#rgb / #rrggbb); named or rgb()/hsl() colors fall through to "light".
+function __twkIsLight(hex) {
+  const h = String(hex).replace('#', '');
+  const x = h.length === 3 ? h.replace(/./g, (c) => c + c) : h.padEnd(6, '0');
+  const n = parseInt(x.slice(0, 6), 16);
+  if (Number.isNaN(n)) return true;
+  const r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
+  return r * 299 + g * 587 + b * 114 > 148000;
+}
+
+const __TwkCheck = ({ light }) => (
+  <svg viewBox="0 0 14 14" aria-hidden="true">
+    <path d="M3 7.2 5.8 10 11 4.2" fill="none" strokeWidth="2.2"
+          strokeLinecap="round" strokeLinejoin="round"
+          stroke={light ? 'rgba(0,0,0,.78)' : '#fff'} />
+  </svg>
+);
+
+// TweakColor — curated color/palette picker. Each option is either a single
+// hex string or an array of 1-5 hex strings; the card adapts — a lone color
+// renders solid, a palette renders colors[0] as the hero (left ~2/3) with the
+// rest stacked in a sharp column on the right. onChange emits the
+// option in the shape it was passed (string stays string, array stays array).
+// Without options it falls back to the native color input for back-compat.
+function TweakColor({ label, value, options, onChange }) {
+  if (!options || !options.length) {
+    return (
+      <div className="twk-row twk-row-h">
+        <div className="twk-lbl"><span>{label}</span></div>
+        <input type="color" className="twk-swatch" value={value}
+               onChange={(e) => onChange(e.target.value)} />
+      </div>
+    );
+  }
+  // Native <input type=color> emits lowercase hex per the HTML spec, so
+  // compare case-insensitively. String() guards JSON.stringify(undefined),
+  // which returns the primitive undefined (no .toLowerCase).
+  const key = (o) => String(JSON.stringify(o)).toLowerCase();
+  const cur = key(value);
+  return (
+    <TweakRow label={label}>
+      <div className="twk-chips" role="radiogroup">
+        {options.map((o, i) => {
+          const colors = Array.isArray(o) ? o : [o];
+          const [hero, ...rest] = colors;
+          const sup = rest.slice(0, 4);
+          const on = key(o) === cur;
+          return (
+            <button key={i} type="button" className="twk-chip" role="radio"
+                    aria-checked={on} data-on={on ? '1' : '0'}
+                    aria-label={colors.join(', ')} title={colors.join(' · ')}
+                    style={{ background: hero }}
+                    onClick={() => onChange(o)}>
+              {sup.length > 0 && (
+                <span>
+                  {sup.map((c, j) => <i key={j} style={{ background: c }} />)}
+                </span>
+              )}
+              {on && <__TwkCheck light={__twkIsLight(hero)} />}
+            </button>
+          );
+        })}
+      </div>
+    </TweakRow>
+  );
+}
+
+function TweakButton({ label, onClick, secondary = false }) {
+  return (
+    <button type="button" className={secondary ? 'twk-btn secondary' : 'twk-btn'}
+            onClick={onClick}>{label}</button>
+  );
+}
+
+Object.assign(window, {
+  useTweaks, TweaksPanel, TweakSection, TweakRow,
+  TweakSlider, TweakToggle, TweakRadio, TweakSelect,
+  TweakText, TweakNumber, TweakColor, TweakButton,
+});
+
+/* TUNK — shared components. Exports to window for cross-file Babel scope. */
+
+const { useState, useEffect, useRef } = React;
+
+/* ---------- scroll-reveal (brand-legal: opacity + small translate) ----------
+   IntersectionObserver is unreliable inside preview iframes, so we use a
+   shared rAF/scroll checker against getBoundingClientRect, plus a hard
+   fallback that reveals everything after a beat — content is never stuck. */
+const _revealEls = new Set();
+let _revealWired = false;
+function _checkReveals() {
+  const vh = window.innerHeight || 800;
+  _revealEls.forEach((el) => {
+    const top = el.getBoundingClientRect().top;
+    if (top < vh * 0.92) {
+      const d = +el.dataset.revealDelay || 0;
+      setTimeout(() => el.classList.add('in'), d);
+      _revealEls.delete(el);
+    }
+  });
+}
+function _wireReveals() {
+  if (_revealWired) return;
+  _revealWired = true;
+  window.addEventListener('scroll', _checkReveals, { passive: true });
+  window.addEventListener('resize', _checkReveals);
+}
+function _registerReveal(el, delay) {
+  if (!el) return;
+  el.dataset.revealDelay = delay || 0;
+  _revealEls.add(el);
+  _wireReveals();
+  requestAnimationFrame(() => requestAnimationFrame(_checkReveals));
+  // hard safety: never leave anything hidden
+  setTimeout(() => {if (_revealEls.has(el)) {el.classList.add('in');_revealEls.delete(el);}}, 1600);
+}
+
+function Reveal({ as = 'div', delay = 0, className = '', style = {}, children, ...rest }) {
+  const ref = useRef(null);
+  useEffect(() => {
+    const el = ref.current;if (!el) return;
+    el.classList.remove('in');
+    _registerReveal(el, delay);
+  }, [delay]);
+  const Tag = as;
+  return <Tag ref={ref} className={`reveal ${className}`} style={style} {...rest}>{children}</Tag>;
+}
+
+/* ---------- live clock (Istanbul) ---------- */
+function Clock() {
+  const [t, setT] = useState('');
+  useEffect(() => {
+    const tick = () => {
+      try {
+        const s = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Europe/Istanbul' }).format(new Date());
+        setT(s);
+      } catch (e) {setT('');}
+    };
+    tick();const id = setInterval(tick, 10000);return () => clearInterval(id);
+  }, []);
+  return <span className="clock">IST {t}</span>;
+}
+
+/* ---------- placeholder / real-image frame ---------- */
+function Frame({ ratio = '4/3', num = '№ 00', meta = '', dim = '', accent = null, wm = null, img = null, alt = '', bare = false, style = {}, fit = 'cover' }) {
+  // bare = just the photograph: no frame chrome, crop marks, numbers, labels.
+  if (bare) {
+    return (
+      <div className={`frame bare ${img ? 'has-img' : ''}`} style={{ aspectRatio: ratio, ...style }}>
+        {img ?
+        <img className="frame-img" src={img} alt={alt} loading="lazy" style={{ objectFit: fit }} /> :
+        <React.Fragment><div className="grain" /><div className="inset" /></React.Fragment>}
+      </div>);
+  }
+  return (
+    <div className={`frame ${img ? 'has-img' : ''}`} style={{ aspectRatio: ratio, ...style }}>
+      {img ?
+      <img className="frame-img" src={img} alt={alt} loading="lazy" style={{ objectFit: fit }} /> :
+
+      <React.Fragment>
+          <div className="grain" />
+          <div className="inset" />
+        </React.Fragment>
+      }
+      <span className="crop-tl" /><span className="crop-br" />
+      {wm && <div className="wm">{wm}</div>}
+      <span className="f-num lab">{num}</span>
+      {meta && <span className="f-meta lab">{meta}</span>}
+      {dim && <span className="f-dim lab">{dim}</span>}
+      {accent && !img && <div className="accent-wash" style={{ backgroundColor: `var(--${accent}-tr)` }} />}
+    </div>);
+
+}
+
+/* ---------- nav ---------- */
+function Nav({ page, go, dark = false }) {
+  const [solid, setSolid] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setSolid(window.scrollY > 24);
+    onScroll();window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+  // lock body scroll when the mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
+  // Over the slideshow / image hero (not scrolled): transparent nav, white
+  // text & logo. Once scrolled (solid white nav) or on other pages: black.
+  // When the mobile menu is open the overlay is white, so force dark chrome.
+  const overlay = dark && !solid && !menuOpen;
+  const cls = `nav2 ${solid || !dark || menuOpen ? 'solid' : ''}`;
+  const logo = overlay ? window.TUNK_LOGO_WHITE : window.TUNK_LOGO_BLACK;
+  const col = overlay ? 'var(--paper)' : 'var(--ink)';
+  const nav = (id) => { setMenuOpen(false); go({ id }); };
+  return (
+    <header className={cls} style={{ color: col, height: "66px" }}>
+      <div className="brand" onClick={() => nav('home')}>
+        <img src={logo} alt="TUNK" style={{ height: "30px" }} />
+        <span className="disc" style={{ opacity: "1" }}>{DATA.site.discipline}</span>
+      </div>
+      <nav className={`links ${menuOpen ? 'open' : ''}`}>
+        {DATA.nav.map((l) =>
+        <a key={l.id}
+        className={page.id === l.id || l.id === 'work' && page.id === 'project' ? 'is-active' : ''}
+        onClick={() => nav(l.id)}>{l.label}</a>
+        )}
+      </nav>
+      <button className={`burger ${menuOpen ? 'open' : ''}`} aria-label="Menu"
+        onClick={() => setMenuOpen(v => !v)}>
+        <span /><span /><span />
+      </button>
+    </header>);
+
+}
+
+/* ---------- footer ---------- */
+function Footer({ go }) {
+  const f = DATA.footer;
+  return (
+    <footer className="foot">
+      <div className="wrap">
+        <div className="top">
+          <div>
+            <div className="word">TUNK</div>
+            <div className="mono" style={{ color: 'var(--aluminium)', marginTop: 18 }}>
+              {f.tagline}<br />{f.location}
+            </div>
+          </div>
+          <div>
+            <div className="h">Studio</div>
+            <div className="links">
+              <a onClick={() => go({ id: 'work' })}>Work</a>
+              <a onClick={() => go({ id: 'about' })}>About</a>
+              <a onClick={() => go({ id: 'press' })}>Press</a>
+            </div>
+          </div>
+          <div>
+            <div className="h">Contact</div>
+            <div className="mono">{DATA.contact.email}</div>
+          </div>
+          <div>
+            <div className="h">Follow</div>
+            <div className="links">
+              <a href={f.instagramUrl || 'https://www.instagram.com/tunkstudiotunk/'} target="_blank" rel="noopener noreferrer">{f.instagram}</a>
+              <a>{f.newsletter}</a>
+            </div>
+          </div>
+        </div>
+        <div className="legal">
+          <span>{DATA.site.copyright}</span>
+          <span></span>
+        </div>
+      </div>
+    </footer>);
+
+}
+
+/* ---------- lazy video — only downloads/plays once scrolled near viewport ---------- */
+function LazyVideo({ src, className = '', onSized }) {
+  const ref = useRef(null);
+  const [armed, setArmed] = useState(false);
+  const [muted, setMuted] = useState(true);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) { setArmed(true); io.disconnect(); }
+    }, { rootMargin: '600px 0px' }); // start loading a bit before it's on screen
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return (
+    <div className="lazyvid-wrap">
+      <video
+        ref={ref}
+        className={className}
+        src={armed ? src : undefined}
+        autoPlay={armed} playsInline preload="none" loop muted={muted}
+        onLoadedMetadata={(e) => {
+          const v = e.target;
+          if (v.videoWidth && v.videoHeight) {
+            const fig = v.closest('.g-vid');
+            if (fig) fig.style.aspectRatio = v.videoWidth + ' / ' + v.videoHeight;
+          }
+          if (onSized) onSized(v.videoWidth, v.videoHeight);
+        }}
+      />
+      {/* browsers only allow autoplay when muted — this lets the visitor opt into sound with one tap */}
+      <button
+        className="lazyvid-mute" aria-label={muted ? 'Unmute' : 'Mute'}
+        onClick={(e) => { e.stopPropagation(); setMuted((m) => !m); }}
+      >
+        {muted ? 'SOUND OFF' : 'SOUND ON'}
+      </button>
+    </div>
+  );
+}
+
+/* ---------- work tile ---------- */
+function Tile({ p, go }) {
+  const loc = p.location ? p.location.split(',')[0].toUpperCase() : 'ISTANBUL';
+  return (
+    <div className="tile2" onClick={() => go({ id: 'project', project: p })}>
+      <Frame ratio="4/3" num={`№ ${p.cat}`} meta={`${loc} · ${p.kind.toUpperCase()}`}
+      img={p.thumb || p.hero} alt={`${p.name} — ${p.kind}, ${p.location || 'Istanbul'}`} accent={p.accent} wm={p.cat} />
+      <div className="meta">
+        <div className="nm">{p.name}</div>
+        <div className="yr">{p.yearLabel}</div>
+      </div>
+      <div className="sub">{p.category} · {p.kind}</div>
+    </div>);
+
+}
+
+/* ---------- lightbox — fullscreen image viewer with prev/next + swipe ---------- */
+function Lightbox({ images = [], index = 0, title = '', onClose }) {
+  const [i, setI] = useState(index);
+  useEffect(() => {setI(index);}, [index]);
+  const n = images.length;
+  const go = (d) => setI((v) => (v + d + n) % n);
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === 'Escape') onClose();else
+      if (e.key === 'ArrowRight') go(1);else
+      if (e.key === 'ArrowLeft') go(-1);
+    };
+    window.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => {window.removeEventListener('keydown', onKey);document.body.style.overflow = '';};
+  }, [n]);
+  // swipe
+  const tx = useRef(null);
+  const onTS = (e) => {tx.current = e.touches[0].clientX;};
+  const onTE = (e) => {
+    if (tx.current == null) return;
+    const dx = e.changedTouches[0].clientX - tx.current;
+    if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
+    tx.current = null;
+  };
+  if (!n) return null;
+  return (
+    <div className="lb" onClick={onClose} onTouchStart={onTS} onTouchEnd={onTE}>
+      <div className="lb-top" onClick={(e) => e.stopPropagation()}>
+        <span className="lab" style={{ color: 'var(--paper)' }}>{title}</span>
+        <span className="lab" style={{ color: 'var(--paper)' }}>{String(i + 1).padStart(2, '0')} / {String(n).padStart(2, '0')}</span>
+        <button className="lb-x" aria-label="Close" onClick={onClose}>✕</button>
+      </div>
+      <button className="lb-arrow prev" aria-label="Previous" onClick={(e) => {e.stopPropagation();go(-1);}}>←</button>
+      <img className="lb-img" src={images[i]} alt={`${title} ${i + 1}`} onClick={(e) => e.stopPropagation()} />
+      <button className="lb-arrow next" aria-label="Next" onClick={(e) => {e.stopPropagation();go(1);}}>→</button>
+      <div className="lb-dots" onClick={(e) => e.stopPropagation()}>
+        {images.map((s, k) =>
+        <button key={k} className={`dot ${k === i ? 'on' : ''}`} aria-label={`Image ${k + 1}`} onClick={() => setI(k)} />
+        )}
+      </div>
+    </div>);
+
+}
+
+Object.assign(window, { Reveal, Clock, Frame, Nav, Footer, Tile, Lightbox });
+/* TUNK — Home page (immersive long-scroll). 3 hero directions via tweak. */
+
+function HeroStatement({ go }) {
+  const h = DATA.home;
+  return (
+    <section className="hero-full">
+      <div className="heroA">
+        <Reveal className="lab lab-ink eyebrow">{h.eyebrow}</Reveal>
+        <Reveal as="h1" className="mega statement" delay={60} style={{ whiteSpace: 'normal', fontSize: 'clamp(40px, 8vw, 92px)' }}>
+          {h.statement}
+        </Reveal>
+        <Reveal className="meta-grid" delay={140}>
+          {h.metaCols.map((c, i) =>
+          <div className="col" key={i}>
+              <span className="lab k">{c.k}</span>
+              <span className="lab v" style={{ whiteSpace: 'pre-line' }}>{c.v}</span>
+            </div>
+          )}
+        </Reveal>
+      </div>
+      <div className="heroA" style={{ flex: '0 0 auto', paddingTop: 0, paddingBottom: 40 }}>
+        <div className="scrollcue lab lab-ink"><span className="ln" /> SCROLL — SELECTED WORK</div>
+      </div>
+    </section>);
+
+}
+
+function HeroFeature({ go }) {
+  const h = DATA.home;
+  // Homepage slideshow: one strong image per photographed project, in curated order.
+  // Each slide links to its own project, so the hero showcases the whole studio.
+  const order = ['parfumlab-pneuma', 'yesim-evi', 'oculus', 'postane', 'samih-rifat', 'hali-atolyesi', 'paintshop', 'liminal'];
+  const featured = order
+    .map((s) => DATA.projects.find((p) => p.slug === s))
+    .filter((p) => p && hasPhotos(p));
+  const slides = featured.length
+    ? featured.map((p) => ({ img: p.hero, p }))
+    : [{ img: null, p: DATA.projects[0] }];
+
+  const [i, setI] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [op, setOp] = useState(1); // opacity of the incoming (top) layer
+  const prevRef = useRef(0); // index of the image held on the bottom layer
+  useEffect(() => {
+    if (paused || slides.length < 2) return;
+    const id = setInterval(() => setI((n) => (n + 1) % slides.length), 4000);
+    return () => clearInterval(id);
+  }, [paused, slides.length]);
+  // Preload only the NEXT slide's image (not all of them) so the crossfade stays
+  // instant without forcing the browser to download every project's hero at once
+  // on first paint — that alone was several MB of unseen images.
+  useEffect(() => {
+    const next = slides[(i + 1) % slides.length];
+    if (next && next.img) { const im = new Image(); im.src = next.img; }
+  }, [i, slides]);
+  // Smooth crossfade: bottom layer holds the previous image at full opacity while
+  // the incoming image fades in on top (many small JS steps — CSS transitions
+  // freeze in this preview compositor, but timers run, so this stays smooth).
+  useEffect(() => {
+    setOp(0);
+    const steps = 28,dur = 900;
+    let s = 0;
+    const id = setInterval(() => {
+      s += 1;
+      const t = s / steps;
+      setOp(t < 1 ? (1 - Math.cos(t * Math.PI)) / 2 : 1); // ease-in-out
+      if (s >= steps) {clearInterval(id);prevRef.current = i;}
+    }, dur / steps);
+    return () => clearInterval(id);
+  }, [i]);
+
+  const cur = slides[i].p;
+  const loc = cur.location ? cur.location.split(',')[0].toUpperCase() : 'ISTANBUL';
+  const curImg = slides[i].img;
+  const prevImg = slides[prevRef.current] ? slides[prevRef.current].img : curImg;
+
+  return (
+    <section className="hero-full">
+      <div className="heroB" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+        {/* bottom layer: previous image, held full-opacity (no dark gap) */}
+        <div className="album-photo" style={{ backgroundImage: prevImg ? `url(${prevImg})` : 'none' }} />
+        {/* top layer: incoming image fading in */}
+        <div className="album-photo" onClick={() => go({ id: 'project', project: cur })}
+        style={{ backgroundImage: curImg ? `url(${curImg})` : 'none', opacity: op, cursor: 'pointer' }} />
+        <div className="scrim" />
+        <div className="overlay-top">
+          <span className="lab" style={{ color: 'rgba(255,255,255,.85)' }}>{h.eyebrow}</span>
+        </div>
+        <div className="overlay-bottom">
+          <h1 className="mega statement">{h.statement}</h1>
+          <div className="feature-meta">
+            <div onClick={() => go({ id: 'project', project: cur })} style={{ cursor: 'pointer' }}>
+              <div className="lab" style={{ color: 'rgba(255,255,255,.9)', marginBottom: 6 }}>{cur.name}</div>
+              <div className="lab" style={{ color: 'rgba(255,255,255,.7)' }}>{cur.kind.toUpperCase()} · {loc} · {cur.yearLabel}</div>
+            </div>
+            <div className="album-dots">
+              {slides.map((s, n) =>
+              <button key={n} className={`dot ${n === i ? 'on' : ''}`} aria-label={`Slide ${n + 1}`}
+              onClick={(e) => {e.stopPropagation();setI(n);}} />
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>);
+
+}
+
+function HeroIndex({ go }) {
+  const h = DATA.home;
+  return (
+    <section className="hero-full">
+      <div className="heroC">
+        <div className="left">
+          <Reveal className="lab lab-ink" style={{ marginBottom: 28 }}>{h.eyebrow}</Reveal>
+          <Reveal as="h1" className="mega statement" delay={60} style={{ whiteSpace: 'pre-line' }}>{h.statementShort}</Reveal>
+          <Reveal delay={120}>
+            <p style={{ maxWidth: 360, marginTop: 28, fontSize: 15, lineHeight: 1.6, color: 'var(--graphite)' }}>{h.intro1}</p>
+          </Reveal>
+        </div>
+        <Reveal className="right" delay={100}>
+          <div className="lab lab-ink" style={{ marginBottom: 14 }}>INDEX — {DATA.projects.length.toString().padStart(2, '0')} PROJECTS</div>
+          <div className="idx-list">
+            {DATA.projects.slice(0, 8).map((p) =>
+            <div className="row" key={p.cat} onClick={() => go({ id: 'project', project: p })}>
+                <span className="n">№ {p.cat}</span>
+                <span className="nm">{p.name}</span>
+                <span className="yr">{p.yearLabel}</span>
+              </div>
+            )}
+            <div className="row" onClick={() => go({ id: 'work' })} style={{ opacity: .7 }}>
+              <span className="n">→</span>
+              <span className="nm" style={{ fontWeight: 500, fontSize: 15 }}>All {DATA.projects.length} projects</span>
+              <span className="yr">2014—28</span>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>);
+
+}
+
+function SelectedWork({ go }) {
+  const h = DATA.home;
+  // Curated order (set by studio). Only projects with photography are shown for now;
+  // the rest stay hidden from the home selection until their images are uploaded.
+  const order = ['parfumlab-pneuma', 'yesim-evi', 'postane', 'hali-atolyesi', 'oculus', 'samih-rifat', 'parfumlab-cepa'];
+  const list = order.map((s) => DATA.projects.find((p) => p.slug === s)).filter((p) => p && hasPhotos(p));
+  return (
+    <section className="sec" style={{ paddingTop: 96 }}>
+      <div className="wrap">
+        <div className="sec-head">
+          <div className="l"><span className="n"></span><h2>{h.selectedLabel}</h2></div>
+          <span className="more" onClick={() => go({ id: 'work' })}>{h.selectedMore} →</span>
+        </div>
+        <div className="feat" style={{ padding: 0 }}>
+          {list.map((p, i) => {
+            const big = i % 3 === 0;
+            const loc = p.location ? p.location.split(',')[0].toUpperCase() : 'ISTANBUL';
+            return (
+              <Reveal className="row" key={p.cat} style={{ borderTop: i === 0 ? '1px solid var(--ink)' : '1px solid var(--ink)' }}>
+                <div className="head">
+                  <span className="idx">№ {(i + 1).toString().padStart(2, '0')} / {DATA.projects.length}</span>
+                  <span className="lab">{p.category.toUpperCase()}</span>
+                </div>
+                <div className={`media ${p.slug === 'yesim-evi' ? 'media-natural' : ''}`} onClick={() => go({ id: 'project', project: p })}>
+                  <Frame ratio={big ? '21/9' : '16/9'} num={`№ ${p.cat}`}
+                  meta={`${loc} · ${p.kind.toUpperCase()}`} img={p.thumb || p.hero} alt={`${p.name} — ${p.kind}, ${p.location || 'Istanbul'}`}
+                  accent={p.accent} wm={p.cat} fit={p.slug === 'yesim-evi' ? 'contain' : 'cover'} />
+                </div>
+                <div className="title-line" onClick={() => go({ id: 'project', project: p })} style={{ cursor: 'pointer' }}>
+                  <span className="title">{p.name}</span>
+                  <span className="arrow">→</span>
+                </div>
+                <div className="undermeta">
+                  <div><span className="lab k">Type</span><span className="lab v">{p.kind}</span></div>
+                  <div><span className="lab k">Year</span><span className="lab v">{p.yearLabel}</span></div>
+                  <div><span className="lab k">Location</span><span className="lab v">{p.location || 'Istanbul'}</span></div>
+                </div>
+              </Reveal>);
+
+          })}
+        </div>
+      </div>
+    </section>);
+
+}
+
+function MethodBand() {
+  const m = DATA.method;
+  return (
+    <section className="method">
+      <div className="wrap">
+        <Reveal className="lab eyebrow">{m.eyebrow}</Reveal>
+        <Reveal as="p" className="big" style={{ maxWidth: '24ch' }}>{m.big}</Reveal>
+      </div>
+    </section>);
+
+}
+
+function ContactStrip({ go }) {
+  return (
+    <section className="sec" style={{ paddingTop: 112, paddingBottom: 112 }}>
+      <div className="wrap" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: 32, borderTop: '1px solid var(--ink)', paddingTop: 48 }}>
+        <div>
+          <div className="lab lab-ink" style={{ marginBottom: 20 }}></div>
+          <h2 className="mega-sm" style={{ fontWeight: 900, textTransform: 'uppercase', letterSpacing: '-0.03em', lineHeight: .92 }}>Have a site,<br />a brief, a room?</h2>
+        </div>
+        <div className="btn2 primary" onClick={() => go({ id: 'contact' })}>
+</div>
+      </div>
+    </section>);
+}
+
+function HomePage({ go, hero }) {
+  const Hero = hero === 'feature' ? HeroFeature : hero === 'index' ? HeroIndex : HeroStatement;
+  return (
+    <main className="route">
+      <Hero go={go} />
+      <SelectedWork go={go} />
+    </main>);
+
+}
+
+Object.assign(window, { HomePage, HeroStatement, HeroFeature, HeroIndex });
+/* TUNK — Work / Project / About / Press / Contact pages */
+
+function WorkPage({ go }) {
+  const [view, setView] = useState('grid');
+  const [filter, setFilter] = useState('All');
+  const base = filter === 'All' ? DATA.projects : DATA.projects.filter(p => p.tags.includes(filter));
+  const filtered = [...base].sort((a, b) => {
+    // Projects with photography come first; un-photographed ones fall to the end.
+    const pa = hasPhotos(a), pb = hasPhotos(b);
+    if (pa !== pb) return pa ? -1 : 1;
+    if (a.year == null && b.year == null) return 0;
+    if (a.year == null) return 1;
+    if (b.year == null) return -1;
+    return b.year - a.year; // most recent first
+  });
+  return (
+    <main className="route">
+      <div className="work-head">
+        <div className="wrap">
+          <div className="lab lab-ink" style={{ marginBottom: 22 }}>№ 01 — WORK</div>
+          <h1 className="mega" style={{ marginBottom: 56 }}>All projects</h1>
+          <div className="filterbar">
+            <span className="lbl">Filter</span>
+            {DATA.filters.map(f => (
+              <span key={f} className={`chip2 ${filter === f ? 'on' : ''}`} onClick={() => setFilter(f)}>{f}</span>
+            ))}
+            <span style={{ marginLeft: 'auto', display: 'flex', gap: 4 }}>
+              <span className={`chip2 ${view === 'grid' ? 'on' : ''}`} onClick={() => setView('grid')}>Grid</span>
+              <span className={`chip2 ${view === 'index' ? 'on' : ''}`} onClick={() => setView('index')}>Index</span>
+            </span>
+          </div>
+          <div className="lab" style={{ marginTop: 12, marginBottom: 40 }}>
+            {filtered.length.toString().padStart(2, '0')} PROJECTS · 2014—2028
+          </div>
+        </div>
+      </div>
+
+      <div className="wrap" style={{ padding: '0 var(--m) 96px' }}>
+        {view === 'grid' ? (
+          <div className="work-grid">
+            {filtered.map(p => <Reveal key={p.cat}><Tile p={p} go={go} /></Reveal>)}
+          </div>
+        ) : (
+          <div className="ix">
+            <div className="r head">
+              <span className="lab">№</span><span className="lab">Project</span>
+              <span className="lab k-hide">Discipline</span><span className="lab k-hide">Location</span>
+              <span className="lab k-hide">Year</span><span />
+            </div>
+            {filtered.map(p => (
+              <div className="r" key={p.cat} onClick={() => go({ id: 'project', project: p })}>
+                <span className="lab">№ {p.cat}</span>
+                <span className="nm">{p.name}</span>
+                <span className="lab k-hide">{p.category.toUpperCase()}</span>
+                <span className="lab k-hide">{(p.location || 'Istanbul').toUpperCase()}</span>
+                <span className="lab k-hide">{p.yearLabel}</span>
+                <span className="a">→</span>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </main>
+  );
+}
+
+function ProjectPage({ project, go }) {
+  const p = project || DATA.projects[0];
+  const idx = DATA.projects.findIndex(x => x.cat === p.cat);
+  const next = DATA.projects[(idx + 1) % DATA.projects.length];
+  const prev = DATA.projects[(idx - 1 + DATA.projects.length) % DATA.projects.length];
+  const accentVar = p.accent ? `var(--${p.accent})` : 'var(--ink)';
+  const loc = p.location ? p.location.toUpperCase() : 'ISTANBUL';
+  const gal = p.gallery || [];
+  const isVid = (s) => /\.(mp4|webm|mov)$/i.test(s);
+  // all images for this project, for the lightbox (videos excluded)
+  const lbImages = [p.hero, ...gal].filter(Boolean).filter((s) => !isVid(s));
+  const [lb, setLb] = useState(-1); // -1 = closed, else index into lbImages
+  const openLb = (img) => { const k = lbImages.indexOf(img); if (k >= 0) setLb(k); };
+
+  const specs = [
+    ['Discipline', p.category],
+    ['Year', p.yearLabel],
+    p.location ? ['Location', p.location] : null,
+    p.status ? ['Status', p.status] : null,
+    p.collab ? ['Collaboration', p.collab] : null,
+    p.press ? ['Press', p.press.join(' · ')] : null,
+  ].filter(Boolean);
+
+  const [heroMuted, setHeroMuted] = useState(false);
+  const heroIframeRef = useRef(null);
+  const heroVideoRef = useRef(null);
+  useEffect(() => {
+    // reset per-project so navigating between two video-hero projects still starts with sound on
+    setHeroMuted(false);
+  }, [p.slug]);
+  useEffect(() => {
+    if (p.heroVideo && heroIframeRef.current) {
+      // Vimeo's player postMessage API — no player.js needed for this one call
+      heroIframeRef.current.contentWindow.postMessage(JSON.stringify({ method: 'setMuted', value: heroMuted }), 'https://player.vimeo.com');
+    }
+    if (p.heroVideoLocal && heroVideoRef.current) {
+      heroVideoRef.current.muted = heroMuted;
+    }
+  }, [heroMuted, p.heroVideo, p.heroVideoLocal]);
+
+  return (
+    <main className="route" style={{ '--accent': accentVar }}>
+      <section className={`pj-hero ${(p.heroVideo || p.heroVideoLocal) ? 'pj-hero-video-sec' : ''}`}>
+        <div onClick={() => !p.heroVideo && !p.heroVideoLocal && p.hero && openLb(p.hero)}
+             className={p.slug === 'yesim-evi' ? 'pj-hero-natural' : ''}
+             style={{ position: 'absolute', inset: 0, zIndex: 1, cursor: (p.heroVideo || p.heroVideoLocal) ? 'default' : (p.hero ? 'zoom-in' : 'default') }}>
+          {p.heroVideo ? (
+            <iframe
+              ref={heroIframeRef}
+              src={`https://player.vimeo.com/video/${p.heroVideo}?autoplay=1&muted=0&loop=1&controls=0&app_id=122963#t=10s`}
+              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0, pointerEvents: 'none' }}
+              allow="autoplay; fullscreen; picture-in-picture"
+              title={`${p.name} — film`}
+            />
+          ) : p.heroVideoLocal ? (
+            <div className="pj-hero-video">
+              <video
+                ref={heroVideoRef}
+                src={p.heroVideoLocal} autoPlay playsInline preload="auto" loop
+              />
+            </div>
+          ) : (
+            <Frame ratio="auto" num={`№ ${p.cat}`} meta="" img={p.hero} alt={`${p.name} — ${p.kind}, ${p.location || 'Istanbul'}`} accent={p.accent}
+                   bare wm={p.cat} style={{ position: 'absolute', inset: 0, aspectRatio: 'auto' }}
+                   fit={p.slug === 'yesim-evi' ? 'contain' : 'cover'} />
+          )}
+        </div>
+        <div className="scrim" style={{ position: 'absolute', inset: 0, background: 'rgba(10,10,10,.34)', zIndex: 2, pointerEvents: 'none' }} />
+        {(p.heroVideo || p.heroVideoLocal) && (
+          <button
+            className="lazyvid-mute pj-hero-mute" aria-label={heroMuted ? 'Unmute' : 'Mute'}
+            style={{ zIndex: 5 }}
+            onClick={(e) => { e.stopPropagation(); setHeroMuted((m) => !m); }}
+          >
+            {heroMuted ? 'SOUND OFF' : 'SOUND ON'}
+          </button>
+        )}
+        <div className="pj-bar" style={{ zIndex: 4 }}>
+          <span className="lab" style={{ color: 'var(--paper)' }}>№ {p.cat} · {p.yearLabel}</span>
+          <span className="lab" style={{ color: 'var(--paper)', cursor: 'pointer' }} onClick={() => go({ id: 'work' })}>← ALL PROJECTS</span>
+        </div>
+        <div className="pj-title-wrap">
+          <div className="lab" style={{ color: 'rgba(255,255,255,.8)', marginBottom: 16 }}>{p.kind.toUpperCase()} · {loc}</div>
+          <h1 className="pj-title mega-sm" style={{ fontWeight: 900, textTransform: 'uppercase', letterSpacing: '-0.03em', lineHeight: .92 }}>{p.name}</h1>
+        </div>
+      </section>
+
+      <section className="pj-body wrap">
+        <div>
+          <p className="lede">{p.summary}</p>
+          <p className="para">{p.para}</p>
+          {p.photographer
+            ? <p className="para" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.04em', textTransform: 'uppercase', color: 'var(--graphite)', marginTop: 32 }}>Photography — {p.photographer}{p.graphics ? <><br />Graphics — {p.graphics}</> : null}</p>
+            : (!p.gallery || !p.gallery.length)
+              ? <p className="para" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.04em', textTransform: 'uppercase', color: 'var(--aluminium)', marginTop: 32 }}>Photography pending — images to follow</p>
+              : null}
+        </div>
+        <div className="pj-specs">
+          {specs.map(([k, v]) => (
+            <div className="s" key={k}><span className="k">{k}</span><span className="v">{v}</span></div>
+          ))}
+        </div>
+      </section>
+
+      <section className="pj-gallery wrap">
+        <div className="pj-grid-g">
+          {gal.map((g, k) => (
+            isVid(g)
+              ? <Reveal as="figure" className="g-cell g-vid" key={k} delay={(k % 3) * 60}>
+                  <LazyVideo src={g} />
+                  <figcaption className="pl-cap">{String(k + 1).padStart(2, '0')} · FILM</figcaption>
+                </Reveal>
+              : <Reveal as="figure" className="g-cell" key={k} delay={(k % 3) * 60} onClick={() => openLb(g)}>
+                  <img src={g} alt={`${p.name} — ${String(k + 1).padStart(2, '0')}`} loading="lazy" />
+                  <figcaption className="pl-cap">{String(k + 1).padStart(2, '0')}</figcaption>
+                </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {lb >= 0 && <Lightbox images={lbImages} index={lb} title={p.name} onClose={() => setLb(-1)} />}
+
+      <section className="pj-nav wrap">
+        <a onClick={() => go({ id: 'project', project: prev })}>
+          <div className="lab">← PREVIOUS</div>
+          <div className="nm">{prev.name}</div>
+        </a>
+        <a className="nx" onClick={() => go({ id: 'project', project: next })}>
+          <div className="lab">NEXT →</div>
+          <div className="nm">{next.name}</div>
+        </a>
+      </section>
+    </main>
+  );
+}
+
+function AboutPage({ go }) {
+  const a = DATA.about;
+  return (
+    <main className="route">
+      <div className="lede-block">
+        <div className="wrap">
+          <div className="lab lab-ink" style={{ marginBottom: 22 }}>{a.eyebrow}</div>
+          <h1 className="mega-sm" style={{ fontWeight: 900, textTransform: 'uppercase', letterSpacing: '-0.03em', lineHeight: .92, maxWidth: '16ch' }}>{a.heading}</h1>
+        </div>
+      </div>
+      <div className="wrap" style={{ marginTop: 80 }}>
+        <Reveal className="about-row">
+          <div className="label">Practice</div>
+          <div>
+            <p>{a.p1}</p>
+            <p className="small">{a.p2}</p>
+          </div>
+        </Reveal>
+        <Reveal className="about-row">
+          <div className="label">Disciplines</div>
+          <div className="team">
+            {a.disciplines.map(t => (
+              <div className="p" key={t.name}>
+                <div className="nm">{t.name}</div>
+                <div className="rl">{t.role}</div>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+        <Reveal className="about-row">
+          <div className="label">Clients & collaborators</div>
+          <div className="clients">
+            {a.clients.map(c => <span key={c}>{c}</span>)}
+          </div>
+        </Reveal>
+      </div>
+    </main>
+  );
+}
+
+function PressPage({ go }) {
+  const p = DATA.press;
+  return (
+    <main className="route">
+      <div className="lede-block">
+        <div className="wrap">
+          <div className="lab lab-ink" style={{ marginBottom: 22 }}>{p.eyebrow}</div>
+          <h1 className="mega-sm" style={{ fontWeight: 900, textTransform: 'uppercase', letterSpacing: '-0.03em', lineHeight: .92 }}>{p.title}</h1>
+          <p style={{ maxWidth: 560, fontSize: 15, lineHeight: 1.6, marginTop: 40, color: 'var(--graphite)' }}>{p.intro}</p>
+        </div>
+      </div>
+      <div className="wrap" style={{ padding: '64px var(--m) 96px' }}>
+        <div className="lab lab-ink" style={{ marginBottom: 18 }}>Selected coverage</div>
+        <div className="press">
+          {p.items.map(r => (
+            <a className="r" key={r.n} href={r.url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <span className="lab">№ {r.n}</span>
+              <span className="nm">{r.name}</span>
+              <span className="lab k-hide">{r.pub}</span>
+              <span className="lab k-hide">{r.type} · {r.year}</span>
+              <span className="dl">Read <span style={{ fontFamily: 'var(--font-mono)' }}>→</span></span>
+            </a>
+          ))}
+        </div>
+
+        <div className="lab lab-ink" style={{ margin: '56px 0 18px' }}>Press kit</div>
+        <div className="press">
+          {p.downloads.map(r => (
+            <div className="r" key={r.n} style={{ gridTemplateColumns: '70px 1fr 220px 130px' }}>
+              <span className="lab">№ {r.n}</span>
+              <span className="nm">{r.name}</span>
+              <span className="lab k-hide">{r.meta}</span>
+              <span className="dl">Download <span style={{ fontFamily: 'var(--font-mono)' }}>→</span></span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </main>
+  );
+}
+
+function ContactPage({ go }) {
+  const c = DATA.contact;
+  const fields = [['Name', ''], ['Email', ''], ['Subject', 'New project'], ['Budget', 'Approx. range']];
+  return (
+    <main className="route">
+      <div className="lede-block">
+        <div className="wrap">
+          <div className="lab lab-ink" style={{ marginBottom: 22 }}>{c.eyebrow}</div>
+          <h1 className="mega" style={{ }}>{c.title}</h1>
+        </div>
+      </div>
+      <div className="wrap" style={{ marginTop: 72 }}>
+        <div className="contact-grid">
+          <div>
+            <div className="lab lab-ink" style={{ marginBottom: 20 }}>Studio</div>
+            <div className="mono" style={{ fontFamily: 'var(--font-mono)', fontSize: 13, lineHeight: 1.8, letterSpacing: '.02em', textTransform: 'uppercase', whiteSpace: 'pre-line' }}>
+              {c.address}{'\n\n'}<a href={`mailto:${c.email}`} className="contact-email">{c.email}</a>
+            </div>
+          </div>
+          <div>
+            <div className="lab lab-ink" style={{ marginBottom: 24 }}>Enquire</div>
+            <form onSubmit={(e) => { e.preventDefault(); alert('Submitted (demo).'); }} className="form-grid">
+              {fields.map(([l, ph]) => (
+                <div className="field" key={l}>
+                  <label>{l}</label>
+                  <input defaultValue="" placeholder={ph} />
+                </div>
+              ))}
+              <div className="field full">
+                <label>Message</label>
+                <textarea rows="4" placeholder="A short description of the project, site and timeline." />
+              </div>
+              <button type="submit" className="btn2 primary" style={{ justifySelf: 'start' }}>Send enquiry →</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}
+
+Object.assign(window, { WorkPage, ProjectPage, AboutPage, PressPage, ContactPage });
+
+/* TUNK — app shell: router + tweaks + mount */
+
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "hero": "feature",
+  "typeScale": 0.5,
+  "density": "regular",
+  "accent": "#0A0A0A",
+  "motion": true
+}/*EDITMODE-END*/;
+
+const DENSITY_M = {
+  compact:  "clamp(12px, 3.5vw, 56px)",
+  regular:  "clamp(14px, 5vw, 96px)",
+  spacious: "clamp(20px, 7vw, 132px)",
+};
+
+function App() {
+  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+
+  // Real, crawlable paths (not #hash) — search engines index /work/postane as
+  // its own URL. Netlify's _redirects file sends any path to index.html so
+  // direct loads/refreshes/shared links still resolve.
+  const encodePage = (p) => {
+    if (p.id === 'project' && p.project) return '/work/' + encodeURIComponent(p.project.slug);
+    if (p.id === 'home') return '/';
+    return '/' + p.id;
+  };
+  const decodePath = (pathname) => {
+    const h = (pathname || '/').replace(/^\/|\/$/g, '');
+    if (!h) return { id: 'home' };
+    const parts = h.split('/');
+    if (parts[0] === 'work' && parts[1]) {
+      const slug = decodeURIComponent(parts[1]);
+      const project = DATA.projects.find((pr) => pr.slug === slug);
+      if (project) return { id: 'project', project };
+      return { id: 'work' };
+    }
+    if (['work', 'about', 'press', 'contact'].includes(parts[0])) return { id: parts[0] };
+    return { id: 'home' };
+  };
+
+  const [page, setPage] = useState(() => decodePath(window.location.pathname));
+
+  // Pushes a new history entry (real navigation, e.g. clicking a link/tile).
+  const go = (p) => {
+    setPage(p);
+    const path = encodePage(p);
+    if (window.location.pathname !== path) window.history.pushState({ page: p.id }, '', path);
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  };
+
+  // Back/forward button: read the new path, update state, but don't push again.
+  useEffect(() => {
+    const onPop = () => {
+      setPage(decodePath(window.location.pathname));
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    };
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, []);
+
+  // Per-page SEO: title, meta description, canonical, Open Graph/Twitter
+  // cards, and a JSON-LD block (Organization sitewide, CreativeWork per
+  // project) — this is what search engines and shared-link previews read.
+  useEffect(() => { applySEO(page); }, [page]);
+
+  // apply tweaks to :root
+  useEffect(() => {
+    const r = document.documentElement;
+    r.style.setProperty('--tscale', String(t.typeScale));
+    r.style.setProperty('--m', DENSITY_M[t.density] || DENSITY_M.regular);
+    r.style.setProperty('--accent', t.accent);
+    r.style.setProperty('--reveal-y', t.motion ? '10px' : '0px');
+    r.classList.toggle('no-motion', !t.motion);
+  }, [t.typeScale, t.density, t.accent, t.motion]);
+
+  const darkHero = (page.id === 'home' && t.hero === 'feature') || page.id === 'project';
+
+  let view;
+  if (page.id === 'home') view = <HomePage go={go} hero={t.hero} />;
+  else if (page.id === 'work') view = <WorkPage go={go} />;
+  else if (page.id === 'project') view = <ProjectPage project={page.project} go={go} />;
+  else if (page.id === 'about') view = <AboutPage go={go} />;
+  else if (page.id === 'press') view = <PressPage go={go} />;
+  else if (page.id === 'contact') view = <ContactPage go={go} />;
+  else view = <HomePage go={go} hero={t.hero} />;
+
+  return (
+    <React.Fragment>
+      <Nav page={page} go={go} dark={darkHero} key={page.id + '-' + t.hero} />
+      {view}
+      <Footer go={go} />
+
+      <TweaksPanel>
+        <TweakSection label="Hero" />
+        <TweakRadio label="Direction" value={t.hero}
+          options={['statement', 'feature', 'index']}
+          onChange={(v) => setTweak('hero', v)} />
+
+        <TweakSection label="Layout" />
+        <TweakSlider label="Display type" value={t.typeScale} min={0.4} max={1.3} step={0.05}
+          onChange={(v) => setTweak('typeScale', v)} />
+        <TweakRadio label="Density" value={t.density}
+          options={['compact', 'regular', 'spacious']}
+          onChange={(v) => setTweak('density', v)} />
+
+        <TweakSection label="Accent" subtitle="Brand reserves colour for real project material — loosen with care" />
+        <TweakColor label="Page accent" value={t.accent}
+          options={['#0A0A0A', '#1C3FBF', '#D4271E', '#C97A1A']}
+          onChange={(v) => setTweak('accent', v)} />
+
+        <TweakSection label="Motion" />
+        <TweakToggle label="Scroll reveal" value={t.motion}
+          onChange={(v) => setTweak('motion', v)} />
+      </TweaksPanel>
+    </React.Fragment>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
 </body>
 </html>

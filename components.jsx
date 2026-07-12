@@ -95,30 +95,42 @@ function Frame({ ratio = '4/3', num = '№ 00', meta = '', dim = '', accent = nu
 /* ---------- nav ---------- */
 function Nav({ page, go, dark = false }) {
   const [solid, setSolid] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   useEffect(() => {
     const onScroll = () => setSolid(window.scrollY > 24);
     onScroll();window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+  // lock body scroll when the mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
   // Over the slideshow / image hero (not scrolled): transparent nav, white
   // text & logo. Once scrolled (solid white nav) or on other pages: black.
-  const overlay = dark && !solid;
-  const cls = `nav2 ${solid || !dark ? 'solid' : ''}`;
+  // When the mobile menu is open the overlay is white, so force dark chrome.
+  const overlay = dark && !solid && !menuOpen;
+  const cls = `nav2 ${solid || !dark || menuOpen ? 'solid' : ''}`;
   const logo = overlay ? window.TUNK_LOGO_WHITE : window.TUNK_LOGO_BLACK;
   const col = overlay ? 'var(--paper)' : 'var(--ink)';
+  const nav = (id) => { setMenuOpen(false); go({ id }); };
   return (
     <header className={cls} style={{ color: col, height: "66px" }}>
-      <div className="brand" onClick={() => go({ id: 'home' })}>
+      <div className="brand" onClick={() => nav('home')}>
         <img src={logo} alt="TUNK" style={{ height: "30px" }} />
         <span className="disc" style={{ opacity: "1" }}>{DATA.site.discipline}</span>
       </div>
-      <nav className="links">
+      <nav className={`links ${menuOpen ? 'open' : ''}`}>
         {DATA.nav.map((l) =>
         <a key={l.id}
         className={page.id === l.id || l.id === 'work' && page.id === 'project' ? 'is-active' : ''}
-        onClick={() => go({ id: l.id })}>{l.label}</a>
+        onClick={() => nav(l.id)}>{l.label}</a>
         )}
       </nav>
+      <button className={`burger ${menuOpen ? 'open' : ''}`} aria-label="Menu"
+        onClick={() => setMenuOpen(v => !v)}>
+        <span /><span /><span />
+      </button>
     </header>);
 
 }
