@@ -169,7 +169,7 @@ function Footer({ go }) {
 function LazyVideo({ src, className = '', onSized }) {
   const ref = useRef(null);
   const [armed, setArmed] = useState(false);
-  const [muted, setMuted] = useState(false);
+  const [muted, setMuted] = useState(true);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
