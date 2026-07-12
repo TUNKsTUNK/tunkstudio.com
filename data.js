@@ -26,7 +26,7 @@ window.DATA = {
     intro1: "TUNK is a studio for architecture, art and design, based in Galata, Istanbul. The work moves across four disciplines — architecture, exhibition design, product design and installation.",
     intro2: "From houses on the Aegean coast to museum exhibitions at the Pera Museum, retail concepts, furniture and lighting, and light-and-sound installations made with collaborators such as NOHlab.",
     metaCols: [
-      { k: "Studio", v: "2014—23 as Müdahale\n2023 — TUNK\nIstanbul" },
+      { k: "Studio", v: "2014—23 as MUDAHALE\n2023 — TUNK\nIstanbul" },
       { k: "Work", v: "36 projects\n2014—2028" },
       { k: "Based", v: "Galata\nIstanbul" },
       { k: "Exhibited", v: "Pera Museum\nAkbank Sanat" },
@@ -49,7 +49,7 @@ window.DATA = {
   about: {
     eyebrow: "№ 02 — ABOUT",
     heading: "A studio for architecture, exhibition, product & installation.",
-    p1: "TUNK is an interdisciplinary studio for architecture, art and design, based in Istanbul. Founded by Büşra Tunç in 2014 under the name MÜDAHALE, the studio took the name TUNK in 2023. The work moves across four disciplines: architecture, exhibition design, product & collectible design and immersive installation.\n\nProjects range from houses on the Aegean coast and interiors across Istanbul to museum and institutional exhibitions at the Pera Museum, Istanbul Modern, Akbank Sanat and the AKM Opera House. The studio designs retail concepts for Parfumlab, develops furniture and lighting collections, and produces immersive light, sound and spatial installations. Its collectible design pieces are represented internationally by Adorno Design and have been shown at design fairs including Milan Design Week and 3 Days of Design.",
+    p1: "TUNK is an interdisciplinary studio for architecture, art and design, based in Istanbul. Founded by Busra Tunc in 2014 under the name MUDAHALE, the studio took the name TUNK in 2023. The work moves across four disciplines: architecture, exhibition design, product & collectible design and immersive installation.\n\nProjects range from houses on the Aegean coast and interiors across Istanbul to museum and institutional exhibitions at the Pera Museum, Istanbul Modern, Akbank Sanat and the AKM Opera House. The studio designs retail concepts for Parfumlab, develops furniture and lighting collections, and produces immersive light, sound and spatial installations. Its collectible design pieces are represented internationally by Adorno Design and have been shown at design fairs including Milan Design Week and 3 Days of Design.",
     p2: "Each project begins from its own site and brief, building a specific spatial logic rather than repeating a fixed style. Recent work has been published by ArchDaily, Designboom, Frame Magazine, Dezeen and Design Milk, among others.",
     disciplines: [
       { name: "Architecture", role: "Residential · interior · office · commercial · retail" },
