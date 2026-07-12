@@ -1,0 +1,5 @@
+/* Netlify: serve index.html for any path so the SPA's client-side router
+   (real paths like /work/postane) resolves on direct load, refresh, or a
+   shared link — otherwise Netlify would 404 on anything but the exact
+   file it can see on disk. */
+/*    /index.html   200

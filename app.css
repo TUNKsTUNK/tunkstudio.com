@@ -16,8 +16,7 @@
 @media (max-width: 640px) { :root { --m: 14px; --gutter: 12px; } }
 
 html { scroll-behavior: smooth; }
-body { overflow-x: hidden; font-family: var(--font-sans); color: var(--ink); background: var(--paper); -webkit-font-smoothing: antialiased; }
-h1,h2,h3,h4,h5,h6,button,input,textarea,select { font-family: var(--font-sans); }
+body { overflow-x: hidden; }
 
 /* honor the live margin everywhere the kit used .shell */
 .shell { padding-left: var(--m); padding-right: var(--m); }

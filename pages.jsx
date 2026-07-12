@@ -87,12 +87,12 @@ function ProjectPage({ project, go }) {
     p.press ? ['Press', p.press.join(' · ')] : null,
   ].filter(Boolean);
 
-  const [heroMuted, setHeroMuted] = useState(true);
+  const [heroMuted, setHeroMuted] = useState(false);
   const heroIframeRef = useRef(null);
   const heroVideoRef = useRef(null);
   useEffect(() => {
     // reset per-project so navigating between two video-hero projects still starts with sound on
-    setHeroMuted(true);
+    setHeroMuted(false);
   }, [p.slug]);
   useEffect(() => {
     if (p.heroVideo && heroIframeRef.current) {
@@ -113,7 +113,7 @@ function ProjectPage({ project, go }) {
           {p.heroVideo ? (
             <iframe
               ref={heroIframeRef}
-              src={`https://player.vimeo.com/video/${p.heroVideo}?autoplay=1&muted=1&loop=1&controls=0&app_id=122963#t=10s`}
+              src={`https://player.vimeo.com/video/${p.heroVideo}?autoplay=1&muted=0&loop=1&controls=0&app_id=122963#t=10s`}
               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0, pointerEvents: 'none' }}
               allow="autoplay; fullscreen; picture-in-picture"
               title={`${p.name} — film`}
@@ -122,7 +122,7 @@ function ProjectPage({ project, go }) {
             <div className="pj-hero-video">
               <video
                 ref={heroVideoRef}
-                src={p.heroVideoLocal} autoPlay playsInline preload="auto" loop muted
+                src={p.heroVideoLocal} autoPlay playsInline preload="auto" loop
               />
             </div>
           ) : (
