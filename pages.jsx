@@ -255,13 +255,13 @@ function PressPage({ go }) {
         <div className="lab lab-ink" style={{ marginBottom: 18 }}>Selected coverage</div>
         <div className="press">
           {p.items.map(r => (
-            <div className="r" key={r.n}>
+            <a className="r" key={r.n} href={r.url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
               <span className="lab">№ {r.n}</span>
               <span className="nm">{r.name}</span>
               <span className="lab k-hide">{r.pub}</span>
               <span className="lab k-hide">{r.type} · {r.year}</span>
               <span className="dl">Read <span style={{ fontFamily: 'var(--font-mono)' }}>→</span></span>
-            </div>
+            </a>
           ))}
         </div>
 
