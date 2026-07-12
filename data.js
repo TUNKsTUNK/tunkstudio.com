@@ -71,6 +71,8 @@ window.DATA = {
       { n: "04", name: "MSGSÜ WEAVING WORKSHOP", pub: "Arkitera", year: "2022", type: "Project feature", url: "https://www.arkitera.com/proje/msgsu-dokuma-atolyesi-yeniden-duzenlenmesi-ve-sistem-tasarimi/" },
       { n: "05", name: "RE/FRAMING LOUIS KAHN", pub: "Pera Museum",  year: "2016", type: "Exhibition design", url: "https://www.peramuseum.org/exhibition/re-framing-louis-kahn/217" },
       { n: "06", name: "PARAJANOV WITH SARKIS", pub: "Pera Museum",  year: "2018", type: "Exhibition design", url: "https://www.peramuseum.org/exhibition/parajanov-with-sarkis/235" },
+      { n: "07", name: "LIMINAL",           pub: "Designboom",   year: "2016", type: "Product feature", url: "https://www.designboom.com/design/busra-tunc-atolye-labs-lamalight-adaptablelamp-06-19-2016/" },
+      { n: "08", name: "LIMINAL",           pub: "Design Milk",  year: "2016", type: "Product feature", url: "https://design-milk.com/a-minimal-lamp-inspired-by-a-single-line/" },
     ],
     downloads: [
       { n: "01", name: "Studio biography",  meta: "DOCX · 6 KB",  langs: "EN · TR" },
