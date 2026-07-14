@@ -403,18 +403,23 @@ h1,h2,h3,h4,h5,h6,button,input,textarea,select { font-family: var(--font-sans); 
    even, legible — no masonry, no hero-sized plates. */
 .pj-gallery { padding: clamp(40px, 6vw, 88px) var(--m) 0; }
 .pj-grid-g {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--gutter, 24px);
+  column-count: 3;
+  column-gap: var(--gutter, 24px);
 }
 .pj-grid-g .g-cell {
-  position: relative; aspect-ratio: 4 / 3;
-  cursor: zoom-in; background: var(--concrete); overflow: hidden;
+  position: relative;
+  cursor: zoom-in; background: var(--concrete);
+  overflow: hidden;
+  break-inside: avoid;
+  margin-bottom: var(--gutter, 24px);
+  display: block;
 }
 .pj-grid-g .g-cell img {
-  display: block; width: 100%; height: 100%; object-fit: cover;
+  display: block; width: 100%; height: auto; object-fit: contain;
   transition: opacity var(--dur) var(--ease);
 }
+@media (max-width: 900px) { .pj-grid-g { column-count: 2; } }
+@media (max-width: 540px) { .pj-grid-g { column-count: 1; } }
 .pj-grid-g .g-cell:hover img { opacity: .88; }
 .pj-grid-g .pl-cap {
   position: absolute; left: 0; bottom: 0;
@@ -423,15 +428,15 @@ h1,h2,h3,h4,h5,h6,button,input,textarea,select { font-family: var(--font-sans); 
   opacity: 0; transform: translateY(4px); transition: all var(--dur) var(--ease);
 }
 .pj-grid-g .g-cell:hover .pl-cap { opacity: 1; transform: translateY(0); }
-.pj-grid-g .g-vid { grid-column: 1 / -1; cursor: default; background: var(--ink); display: flex; align-items: center; justify-content: center; height: 80vh; max-height: 820px; }
+.pj-grid-g .g-vid { column-span: all; cursor: default; background: var(--ink); display: flex; align-items: center; justify-content: center; height: 80vh; max-height: 820px; margin-bottom: var(--gutter, 24px); }
 .pj-grid-g .g-vid video { display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; margin: 0 auto; }
 /* dikey video + fotograf yan yana cifti */
-.pj-grid-g .g-pair { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: var(--gutter, 24px); align-items: stretch; }
-.pj-grid-g .g-pair .g-vid-tall { height: auto; max-height: none; aspect-ratio: 3 / 4; }
-.pj-grid-g .g-pair .g-vid-tall video { max-height: 100%; }
+.pj-grid-g .g-pair { column-span: all; display: grid; grid-template-columns: 1fr 1fr; gap: var(--gutter, 24px); align-items: center; margin-bottom: var(--gutter, 24px); }
+.pj-grid-g .g-pair .g-vid-tall { height: auto; max-height: 80vh; }
+.pj-grid-g .g-pair .g-vid-tall video { max-height: 80vh; }
 .pj-grid-g .g-pair .g-pair-img { position: relative; overflow: hidden; cursor: zoom-in; }
-.pj-grid-g .g-pair .g-pair-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-@media (max-width: 760px) { .pj-grid-g .g-pair { grid-template-columns: 1fr; } .pj-grid-g .g-pair .g-vid-tall { aspect-ratio: 3 / 4; } }
+.pj-grid-g .g-pair .g-pair-img img { width: 100%; height: auto; object-fit: contain; display: block; }
+@media (max-width: 760px) { .pj-grid-g .g-pair { grid-template-columns: 1fr; } }
 .lazyvid-wrap { position: relative; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
 .lazyvid-wrap video { max-height: 90vh; }
 .lazyvid-mute {
