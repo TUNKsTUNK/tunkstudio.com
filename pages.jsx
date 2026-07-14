@@ -170,17 +170,42 @@ function ProjectPage({ project, go }) {
 
       <section className="pj-gallery wrap">
         <div className="pj-grid-g">
-          {gal.map((g, k) => (
-            isVid(g)
-              ? <Reveal as="figure" className="g-cell g-vid" key={k} delay={(k % 3) * 60}>
-                  <LazyVideo src={g} />
-                  <figcaption className="pl-cap">{String(k + 1).padStart(2, '0')} · FILM</figcaption>
-                </Reveal>
-              : <Reveal as="figure" className="g-cell" key={k} delay={(k % 3) * 60} onClick={() => openLb(g)}>
-                  <img src={g} alt={`${p.name} — ${String(k + 1).padStart(2, '0')}`} loading="lazy" />
-                  <figcaption className="pl-cap">{String(k + 1).padStart(2, '0')}</figcaption>
-                </Reveal>
-          ))}
+          {(() => {
+            const out = [];
+            for (let k = 0; k < gal.length; k++) {
+              const g = gal[k];
+              const next = gal[k + 1];
+              // dikey elevation videosunu, hemen ardindaki fotografla yan yana goster (bosluk kalmasin)
+              if (isVid(g) && g.includes('elevation') && next && !isVid(next)) {
+                out.push(
+                  <Reveal as="div" className="g-pair" key={k} delay={(k % 3) * 60}>
+                    <figure className="g-cell g-vid g-vid-tall">
+                      <LazyVideo src={g} />
+                      <figcaption className="pl-cap">{String(k + 1).padStart(2, '0')} · FILM</figcaption>
+                    </figure>
+                    <figure className="g-cell g-pair-img" onClick={() => openLb(next)}>
+                      <img src={next} alt={`${p.name} — ${String(k + 2).padStart(2, '0')}`} loading="lazy" />
+                      <figcaption className="pl-cap">{String(k + 2).padStart(2, '0')}</figcaption>
+                    </figure>
+                  </Reveal>
+                );
+                k++; // sonraki fotoyu da kullandik, atla
+                continue;
+              }
+              out.push(
+                isVid(g)
+                  ? <Reveal as="figure" className="g-cell g-vid" key={k} delay={(k % 3) * 60}>
+                      <LazyVideo src={g} />
+                      <figcaption className="pl-cap">{String(k + 1).padStart(2, '0')} · FILM</figcaption>
+                    </Reveal>
+                  : <Reveal as="figure" className="g-cell" key={k} delay={(k % 3) * 60} onClick={() => openLb(g)}>
+                      <img src={g} alt={`${p.name} — ${String(k + 1).padStart(2, '0')}`} loading="lazy" />
+                      <figcaption className="pl-cap">{String(k + 1).padStart(2, '0')}</figcaption>
+                    </Reveal>
+              );
+            }
+            return out;
+          })()}
         </div>
       </section>
 
