@@ -200,10 +200,6 @@ function LazyVideo({ src, className = '', onSized }) {
         autoPlay={armed} playsInline preload="none" loop muted={muted}
         onLoadedMetadata={(e) => {
           const v = e.target;
-          if (v.videoWidth && v.videoHeight) {
-            const fig = v.closest('.g-vid');
-            if (fig) fig.style.aspectRatio = v.videoWidth + ' / ' + v.videoHeight;
-          }
           if (onSized) onSized(v.videoWidth, v.videoHeight);
         }}
       />
