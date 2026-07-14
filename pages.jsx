@@ -108,7 +108,7 @@ function ProjectPage({ project, go }) {
     <main className="route" style={{ '--accent': accentVar }}>
       <section className={`pj-hero ${(p.heroVideo || p.heroVideoLocal) ? 'pj-hero-video-sec' : ''}`}>
         <div onClick={() => !p.heroVideo && !p.heroVideoLocal && p.hero && openLb(p.hero)}
-             className={p.slug === 'yesim-evi' ? 'pj-hero-natural' : ''}
+             className={p.slug === 'yesim-evi' ? 'pj-hero-natural hero-wide' : (p.slug === 'parfumlab-mersin' ? 'pj-hero-natural' : '')}
              style={{ position: 'absolute', inset: 0, zIndex: 1, cursor: (p.heroVideo || p.heroVideoLocal) ? 'default' : (p.hero ? 'zoom-in' : 'default') }}>
           {p.heroVideo ? (
             <iframe
@@ -128,7 +128,7 @@ function ProjectPage({ project, go }) {
           ) : (
             <Frame ratio="auto" num={`№ ${p.cat}`} meta="" img={p.hero} alt={`${p.name} — ${p.kind}, ${p.location || 'Istanbul'}`} accent={p.accent}
                    bare wm={p.cat} style={{ position: 'absolute', inset: 0, aspectRatio: 'auto' }}
-                   fit={p.slug === 'yesim-evi' ? 'contain' : 'cover'} />
+                   fit={(p.slug === 'yesim-evi' || p.slug === 'parfumlab-mersin') ? 'contain' : 'cover'} />
           )}
         </div>
         <div className="scrim" style={{ position: 'absolute', inset: 0, background: 'rgba(10,10,10,.34)', zIndex: 2, pointerEvents: 'none' }} />

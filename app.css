@@ -378,7 +378,9 @@ h1,h2,h3,h4,h5,h6,button,input,textarea,select { font-family: var(--font-sans); 
    letterboxing it (dark bars top/bottom via object-fit:contain), cap the
    photo's own box to its real aspect ratio and center it in the hero area. */
 .pj-hero-natural { display: flex; align-items: center; justify-content: center; background: var(--ink); }
-.pj-hero-natural .frame { position: relative !important; inset: auto !important; aspect-ratio: 2600 / 1144 !important; height: 100%; width: auto; max-width: 100%; }
+.pj-hero-natural .frame { position: relative !important; inset: auto !important; height: 100%; width: auto; max-width: 100%; }
+.pj-hero-natural .frame-img { object-fit: contain !important; width: auto !important; max-width: 100% !important; height: 100% !important; }
+.pj-hero-natural.hero-wide .frame { aspect-ratio: 2600 / 1144 !important; }
 .pj-bar { position: absolute; top: 92px; left: var(--m); right: var(--m); display: flex; justify-content: space-between; z-index: 4; }
 .pj-bar .lab { color: var(--paper); }
 .pj-title-wrap { position: absolute; bottom: 40px; left: var(--m); right: var(--m); z-index: 4; }
