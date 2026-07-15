@@ -443,7 +443,7 @@ window.DATA = {
       year: 2023, yearLabel: "2023", location: "Istanbul", status: "Completed",
       tags: ["Installation"],
       hero: "assets/projects/painter/g/03.jpg",
-      thumb: "assets/projects/painter/g/02.jpg",
+      thumb: "assets/projects/painter/g/09.jpg",
       gallery: [
         "assets/projects/painter/g/11.jpg", "assets/projects/painter/g/12.jpg",
         "assets/projects/painter/store.mp4",
