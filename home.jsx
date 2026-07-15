@@ -29,7 +29,7 @@ function HeroFeature({ go }) {
   const h = DATA.home;
   // Homepage slideshow: one strong image per photographed project, in curated order.
   // Each slide links to its own project, so the hero showcases the whole studio.
-  const order = ['parfumlab-pneuma', 'yesim-evi', 'oculus', 'postane', 'samih-rifat', 'hali-atolyesi', 'paintshop', 'liminal'];
+  const order = ['parfumlab-pneuma', 'oculus', 'postane', 'samih-rifat', 'hali-atolyesi', 'paintshop', 'liminal'];
   const featured = order
     .map((s) => DATA.projects.find((p) => p.slug === s))
     .filter((p) => p && hasPhotos(p));
@@ -43,7 +43,7 @@ function HeroFeature({ go }) {
   const prevRef = useRef(0); // index of the image held on the bottom layer
   useEffect(() => {
     if (paused || slides.length < 2) return;
-    const id = setInterval(() => setI((n) => (n + 1) % slides.length), 4000);
+    const id = setInterval(() => setI((n) => (n + 1) % slides.length), 3200);
     return () => clearInterval(id);
   }, [paused, slides.length]);
   // Preload only the NEXT slide's image (not all of them) so the crossfade stays
