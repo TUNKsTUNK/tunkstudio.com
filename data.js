@@ -344,6 +344,7 @@ window.DATA = {
       hero: "assets/projects/kiosk/01.jpg",
       heroVideoLocal: "assets/projects/kiosk/xray.mp4",
       thumb: "assets/projects/kiosk/02.jpg",
+      thumbPos: "center 62%",
       gallery: [
         "assets/projects/kiosk/02.jpg", "assets/projects/kiosk/03.jpg",
         "assets/projects/kiosk/perspective.mp4",

@@ -62,20 +62,20 @@ function Clock() {
 }
 
 /* ---------- placeholder / real-image frame ---------- */
-function Frame({ ratio = '4/3', num = '№ 00', meta = '', dim = '', accent = null, wm = null, img = null, alt = '', bare = false, style = {}, fit = 'cover' }) {
+function Frame({ ratio = '4/3', num = '№ 00', meta = '', dim = '', accent = null, wm = null, img = null, alt = '', bare = false, style = {}, fit = 'cover', imgStyle = {} }) {
   // bare = just the photograph: no frame chrome, crop marks, numbers, labels.
   if (bare) {
     return (
       <div className={`frame bare ${img ? 'has-img' : ''}`} style={{ aspectRatio: ratio, ...style }}>
         {img ?
-        <img className="frame-img" src={img} alt={alt} loading="lazy" style={{ objectFit: fit }} /> :
+        <img className="frame-img" src={img} alt={alt} loading="lazy" style={{ objectFit: fit, ...imgStyle }} /> :
         <React.Fragment><div className="grain" /><div className="inset" /></React.Fragment>}
       </div>);
   }
   return (
     <div className={`frame ${img ? 'has-img' : ''}`} style={{ aspectRatio: ratio, ...style }}>
       {img ?
-      <img className="frame-img" src={img} alt={alt} loading="lazy" style={{ objectFit: fit }} /> :
+      <img className="frame-img" src={img} alt={alt} loading="lazy" style={{ objectFit: fit, ...imgStyle }} /> :
 
       <React.Fragment>
           <div className="grain" />
@@ -220,7 +220,8 @@ function Tile({ p, go }) {
   return (
     <div className="tile2" onClick={() => go({ id: 'project', project: p })}>
       <Frame ratio="4/3" num={`№ ${p.cat}`} meta={`${loc} · ${p.kind.toUpperCase()}`}
-      img={p.thumb || p.hero} alt={`${p.name} — ${p.kind}, ${p.location || 'Istanbul'}`} accent={p.accent} wm={p.cat} />
+      img={p.thumb || p.hero} alt={`${p.name} — ${p.kind}, ${p.location || 'Istanbul'}`} accent={p.accent} wm={p.cat}
+      imgStyle={p.thumbPos ? { objectPosition: p.thumbPos } : undefined} />
       <div className="meta">
         <div className="nm">{p.name}</div>
         <div className="yr">{p.yearLabel}</div>
