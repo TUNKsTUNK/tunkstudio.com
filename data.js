@@ -16,7 +16,7 @@ window.DATA = {
     { id: "work",    label: "Work"    },
     { id: "about",   label: "About"   },
     { id: "press",   label: "Press"   },
-    { id: "contact", label: "Contact" },
+    { id: "contact", label: "Contact" }
   ],
 
   home: {
@@ -29,7 +29,7 @@ window.DATA = {
       { k: "Studio", v: "2014—23 as MUDAHALE\n2023 — TUNK\nIstanbul" },
       { k: "Work", v: "36 projects\n2014—2028" },
       { k: "Based", v: "Galata\nIstanbul" },
-      { k: "Exhibited", v: "Pera Museum\nAkbank Sanat" },
+      { k: "Exhibited", v: "Pera Museum\nAkbank Sanat" }
     ],
     selectedLabel: "Selected work",
     selectedMore: "All projects",
@@ -42,7 +42,7 @@ window.DATA = {
       { num: "01", t: "Survey", d: "We measure the existing condition before drawing. Structure, daylight and the materials already in the room set the terms." },
       { num: "02", t: "Reduce", d: "The work uses as few elements as possible, deployed precisely. A threshold, a partition, a single line of light." },
       { num: "03", t: "Bind colour to material", d: "Where colour appears it belongs to a real material in the project, never applied as decoration." },
-      { num: "04", t: "Build", d: "Fabrication is detailed with the makers. The drawing and the built thing are held to the same tolerance." },
+      { num: "04", t: "Build", d: "Fabrication is detailed with the makers. The drawing and the built thing are held to the same tolerance." }
     ],
   },
 
@@ -55,7 +55,7 @@ window.DATA = {
       { name: "Architecture", role: "Residential · interior · office · commercial · retail" },
       { name: "Exhibition Architecture", role: "Museum & gallery exhibition design" },
       { name: "Product Design", role: "Custom furniture & lighting" },
-      { name: "Installation", role: "Permanent installations & art projects" },
+      { name: "Installation", role: "Permanent installations & art projects" }
     ],
     clients: ["Pera Museum", "Akbank Sanat", "Parfumlab", "NOHlab", "Pana Yapı", "MSGSÜ", "Arkitera", "ArchDaily", "Designboom"],
   },
@@ -72,11 +72,11 @@ window.DATA = {
       { n: "05", name: "RE/FRAMING LOUIS KAHN", pub: "Pera Museum",  year: "2016", type: "Exhibition design", url: "https://www.peramuseum.org/exhibition/re-framing-louis-kahn/217" },
       { n: "06", name: "PARAJANOV WITH SARKIS", pub: "Pera Museum",  year: "2018", type: "Exhibition design", url: "https://www.peramuseum.org/exhibition/parajanov-with-sarkis/235" },
       { n: "07", name: "LIMINAL",           pub: "Designboom",   year: "2016", type: "Product feature", url: "https://www.designboom.com/design/busra-tunc-atolye-labs-lamalight-adaptablelamp-06-19-2016/" },
-      { n: "08", name: "LIMINAL",           pub: "Design Milk",  year: "2016", type: "Product feature", url: "https://design-milk.com/a-minimal-lamp-inspired-by-a-single-line/" },
+      { n: "08", name: "LIMINAL",           pub: "Design Milk",  year: "2016", type: "Product feature", url: "https://design-milk.com/a-minimal-lamp-inspired-by-a-single-line/" }
     ],
     downloads: [
       { n: "01", name: "Studio biography",  meta: "DOCX · 6 KB",  langs: "EN · TR" },
-      { n: "02", name: "Studio logo pack",  meta: "ZIP · 2.4 MB", langs: "—" },
+      { n: "02", name: "Studio logo pack",  meta: "ZIP · 2.4 MB", langs: "—" }
     ],
   },
 
@@ -303,7 +303,6 @@ window.DATA = {
         "assets/projects/pneuma/foto_03.jpg",
         "assets/projects/pneuma/dg-plan.jpg",
         "assets/projects/pneuma/foto_01.jpg",
-        "assets/projects/pneuma/foto_15.jpg",
         "assets/projects/pneuma/foto_04.jpg",
         "assets/projects/pneuma/foto_02.jpg",
         "assets/projects/pneuma/foto_09.jpg",
@@ -311,7 +310,6 @@ window.DATA = {
         "assets/projects/pneuma/foto_11.jpg",
         "assets/projects/pneuma/foto_12.jpg",
         "assets/projects/pneuma/foto_13.jpg",
-        "assets/projects/pneuma/vid-kanvasraf.mp4",
         "assets/projects/pneuma/foto_14.jpg",
         "assets/projects/pneuma/dg-complementary.jpg",
         "assets/projects/pneuma/dg-complementary-detail.jpg",
@@ -539,6 +537,6 @@ window.DATA = {
       tags: ["Installation"],
       summary: "An unrealised proposal for Özdilek.",
       para: "A studio proposal developed for Özdilek that was not realised.",
-    },
+    }
   ],
 };
