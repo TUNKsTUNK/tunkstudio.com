@@ -195,6 +195,7 @@ window.DATA = {
       year: 2016, yearLabel: "2016", location: "Istanbul Imperial Arsenal, Istanbul", status: "Completed",
       collab: "NOHlab, HAS Architects", press: ["ArchDaily", "Designboom"],
       heroVideo: "193355265",
+      heroVideoStart: "10s",
       tags: ["Installation"],
       hero: "assets/projects/oculus/g/07.jpg",
       thumb: "assets/projects/oculus/g/01.jpg",
@@ -296,6 +297,7 @@ window.DATA = {
       year: 2026, yearLabel: "2026", location: "Istanbul", status: "Completed",
       tags: ["Architecture"],
       hero: "assets/projects/pneuma/foto_03.jpg",
+      heroVideo: "1209046942",
       thumb: "assets/projects/pneuma/foto_01.jpg",
       wideGallery: true,
       gallery: [
