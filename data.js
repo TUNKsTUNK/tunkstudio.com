@@ -296,7 +296,7 @@ window.DATA = {
       category: "Architecture", kind: "Retail Design",
       year: 2026, yearLabel: "2026", location: "Istanbul", status: "Completed",
       tags: ["Architecture"],
-      hero: "assets/projects/pneuma/foto_03.jpg",
+      hero: "assets/projects/pneuma-hero.jpg",
       heroVideo: "1209046942",
       thumb: "assets/projects/pneuma/foto_01.jpg",
       wideGallery: true,
