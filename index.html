@@ -958,7 +958,7 @@ function HeroFeature({ go }) {
   const h = DATA.home;
   // Homepage slideshow: one strong image per photographed project, in curated order.
   // Each slide links to its own project, so the hero showcases the whole studio.
-  const order = ['parfumlab-pneuma', 'yesim-evi', 'oculus', 'postane', 'samih-rifat', 'hali-atolyesi', 'paintshop', 'liminal'];
+  const order = ['parfumlab-pneuma', 'oculus', 'postane', 'samih-rifat', 'hali-atolyesi', 'paintshop', 'liminal'];
   const featured = order
     .map((s) => DATA.projects.find((p) => p.slug === s))
     .filter((p) => p && hasPhotos(p));
@@ -972,7 +972,7 @@ function HeroFeature({ go }) {
   const prevRef = useRef(0); // index of the image held on the bottom layer
   useEffect(() => {
     if (paused || slides.length < 2) return;
-    const id = setInterval(() => setI((n) => (n + 1) % slides.length), 4000);
+    const id = setInterval(() => setI((n) => (n + 1) % slides.length), 3000);
     return () => clearInterval(id);
   }, [paused, slides.length]);
   // Preload only the NEXT slide's image (not all of them) so the crossfade stays
@@ -987,7 +987,7 @@ function HeroFeature({ go }) {
   // freeze in this preview compositor, but timers run, so this stays smooth).
   useEffect(() => {
     setOp(0);
-    const steps = 28,dur = 900;
+    const steps = 20,dur = 500;
     let s = 0;
     const id = setInterval(() => {
       s += 1;
@@ -1241,12 +1241,12 @@ function ProjectPage({ project, go }) {
     p.press ? ['Press', p.press.join(' · ')] : null,
   ].filter(Boolean);
 
-  const [heroMuted, setHeroMuted] = useState(false);
+  const [heroMuted, setHeroMuted] = useState(true);
   const heroIframeRef = useRef(null);
   const heroVideoRef = useRef(null);
   useEffect(() => {
     // reset per-project so navigating between two video-hero projects still starts with sound on
-    setHeroMuted(false);
+    setHeroMuted(true);
   }, [p.slug]);
   useEffect(() => {
     if (p.heroVideo && heroIframeRef.current) {
@@ -1267,7 +1267,7 @@ function ProjectPage({ project, go }) {
           {p.heroVideo ? (
             <iframe
               ref={heroIframeRef}
-              src={`https://player.vimeo.com/video/${p.heroVideo}?autoplay=1&muted=0&loop=1&controls=0&app_id=122963#t=10s`}
+              src={`https://player.vimeo.com/video/${p.heroVideo}?autoplay=1&muted=1&loop=1&controls=0&app_id=122963#t=10s`}
               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0, pointerEvents: 'none' }}
               allow="autoplay; fullscreen; picture-in-picture"
               title={`${p.name} — film`}
@@ -1276,7 +1276,7 @@ function ProjectPage({ project, go }) {
             <div className="pj-hero-video">
               <video
                 ref={heroVideoRef}
-                src={p.heroVideoLocal} autoPlay playsInline preload="auto" loop
+                src={p.heroVideoLocal} autoPlay playsInline preload="auto" loop muted
               />
             </div>
           ) : (
