@@ -43,7 +43,7 @@ function HeroFeature({ go }) {
   const prevRef = useRef(0); // index of the image held on the bottom layer
   useEffect(() => {
     if (paused || slides.length < 2) return;
-    const id = setInterval(() => setI((n) => (n + 1) % slides.length), 3200);
+    const id = setInterval(() => setI((n) => (n + 1) % slides.length), 3000);
     return () => clearInterval(id);
   }, [paused, slides.length]);
   // Preload only the NEXT slide's image (not all of them) so the crossfade stays
@@ -56,18 +56,21 @@ function HeroFeature({ go }) {
   // Smooth crossfade: bottom layer holds the previous image at full opacity while
   // the incoming image fades in on top. Driven by a real CSS transition (runs on
   // the compositor thread) instead of a setInterval opacity ramp, so every slide
-  // change animates on the same fixed timeline — the old JS-stepped version could
-  // visibly hitch if the main thread was briefly busy.
-  useEffect(() => {
+  // change animates on the same fixed timeline.
+  // IMPORTANT: the opacity reset to 0 must happen in useLayoutEffect (synchronous,
+  // before the browser paints) — not useEffect. Otherwise the browser paints one
+  // frame of the new image at the OLD (visible) opacity first, then the opacity
+  // drop to 0 itself gets caught by the CSS transition and animates backwards,
+  // producing a flash-then-reverse-fade instead of a clean fade in.
+  React.useLayoutEffect(() => {
     setVisible(false);
-    // double rAF: one frame to commit opacity:0 with no transition, the next
-    // to flip it to 1 so the browser actually animates the change.
-    let raf2;
-    const raf1 = requestAnimationFrame(() => {
-      raf2 = requestAnimationFrame(() => setVisible(true));
-    });
+  }, [i]);
+  useEffect(() => {
+    // one rAF so the opacity:0 frame actually paints before we flip to 1 —
+    // otherwise the browser can coalesce both changes and skip the transition.
+    const raf = requestAnimationFrame(() => setVisible(true));
     const settle = setTimeout(() => { prevRef.current = i; }, 950); // matches CSS duration
-    return () => { cancelAnimationFrame(raf1); if (raf2) cancelAnimationFrame(raf2); clearTimeout(settle); };
+    return () => { cancelAnimationFrame(raf); clearTimeout(settle); };
   }, [i]);
 
   const cur = slides[i].p;

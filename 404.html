@@ -972,7 +972,7 @@ function HeroFeature({ go }) {
   const prevRef = useRef(0); // index of the image held on the bottom layer
   useEffect(() => {
     if (paused || slides.length < 2) return;
-    const id = setInterval(() => setI((n) => (n + 1) % slides.length), 4000);
+    const id = setInterval(() => setI((n) => (n + 1) % slides.length), 3000);
     return () => clearInterval(id);
   }, [paused, slides.length]);
   // Preload only the NEXT slide's image (not all of them) so the crossfade stays
