@@ -87,9 +87,6 @@ function HeroFeature({ go }) {
         <div className="album-photo" onClick={() => go({ id: 'project', project: cur })}
         style={{ backgroundImage: curImg ? `url(${curImg})` : 'none', opacity: visible ? 1 : 0, cursor: 'pointer' }} />
         <div className="scrim" />
-        <div className="overlay-top">
-          <span className="lab" style={{ color: 'rgba(255,255,255,.85)' }}>{h.eyebrow}</span>
-        </div>
         <div className="overlay-bottom">
           {i === 0 && <h1 className="mega statement">{h.statement}</h1>}
           <div className="feature-meta">
