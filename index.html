@@ -972,7 +972,7 @@ function HeroFeature({ go }) {
   const prevRef = useRef(0); // index of the image held on the bottom layer
   useEffect(() => {
     if (paused || slides.length < 2) return;
-    const id = setInterval(() => setI((n) => (n + 1) % slides.length), 3000);
+    const id = setInterval(() => setI((n) => (n + 1) % slides.length), 4000);
     return () => clearInterval(id);
   }, [paused, slides.length]);
   // Preload only the NEXT slide's image (not all of them) so the crossfade stays
@@ -998,7 +998,7 @@ function HeroFeature({ go }) {
     // one rAF so the opacity:0 frame actually paints before we flip to 1 —
     // otherwise the browser can coalesce both changes and skip the transition.
     const raf = requestAnimationFrame(() => setVisible(true));
-    const settle = setTimeout(() => { prevRef.current = i; }, 900); // matches CSS duration
+    const settle = setTimeout(() => { prevRef.current = i; }, 1000); // matches CSS duration
     return () => { cancelAnimationFrame(raf); clearTimeout(settle); };
   }, [i]);
 
