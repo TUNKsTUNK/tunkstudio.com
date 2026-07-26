@@ -39,7 +39,7 @@ function HeroFeature({ go }) {
 
   const [i, setI] = useState(0);
   const [paused, setPaused] = useState(false);
-  const [op, setOp] = useState(1); // opacity of the incoming (top) layer
+  const [visible, setVisible] = useState(true); // opacity flag for the incoming (top) layer
   const prevRef = useRef(0); // index of the image held on the bottom layer
   useEffect(() => {
     if (paused || slides.length < 2) return;
@@ -54,19 +54,20 @@ function HeroFeature({ go }) {
     if (next && next.img) { const im = new Image(); im.src = next.img; }
   }, [i, slides]);
   // Smooth crossfade: bottom layer holds the previous image at full opacity while
-  // the incoming image fades in on top (many small JS steps — CSS transitions
-  // freeze in this preview compositor, but timers run, so this stays smooth).
+  // the incoming image fades in on top. Driven by a real CSS transition (runs on
+  // the compositor thread) instead of a setInterval opacity ramp, so every slide
+  // change animates on the same fixed timeline — the old JS-stepped version could
+  // visibly hitch if the main thread was briefly busy.
   useEffect(() => {
-    setOp(0);
-    const steps = 28,dur = 900;
-    let s = 0;
-    const id = setInterval(() => {
-      s += 1;
-      const t = s / steps;
-      setOp(t < 1 ? (1 - Math.cos(t * Math.PI)) / 2 : 1); // ease-in-out
-      if (s >= steps) {clearInterval(id);prevRef.current = i;}
-    }, dur / steps);
-    return () => clearInterval(id);
+    setVisible(false);
+    // double rAF: one frame to commit opacity:0 with no transition, the next
+    // to flip it to 1 so the browser actually animates the change.
+    let raf2;
+    const raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(() => setVisible(true));
+    });
+    const settle = setTimeout(() => { prevRef.current = i; }, 950); // matches CSS duration
+    return () => { cancelAnimationFrame(raf1); if (raf2) cancelAnimationFrame(raf2); clearTimeout(settle); };
   }, [i]);
 
   const cur = slides[i].p;
@@ -81,13 +82,13 @@ function HeroFeature({ go }) {
         <div className="album-photo" style={{ backgroundImage: prevImg ? `url(${prevImg})` : 'none' }} />
         {/* top layer: incoming image fading in */}
         <div className="album-photo" onClick={() => go({ id: 'project', project: cur })}
-        style={{ backgroundImage: curImg ? `url(${curImg})` : 'none', opacity: op, cursor: 'pointer' }} />
+        style={{ backgroundImage: curImg ? `url(${curImg})` : 'none', opacity: visible ? 1 : 0, cursor: 'pointer' }} />
         <div className="scrim" />
         <div className="overlay-top">
           <span className="lab" style={{ color: 'rgba(255,255,255,.85)' }}>{h.eyebrow}</span>
         </div>
         <div className="overlay-bottom">
-          <h1 className="mega statement">{h.statement}</h1>
+          {i === 0 && <h1 className="mega statement">{h.statement}</h1>}
           <div className="feature-meta">
             <div onClick={() => go({ id: 'project', project: cur })} style={{ cursor: 'pointer' }}>
               <div className="lab" style={{ color: 'rgba(255,255,255,.9)', marginBottom: 6 }}>{cur.name}</div>

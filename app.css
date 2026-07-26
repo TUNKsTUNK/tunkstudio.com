@@ -175,8 +175,10 @@ h1,h2,h3,h4,h5,h6,button,input,textarea,select { font-family: var(--font-sans); 
 .album-photo {
   position: absolute; inset: 0; z-index: 1; background: var(--carbon);
   background-size: cover; background-position: center; background-repeat: no-repeat;
+  transition: opacity 900ms cubic-bezier(.4,0,.2,1);
+  will-change: opacity;
 }
-@media (prefers-reduced-motion: reduce) { .album-photo { opacity: 1 !important; } }
+@media (prefers-reduced-motion: reduce) { .album-photo { opacity: 1 !important; transition: none; } }
 
 .album-dots { display: flex; gap: 8px; align-items: center; }
 .album-dots .dot {
