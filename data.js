@@ -383,7 +383,6 @@ window.DATA = {
         "assets/projects/kiosk/g01-signage.jpg",
         "assets/projects/kiosk/g10-exterior-wide.jpg",
         "assets/projects/kiosk/g11-exterior-detail.jpg",
-        "assets/projects/kiosk/g02-overview.jpg",
         "assets/projects/kiosk/g04-detail-counter.jpg",
         "assets/projects/kiosk/g12-bottle-column.jpg",
         "assets/projects/kiosk/g13-formula-cards.jpg",
