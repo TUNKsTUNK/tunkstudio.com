@@ -344,8 +344,6 @@ window.DATA = {
       thumb: "assets/projects/mersin/foto_08.jpg",
       gallery: [
         "assets/projects/mersin/graphic-plan.jpg",
-        "assets/projects/mersin/graphic-elevation.jpg",
-        "assets/projects/mersin/elevation.mp4",
         "assets/projects/mersin/foto_02.jpg",
         "assets/projects/mersin/foto_01.jpg",
         "assets/projects/mersin/foto_03.jpg",
@@ -364,6 +362,8 @@ window.DATA = {
         "assets/projects/mersin/foto_16.jpg",
         "assets/projects/mersin/foto_17.jpg",
         "assets/projects/mersin/foto_19.jpg",
+        "assets/projects/mersin/graphic-elevation.jpg",
+        "assets/projects/mersin/elevation.mp4",
         "assets/projects/mersin/foto_20.jpg"
       ],
       summary: "A Parfumlab store in Mersin, built on the pneumatic display system.",
@@ -383,21 +383,21 @@ window.DATA = {
         "assets/projects/kiosk/g10-exterior-wide.jpg",
         "assets/projects/kiosk/g11-exterior-detail.jpg",
         "assets/projects/kiosk/g02-overview.jpg",
-        "assets/projects/kiosk/perspective.mp4",
         "assets/projects/kiosk/g03-context.jpg",
         "assets/projects/kiosk/g04-detail-counter.jpg",
         "assets/projects/kiosk/g12-bottle-column.jpg",
         "assets/projects/kiosk/g13-formula-cards.jpg",
         "assets/projects/kiosk/g14-formula-cards-alt.jpg",
         "assets/projects/kiosk/g05-overview-clean.jpg",
-        "assets/projects/kiosk/axon1.mp4",
         "assets/projects/kiosk/g06-pipes-wide.jpg",
         "assets/projects/kiosk/g07-pipe-column.jpg",
         "assets/projects/kiosk/g08-pipe-abstract.jpg",
         "assets/projects/kiosk/g09-context-alt.jpg",
         "assets/projects/kiosk/g15-plan-overview.jpg",
         "assets/projects/kiosk/02.jpg", "assets/projects/kiosk/03.jpg",
-        "assets/projects/kiosk/04.jpg", "assets/projects/kiosk/05.jpg"
+        "assets/projects/kiosk/04.jpg", "assets/projects/kiosk/05.jpg",
+        "assets/projects/kiosk/perspective.mp4",
+        "assets/projects/kiosk/axon1.mp4"
       ],
       summary: "A repeatable kiosk format for Parfumlab, built in three footprints.",
       para: "A modular kiosk system for Parfumlab, repeated across Ankara and Istanbul through 2025\u20132026 at three footprints \u2014 4\u00d73 m, 4\u00d74 m and 5\u00d74 m \u2014 to fit each site. A pneumatic system, display counter and a family of display units and cubes form one kit of parts, reconfigured per location.",
@@ -461,11 +461,12 @@ window.DATA = {
       thumb: "assets/projects/liminal/g/15.jpg",
       gallery: [
         "assets/projects/liminal/g/01.jpg", "assets/projects/liminal/g/02.jpg", "assets/projects/liminal/g/03.jpg",
-        "assets/projects/liminal/g/05.jpg", "assets/projects/liminal/credits.mp4",
+        "assets/projects/liminal/g/05.jpg",
         "assets/projects/liminal/g/06.jpg", "assets/projects/liminal/g/07.jpg", "assets/projects/liminal/g/08.jpg",
         "assets/projects/liminal/g/09.jpg", "assets/projects/liminal/g/12.jpg", "assets/projects/liminal/g/13.jpg",
         "assets/projects/liminal/g/14.jpg", "assets/projects/liminal/g/15.jpg", "assets/projects/liminal/g/16.jpg",
-        "assets/projects/liminal/g/10.jpg", "assets/projects/liminal/g/11.jpg"
+        "assets/projects/liminal/g/10.jpg", "assets/projects/liminal/g/11.jpg",
+        "assets/projects/liminal/credits.mp4"
       ],
       summary: "A custom lighting design.",
       para: "A lighting piece developed by the studio.",
@@ -495,12 +496,12 @@ window.DATA = {
       thumb: "assets/projects/painter/g/09.jpg",
       gallery: [
         "assets/projects/painter/g/11.jpg", "assets/projects/painter/g/12.jpg",
-        "assets/projects/painter/store.mp4",
         "assets/projects/painter/g/05.jpg", "assets/projects/painter/g/02.jpg", "assets/projects/painter/g/06.jpg",
         "assets/projects/painter/g/07.jpg", "assets/projects/painter/g/08.jpg", "assets/projects/painter/g/09.jpg",
         "assets/projects/painter/g/10.jpg", "assets/projects/painter/g/16.jpg", "assets/projects/painter/g/01.jpg",
         "assets/projects/painter/g/13.jpg", "assets/projects/painter/g/14.jpg",
-        "assets/projects/painter/g/18.jpg", "assets/projects/painter/g/19.jpg"
+        "assets/projects/painter/g/18.jpg", "assets/projects/painter/g/19.jpg",
+        "assets/projects/painter/store.mp4"
       ],
       photographer: "Emirkan Corut, Zeynep Fırat",
       summary: "Installation design. The painter",
