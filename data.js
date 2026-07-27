@@ -299,6 +299,7 @@ window.DATA = {
       hero: "assets/projects/pneuma-hero.jpg",
       heroVideo: "1209046942",
       thumb: "assets/projects/pneuma/foto_01.jpg",
+      thumbPos: "center 62%",
       wideGallery: true,
       gallery: [
         "assets/projects/pneuma/foto_21.jpg",
@@ -377,7 +378,7 @@ window.DATA = {
       hero: "assets/projects/kiosk/01.jpg",
       heroVideoLocal: "assets/projects/kiosk/xray.mp4",
       thumb: "assets/projects/kiosk/02.jpg",
-      thumbPos: "center 62%",
+      thumbPos: "center 50%",
       gallery: [
         "assets/projects/kiosk/g01-signage.jpg",
         "assets/projects/kiosk/g10-exterior-wide.jpg",
