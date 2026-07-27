@@ -379,10 +379,19 @@ window.DATA = {
       thumb: "assets/projects/kiosk/02.jpg",
       thumbPos: "center 62%",
       gallery: [
-        "assets/projects/kiosk/02.jpg", "assets/projects/kiosk/03.jpg",
+        "assets/projects/kiosk/g01-signage.jpg",
+        "assets/projects/kiosk/g02-overview.jpg",
         "assets/projects/kiosk/perspective.mp4",
-        "assets/projects/kiosk/04.jpg", "assets/projects/kiosk/05.jpg",
-        "assets/projects/kiosk/axon1.mp4"
+        "assets/projects/kiosk/g03-context.jpg",
+        "assets/projects/kiosk/g04-detail-counter.jpg",
+        "assets/projects/kiosk/g05-overview-clean.jpg",
+        "assets/projects/kiosk/axon1.mp4",
+        "assets/projects/kiosk/g06-pipes-wide.jpg",
+        "assets/projects/kiosk/g07-pipe-column.jpg",
+        "assets/projects/kiosk/g08-pipe-abstract.jpg",
+        "assets/projects/kiosk/g09-context-alt.jpg",
+        "assets/projects/kiosk/02.jpg", "assets/projects/kiosk/03.jpg",
+        "assets/projects/kiosk/04.jpg", "assets/projects/kiosk/05.jpg"
       ],
       summary: "A repeatable kiosk format for Parfumlab, built in three footprints.",
       para: "A modular kiosk system for Parfumlab, repeated across Ankara and Istanbul through 2025\u20132026 at three footprints \u2014 4\u00d73 m, 4\u00d74 m and 5\u00d74 m \u2014 to fit each site. A pneumatic system, display counter and a family of display units and cubes form one kit of parts, reconfigured per location.",
