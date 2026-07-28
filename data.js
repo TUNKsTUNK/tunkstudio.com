@@ -297,7 +297,6 @@ window.DATA = {
       year: 2026, yearLabel: "2026", location: "Istanbul", status: "Completed",
       tags: ["Architecture"],
       hero: "assets/projects/pneuma-hero.jpg",
-      heroVideo: "1209046942",
       thumb: "assets/projects/pneuma/foto_01.jpg",
       thumbPos: "center 62%",
       wideGallery: true,
