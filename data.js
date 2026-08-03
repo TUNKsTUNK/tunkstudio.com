@@ -484,7 +484,7 @@ window.DATA = {
       para: "An installation realised in 2019 in collaboration with artist Yağız Özgen.",
     },
     {
-      cat: "30", slug: "paintshop", name: "The Painter",
+      cat: "30", slug: "paintstore", name: "The Painter",
       category: "Installation", kind: "Installation",
       year: 2023, yearLabel: "2023", location: "Istanbul", status: "Completed",
       tags: ["Installation"],
