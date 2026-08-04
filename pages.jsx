@@ -4,10 +4,9 @@ function WorkPage({ go }) {
   const [view, setView] = useState('grid');
   const [filter, setFilter] = useState('All');
   const base = filter === 'All' ? DATA.projects : DATA.projects.filter(p => p.tags.includes(filter));
-  const filtered = [...base].sort((a, b) => {
-    // Projects with photography come first; un-photographed ones fall to the end.
-    const pa = hasPhotos(a), pb = hasPhotos(b);
-    if (pa !== pb) return pa ? -1 : 1;
+  // Only published projects (with photography) appear here. Un-photographed
+  // ones stay hidden until a gallery is added — no empty placeholder tiles.
+  const filtered = [...base].filter(hasPhotos).sort((a, b) => {
     if (a.year == null && b.year == null) return 0;
     if (a.year == null) return 1;
     if (b.year == null) return -1;
