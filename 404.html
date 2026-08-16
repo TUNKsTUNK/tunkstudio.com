@@ -1526,18 +1526,21 @@ function App() {
     setPage(p);
     const path = encodePage(p);
     if (window.location.pathname !== path) window.history.pushState({ page: p.id }, '', path);
-    window.scrollTo({ top: 0, behavior: 'auto' });
   };
 
   // Back/forward button: read the new path, update state, but don't push again.
   useEffect(() => {
-    const onPop = () => {
-      setPage(decodePath(window.location.pathname));
-      window.scrollTo({ top: 0, behavior: 'auto' });
-    };
+    const onPop = () => setPage(decodePath(window.location.pathname));
     window.addEventListener('popstate', onPop);
     return () => window.removeEventListener('popstate', onPop);
   }, []);
+
+  // Reset scroll to top on every page change. This runs AFTER React commits
+  // the new page (not synchronously inside the click handler), so it's
+  // unaffected by the mobile menu's body{overflow:hidden} scroll lock — if
+  // scrollTo ran while overflow was still hidden, the browser silently
+  // ignored it and the new page opened at the old scroll position.
+  useEffect(() => { window.scrollTo({ top: 0, behavior: 'auto' }); }, [page]);
 
   // Per-page SEO: title, meta description, canonical, Open Graph/Twitter
   // cards, and a JSON-LD block (Organization sitewide, CreativeWork per
