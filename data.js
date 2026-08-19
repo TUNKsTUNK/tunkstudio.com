@@ -292,7 +292,7 @@ window.DATA = {
       para: "The existing studio was re-planned around how the work is actually made. A blue steel armature carries the stair, the tool screens and the open shelving; dyed yarn is sorted into a wall of stacked translucent bins, read at a glance by colour. Everything new is fabricated in mild steel and left exposed — welded on site, levelled against the original arched windows and timber ceiling. Published by Arkitera.",
     },
     {
-      cat: "17", slug: "parfumlab-pneuma", name: "PNEUMA I Parfumlab",
+      cat: "17", slug: "parfumlab-pneuma", name: "PNEUMA I",
       category: "Architecture", kind: "Retail Design",
       year: 2026, yearLabel: "2026", location: "Istanbul", status: "Completed",
       tags: ["Architecture"],
