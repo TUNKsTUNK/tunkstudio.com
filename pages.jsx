@@ -65,9 +65,13 @@ function WorkPage({ go }) {
 
 function ProjectPage({ project, go }) {
   const p = project || DATA.projects[0];
-  const idx = DATA.projects.findIndex(x => x.cat === p.cat);
-  const next = DATA.projects[(idx + 1) % DATA.projects.length];
-  const prev = DATA.projects[(idx - 1 + DATA.projects.length) % DATA.projects.length];
+  // Prev/next only cycles through published projects (with a gallery) —
+  // otherwise an unrealised/un-photographed proposal that's hidden from the
+  // /work grid could still surface via these arrows.
+  const published = DATA.projects.filter(hasPhotos);
+  const idx = published.findIndex(x => x.cat === p.cat);
+  const next = idx >= 0 ? published[(idx + 1) % published.length] : published[0];
+  const prev = idx >= 0 ? published[(idx - 1 + published.length) % published.length] : published[0];
   const accentVar = p.accent ? `var(--${p.accent})` : 'var(--ink)';
   const loc = p.location ? p.location.toUpperCase() : 'ISTANBUL';
   const gal = p.gallery || [];
