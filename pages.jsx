@@ -190,7 +190,7 @@ function ProjectPage({ project, go }) {
                       <figcaption className="pl-cap">{String(k + 1).padStart(2, '0')} · FILM</figcaption>
                     </figure>
                     <figure className="g-cell g-pair-img" onClick={() => openLb(next)}>
-                      <img src={next} alt={`${p.name} — ${String(k + 2).padStart(2, '0')}`} loading="lazy" />
+                      <img src={next} alt={`${p.name} — ${String(k + 2).padStart(2, '0')}`} />
                       <figcaption className="pl-cap">{String(k + 2).padStart(2, '0')}</figcaption>
                     </figure>
                   </Reveal>
@@ -205,7 +205,7 @@ function ProjectPage({ project, go }) {
                       <figcaption className="pl-cap">{String(k + 1).padStart(2, '0')} · FILM</figcaption>
                     </Reveal>
                   : <Reveal as="figure" className="g-cell" key={k} delay={(k % 3) * 60} onClick={() => openLb(g)}>
-                      <img src={g} alt={`${p.name} — ${String(k + 1).padStart(2, '0')}`} loading="lazy" />
+                      <img src={g} alt={`${p.name} — ${String(k + 1).padStart(2, '0')}`} />
                       <figcaption className="pl-cap">{String(k + 1).padStart(2, '0')}</figcaption>
                     </Reveal>
               );
