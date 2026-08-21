@@ -341,7 +341,8 @@ window.DATA = {
       year: 2025, yearLabel: "2025", location: "Mersin", status: "Completed",
       tags: ["Architecture"],
       hero: "assets/projects/mersin/foto_05.jpg",
-      thumb: "assets/projects/mersin/foto_08.jpg",
+      thumb: "assets/projects/mersin/foto_02.jpg",
+      thumbPos: "center 0%",
       gallery: [
         "assets/projects/mersin/graphic-plan.jpg",
         "assets/projects/mersin/foto_02.jpg",
