@@ -1,4 +1,5 @@
 /work/paintshop   /work/paintstore   301
+/work/parfumlab-mersin   /work/pneuma-ii   301
 
 /* Netlify: serve index.html for any path so the SPA's client-side router
    (real paths like /work/postane) resolves on direct load, refresh, or a

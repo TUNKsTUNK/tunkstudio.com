@@ -336,13 +336,13 @@ window.DATA = {
       para: "The store is laid out as a laboratory: a white pipework grid runs across ceiling and walls, blue-glass panels carry the formula displays, and a mirrored island holds the bottles. Colour belongs entirely to the cobalt glass and the lab apparatus.",
     },
     {
-      cat: "18", slug: "parfumlab-mersin", name: "PNEUMA I MERSIN",
+      cat: "18", slug: "pneuma-ii", name: "PNEUMA II",
       category: "Architecture", kind: "Retail Design",
       year: 2025, yearLabel: "2025", location: "Mersin", status: "Completed",
       tags: ["Architecture"],
       hero: "assets/projects/mersin/foto_05.jpg",
       thumb: "assets/projects/mersin/foto_02.jpg",
-      thumbPos: "center 10%",
+      thumbPos: "center 3%",
       gallery: [
         "assets/projects/mersin/graphic-plan.jpg",
         "assets/projects/mersin/foto_02.jpg",
