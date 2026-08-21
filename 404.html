@@ -1314,6 +1314,13 @@ function ProjectPage({ project, go }) {
             : (!p.gallery || !p.gallery.length)
               ? <p className="para" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.04em', textTransform: 'uppercase', color: 'var(--aluminium)', marginTop: 32 }}>Photography pending — images to follow</p>
               : null}
+          {p.credits && p.credits.length
+            ? <p className="para" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.04em', textTransform: 'uppercase', color: 'var(--graphite)', marginTop: p.photographer ? 12 : 32, lineHeight: 1.9 }}>
+                {p.credits.map(([role, name], i) => (
+                  <React.Fragment key={role}>{i > 0 && <br />}{role} — {name}</React.Fragment>
+                ))}
+              </p>
+            : null}
         </div>
         <div className="pj-specs">
           {specs.map(([k, v]) => (
