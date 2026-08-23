@@ -173,16 +173,16 @@ window.DATA = {
         "assets/projects/parajanov/17-finished-object-cluster.jpg",
         "assets/projects/parajanov/18-finished-poster-corridor.jpg"
       ],
-      photographer: "Hadiye Cangökçe, Aras Selim Bankoğlu", graphics: "Menderes Coşkun",
+      photographer: "Hadiye Cangökçe", graphics: "TUNK",
       credits: [
         ["Curator", "Zaven Sargsyan"],
         ["Exhibition Conception and Design", "Bülent Erkmen"],
-        ["Architectural and Technological Management, Production of Exhibition Units, Video Contents", "Buşra Tunç"],
+        ["Architectural and Technological Management, Production of Exhibition Units, Video Contents", "Buşra Tunç, TUNK"],
         ["Digital Darkroom", "Menderes Coşkun"],
         ["Project Management and Coordination", "Pera Museum"],
       ],
-      summary: "The exhibition begins with Sergei Parajanov's own words — \"They didn't give me the opportunity to make a cinema, so I made a collage, collage is a compressed film…\" — and sets out to make his world of images visible by imitating it.",
-      para: "Each work is examined in detail, custom-framed, and given its own space and its own light: a box frame around each structure lets it hold its own contained space, drawing its own boundary and coming toward the viewer as an individual work. Scenes from Parajanov's films were edited as repeating images across 40 separate screens, showing that the filmmaker was equally a maker of pictures, collages and installations. Presented for the first time in Turkey, the exhibition brought together all periods of Parajanov's multicultural visual world — from traditional to pop-art collages, storyboard drafts, film costumes, drawings, paintings, mosaics, objects and photographs — alongside works created in homage to him by Sarkis, prepared in collaboration with the Sergey Parajanov Museum.",
+      summary: "The exhibition begins with Sergei Parajanov's own words: \"They didn't give me the opportunity to make a cinema, so I made a collage, collage is a compressed film…\" It sets out to make his world of images visible by imitating it.",
+      para: "Each work is examined in detail, custom-framed, and given its own space and its own light: a box frame around each structure lets it hold its own contained space, drawing its own boundary and coming toward the viewer as an individual work. Scenes from Parajanov's films were edited as repeating images across 40 separate screens, showing that the filmmaker was equally a maker of pictures, collages and installations. Presented for the first time in Turkey, the exhibition brought together all periods of Parajanov's multicultural visual world, from traditional to pop-art collages, storyboard drafts, film costumes, drawings, paintings, mosaics, objects and photographs, alongside works created in homage to him by Sarkis, prepared in collaboration with the Sergey Parajanov Museum.",
     },
     {
       cat: "05", slug: "mitto", name: "Mitto",
