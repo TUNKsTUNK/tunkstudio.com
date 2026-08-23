@@ -139,7 +139,7 @@ window.DATA = {
     },
     {
       cat: "03", slug: "louis-kahn", name: "RE/FRAMING LOUIS KAHN",
-      category: "Exhibition Architecture", kind: "Exhibition Design",
+      category: "Exhibition Architecture", kind: "Exhibition Architecture",
       year: 2016, yearLabel: "2016", location: "Pera Museum, Istanbul", status: "Completed",
       press: ["Pera Museum"],
       tags: ["Exhibition Architecture"],
@@ -148,7 +148,7 @@ window.DATA = {
     },
     {
       cat: "04", slug: "parajanov", name: "PARAJANOV WITH SARKIS",
-      category: "Exhibition Architecture", kind: "Exhibition Design",
+      category: "Exhibition Architecture", kind: "Exhibition Architecture",
       year: 2018, yearLabel: "2018", location: "Pera Museum, Istanbul", status: "Completed",
       press: ["Pera Museum"],
       tags: ["Exhibition Architecture"],
@@ -443,7 +443,7 @@ window.DATA = {
     },
     {
       cat: "23", slug: "akbank-30", name: "A SPACE OF INSIGHT",
-      category: "Exhibition Architecture", kind: "Exhibition Design",
+      category: "Exhibition Architecture", kind: "Exhibition Architecture",
       year: 2023, yearLabel: "2023", location: "Akbank Sanat, Istanbul", status: "Completed",
       tags: ["Exhibition Architecture"],
       summary: "Exhibition design for the 30th edition of Akbank's Contemporary Artists programme.",
@@ -451,7 +451,7 @@ window.DATA = {
     },
     {
       cat: "24", slug: "sakir-eczacibasi", name: "SELECTED MOMENTS",
-      category: "Exhibition Architecture", kind: "Exhibition Design",
+      category: "Exhibition Architecture", kind: "Exhibition Architecture",
       year: null, yearLabel: "—", location: "Istanbul", status: "Completed",
       tags: ["Exhibition Architecture"],
       summary: "Exhibition design for a Şakir Eczacıbaşı exhibition.",
@@ -459,7 +459,7 @@ window.DATA = {
     },
     {
       cat: "25", slug: "samih-rifat", name: "Samih Rıfat “Much Is to Be Done”",
-      category: "Exhibition Architecture", kind: "Exhibition Design",
+      category: "Exhibition Architecture", kind: "Exhibition Architecture",
       year: 2025, yearLabel: "2025", location: "Pera Museum, Istanbul", status: "Completed",
       scope: ["Lighting"],
       tags: ["Exhibition Architecture", "Product Design"],
@@ -487,7 +487,7 @@ window.DATA = {
       ],
       photographer: "Hadiye Cangökçe", graphics: "TUNK",
       credits: [
-        ["Curatorial Concept & Exhibition Design", "Bülent Erkmen"],
+        ["Curatorial Concept & Exhibition Architecture", "Bülent Erkmen"],
         ["Exhibition Architecture & Lighting", "Buşra Tunç, TUNK"],
         ["Architectural Assistance", "Hazar Abdik, TUNK · Selin Akçu, TUNK"],
         ["Curatorial Assistance", "Mina Çakmak, BEK"],
@@ -500,7 +500,7 @@ window.DATA = {
     },
     {
       cat: "26", slug: "gorunmeyen-anitlar", name: "INVISIBLE MONUMENTS",
-      category: "Exhibition Architecture", kind: "Exhibition Design",
+      category: "Exhibition Architecture", kind: "Exhibition Architecture",
       year: 2025, yearLabel: "2025", location: "Istanbul", status: "Completed",
       tags: ["Exhibition Architecture"],
       summary: "Exhibition design — Invisible Monuments.",

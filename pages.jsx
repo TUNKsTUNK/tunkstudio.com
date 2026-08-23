@@ -161,14 +161,14 @@ function ProjectPage({ project, go }) {
           <p className="lede">{p.summary}</p>
           <p className="para">{p.para}</p>
           {p.photographer
-            ? <p className="para" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.04em', textTransform: 'uppercase', color: 'var(--graphite)', marginTop: 32 }}>Photography — {p.photographer}{p.graphics ? <><br />Graphics — {p.graphics}</> : null}</p>
+            ? <p className="para" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.04em', textTransform: 'uppercase', color: 'var(--graphite)', marginTop: 32 }}>Photography: <b>{p.photographer}</b>{p.graphics ? <><br />Graphics: <b>{p.graphics}</b></> : null}</p>
             : (!p.gallery || !p.gallery.length)
               ? <p className="para" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.04em', textTransform: 'uppercase', color: 'var(--aluminium)', marginTop: 32 }}>Photography pending — images to follow</p>
               : null}
           {p.credits && p.credits.length
             ? <p className="para" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.04em', textTransform: 'uppercase', color: 'var(--graphite)', marginTop: p.photographer ? 12 : 32, lineHeight: 1.9 }}>
                 {p.credits.map(([role, name], i) => (
-                  <React.Fragment key={role}>{i > 0 && <br />}{role} — {name}</React.Fragment>
+                  <React.Fragment key={role}>{i > 0 && <br />}{role}: <b>{name}</b></React.Fragment>
                 ))}
               </p>
             : null}
