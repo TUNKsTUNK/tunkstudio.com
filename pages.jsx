@@ -77,6 +77,7 @@ function ProjectPage({ project, go }) {
   const galRaw = p.gallery || [];
   const gal = galRaw.map(x => typeof x === 'string' ? x : x.src);
   const featureSrcs = new Set(galRaw.filter(x => typeof x === 'object' && x && x.feature).map(x => x.src));
+  const wideSrcs = new Set(galRaw.filter(x => typeof x === 'object' && x && x.wide).map(x => x.src));
   const isVid = (s) => /\.(mp4|webm|mov)$/i.test(s);
   // all images for this project, for the lightbox (videos excluded)
   const lbImages = [p.hero, ...gal].filter(Boolean).filter((s) => !isVid(s));
@@ -210,7 +211,7 @@ function ProjectPage({ project, go }) {
                       <LazyVideo src={g} />
                       <figcaption className="pl-cap">{String(k + 1).padStart(2, '0')} · FILM</figcaption>
                     </Reveal>
-                  : <Reveal as="figure" className={`g-cell${featureSrcs.has(g) ? ' g-feature' : ''}`} key={k} delay={(k % 3) * 60} onClick={() => openLb(g)}>
+                  : <Reveal as="figure" className={`g-cell${featureSrcs.has(g) ? ' g-feature' : wideSrcs.has(g) ? ' g-wide' : ''}`} key={k} delay={(k % 3) * 60} onClick={() => openLb(g)}>
                       <img src={g} alt={`${p.name} — ${String(k + 1).padStart(2, '0')}`} />
                       <figcaption className="pl-cap">{String(k + 1).padStart(2, '0')}</figcaption>
                     </Reveal>
