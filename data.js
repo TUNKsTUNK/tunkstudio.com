@@ -165,13 +165,18 @@ window.DATA = {
         "assets/projects/parajanov/09-process-tripod-laser.jpg",
         "assets/projects/parajanov/10-process-wall-marking.jpg",
         "assets/projects/parajanov/11-process-screen-check.jpg",
+        { src: "assets/projects/parajanov/19-corridor-robe-symmetry.jpg", feature: true },
         "assets/projects/parajanov/12-finished-corridor-wide.jpg",
         "assets/projects/parajanov/13-finished-biography-wall.jpg",
-        "assets/projects/parajanov/14-finished-boxframes-perspective.jpg",
+        "assets/projects/parajanov/22-finished-corridor-dress.jpg",
+        "assets/projects/parajanov/20-finished-wall-detail.jpg",
+        { src: "assets/projects/parajanov/14-finished-boxframes-perspective.jpg", feature: true },
         "assets/projects/parajanov/15-finished-grid-detail.jpg",
         "assets/projects/parajanov/16-finished-mask-corridor.jpg",
+        "assets/projects/parajanov/23-finished-wall-angle.jpg",
         "assets/projects/parajanov/17-finished-object-cluster.jpg",
-        "assets/projects/parajanov/18-finished-poster-corridor.jpg"
+        { src: "assets/projects/parajanov/18-finished-poster-corridor.jpg", feature: true },
+        "assets/projects/parajanov/21-finished-poster-corridor-alt.jpg"
       ],
       photographer: "Hadiye Cangökçe", graphics: "TUNK",
       credits: [
