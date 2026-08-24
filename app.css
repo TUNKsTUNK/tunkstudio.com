@@ -399,32 +399,28 @@ h1,h2,h3,h4,h5,h6,button,input,textarea,select { font-family: var(--font-sans); 
 .pj-gallery .two { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 @media (max-width: 700px) { .pj-gallery .two { grid-template-columns: 1fr; } }
 
-/* gallery — uniform grid: every row a fixed height, strict source order,
-   reads left→right, top→bottom. No masonry columns (which produced an
-   unpredictable reading order and stray gaps when cell heights varied) —
-   a real grid where every row is fully packed. Wide/feature cells get a
-   larger explicit span (column and/or row) instead of relying on content
-   height, so there's never a mismatch between cells sharing a row. */
+/* gallery — uniform grid: every cell identical size, strict source order,
+   reads left→right, top→bottom. Square cells, photo cropped to fill. Calm,
+   even, legible — no masonry, no hero-sized plates. */
 .pj-gallery { padding: clamp(40px, 6vw, 88px) var(--m) 0; }
 .pj-grid-g {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 340px;
-  gap: var(--gutter, 24px);
+  column-count: 3;
+  column-gap: var(--gutter, 24px);
 }
 .pj-grid-g .g-cell {
   position: relative;
   cursor: zoom-in; background: var(--concrete);
   overflow: hidden;
+  break-inside: avoid;
+  margin-bottom: var(--gutter, 24px);
   display: block;
 }
 .pj-grid-g .g-cell img {
-  display: block; width: 100%; height: 100%; object-fit: cover;
+  display: block; width: 100%; height: auto; object-fit: contain;
   transition: opacity var(--dur) var(--ease);
 }
-.pj-grid-g .g-cell.g-wide { grid-column: span 2; }
-@media (max-width: 900px) { .pj-grid-g { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 280px; } .pj-grid-g .g-cell.g-wide { grid-column: span 2; } }
-@media (max-width: 540px) { .pj-grid-g { grid-template-columns: 1fr; grid-auto-rows: 260px; } .pj-grid-g .g-cell.g-wide { grid-column: span 1; } .pj-grid-g .g-cell.g-feature { grid-row: span 1 !important; } }
+@media (max-width: 900px) { .pj-grid-g { column-count: 2; } }
+@media (max-width: 540px) { .pj-grid-g { column-count: 1; } }
 .pj-grid-g .g-cell:hover img { opacity: .88; }
 .pj-grid-g .pl-cap {
   position: absolute; left: 0; bottom: 0;
@@ -433,15 +429,14 @@ h1,h2,h3,h4,h5,h6,button,input,textarea,select { font-family: var(--font-sans); 
   opacity: 0; transform: translateY(4px); transition: all var(--dur) var(--ease);
 }
 .pj-grid-g .g-cell:hover .pl-cap { opacity: 1; transform: translateY(0); }
-.pj-grid-g .g-vid { grid-column: 1 / -1; grid-row: span 3; height: 100%; cursor: default; background: var(--ink); display: flex; align-items: center; justify-content: center; }
-.pj-grid-g .g-cell.g-feature { grid-column: 1 / -1; grid-row: span 2; cursor: zoom-in; }
+.pj-grid-g .g-vid { column-span: all; cursor: default; background: var(--ink); display: flex; align-items: center; justify-content: center; height: 80vh; max-height: 820px; margin-bottom: var(--gutter, 24px); }
 .pj-grid-g .g-vid video { display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; margin: 0 auto; }
 /* dikey video + fotograf yan yana cifti */
-.pj-grid-g .g-pair { grid-column: 1 / -1; grid-row: span 3; display: grid; grid-template-columns: 1fr 1fr; gap: var(--gutter, 24px); }
-.pj-grid-g .g-pair .g-vid-tall { grid-column: auto; grid-row: auto; height: 100%; display: flex; align-items: center; justify-content: center; background: var(--ink); }
-.pj-grid-g .g-pair .g-vid-tall video { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
-.pj-grid-g .g-pair .g-pair-img { position: relative; overflow: hidden; cursor: zoom-in; height: 100%; }
-.pj-grid-g .g-pair .g-pair-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pj-grid-g .g-pair { column-span: all; display: grid; grid-template-columns: 1fr 1fr; gap: var(--gutter, 24px); align-items: center; margin-bottom: var(--gutter, 24px); }
+.pj-grid-g .g-pair .g-vid-tall { height: auto; max-height: 80vh; }
+.pj-grid-g .g-pair .g-vid-tall video { max-height: 80vh; }
+.pj-grid-g .g-pair .g-pair-img { position: relative; overflow: hidden; cursor: zoom-in; }
+.pj-grid-g .g-pair .g-pair-img img { width: 100%; height: auto; object-fit: contain; display: block; }
 @media (max-width: 760px) { .pj-grid-g .g-pair { grid-template-columns: 1fr; } }
 .lazyvid-wrap { position: relative; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
 .lazyvid-wrap video { max-height: 90vh; }
@@ -452,6 +447,8 @@ h1,h2,h3,h4,h5,h6,button,input,textarea,select { font-family: var(--font-sans); 
   opacity: .82; transition: opacity var(--dur) var(--ease);
 }
 .lazyvid-mute:hover { opacity: 1; }
+@media (max-width: 900px) { .pj-grid-g { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px) { .pj-grid-g { grid-template-columns: 1fr; } }
 .pj-nav { display: flex; justify-content: space-between; align-items: center; padding: 64px var(--m); margin-top: 64px; border-top: 1px solid var(--ink); }
 .pj-nav a { cursor: pointer; }
 .pj-nav .nx { text-align: right; }
@@ -570,9 +567,9 @@ h1,h2,h3,h4,h5,h6,button,input,textarea,select { font-family: var(--font-sans); 
 
 /* --- tam ekran (full-bleed) galeri modu: tek sutun, kirpma yok, mobilde de tam genislik --- */
 .pj-gallery.gallery-wide { max-width: none; width: 100%; padding-left: 0; padding-right: 0; }
-.pj-grid-g.grid-wide { grid-template-columns: 1fr; grid-auto-rows: auto; gap: var(--gutter, 24px); }
+.pj-grid-g.grid-wide { column-count: 1; column-gap: 0; }
 .pj-grid-g.grid-wide .g-cell {
-  width: 100%; aspect-ratio: auto; background: transparent;
+  width: 100%; margin: 0 0 var(--gutter, 24px); background: transparent;
 }
 .pj-grid-g.grid-wide .g-cell img { width: 100%; height: auto; object-fit: contain; display: block; }
 .pj-grid-g.grid-wide .g-vid {
@@ -580,5 +577,5 @@ h1,h2,h3,h4,h5,h6,button,input,textarea,select { font-family: var(--font-sans); 
 }
 .pj-grid-g.grid-wide .g-vid video { width: 100%; height: auto; max-height: 92vh; object-fit: contain; }
 @media (max-width: 640px) {
-  .pj-grid-g.grid-wide { gap: 14px; }
+  .pj-grid-g.grid-wide .g-cell { margin-bottom: 14px; }
 }
