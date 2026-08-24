@@ -67,12 +67,17 @@ window.DATA = {
     items: [
       { n: "01", name: "OCULUS",            pub: "ArchDaily",    year: "2016", type: "Installation feature", url: "https://www.archdaily.com/874142/nohlab-and-busra-tunc-create-immersive-installation-based-on-centuries-old-architecture" },
       { n: "02", name: "OCULUS",            pub: "Designboom",   year: "2016", type: "Installation feature", url: "https://www.designboom.com/art/nohlab-busra-tunc-oculus-sound-light-performance-has-architects-istanbul-05-23-2017/" },
-      { n: "03", name: "POSTANE",           pub: "Arkitera",     year: "2021", type: "Project feature", url: "https://www.arkitera.com/proje/adil-dukkanlar-ic-mekan-ve-aydinlatma-tasarimi/" },
-      { n: "04", name: "MSGSÜ WEAVING WORKSHOP", pub: "Arkitera", year: "2022", type: "Project feature", url: "https://www.arkitera.com/proje/msgsu-dokuma-atolyesi-yeniden-duzenlenmesi-ve-sistem-tasarimi/" },
-      { n: "05", name: "RE/FRAMING LOUIS KAHN", pub: "Pera Museum",  year: "2016", type: "Exhibition design", url: "https://www.peramuseum.org/exhibition/re-framing-louis-kahn/217" },
-      { n: "06", name: "PARAJANOV WITH SARKIS", pub: "Pera Museum",  year: "2018", type: "Exhibition design", url: "https://www.peramuseum.org/exhibition/parajanov-with-sarkis/235" },
-      { n: "07", name: "LIMINAL",           pub: "Designboom",   year: "2016", type: "Product feature", url: "https://www.designboom.com/design/busra-tunc-atolye-labs-lamalight-adaptablelamp-06-19-2016/" },
-      { n: "08", name: "LIMINAL",           pub: "Design Milk",  year: "2016", type: "Product feature", url: "https://design-milk.com/a-minimal-lamp-inspired-by-a-single-line/" }
+      { n: "03", name: "OCULUS",            pub: "Arkitera",     year: "2016", type: "Installation feature", url: "https://www.arkitera.com/haber/ses-ve-isik-oyunlariyla-tarihi-mekanda-farkli-bir-mekansal-deneyim/" },
+      { n: "04", name: "POSTANE",           pub: "Arkitera",     year: "2021", type: "Project feature", url: "https://www.arkitera.com/proje/adil-dukkanlar-ic-mekan-ve-aydinlatma-tasarimi/" },
+      { n: "05", name: "MSGSÜ WEAVING WORKSHOP", pub: "Arkitera", year: "2022", type: "Project feature", url: "https://www.arkitera.com/proje/msgsu-dokuma-atolyesi-yeniden-duzenlenmesi-ve-sistem-tasarimi/" },
+      { n: "06", name: "RE/FRAMING LOUIS KAHN", pub: "Pera Museum",  year: "2016", type: "Exhibition architecture", url: "https://www.peramuseum.org/exhibition/re-framing-louis-kahn/217" },
+      { n: "07", name: "PARAJANOV WITH SARKIS", pub: "Pera Museum",  year: "2018", type: "Exhibition architecture", url: "https://www.peramuseum.org/exhibition/parajanov-with-sarkis/235" },
+      { n: "08", name: "LIMINAL",           pub: "Designboom",   year: "2016", type: "Product feature", url: "https://www.designboom.com/design/busra-tunc-atolye-labs-lamalight-adaptablelamp-06-19-2016/" },
+      { n: "09", name: "LIMINAL",           pub: "Design Milk",  year: "2016", type: "Product feature", url: "https://design-milk.com/a-minimal-lamp-inspired-by-a-single-line/" },
+      { n: "10", name: "LIMINAL",           pub: "Arkitera",     year: "2016", type: "Product feature", url: "https://www.arkitera.com/haber/minimal-ve-cok-islevli-aydinlatma-birimi-liminal/" },
+      { n: "11", name: "PNEUMA I",          pub: "Frame",        year: "2026", type: "Project feature", url: "https://frameweb.com/project/124442" },
+      { n: "12", name: "THE PAINTER",       pub: "Arkitera",     year: "2024", type: "Project feature", url: "https://www.arkitera.com/proje/bir-mimar-bir-sanatci-performatif-bir-yerlestirme/" },
+      { n: "13", name: "THE PAINTER",       pub: "XXI",          year: "2024", type: "Project feature", url: "https://www.xxi.com.tr/proje/ic-mekan/boyaci-dukkani" }
     ],
     downloads: [
       { n: "01", name: "Studio biography",  meta: "DOCX · 6 KB",  langs: "EN · TR" },
@@ -143,7 +148,7 @@ window.DATA = {
       year: 2016, yearLabel: "2016", location: "Pera Museum, Istanbul", status: "Completed",
       press: ["Pera Museum"],
       tags: ["Exhibition Architecture"],
-      summary: "Exhibition design for the Pera Museum's Louis Kahn retrospective.",
+      summary: "Exhibition architecture for the Pera Museum's Louis Kahn retrospective.",
       para: "The exhibition architecture carries drawings, models and photographs of Kahn's work, holding the galleries to the same quiet, ordered measure as the buildings on the walls.",
     },
     {
@@ -227,7 +232,7 @@ window.DATA = {
       cat: "09", slug: "oculus", name: "Oculus",
       category: "Installation", kind: "Installation · Performance",
       year: 2016, yearLabel: "2016", location: "Istanbul Imperial Arsenal, Istanbul", status: "Completed",
-      collab: "NOHlab, HAS Architects", press: ["ArchDaily", "Designboom"],
+      collab: "NOHlab, HAS Architects", press: ["ArchDaily", "Designboom", "Arkitera"],
       heroVideo: "193355265",
       heroVideoStart: "10s",
       tags: ["Installation"],
@@ -329,7 +334,7 @@ window.DATA = {
       cat: "17", slug: "parfumlab-pneuma", name: "PNEUMA I",
       category: "Architecture", kind: "Retail Design",
       year: 2026, yearLabel: "2026", location: "Istanbul", status: "Completed",
-      tags: ["Architecture"],
+      tags: ["Architecture"], press: ["Frame"],
       hero: "assets/projects/pneuma-hero.jpg",
       thumb: "assets/projects/pneuma/foto_01.jpg",
       thumbPos: "center 62%",
@@ -446,7 +451,7 @@ window.DATA = {
       category: "Exhibition Architecture", kind: "Exhibition Architecture",
       year: 2023, yearLabel: "2023", location: "Akbank Sanat, Istanbul", status: "Completed",
       tags: ["Exhibition Architecture"],
-      summary: "Exhibition design for the 30th edition of Akbank's Contemporary Artists programme.",
+      summary: "Exhibition architecture for the 30th edition of Akbank's Contemporary Artists programme.",
       para: "Exhibition architecture for the 30th-anniversary edition of Akbank Sanat's Contemporary Artists exhibition.",
     },
     {
@@ -454,7 +459,7 @@ window.DATA = {
       category: "Exhibition Architecture", kind: "Exhibition Architecture",
       year: null, yearLabel: "N/A", location: "Istanbul", status: "Completed",
       tags: ["Exhibition Architecture"],
-      summary: "Exhibition design for a Şakir Eczacıbaşı exhibition.",
+      summary: "Exhibition architecture for a Şakir Eczacıbaşı exhibition.",
       para: "Exhibition architecture for a show of Şakir Eczacıbaşı's work.",
     },
     {
@@ -540,7 +545,7 @@ window.DATA = {
       category: "Product Design", kind: "Lighting Design",
       year: null, yearLabel: "N/A", location: null, status: "Completed",
       scope: ["Lighting"],
-      tags: ["Product Design"],
+      tags: ["Product Design"], press: ["Designboom", "Design Milk", "Arkitera"],
       hero: "assets/projects/liminal/g/04.jpg",
       thumb: "assets/projects/liminal/g/15.jpg",
       gallery: [
@@ -575,7 +580,7 @@ window.DATA = {
       cat: "30", slug: "paintstore", name: "The Painter",
       category: "Installation", kind: "Installation",
       year: 2023, yearLabel: "2023", location: "Istanbul", status: "Completed",
-      tags: ["Installation"],
+      tags: ["Installation"], press: ["Arkitera", "XXI"],
       hero: "assets/projects/painter/g/03.jpg",
       thumb: "assets/projects/painter/g/09.jpg",
       gallery: [
