@@ -1,11 +1,11 @@
-/* TUNK — Work / Project / About / Press / Contact pages */
+/* TUNK: Work / Project / About / Press / Contact pages */
 
 function WorkPage({ go }) {
   const [view, setView] = useState('grid');
   const [filter, setFilter] = useState('All');
   const base = filter === 'All' ? DATA.projects : DATA.projects.filter(p => p.tags.includes(filter));
   // Only published projects (with photography) appear here. Un-photographed
-  // ones stay hidden until a gallery is added — no empty placeholder tiles.
+  // ones stay hidden until a gallery is added; no empty placeholder tiles.
   const filtered = [...base].filter(hasPhotos).sort((a, b) => {
     if (a.year == null && b.year == null) return 0;
     if (a.year == null) return 1;
@@ -16,7 +16,7 @@ function WorkPage({ go }) {
     <main className="route">
       <div className="work-head">
         <div className="wrap">
-          <div className="lab lab-ink" style={{ marginBottom: 22 }}>№ 01 — WORK</div>
+          <div className="lab lab-ink" style={{ marginBottom: 22 }}>№ 01 · WORK</div>
           <h1 className="mega" style={{ marginBottom: 56 }}>All projects</h1>
           <div className="filterbar">
             <span className="lbl">Filter</span>
@@ -29,7 +29,7 @@ function WorkPage({ go }) {
             </span>
           </div>
           <div className="lab" style={{ marginTop: 12, marginBottom: 40 }}>
-            {filtered.length.toString().padStart(2, '0')} PROJECTS · 2014—2028
+            {filtered.length.toString().padStart(2, '0')} PROJECTS · 2014 to 2028
           </div>
         </div>
       </div>
@@ -65,7 +65,7 @@ function WorkPage({ go }) {
 
 function ProjectPage({ project, go }) {
   const p = project || DATA.projects[0];
-  // Prev/next only cycles through published projects (with a gallery) —
+  // Prev/next only cycles through published projects (with a gallery);
   // otherwise an unrealised/un-photographed proposal that's hidden from the
   // /work grid could still surface via these arrows.
   const published = DATA.projects.filter(hasPhotos);
@@ -102,7 +102,7 @@ function ProjectPage({ project, go }) {
   }, [p.slug]);
   useEffect(() => {
     if (p.heroVideo && heroIframeRef.current) {
-      // Vimeo's player postMessage API — no player.js needed for this one call
+      // Vimeo's player postMessage API; no player.js needed for this one call
       heroIframeRef.current.contentWindow.postMessage(JSON.stringify({ method: 'setMuted', value: heroMuted }), 'https://player.vimeo.com');
     }
     if (p.heroVideoLocal && heroVideoRef.current) {
@@ -122,7 +122,7 @@ function ProjectPage({ project, go }) {
               src={`https://player.vimeo.com/video/${p.heroVideo}?autoplay=1&muted=1&loop=1&controls=0&app_id=122963${p.heroVideoStart ? `#t=${p.heroVideoStart}` : ''}`}
               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0, pointerEvents: 'none' }}
               allow="autoplay; fullscreen; picture-in-picture"
-              title={`${p.name} — film`}
+              title={`${p.name}: film`}
             />
           ) : p.heroVideoLocal ? (
             <div className="pj-hero-video">
@@ -132,7 +132,7 @@ function ProjectPage({ project, go }) {
               />
             </div>
           ) : (
-            <Frame ratio="auto" num={`№ ${p.cat}`} meta="" img={p.hero} alt={`${p.name} — ${p.kind}, ${p.location || 'Istanbul'}`} accent={p.accent}
+            <Frame ratio="auto" num={`№ ${p.cat}`} meta="" img={p.hero} alt={`${p.name}: ${p.kind}, ${p.location || 'Istanbul'}`} accent={p.accent}
                    bare wm={p.cat} style={{ position: 'absolute', inset: 0, aspectRatio: 'auto' }}
                    fit={(p.slug === 'yesim-evi' || p.slug === 'pneuma-ii') ? 'contain' : 'cover'} />
           )}
@@ -164,7 +164,7 @@ function ProjectPage({ project, go }) {
           {p.photographer
             ? <p className="para" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.04em', textTransform: 'uppercase', color: 'var(--graphite)', marginTop: 32 }}>Photography: <b>{p.photographer}</b>{p.graphics ? <><br />Graphics: <b>{p.graphics}</b></> : null}</p>
             : (!p.gallery || !p.gallery.length)
-              ? <p className="para" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.04em', textTransform: 'uppercase', color: 'var(--aluminium)', marginTop: 32 }}>Photography pending — images to follow</p>
+              ? <p className="para" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.04em', textTransform: 'uppercase', color: 'var(--aluminium)', marginTop: 32 }}>Photography pending, images to follow</p>
               : null}
           {p.credits && p.credits.length
             ? <p className="para" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.04em', textTransform: 'uppercase', color: 'var(--graphite)', marginTop: p.photographer ? 12 : 32, lineHeight: 1.9 }}>
@@ -197,7 +197,7 @@ function ProjectPage({ project, go }) {
                       <figcaption className="pl-cap">{String(k + 1).padStart(2, '0')} · FILM</figcaption>
                     </figure>
                     <figure className="g-cell g-pair-img" onClick={() => openLb(next)}>
-                      <img src={next} alt={`${p.name} — ${String(k + 2).padStart(2, '0')}`} />
+                      <img src={next} alt={`${p.name}: ${String(k + 2).padStart(2, '0')}`} />
                       <figcaption className="pl-cap">{String(k + 2).padStart(2, '0')}</figcaption>
                     </figure>
                   </Reveal>
@@ -212,7 +212,7 @@ function ProjectPage({ project, go }) {
                       <figcaption className="pl-cap">{String(k + 1).padStart(2, '0')} · FILM</figcaption>
                     </Reveal>
                   : <Reveal as="figure" className={`g-cell${featureSrcs.has(g) ? ' g-feature' : wideSrcs.has(g) ? ' g-wide' : ''}`} key={k} delay={(k % 3) * 60} onClick={() => openLb(g)}>
-                      <img src={g} alt={`${p.name} — ${String(k + 1).padStart(2, '0')}`} />
+                      <img src={g} alt={`${p.name}: ${String(k + 1).padStart(2, '0')}`} />
                       <figcaption className="pl-cap">{String(k + 1).padStart(2, '0')}</figcaption>
                     </Reveal>
               );

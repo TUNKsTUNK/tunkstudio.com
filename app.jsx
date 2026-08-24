@@ -1,4 +1,4 @@
-/* TUNK — app shell: router + tweaks + mount */
+/* TUNK: app shell: router + tweaks + mount */
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "hero": "feature",
@@ -17,7 +17,7 @@ const DENSITY_M = {
 function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
 
-  // Real, crawlable paths (not #hash) — search engines index /work/postane as
+  // Real, crawlable paths (not #hash); search engines index /work/postane as
   // its own URL. Netlify's _redirects file sends any path to index.html so
   // direct loads/refreshes/shared links still resolve.
   const encodePage = (p) => {
@@ -57,14 +57,14 @@ function App() {
 
   // Reset scroll to top on every page change. This runs AFTER React commits
   // the new page (not synchronously inside the click handler), so it's
-  // unaffected by the mobile menu's body{overflow:hidden} scroll lock — if
+  // unaffected by the mobile menu's body{overflow:hidden} scroll lock; if
   // scrollTo ran while overflow was still hidden, the browser silently
   // ignored it and the new page opened at the old scroll position.
   useEffect(() => { window.scrollTo({ top: 0, behavior: 'auto' }); }, [page]);
 
   // Per-page SEO: title, meta description, canonical, Open Graph/Twitter
   // cards, and a JSON-LD block (Organization sitewide, CreativeWork per
-  // project) — this is what search engines and shared-link previews read.
+  // project); this is what search engines and shared-link previews read.
   useEffect(() => { applySEO(page); }, [page]);
 
   // apply tweaks to :root
@@ -107,7 +107,7 @@ function App() {
           options={['compact', 'regular', 'spacious']}
           onChange={(v) => setTweak('density', v)} />
 
-        <TweakSection label="Accent" subtitle="Brand reserves colour for real project material — loosen with care" />
+        <TweakSection label="Accent" subtitle="Brand reserves colour for real project material; loosen with care" />
         <TweakColor label="Page accent" value={t.accent}
           options={['#0A0A0A', '#1C3FBF', '#D4271E', '#C97A1A']}
           onChange={(v) => setTweak('accent', v)} />

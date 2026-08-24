@@ -1,11 +1,11 @@
-/* TUNK — shared components. Exports to window for cross-file Babel scope. */
+/* TUNK: shared components. Exports to window for cross-file Babel scope. */
 
 const { useState, useEffect, useRef } = React;
 
 /* ---------- scroll-reveal (brand-legal: opacity + small translate) ----------
    IntersectionObserver is unreliable inside preview iframes, so we use a
    shared rAF/scroll checker against getBoundingClientRect, plus a hard
-   fallback that reveals everything after a beat — content is never stuck. */
+   fallback that reveals everything after a beat; content is never stuck. */
 const _revealEls = new Set();
 let _revealWired = false;
 function _checkReveals() {
@@ -177,7 +177,7 @@ function Footer({ go }) {
 
 }
 
-/* ---------- lazy video — only downloads/plays once scrolled near viewport ---------- */
+/* ---------- lazy video: only downloads/plays once scrolled near viewport ---------- */
 function LazyVideo({ src, className = '', onSized }) {
   const ref = useRef(null);
   const [armed, setArmed] = useState(false);
@@ -203,7 +203,7 @@ function LazyVideo({ src, className = '', onSized }) {
           if (onSized) onSized(v.videoWidth, v.videoHeight);
         }}
       />
-      {/* browsers only allow autoplay when muted — this lets the visitor opt into sound with one tap */}
+      {/* browsers only allow autoplay when muted; this lets the visitor opt into sound with one tap */}
       <button
         className="lazyvid-mute" aria-label={muted ? 'Unmute' : 'Mute'}
         onClick={(e) => { e.stopPropagation(); setMuted((m) => !m); }}
@@ -220,7 +220,7 @@ function Tile({ p, go }) {
   return (
     <div className="tile2" onClick={() => go({ id: 'project', project: p })}>
       <Frame ratio="4/3" num={`№ ${p.cat}`} meta={`${loc} · ${p.kind.toUpperCase()}`}
-      img={p.thumb || p.hero} alt={`${p.name} — ${p.kind}, ${p.location || 'Istanbul'}`} accent={p.accent} wm={p.cat}
+      img={p.thumb || p.hero} alt={`${p.name}: ${p.kind}, ${p.location || 'Istanbul'}`} accent={p.accent} wm={p.cat}
       imgStyle={p.thumbPos ? { objectPosition: p.thumbPos } : undefined} />
       <div className="meta">
         <div className="nm">{p.name}</div>
@@ -231,7 +231,7 @@ function Tile({ p, go }) {
 
 }
 
-/* ---------- lightbox — fullscreen image viewer with prev/next + swipe ---------- */
+/* ---------- lightbox: fullscreen image viewer with prev/next + swipe ---------- */
 function Lightbox({ images = [], index = 0, title = '', onClose }) {
   const [i, setI] = useState(index);
   useEffect(() => {setI(index);}, [index]);

@@ -1,4 +1,4 @@
-/* TUNK — per-page SEO: document title, meta description, canonical,
+/* TUNK: per-page SEO: document title, meta description, canonical,
    Open Graph / Twitter cards, and JSON-LD structured data. Runs client-side
    on every page change; Google's crawler executes JS, so this is picked up
    for indexing even though the shell is a single static index.html. */
@@ -27,8 +27,8 @@ function upsertLD(id, obj) {
 }
 
 const SITE_NAME = 'TUNK Studio';
-const SITE_TAGLINE = 'Architecture, Exhibition, Product & Installation Design — Istanbul';
-const SITE_DESC = "TUNK Studio — mimarlık ofisi, sergi tasarımı, mekansal enstalasyon, aydınlatma ve ürün tasarımı stüdyosu, Galata, İstanbul. Architecture, exhibition, installation and product design studio in Istanbul — retail interiors, museum exhibitions, spatial installations, lighting, furniture and residential architecture.";
+const SITE_TAGLINE = 'Architecture, Exhibition, Product & Installation Design, Istanbul';
+const SITE_DESC = "TUNK Studio: mimarlık ofisi, sergi tasarımı, mekansal enstalasyon, aydınlatma ve ürün tasarımı stüdyosu, Galata, İstanbul. Architecture, exhibition, installation and product design studio in Istanbul, with retail interiors, museum exhibitions, spatial installations, lighting, furniture and residential architecture.";
 const DEFAULT_IMAGE = window.SITE_URL + '/assets/logo-tunk-black.png';
 
 function pageSEO(page) {
@@ -36,8 +36,8 @@ function pageSEO(page) {
   if (page.id === 'project' && page.project) {
     const p = page.project;
     const loc = p.location || 'Istanbul';
-    const title = `${p.name} — ${SITE_NAME}`;
-    const desc = (p.summary || SITE_DESC) + ` ${p.kind || p.category || ''} — ${loc}.`;
+    const title = `${p.name}: ${SITE_NAME}`;
+    const desc = (p.summary || SITE_DESC) + ` ${p.kind || p.category || ''}, ${loc}.`;
     return {
       title, desc,
       url: base + '/work/' + p.slug,
@@ -58,28 +58,28 @@ function pageSEO(page) {
   }
   const map = {
     home: {
-      title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+      title: `${SITE_NAME}: ${SITE_TAGLINE}`,
       desc: SITE_DESC,
       url: base + '/',
     },
     work: {
-      title: `Work — ${SITE_NAME} | Architecture, Exhibition & Installation Projects`,
+      title: `Work: ${SITE_NAME} | Architecture, Exhibition & Installation Projects`,
       desc: 'Selected work by TUNK Studio: sergi tasarımı, mekansal enstalasyon, perakende mağaza tasarımı, aydınlatma tasarımı ve konut mimarisi. Exhibition architecture, retail interiors, installation art, lighting design and residential architecture in Istanbul.',
       url: base + '/work',
     },
     about: {
-      title: `About — ${SITE_NAME} | Istanbul Architecture & Design Studio`,
+      title: `About: ${SITE_NAME} | Istanbul Architecture & Design Studio`,
       desc: DATA.about.p1 || SITE_DESC,
       url: base + '/about',
     },
     press: {
-      title: `Press — ${SITE_NAME}`,
+      title: `Press: ${SITE_NAME}`,
       desc: 'Press and coverage of TUNK Studio\u2019s architecture, exhibition and installation work, featured in Arkitera, ArchDaily and Designboom.',
       url: base + '/press',
     },
     contact: {
-      title: `Contact — ${SITE_NAME} | Galata, Istanbul`,
-      desc: 'Get in touch with TUNK Studio — architecture, exhibition and installation design studio in Galata, Istanbul.',
+      title: `Contact: ${SITE_NAME} | Galata, Istanbul`,
+      desc: 'Get in touch with TUNK Studio, an architecture, exhibition and installation design studio in Galata, Istanbul.',
       url: base + '/contact',
     },
   };

@@ -1,4 +1,4 @@
-/* TUNK — Home page (immersive long-scroll). 3 hero directions via tweak. */
+/* TUNK: Home page (immersive long-scroll). 3 hero directions via tweak. */
 
 function HeroStatement({ go }) {
   const h = DATA.home;
@@ -19,7 +19,7 @@ function HeroStatement({ go }) {
         </Reveal>
       </div>
       <div className="heroA" style={{ flex: '0 0 auto', paddingTop: 0, paddingBottom: 40 }}>
-        <div className="scrollcue lab lab-ink"><span className="ln" /> SCROLL — SELECTED WORK</div>
+        <div className="scrollcue lab lab-ink"><span className="ln" /> SCROLL · SELECTED WORK</div>
       </div>
     </section>);
 
@@ -48,7 +48,7 @@ function HeroFeature({ go }) {
   }, [paused, slides.length]);
   // Preload only the NEXT slide's image (not all of them) so the crossfade stays
   // instant without forcing the browser to download every project's hero at once
-  // on first paint — that alone was several MB of unseen images.
+  // on first paint; that alone was several MB of unseen images.
   useEffect(() => {
     const next = slides[(i + 1) % slides.length];
     if (next && next.img) { const im = new Image(); im.src = next.img; }
@@ -58,7 +58,7 @@ function HeroFeature({ go }) {
   // the compositor thread) instead of a setInterval opacity ramp, so every slide
   // change animates on the same fixed timeline.
   // IMPORTANT: the opacity reset to 0 must happen in useLayoutEffect (synchronous,
-  // before the browser paints) — not useEffect. Otherwise the browser paints one
+  // before the browser paints); not useEffect. Otherwise the browser paints one
   // frame of the new image at the OLD (visible) opacity first, then the opacity
   // drop to 0 itself gets caught by the CSS transition and animates backwards,
   // producing a flash-then-reverse-fade instead of a clean fade in.
@@ -66,7 +66,7 @@ function HeroFeature({ go }) {
     setVisible(false);
   }, [i]);
   useEffect(() => {
-    // one rAF so the opacity:0 frame actually paints before we flip to 1 —
+    // one rAF so the opacity:0 frame actually paints before we flip to 1;
     // otherwise the browser can coalesce both changes and skip the transition.
     const raf = requestAnimationFrame(() => setVisible(true));
     const settle = setTimeout(() => { prevRef.current = i; }, 1000); // matches CSS duration
@@ -120,7 +120,7 @@ function HeroIndex({ go }) {
           </Reveal>
         </div>
         <Reveal className="right" delay={100}>
-          <div className="lab lab-ink" style={{ marginBottom: 14 }}>INDEX — {DATA.projects.length.toString().padStart(2, '0')} PROJECTS</div>
+          <div className="lab lab-ink" style={{ marginBottom: 14 }}>INDEX · {DATA.projects.length.toString().padStart(2, '0')} PROJECTS</div>
           <div className="idx-list">
             {DATA.projects.slice(0, 8).map((p) =>
             <div className="row" key={p.cat} onClick={() => go({ id: 'project', project: p })}>
@@ -132,7 +132,7 @@ function HeroIndex({ go }) {
             <div className="row" onClick={() => go({ id: 'work' })} style={{ opacity: .7 }}>
               <span className="n">→</span>
               <span className="nm" style={{ fontWeight: 500, fontSize: 15 }}>All {DATA.projects.length} projects</span>
-              <span className="yr">2014—28</span>
+              <span className="yr">2014 to 28</span>
             </div>
           </div>
         </Reveal>
@@ -166,7 +166,7 @@ function SelectedWork({ go }) {
                 </div>
                 <div className={`media ${p.slug === 'yesim-evi' ? 'media-natural' : ''}`} onClick={() => go({ id: 'project', project: p })}>
                   <Frame ratio={big ? '21/9' : '16/9'} num={`№ ${p.cat}`}
-                  meta={`${loc} · ${p.kind.toUpperCase()}`} img={p.thumb || p.hero} alt={`${p.name} — ${p.kind}, ${p.location || 'Istanbul'}`}
+                  meta={`${loc} · ${p.kind.toUpperCase()}`} img={p.thumb || p.hero} alt={`${p.name}: ${p.kind}, ${p.location || 'Istanbul'}`}
                   accent={p.accent} wm={p.cat} fit={p.slug === 'yesim-evi' ? 'contain' : 'cover'} />
                 </div>
                 <div className="title-line" onClick={() => go({ id: 'project', project: p })} style={{ cursor: 'pointer' }}>

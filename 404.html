@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TUNK — Architecture, Installation & Design · Istanbul</title>
-  <meta name="description" content="TUNK Studio — mimarlık, sergi tasarımı, mekansal enstalasyon ve ürün tasarımı stüdyosu, İstanbul. Architecture, exhibition, installation and product design studio in Istanbul." />
+  <title>TUNK: Architecture, Installation & Design · Istanbul</title>
+  <meta name="description" content="TUNK Studio: mimarlık, sergi tasarımı, mekansal enstalasyon ve ürün tasarımı stüdyosu, İstanbul. Architecture, exhibition, installation and product design studio in Istanbul." />
   <meta name="p:domain_verify" content="427c8b661999f220a868b5418b8eeb01" />
 
   <!-- favicons -->
@@ -18,10 +18,10 @@
        like /work/postane, without reloading this document. Any relative URL
        used AFTER that point (e.g. an <img src="assets/..."> rendered by
        React while on /work) would resolve against /work/ instead of the
-       real site root — 404. Fix this once, at initial parse time, by
+       real site root; 404. Fix this once, at initial parse time, by
        pinning a <base> to the directory this document actually loaded
        from. This must be computed now (from the real, pre-pushState
-       pathname) — recomputing later from a pushState'd pathname would be
+       pathname); recomputing later from a pushState'd pathname would be
        wrong. On a real static host, that directory is always "/"; in a
        sandboxed preview that serves this file from a nested path, it's
        whatever that nested directory is. Either way, the <base> tag then
@@ -36,7 +36,7 @@
   </script>
   <link rel="canonical" href="https://tunkstudio.com/" />
 
-  <!-- sitewide structured data — read by search engines regardless of which page loaded -->
+  <!-- sitewide structured data: read by search engines regardless of which page loaded -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -45,7 +45,7 @@
     "alternateName": ["TUNK", "TUNK Mimarlık", "TUNK Tasarım"],
     "url": "https://tunkstudio.com",
     "logo": "https://tunkstudio.com/assets/logo-tunk-black.png",
-    "description": "TUNK Studio is an architecture, exhibition, product and installation design studio based in Galata, Istanbul — retail interiors, museum exhibitions, spatial installations, lighting and furniture design, and residential architecture.",
+    "description": "TUNK Studio is an architecture, exhibition, product and installation design studio based in Galata, Istanbul, with retail interiors, museum exhibitions, spatial installations, lighting and furniture design, and residential architecture.",
     "email": "tunc@tunkstudio.com",
     "address": { "@type": "PostalAddress", "addressLocality": "Galata", "addressRegion": "Istanbul", "addressCountry": "TR" },
     "sameAs": ["https://www.instagram.com/tunkstudiotunk/"],
@@ -101,7 +101,7 @@
 <body>
   <div id="root"></div>
   <!-- Bump ?v= (any changed value) whenever data.js changes -- data.js is served with a 4h browser cache-control header, so without a version bust, edits can appear "not deployed" in a visitor's browser for hours even after a correct push and a Cloudflare purge. -->
-  <script src="data.js?v=1787485782"></script>
+  <script src="data.js?v=1787565371"></script>
   <script src="seo.js"></script>
   <script type="text/babel" data-presets="react">
 // @ds-adherence-ignore -- omelette starter scaffold (raw elements/hex/px by design)
@@ -158,7 +158,7 @@
 // TweakSelect past ~16/~10 chars per label); reach for TweakSelect directly when
 // options are many or long. For color tweaks always curate 3-4 options rather than
 // a free picker; an option can also be a whole 2–5 color palette (the stored value
-// is the array). The Tweak* controls are a floor, not a ceiling — build custom
+// is the array). The Tweak* controls are a floor, not a ceiling; build custom
 // controls inside the panel if a tweak calls for UI they don't cover.
 /* END USAGE */
 // ─────────────────────────────────────────────────────────────────────────────
@@ -287,7 +287,7 @@ function useTweaks(defaults) {
     setValues((prev) => ({ ...prev, ...edits }));
     window.parent.postMessage({ type: '__edit_mode_set_keys', edits }, '*');
     // Same-window signal so in-page listeners (deck-stage rail thumbnails)
-    // can react — the parent message only reaches the host, not peers.
+    // can react; the parent message only reaches the host, not peers.
     window.dispatchEvent(new CustomEvent('tweakchange', { detail: edits }));
   }, []);
   return [values, setTweak];
@@ -295,7 +295,7 @@ function useTweaks(defaults) {
 
 // ── TweaksPanel ─────────────────────────────────────────────────────────────
 // Floating shell. Registers the protocol listener BEFORE announcing
-// availability — if the announce ran first, the host's activate could land
+// availability; if the announce ran first, the host's activate could land
 // before our handler exists and the toolbar toggle would silently no-op.
 // The close button posts __edit_mode_dismissed so the host's toolbar toggle
 // flips off in lockstep; the host echoes __deactivate_edit_mode back which
@@ -439,20 +439,20 @@ function TweakRadio({ label, value, options, onChange }) {
   const trackRef = React.useRef(null);
   const [dragging, setDragging] = React.useState(false);
   // The active value is read by pointer-move handlers attached for the lifetime
-  // of a drag — ref it so a stale closure doesn't fire onChange for every move.
+  // of a drag; ref it so a stale closure doesn't fire onChange for every move.
   const valueRef = React.useRef(value);
   valueRef.current = value;
 
   // Segments wrap mid-word once per-segment width runs out. The track is
   // ~248px (280 panel − 28 body pad − 4 seg pad), each button loses 12px
-  // to its own padding, and 11.5px system-ui averages ~6.3px/char — so 2
+  // to its own padding, and 11.5px system-ui averages ~6.3px/char; so 2
   // options fit ~16 chars each, 3 fit ~10. Past that (or >3 options), fall
   // back to a dropdown rather than wrap.
   const labelLen = (o) => String(typeof o === 'object' ? o.label : o).length;
   const maxLen = options.reduce((m, o) => Math.max(m, labelLen(o)), 0);
   const fitsAsSegments = maxLen <= ({ 2: 16, 3: 10 }[options.length] ?? 0);
   if (!fitsAsSegments) {
-    // <select> emits strings — map back to the original option value so the
+    // <select> emits strings; map back to the original option value so the
     // fallback stays type-preserving (numbers, booleans) like the segment path.
     const resolve = (s) => {
       const m = options.find((o) => String(typeof o === 'object' ? o.value : o) === s);
@@ -564,7 +564,7 @@ function TweakNumber({ label, value, min, max, step = 1, unit = '', onChange }) 
   );
 }
 
-// Relative-luminance contrast pick — checkmarks drawn over a swatch need to
+// Relative-luminance contrast pick; checkmarks drawn over a swatch need to
 // read on both #111 and #fafafa without per-option configuration. Hex input
 // only (#rgb / #rrggbb); named or rgb()/hsl() colors fall through to "light".
 function __twkIsLight(hex) {
@@ -584,8 +584,8 @@ const __TwkCheck = ({ light }) => (
   </svg>
 );
 
-// TweakColor — curated color/palette picker. Each option is either a single
-// hex string or an array of 1-5 hex strings; the card adapts — a lone color
+// TweakColor: curated color/palette picker. Each option is either a single
+// hex string or an array of 1-5 hex strings; the card adapts; a lone color
 // renders solid, a palette renders colors[0] as the hero (left ~2/3) with the
 // rest stacked in a sharp column on the right. onChange emits the
 // option in the shape it was passed (string stays string, array stays array).
@@ -646,14 +646,14 @@ Object.assign(window, {
   TweakText, TweakNumber, TweakColor, TweakButton,
 });
 
-/* TUNK — shared components. Exports to window for cross-file Babel scope. */
+/* TUNK: shared components. Exports to window for cross-file Babel scope. */
 
 const { useState, useEffect, useRef } = React;
 
 /* ---------- scroll-reveal (brand-legal: opacity + small translate) ----------
    IntersectionObserver is unreliable inside preview iframes, so we use a
    shared rAF/scroll checker against getBoundingClientRect, plus a hard
-   fallback that reveals everything after a beat — content is never stuck. */
+   fallback that reveals everything after a beat; content is never stuck. */
 const _revealEls = new Set();
 let _revealWired = false;
 function _checkReveals() {
@@ -825,7 +825,7 @@ function Footer({ go }) {
 
 }
 
-/* ---------- lazy video — only downloads/plays once scrolled near viewport ---------- */
+/* ---------- lazy video: only downloads/plays once scrolled near viewport ---------- */
 function LazyVideo({ src, className = '', onSized }) {
   const ref = useRef(null);
   const [armed, setArmed] = useState(false);
@@ -855,7 +855,7 @@ function LazyVideo({ src, className = '', onSized }) {
           if (onSized) onSized(v.videoWidth, v.videoHeight);
         }}
       />
-      {/* browsers only allow autoplay when muted — this lets the visitor opt into sound with one tap */}
+      {/* browsers only allow autoplay when muted; this lets the visitor opt into sound with one tap */}
       <button
         className="lazyvid-mute" aria-label={muted ? 'Unmute' : 'Mute'}
         onClick={(e) => { e.stopPropagation(); setMuted((m) => !m); }}
@@ -872,7 +872,7 @@ function Tile({ p, go }) {
   return (
     <div className="tile2" onClick={() => go({ id: 'project', project: p })}>
       <Frame ratio="4/3" num={`№ ${p.cat}`} meta={`${loc} · ${p.kind.toUpperCase()}`}
-      img={p.thumb || p.hero} alt={`${p.name} — ${p.kind}, ${p.location || 'Istanbul'}`} accent={p.accent} wm={p.cat} />
+      img={p.thumb || p.hero} alt={`${p.name}: ${p.kind}, ${p.location || 'Istanbul'}`} accent={p.accent} wm={p.cat} />
       <div className="meta">
         <div className="nm">{p.name}</div>
         <div className="yr">{p.yearLabel}</div>
@@ -882,7 +882,7 @@ function Tile({ p, go }) {
 
 }
 
-/* ---------- lightbox — fullscreen image viewer with prev/next + swipe ---------- */
+/* ---------- lightbox: fullscreen image viewer with prev/next + swipe ---------- */
 function Lightbox({ images = [], index = 0, title = '', onClose }) {
   const [i, setI] = useState(index);
   useEffect(() => {setI(index);}, [index]);
@@ -928,7 +928,7 @@ function Lightbox({ images = [], index = 0, title = '', onClose }) {
 }
 
 Object.assign(window, { Reveal, Clock, Frame, Nav, Footer, Tile, Lightbox });
-/* TUNK — Home page (immersive long-scroll). 3 hero directions via tweak. */
+/* TUNK: Home page (immersive long-scroll). 3 hero directions via tweak. */
 
 function HeroStatement({ go }) {
   const h = DATA.home;
@@ -949,7 +949,7 @@ function HeroStatement({ go }) {
         </Reveal>
       </div>
       <div className="heroA" style={{ flex: '0 0 auto', paddingTop: 0, paddingBottom: 40 }}>
-        <div className="scrollcue lab lab-ink"><span className="ln" /> SCROLL — SELECTED WORK</div>
+        <div className="scrollcue lab lab-ink"><span className="ln" /> SCROLL · SELECTED WORK</div>
       </div>
     </section>);
 
@@ -978,7 +978,7 @@ function HeroFeature({ go }) {
   }, [paused, slides.length]);
   // Preload only the NEXT slide's image (not all of them) so the crossfade stays
   // instant without forcing the browser to download every project's hero at once
-  // on first paint — that alone was several MB of unseen images.
+  // on first paint; that alone was several MB of unseen images.
   useEffect(() => {
     const next = slides[(i + 1) % slides.length];
     if (next && next.img) { const im = new Image(); im.src = next.img; }
@@ -988,7 +988,7 @@ function HeroFeature({ go }) {
   // the compositor thread) instead of a setInterval opacity ramp, so every slide
   // change animates on the same fixed timeline.
   // IMPORTANT: the opacity reset to 0 must happen in useLayoutEffect (synchronous,
-  // before the browser paints) — not useEffect. Otherwise the browser paints one
+  // before the browser paints); not useEffect. Otherwise the browser paints one
   // frame of the new image at the OLD (visible) opacity first, then the opacity
   // drop to 0 itself gets caught by the CSS transition and animates backwards,
   // producing a flash-then-reverse-fade instead of a clean fade in.
@@ -996,7 +996,7 @@ function HeroFeature({ go }) {
     setVisible(false);
   }, [i]);
   useEffect(() => {
-    // one rAF so the opacity:0 frame actually paints before we flip to 1 —
+    // one rAF so the opacity:0 frame actually paints before we flip to 1;
     // otherwise the browser can coalesce both changes and skip the transition.
     const raf = requestAnimationFrame(() => setVisible(true));
     const settle = setTimeout(() => { prevRef.current = i; }, 1000); // matches CSS duration
@@ -1050,7 +1050,7 @@ function HeroIndex({ go }) {
           </Reveal>
         </div>
         <Reveal className="right" delay={100}>
-          <div className="lab lab-ink" style={{ marginBottom: 14 }}>INDEX — {DATA.projects.length.toString().padStart(2, '0')} PROJECTS</div>
+          <div className="lab lab-ink" style={{ marginBottom: 14 }}>INDEX · {DATA.projects.length.toString().padStart(2, '0')} PROJECTS</div>
           <div className="idx-list">
             {DATA.projects.slice(0, 8).map((p) =>
             <div className="row" key={p.cat} onClick={() => go({ id: 'project', project: p })}>
@@ -1062,7 +1062,7 @@ function HeroIndex({ go }) {
             <div className="row" onClick={() => go({ id: 'work' })} style={{ opacity: .7 }}>
               <span className="n">→</span>
               <span className="nm" style={{ fontWeight: 500, fontSize: 15 }}>All {DATA.projects.length} projects</span>
-              <span className="yr">2014—28</span>
+              <span className="yr">2014 to 28</span>
             </div>
           </div>
         </Reveal>
@@ -1096,7 +1096,7 @@ function SelectedWork({ go }) {
                 </div>
                 <div className={`media ${p.slug === 'yesim-evi' ? 'media-natural' : ''}`} onClick={() => go({ id: 'project', project: p })}>
                   <Frame ratio={big ? '21/9' : '16/9'} num={`№ ${p.cat}`}
-                  meta={`${loc} · ${p.kind.toUpperCase()}`} img={p.thumb || p.hero} alt={`${p.name} — ${p.kind}, ${p.location || 'Istanbul'}`}
+                  meta={`${loc} · ${p.kind.toUpperCase()}`} img={p.thumb || p.hero} alt={`${p.name}: ${p.kind}, ${p.location || 'Istanbul'}`}
                   accent={p.accent} wm={p.cat} fit={p.slug === 'yesim-evi' ? 'contain' : 'cover'} />
                 </div>
                 <div className="title-line" onClick={() => go({ id: 'project', project: p })} style={{ cursor: 'pointer' }}>
@@ -1154,14 +1154,14 @@ function HomePage({ go, hero }) {
 }
 
 Object.assign(window, { HomePage, HeroStatement, HeroFeature, HeroIndex });
-/* TUNK — Work / Project / About / Press / Contact pages */
+/* TUNK: Work / Project / About / Press / Contact pages */
 
 function WorkPage({ go }) {
   const [view, setView] = useState('grid');
   const [filter, setFilter] = useState('All');
   const base = filter === 'All' ? DATA.projects : DATA.projects.filter(p => p.tags.includes(filter));
   // Only published projects (with photography) appear here. Un-photographed
-  // ones stay hidden until a gallery is added — no empty placeholder tiles.
+  // ones stay hidden until a gallery is added; no empty placeholder tiles.
   const filtered = [...base].filter(hasPhotos).sort((a, b) => {
     if (a.year == null && b.year == null) return 0;
     if (a.year == null) return 1;
@@ -1172,7 +1172,7 @@ function WorkPage({ go }) {
     <main className="route">
       <div className="work-head">
         <div className="wrap">
-          <div className="lab lab-ink" style={{ marginBottom: 22 }}>№ 01 — WORK</div>
+          <div className="lab lab-ink" style={{ marginBottom: 22 }}>№ 01 · WORK</div>
           <h1 className="mega" style={{ marginBottom: 56 }}>All projects</h1>
           <div className="filterbar">
             <span className="lbl">Filter</span>
@@ -1185,7 +1185,7 @@ function WorkPage({ go }) {
             </span>
           </div>
           <div className="lab" style={{ marginTop: 12, marginBottom: 40 }}>
-            {filtered.length.toString().padStart(2, '0')} PROJECTS · 2014—2028
+            {filtered.length.toString().padStart(2, '0')} PROJECTS · 2014 to 2028
           </div>
         </div>
       </div>
@@ -1221,7 +1221,7 @@ function WorkPage({ go }) {
 
 function ProjectPage({ project, go }) {
   const p = project || DATA.projects[0];
-  // Prev/next only cycles through published projects (with a gallery) —
+  // Prev/next only cycles through published projects (with a gallery);
   // otherwise an unrealised/un-photographed proposal that's hidden from the
   // /work grid could still surface via these arrows.
   const published = DATA.projects.filter(hasPhotos);
@@ -1258,7 +1258,7 @@ function ProjectPage({ project, go }) {
   }, [p.slug]);
   useEffect(() => {
     if (p.heroVideo && heroIframeRef.current) {
-      // Vimeo's player postMessage API — no player.js needed for this one call
+      // Vimeo's player postMessage API; no player.js needed for this one call
       heroIframeRef.current.contentWindow.postMessage(JSON.stringify({ method: 'setMuted', value: heroMuted }), 'https://player.vimeo.com');
     }
     if (p.heroVideoLocal && heroVideoRef.current) {
@@ -1278,7 +1278,7 @@ function ProjectPage({ project, go }) {
               src={`https://player.vimeo.com/video/${p.heroVideo}?autoplay=1&muted=1&loop=1&controls=0&app_id=122963${p.heroVideoStart ? `#t=${p.heroVideoStart}` : ''}`}
               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0, pointerEvents: 'none' }}
               allow="autoplay; fullscreen; picture-in-picture"
-              title={`${p.name} — film`}
+              title={`${p.name}: film`}
             />
           ) : p.heroVideoLocal ? (
             <div className="pj-hero-video">
@@ -1288,7 +1288,7 @@ function ProjectPage({ project, go }) {
               />
             </div>
           ) : (
-            <Frame ratio="auto" num={`№ ${p.cat}`} meta="" img={p.hero} alt={`${p.name} — ${p.kind}, ${p.location || 'Istanbul'}`} accent={p.accent}
+            <Frame ratio="auto" num={`№ ${p.cat}`} meta="" img={p.hero} alt={`${p.name}: ${p.kind}, ${p.location || 'Istanbul'}`} accent={p.accent}
                    bare wm={p.cat} style={{ position: 'absolute', inset: 0, aspectRatio: 'auto' }}
                    fit={(p.slug === 'yesim-evi' || p.slug === 'pneuma-ii') ? 'contain' : 'cover'} />
           )}
@@ -1320,7 +1320,7 @@ function ProjectPage({ project, go }) {
           {p.photographer
             ? <p className="para" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.04em', textTransform: 'uppercase', color: 'var(--graphite)', marginTop: 32 }}>Photography: <b>{p.photographer}</b>{p.graphics ? <><br />Graphics: <b>{p.graphics}</b></> : null}</p>
             : (!p.gallery || !p.gallery.length)
-              ? <p className="para" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.04em', textTransform: 'uppercase', color: 'var(--aluminium)', marginTop: 32 }}>Photography pending — images to follow</p>
+              ? <p className="para" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.04em', textTransform: 'uppercase', color: 'var(--aluminium)', marginTop: 32 }}>Photography pending, images to follow</p>
               : null}
           {p.credits && p.credits.length
             ? <p className="para" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.04em', textTransform: 'uppercase', color: 'var(--graphite)', marginTop: p.photographer ? 12 : 32, lineHeight: 1.9 }}>
@@ -1353,7 +1353,7 @@ function ProjectPage({ project, go }) {
                       <figcaption className="pl-cap">{String(k + 1).padStart(2, '0')} · FILM</figcaption>
                     </figure>
                     <figure className="g-cell g-pair-img" onClick={() => openLb(next)}>
-                      <img src={next} alt={`${p.name} — ${String(k + 2).padStart(2, '0')}`} />
+                      <img src={next} alt={`${p.name}: ${String(k + 2).padStart(2, '0')}`} />
                       <figcaption className="pl-cap">{String(k + 2).padStart(2, '0')}</figcaption>
                     </figure>
                   </Reveal>
@@ -1368,7 +1368,7 @@ function ProjectPage({ project, go }) {
                       <figcaption className="pl-cap">{String(k + 1).padStart(2, '0')} · FILM</figcaption>
                     </Reveal>
                   : <Reveal as="figure" className={`g-cell${featureSrcs.has(g) ? ' g-feature' : wideSrcs.has(g) ? ' g-wide' : ''}`} key={k} delay={(k % 3) * 60} onClick={() => openLb(g)}>
-                      <img src={g} alt={`${p.name} — ${String(k + 1).padStart(2, '0')}`} />
+                      <img src={g} alt={`${p.name}: ${String(k + 1).padStart(2, '0')}`} />
                       <figcaption className="pl-cap">{String(k + 1).padStart(2, '0')}</figcaption>
                     </Reveal>
               );
@@ -1518,7 +1518,7 @@ function ContactPage({ go }) {
 
 Object.assign(window, { WorkPage, ProjectPage, AboutPage, PressPage, ContactPage });
 
-/* TUNK — app shell: router + tweaks + mount */
+/* TUNK: app shell: router + tweaks + mount */
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "hero": "feature",
@@ -1537,7 +1537,7 @@ const DENSITY_M = {
 function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
 
-  // Real, crawlable paths (not #hash) — search engines index /work/postane as
+  // Real, crawlable paths (not #hash); search engines index /work/postane as
   // its own URL. Netlify's _redirects file sends any path to index.html so
   // direct loads/refreshes/shared links still resolve.
   const encodePage = (p) => {
@@ -1577,14 +1577,14 @@ function App() {
 
   // Reset scroll to top on every page change. This runs AFTER React commits
   // the new page (not synchronously inside the click handler), so it's
-  // unaffected by the mobile menu's body{overflow:hidden} scroll lock — if
+  // unaffected by the mobile menu's body{overflow:hidden} scroll lock; if
   // scrollTo ran while overflow was still hidden, the browser silently
   // ignored it and the new page opened at the old scroll position.
   useEffect(() => { window.scrollTo({ top: 0, behavior: 'auto' }); }, [page]);
 
   // Per-page SEO: title, meta description, canonical, Open Graph/Twitter
   // cards, and a JSON-LD block (Organization sitewide, CreativeWork per
-  // project) — this is what search engines and shared-link previews read.
+  // project); this is what search engines and shared-link previews read.
   useEffect(() => { applySEO(page); }, [page]);
 
   // apply tweaks to :root
@@ -1627,7 +1627,7 @@ function App() {
           options={['compact', 'regular', 'spacious']}
           onChange={(v) => setTweak('density', v)} />
 
-        <TweakSection label="Accent" subtitle="Brand reserves colour for real project material — loosen with care" />
+        <TweakSection label="Accent" subtitle="Brand reserves colour for real project material; loosen with care" />
         <TweakColor label="Page accent" value={t.accent}
           options={['#0A0A0A', '#1C3FBF', '#D4271E', '#C97A1A']}
           onChange={(v) => setTweak('accent', v)} />

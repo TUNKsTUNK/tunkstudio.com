@@ -1,14 +1,14 @@
-/* TUNK — site content & portfolio data (plain globals for Babel scope)
+/* TUNK: site content & portfolio data (plain globals for Babel scope)
    Source of truth: TUNK_PROJE_LISTESI (client project list).
    Imagery is placeholder per brand; copy written in TUNK museum-label voice.
-   Only facts present in the source are stated — no fabricated materials. */
+   Only facts present in the source are stated; no fabricated materials. */
 // A project is "published with photography" once it has a real gallery.
 window.hasPhotos = (p) => !!(p && p.gallery && p.gallery.length);
 window.DATA = {
   site: {
     discipline: "ARCHITECTURE · EXHIBITION · PRODUCT · INSTALLATION",
     language: "EN · TR",
-    copyright: "© TUNK STUDIO · ISTANBUL · 2014—",
+    copyright: "© TUNK STUDIO · ISTANBUL · EST. 2014",
   },
 
   nav: [
@@ -23,11 +23,11 @@ window.DATA = {
     eyebrow: "STUDIO · ISTANBUL",
     statement: "Architecture, exhibition, product & installation.",
     statementShort: "Spatial work,\nbuilt precisely.",
-    intro1: "TUNK is a studio for architecture, art and design, based in Galata, Istanbul. The work moves across four disciplines — architecture, exhibition design, product design and installation.",
+    intro1: "TUNK is a studio for architecture, art and design, based in Galata, Istanbul. The work moves across four disciplines: architecture, exhibition, product and installation.",
     intro2: "From houses on the Aegean coast to museum exhibitions at the Pera Museum, retail concepts, furniture and lighting, and light-and-sound installations made with collaborators such as NOHlab.",
     metaCols: [
-      { k: "Studio", v: "2014—23 as MUDAHALE\n2023 — TUNK\nIstanbul" },
-      { k: "Work", v: "36 projects\n2014—2028" },
+      { k: "Studio", v: "2014 to 2023 as MUDAHALE\n2023: TUNK\nIstanbul" },
+      { k: "Work", v: "36 projects\n2014 to 2028" },
       { k: "Based", v: "Galata\nIstanbul" },
       { k: "Exhibited", v: "Pera Museum\nAkbank Sanat" }
     ],
@@ -36,8 +36,8 @@ window.DATA = {
   },
 
   method: {
-    eyebrow: "№ 01 — APPROACH",
-    big: "Each project begins with a survey of what is already there — structure, light, the materials in use — before any new gesture is proposed.",
+    eyebrow: "№ 01 · APPROACH",
+    big: "Each project begins with a survey of what is already there: structure, light, the materials in use, before any new gesture is proposed.",
     steps: [
       { num: "01", t: "Survey", d: "We measure the existing condition before drawing. Structure, daylight and the materials already in the room set the terms." },
       { num: "02", t: "Reduce", d: "The work uses as few elements as possible, deployed precisely. A threshold, a partition, a single line of light." },
@@ -47,7 +47,7 @@ window.DATA = {
   },
 
   about: {
-    eyebrow: "№ 02 — ABOUT",
+    eyebrow: "№ 02 · ABOUT",
     heading: "A studio for architecture, exhibition, product & installation.",
     p1: "TUNK is an interdisciplinary studio for architecture, art and design, based in Istanbul. Founded by Busra Tunc in 2014 under the name MUDAHALE, the studio took the name TUNK in 2023. The work moves across four disciplines: architecture, exhibition design, product & collectible design and immersive installation.\n\nProjects range from houses on the Aegean coast and interiors across Istanbul to museum and institutional exhibitions at the Pera Museum, Istanbul Modern, Akbank Sanat and the AKM Opera House. The studio designs retail concepts for Parfumlab, develops furniture and lighting collections, and produces immersive light, sound and spatial installations. Its collectible design pieces are represented internationally by Adorno Design and have been shown at design fairs including Milan Design Week and 3 Days of Design.",
     p2: "Each project begins from its own site and brief, building a specific spatial logic rather than repeating a fixed style. Recent work has been published by ArchDaily, Designboom, Frame Magazine, Dezeen and Design Milk, among others.",
@@ -61,7 +61,7 @@ window.DATA = {
   },
 
   press: {
-    eyebrow: "№ 03 — PRESS",
+    eyebrow: "№ 03 · PRESS",
     title: "Press & coverage.",
     intro: "For press enquiries, image requests and interview availability, write to press@tunk.studio. Selected coverage below; high-resolution images are available on request, with credit to the studio and named photographer.",
     items: [
@@ -76,12 +76,12 @@ window.DATA = {
     ],
     downloads: [
       { n: "01", name: "Studio biography",  meta: "DOCX · 6 KB",  langs: "EN · TR" },
-      { n: "02", name: "Studio logo pack",  meta: "ZIP · 2.4 MB", langs: "—" }
+      { n: "02", name: "Studio logo pack",  meta: "ZIP · 2.4 MB", langs: "N/A" }
     ],
   },
 
   contact: {
-    eyebrow: "№ 04 — CONTACT",
+    eyebrow: "№ 04 · CONTACT",
     title: "Get in touch.",
     address: "Galata\nIstanbul",
     phone: "",
@@ -101,7 +101,7 @@ window.DATA = {
   filters: ["All", "Architecture", "Exhibition Architecture", "Product Design", "Installation"],
 
   /* ---------------------------------------------------------------------
-     Projects — ordered by the source list's recommended top 10 first,
+     Projects: ordered by the source list's recommended top 10 first,
      then the remaining catalogue. accent stays null (material unknown =
      monochrome, per brand). tags drive the Work filter (category + scope).
      --------------------------------------------------------------------- */
@@ -126,8 +126,8 @@ window.DATA = {
         "assets/projects/postane/g/28.jpg", "assets/projects/postane/g/29.jpg"
       ],
       photographer: "Emirkan Corut",
-      summary: "Interior and lighting for Postane — a social and cultural hub in the Old British Post Office in Galata, completed in 1859.",
-      para: "The design was drawn from what the building revealed in restoration — the volta vaulted ceiling, the wall niches, the radial motif above the door, the gridded window frames. For the two ground-floor fair-trade shops, Postane Shop and Café, each piece was designed and fabricated alongside its craftsman: a produce stand raised from the window's cast light, a gallery light tracing the grid, a deployable publications display, a bookcase angled 10° to follow the vault, and a hand-bent sun light. The studio also carried the lighting for the whole building — facade, four floors, terrace. 73 m².",
+      summary: "Interior and lighting for Postane, a social and cultural hub in the Old British Post Office in Galata, completed in 1859.",
+      para: "The design was drawn from what the building revealed in restoration: the volta vaulted ceiling, the wall niches, the radial motif above the door, the gridded window frames. For the two ground-floor fair-trade shops, Postane Shop and Café, each piece was designed and fabricated alongside its craftsman: a produce stand raised from the window's cast light, a gallery light tracing the grid, a deployable publications display, a bookcase angled 10° to follow the vault, and a hand-bent sun light. The studio also carried the lighting for the whole building: facade, four floors, terrace. 73 m².",
     },
     {
       cat: "02", slug: "40-kapili-oda", name: "THE ROOM WITH FORTY DOORS",
@@ -272,7 +272,7 @@ window.DATA = {
       ],
       photographer: "TUNK", graphics: "TUNK",
       summary: "A house set into an olive grove at Gökçeovacık, above Göcek on the Aegean coast.",
-      para: "Concrete volumes step into the slope and open through full-height glass to the bay and the sunset. A circular oculus is cut through the upper floor, drawing daylight down into the stone-walled rooms below. A custom furniture collection in mild steel and oak — shelving, a hall console, a bench — was drawn for the interior and fabricated to the same line as the architecture.",
+      para: "Concrete volumes step into the slope and open through full-height glass to the bay and the sunset. A circular oculus is cut through the upper floor, drawing daylight down into the stone-walled rooms below. A custom furniture collection in mild steel and oak (shelving, a hall console, a bench) was drawn for the interior and fabricated to the same line as the architecture.",
     },
     {
       cat: "12", slug: "gaziantep", name: "Gaziantep House",
@@ -322,8 +322,8 @@ window.DATA = {
         "assets/projects/msgsu/13.jpg", "assets/projects/msgsu/14.jpg", "assets/projects/msgsu/15.jpg"
       ],
       photographer: "Emirkan Corut",
-      summary: "A new working system for the weaving workshop at Mimar Sinan Fine Arts University — looms, dye storage and circulation re-set around the craft.",
-      para: "The existing studio was re-planned around how the work is actually made. A blue steel armature carries the stair, the tool screens and the open shelving; dyed yarn is sorted into a wall of stacked translucent bins, read at a glance by colour. Everything new is fabricated in mild steel and left exposed — welded on site, levelled against the original arched windows and timber ceiling. Published by Arkitera.",
+      summary: "A new working system for the weaving workshop at Mimar Sinan Fine Arts University: looms, dye storage and circulation re-set around the craft.",
+      para: "The existing studio was re-planned around how the work is actually made. A blue steel armature carries the stair, the tool screens and the open shelving; dyed yarn is sorted into a wall of stacked translucent bins, read at a glance by colour. Everything new is fabricated in mild steel and left exposed: welded on site, levelled against the original arched windows and timber ceiling. Published by Arkitera.",
     },
     {
       cat: "17", slug: "parfumlab-pneuma", name: "PNEUMA I",
@@ -366,7 +366,7 @@ window.DATA = {
         "assets/projects/pneuma/foto_27.jpg"
       ],
       photographer: "Hadiye Cangökçe",
-      summary: "A Parfumlab retail concept — the Pneuma store, built as a working perfume laboratory.",
+      summary: "A Parfumlab retail concept: the Pneuma store, built as a working perfume laboratory.",
       para: "The store is laid out as a laboratory: a white pipework grid runs across ceiling and walls, blue-glass panels carry the formula displays, and a mirrored island holds the bottles. Colour belongs entirely to the cobalt glass and the lab apparatus.",
     },
     {
@@ -438,7 +438,7 @@ window.DATA = {
       category: "Architecture", kind: "Retail Design",
       year: 2026, yearLabel: "2026", location: "Istanbul", status: "Forthcoming",
       tags: ["Architecture"],
-      summary: "A Parfumlab store — Atlantis.",
+      summary: "A Parfumlab store: Atlantis.",
       para: "A forthcoming Parfumlab store, part of the retail programme.",
     },
     {
@@ -452,7 +452,7 @@ window.DATA = {
     {
       cat: "24", slug: "sakir-eczacibasi", name: "SELECTED MOMENTS",
       category: "Exhibition Architecture", kind: "Exhibition Architecture",
-      year: null, yearLabel: "—", location: "Istanbul", status: "Completed",
+      year: null, yearLabel: "N/A", location: "Istanbul", status: "Completed",
       tags: ["Exhibition Architecture"],
       summary: "Exhibition design for a Şakir Eczacıbaşı exhibition.",
       para: "Exhibition architecture for a show of Şakir Eczacıbaşı's work.",
@@ -495,7 +495,7 @@ window.DATA = {
         ["Project Manager", "Zeynep Ögel"],
         ["Client", "Pera Museum"],
       ],
-      summary: "A non-linear spatial system for Samih Rifat's multidisciplinary archive — photography, film, writing and design — staged as an intellectual topography rather than a chronological retrospective.",
+      summary: "A non-linear spatial system for Samih Rifat's multidisciplinary archive, spanning photography, film, writing and design, staged as an intellectual topography rather than a chronological retrospective.",
       para: "The design treats Rifat's practice as photographer, translator, documentary filmmaker, writer, poet and publisher as one interconnected body of thought rather than separate disciplines, and stages it as a topography visitors navigate on their own terms rather than a fixed route. Body-scaled display elements, repeated across the plan but constantly changing orientation, become independent presences in the room rather than mere surfaces for the work. Thin lighting elements suspended like strings define each element within its own field of light, so the exhibition unfolds gradually through movement instead of being read at a glance.",
     },
     {
@@ -503,13 +503,13 @@ window.DATA = {
       category: "Exhibition Architecture", kind: "Exhibition Architecture",
       year: 2025, yearLabel: "2025", location: "Istanbul", status: "Completed",
       tags: ["Exhibition Architecture"],
-      summary: "Exhibition design — Invisible Monuments.",
+      summary: "Exhibition architecture for Invisible Monuments.",
       para: "Exhibition architecture for Görünmeyen Anıtlar (Invisible Monuments).",
     },
     {
       cat: "27", slug: "liminal", name: "Liminal",
       category: "Product Design", kind: "Lighting Design",
-      year: null, yearLabel: "—", location: null, status: "Completed",
+      year: null, yearLabel: "N/A", location: null, status: "Completed",
       scope: ["Lighting"],
       tags: ["Product Design"],
       hero: "assets/projects/liminal/g/04.jpg",
@@ -539,7 +539,7 @@ window.DATA = {
       category: "Installation", kind: "Installation",
       year: 2019, yearLabel: "2019", location: "Istanbul", status: "Completed",
       tags: ["Installation"],
-      summary: "Installation design — Instructions.",
+      summary: "Installation design: Instructions.",
       para: "An installation realised in 2019 in collaboration with artist Yağız Özgen.",
     },
     {
@@ -565,7 +565,7 @@ window.DATA = {
     {
       cat: "31", slug: "maslak-venue", name: "Maslak Venue",
       category: "Installation", kind: "Permanent Installation",
-      year: null, yearLabel: "—", location: "Maslak, Istanbul", status: "Completed",
+      year: null, yearLabel: "N/A", location: "Maslak, Istanbul", status: "Completed",
       tags: ["Installation"],
       summary: "A permanent installation for a night club in Maslak.",
       para: "A built-in installation for a Maslak night club.",
@@ -573,7 +573,7 @@ window.DATA = {
     {
       cat: "32", slug: "pana-helical", name: "HELICAL",
       category: "Installation", kind: "Permanent Installation",
-      year: null, yearLabel: "—", location: "Istanbul", status: "Completed",
+      year: null, yearLabel: "N/A", location: "Istanbul", status: "Completed",
       collab: "Pana Yapı",
       tags: ["Installation"],
       summary: "A permanent helical installation, with Pana Yapı.",
@@ -582,7 +582,7 @@ window.DATA = {
     {
       cat: "33", slug: "kohenler-oid", name: "OID",
       category: "Installation", kind: "Permanent Installation",
-      year: null, yearLabel: "—", location: "Istanbul", status: "Completed",
+      year: null, yearLabel: "N/A", location: "Istanbul", status: "Completed",
       tags: ["Installation"],
       summary: "A permanent installation.",
       para: "A built-in installation produced for Kohenler.",
@@ -590,23 +590,23 @@ window.DATA = {
     {
       cat: "34", slug: "kongre-merkezi", name: "Kongre Merkezi",
       category: "Installation", kind: "Temporary Installation",
-      year: null, yearLabel: "—", location: "Istanbul", status: "Event-based",
+      year: null, yearLabel: "N/A", location: "Istanbul", status: "Event-based",
       tags: ["Installation"],
       summary: "A temporary, event-based installation for a congress centre.",
-      para: "A demountable installation built for an event at a congress centre — assembled, used and struck within the run of the programme.",
+      para: "A demountable installation built for an event at a congress centre, assembled, used and struck within the run of the programme.",
     },
     {
       cat: "35", slug: "tersane-duvar", name: "TERSANE",
       category: "Installation", kind: "Proposal · Unrealised",
-      year: null, yearLabel: "—", location: "Istanbul", status: "Unrealised",
+      year: null, yearLabel: "N/A", location: "Istanbul", status: "Unrealised",
       tags: ["Installation"],
-      summary: "An unrealised proposal — a wall for the Tersane site.",
+      summary: "An unrealised proposal for a wall at the Tersane site.",
       para: "A studio proposal developed for the Tersane site that was not realised.",
     },
     {
       cat: "36", slug: "ozdilek", name: "OZDILEK",
       category: "Installation", kind: "Proposal · Unrealised",
-      year: null, yearLabel: "—", location: null, status: "Unrealised",
+      year: null, yearLabel: "N/A", location: null, status: "Unrealised",
       tags: ["Installation"],
       summary: "An unrealised proposal for Özdilek.",
       para: "A studio proposal developed for Özdilek that was not realised.",
