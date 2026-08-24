@@ -26,7 +26,7 @@ function upsertLD(id, obj) {
   el.textContent = JSON.stringify(obj);
 }
 
-const SITE_NAME = 'TUNK Studio';
+const SITE_NAME = 'TUNK';
 const SITE_TAGLINE = 'Architecture, Exhibition, Product & Installation Design, Istanbul';
 const SITE_DESC = "TUNK Studio: mimarlık ofisi, sergi tasarımı, mekansal enstalasyon, aydınlatma ve ürün tasarımı stüdyosu, Galata, İstanbul. Architecture, exhibition, installation and product design studio in Istanbul, with retail interiors, museum exhibitions, spatial installations, lighting, furniture and residential architecture.";
 const DEFAULT_IMAGE = window.SITE_URL + '/assets/logo-tunk-black.png';
