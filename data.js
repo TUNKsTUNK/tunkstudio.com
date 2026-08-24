@@ -338,7 +338,6 @@ window.DATA = {
       hero: "assets/projects/pneuma-hero.jpg",
       thumb: "assets/projects/pneuma/foto_01.jpg",
       thumbPos: "center 62%",
-      wideGallery: true,
       gallery: [
         "assets/projects/pneuma/foto_21.jpg",
         "assets/projects/pneuma/foto_03.jpg",
@@ -510,7 +509,6 @@ window.DATA = {
       tags: ["Exhibition Architecture"],
       hero: "assets/projects/invisible/01-exterior-facade.jpg",
       thumb: "assets/projects/invisible/15-immersive-panorama.jpg",
-      wideGallery: true,
       gallery: [
         "assets/projects/invisible/02-storefront-screens.jpg",
         "assets/projects/invisible/03-storefront-screens-alt.jpg",
