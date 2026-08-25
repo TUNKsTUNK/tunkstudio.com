@@ -520,7 +520,7 @@ window.DATA = {
         "assets/projects/invisible/s09-immersive-virgin.jpg",
         "assets/projects/invisible/s10-immersive-mosaic.jpg"
       ],
-      photographer: "Eren İnönü", graphics: "Amir Jamshidi",
+      photographer: "Kayhan Kaygusuz", graphics: "Amir Jamshidi",
       credits: [
         ["Exhibition Concept and Design, Video Installations", "Buşra Tunç"],
         ["Video Editing", "Murathan Sırakaya"],
