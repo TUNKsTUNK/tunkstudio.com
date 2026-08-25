@@ -380,7 +380,7 @@ window.DATA = {
       tags: ["Architecture"],
       hero: "assets/projects/mersin/foto_05.jpg",
       thumb: "assets/projects/mersin/foto_02.jpg",
-      thumbPos: "center 3%",
+      thumbPos: "center 9%",
       gallery: [
         "assets/projects/mersin/graphic-plan.jpg",
         "assets/projects/mersin/foto_02.jpg",
