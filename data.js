@@ -505,7 +505,7 @@ window.DATA = {
     {
       cat: "26", slug: "gorunmeyen-anitlar", name: "INVISIBLE MONUMENTS",
       category: "Exhibition Architecture", kind: "Exhibition Architecture",
-      year: 2025, yearLabel: "2025", location: "FMV Galeri Işık, Istanbul", status: "Completed",
+      year: 2025, yearLabel: "2025", location: "FMV Galeri Işık, Nişantaşı, Istanbul", status: "Completed",
       tags: ["Exhibition Architecture"],
       hero: "assets/projects/invisible/t01-ext-day-screens.jpg",
       thumb: "assets/projects/invisible/s10-immersive-mosaic.jpg",
