@@ -27,7 +27,7 @@ window.DATA = {
     intro2: "From houses on the Aegean coast to museum exhibitions at the Pera Museum, retail concepts, furniture and lighting, and light-and-sound installations made with collaborators such as NOHlab.",
     metaCols: [
       { k: "Studio", v: "2014 to 2023 as MUDAHALE\n2023: TUNK\nIstanbul" },
-      { k: "Work", v: "36 projects\n2014 to 2028" },
+      { k: "Work", v: "36 projects\n2014 to 2026" },
       { k: "Based", v: "Galata\nIstanbul" },
       { k: "Exhibited", v: "Pera Museum\nAkbank Sanat" }
     ],
