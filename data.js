@@ -119,8 +119,7 @@ window.DATA = {
       tags: ["Architecture", "Product Design"],
       hero: "assets/projects/postane/hero.jpg",
       gallery: [
-        "assets/projects/postane/g/01.jpg", "assets/projects/postane/g/02.jpg", "assets/projects/postane/g/03.jpg",
-        "assets/projects/postane/g/04.jpg", "assets/projects/postane/g/05.jpg", "assets/projects/postane/g/06.jpg",
+        "assets/projects/postane/g/drawing-01.jpg", "assets/projects/postane/g/drawing-02.jpg",
         "assets/projects/postane/g/07.jpg", "assets/projects/postane/g/08.jpg", "assets/projects/postane/g/09.jpg",
         "assets/projects/postane/g/10.jpg", "assets/projects/postane/g/11.jpg", "assets/projects/postane/g/12.jpg",
         "assets/projects/postane/g/13.jpg", "assets/projects/postane/g/14.jpg", "assets/projects/postane/g/15.jpg",
