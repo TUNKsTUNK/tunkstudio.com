@@ -230,7 +230,7 @@ window.DATA = {
     {
       cat: "09", slug: "oculus", name: "Oculus",
       category: "Installation", kind: "Installation · Performance",
-      year: 2016, yearLabel: "2016", location: "Istanbul Imperial Arsenal, Istanbul", status: "Completed",
+      year: 2016, yearLabel: "2016", location: "Tophane-i Amire, Istanbul", status: "Completed",
       collab: "NOHlab, HAS Architects", press: ["ArchDaily", "Designboom", "Arkitera"],
       heroVideo: "193355265",
       heroVideoStart: "10s",
@@ -244,9 +244,9 @@ window.DATA = {
         "assets/projects/oculus/g/12.jpg", "assets/projects/oculus/g/13.jpg", "assets/projects/oculus/g/14.jpg",
         "assets/projects/oculus/g/10.jpg", "assets/projects/oculus/g/15.jpg"
       ],
-      summary: "An interactive light and sound performance, for the Third Istanbul Design Biennial.",
-      photographer: "Cemal Emden",
-      para: "Set in the Single-Dome Hall of the Istanbul Imperial Arsenal for the Third Istanbul Design Biennial, Oculus reinterprets the 16th-century hall's geometry as a geodesic \u201clight dome\u201d \u2014 a temporary structure of triangular screens standing inside the historic dome. Visitors step into the semicircle of interlocking panels, enclosed by shifting light, sound and animation drawn from a selection of HAS Architects' work. The top of the structure is left open, so a single ray of light still finds the room's original oculus. Old and new, real and virtual, run side by side rather than one replacing the other.",
+      summary: "A site-specific audio-visual performance in the Single-Dome Hall of Tophane-i Amire, where an inverted metal dome answers the historic one.",
+      photographer: "Cemal Emden, NOHlab", credits: [["Space & Content Design", "NOHlab, Buşra Tunç"], ["Architecture and Design Direction", "Buşra Tunç"], ["Visual and Sound Direction", "NOHlab"], ["Animation Design", "NOHlab, Necmi Deniz Akıncı"], ["Sound Design", "Giray Gürkal"], ["Computational Design", "Veysel Açıkel"], ["Graphic Design", "Ali Emre Doğramacı"], ["Advisor", "Pelin Derviş"], ["Commission", "HAS Architects"], ["Technical Production", "Visio-Vox, NOHlab"], ["Space Setup", "Bora Tosun, Sergen Tertemiz"], ["Assistants", "Taylan Karabaş, Furkan Ruşen"], ["Space", "MSGSÜ Tophane-i Amire Single-Dome Hall"]],
+      para: "Built inside the Single-Dome Hall of Tophane-i Amire, the work examines the relationship between light and the historic dome in new layers, through an inverted metal dome, sound, digital image and programming. Light falling from the eye of the dome triggers projection and sound, and the inverse dome on the floor forms a sphere together with the dome of the space. Across this constructed sphere run animations of abstract geometric forms drawn from a selection of HAS Architects' projects, so that old and new, whole and fragment, real and virtual alternate rather than replace one another. The audience is surrounded by moving light and sound, and notions of time and space blur. Site-specific audio-visual performance, 15 minutes: metal construction, sound, projection mapping, computer software, video animation, moving head light.",
     },
     {
       cat: "10", slug: "galata-ormanci", name: "Galata Apt",
