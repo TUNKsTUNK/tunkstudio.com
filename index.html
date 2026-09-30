@@ -101,7 +101,7 @@
 <body>
   <div id="root"></div>
   <!-- Bump ?v= (any changed value) whenever data.js changes -- data.js is served with a 4h browser cache-control header, so without a version bust, edits can appear "not deployed" in a visitor's browser for hours even after a correct push and a Cloudflare purge. -->
-  <script src="data.js?v=1788882400"></script>
+  <script src="data.js?v=1790687806"></script>
   <script src="seo.js?v=1787910542"></script>
   <script type="text/babel" data-presets="react">
 // @ds-adherence-ignore -- omelette starter scaffold (raw elements/hex/px by design)
@@ -1075,7 +1075,7 @@ function SelectedWork({ go }) {
   const h = DATA.home;
   // Curated order (set by studio). Only projects with photography are shown for now;
   // the rest stay hidden from the home selection until their images are uploaded.
-  const order = ['parfumlab-pneuma', 'yesim-evi', 'postane', 'hali-atolyesi', 'oculus', 'samih-rifat', 'parfumlab-cepa'];
+  const order = ['parfumlab-pneuma', 'submarine', 'postane', 'hali-atolyesi', 'oculus', 'samih-rifat', 'parfumlab-cepa'];
   const list = order.map((s) => DATA.projects.find((p) => p.slug === s)).filter((p) => p && hasPhotos(p));
   return (
     <section className="sec" style={{ paddingTop: 96 }}>
@@ -1094,10 +1094,10 @@ function SelectedWork({ go }) {
                   <span className="idx">№ {(i + 1).toString().padStart(2, '0')} / {DATA.projects.length}</span>
                   <span className="lab">{p.category.toUpperCase()}</span>
                 </div>
-                <div className={`media ${p.slug === 'yesim-evi' ? 'media-natural' : ''}`} onClick={() => go({ id: 'project', project: p })}>
+                <div className={`media ${p.slug === 'submarine' ? 'media-natural' : ''}`} onClick={() => go({ id: 'project', project: p })}>
                   <Frame ratio={big ? '21/9' : '16/9'} num={`№ ${p.cat}`}
                   meta={`${loc} · ${p.kind.toUpperCase()}`} img={p.thumb || p.hero} alt={`${p.name}: ${p.kind}, ${p.location || 'Istanbul'}`}
-                  accent={p.accent} wm={p.cat} fit={p.slug === 'yesim-evi' ? 'contain' : 'cover'} />
+                  accent={p.accent} wm={p.cat} fit={p.slug === 'submarine' ? 'contain' : 'cover'} />
                 </div>
                 <div className="title-line" onClick={() => go({ id: 'project', project: p })} style={{ cursor: 'pointer' }}>
                   <span className="title">{p.name}</span>
@@ -1270,7 +1270,7 @@ function ProjectPage({ project, go }) {
     <main className="route" style={{ '--accent': accentVar }}>
       <section className={`pj-hero ${(p.heroVideo || p.heroVideoLocal) ? 'pj-hero-video-sec' : ''}`}>
         <div onClick={() => !p.heroVideo && !p.heroVideoLocal && p.hero && openLb(p.hero)}
-             className={p.slug === 'yesim-evi' ? 'pj-hero-natural hero-wide' : (p.slug === 'pneuma-ii' ? 'pj-hero-natural' : '')}
+             className={p.slug === 'submarine' ? 'pj-hero-natural hero-wide' : (p.slug === 'pneuma-ii' ? 'pj-hero-natural' : '')}
              style={{ position: 'absolute', inset: 0, zIndex: 1, cursor: (p.heroVideo || p.heroVideoLocal) ? 'default' : (p.hero ? 'zoom-in' : 'default') }}>
           {p.heroVideo ? (
             <iframe
@@ -1290,7 +1290,7 @@ function ProjectPage({ project, go }) {
           ) : (
             <Frame ratio="auto" num={`№ ${p.cat}`} meta="" img={p.hero} alt={`${p.name}: ${p.kind}, ${p.location || 'Istanbul'}`} accent={p.accent}
                    bare wm={p.cat} style={{ position: 'absolute', inset: 0, aspectRatio: 'auto' }}
-                   fit={(p.slug === 'yesim-evi' || p.slug === 'pneuma-ii') ? 'contain' : 'cover'} />
+                   fit={(p.slug === 'submarine' || p.slug === 'pneuma-ii') ? 'contain' : 'cover'} />
           )}
         </div>
         <div className="scrim" style={{ position: 'absolute', inset: 0, background: 'rgba(10,10,10,.34)', zIndex: 2, pointerEvents: 'none' }} />
@@ -1550,7 +1550,7 @@ function App() {
     if (!h) return { id: 'home' };
     const parts = h.split('/');
     if (parts[0] === 'work' && parts[1]) {
-      const slug = decodeURIComponent(parts[1]);
+      const raw = decodeURIComponent(parts[1]); const slug = ({ 'yesim-evi': 'submarine' })[raw] || raw;
       const project = DATA.projects.find((pr) => pr.slug === slug);
       if (project) return { id: 'project', project };
       return { id: 'work' };
