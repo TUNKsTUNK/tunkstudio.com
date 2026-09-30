@@ -259,7 +259,7 @@ window.DATA = {
 
     /* ---- remaining catalogue ---- */
     {
-      cat: "11", slug: "yesim-evi", name: "SUBMARINE",
+      cat: "11", slug: "submarine", name: "SUBMARINE",
       category: "Architecture", kind: "Residential",
       year: 2020, yearLabel: "2020", location: "Göcek, Muğla", status: "Completed",
       scope: ["Furniture"],
