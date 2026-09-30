@@ -30,7 +30,7 @@ function App() {
     if (!h) return { id: 'home' };
     const parts = h.split('/');
     if (parts[0] === 'work' && parts[1]) {
-      const slug = decodeURIComponent(parts[1]);
+      const raw = decodeURIComponent(parts[1]); const slug = ({ 'yesim-evi': 'submarine' })[raw] || raw;
       const project = DATA.projects.find((pr) => pr.slug === slug);
       if (project) return { id: 'project', project };
       return { id: 'work' };
