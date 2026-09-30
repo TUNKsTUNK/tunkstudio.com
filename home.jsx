@@ -145,7 +145,7 @@ function SelectedWork({ go }) {
   const h = DATA.home;
   // Curated order (set by studio). Only projects with photography are shown for now;
   // the rest stay hidden from the home selection until their images are uploaded.
-  const order = ['parfumlab-pneuma', 'yesim-evi', 'postane', 'hali-atolyesi', 'oculus', 'samih-rifat', 'parfumlab-cepa'];
+  const order = ['parfumlab-pneuma', 'submarine', 'postane', 'hali-atolyesi', 'oculus', 'samih-rifat', 'parfumlab-cepa'];
   const list = order.map((s) => DATA.projects.find((p) => p.slug === s)).filter((p) => p && hasPhotos(p));
   return (
     <section className="sec" style={{ paddingTop: 96 }}>
@@ -164,10 +164,10 @@ function SelectedWork({ go }) {
                   <span className="idx">№ {(i + 1).toString().padStart(2, '0')} / {DATA.projects.length}</span>
                   <span className="lab">{p.category.toUpperCase()}</span>
                 </div>
-                <div className={`media ${p.slug === 'yesim-evi' ? 'media-natural' : ''}`} onClick={() => go({ id: 'project', project: p })}>
+                <div className={`media ${p.slug === 'submarine' ? 'media-natural' : ''}`} onClick={() => go({ id: 'project', project: p })}>
                   <Frame ratio={big ? '21/9' : '16/9'} num={`№ ${p.cat}`}
                   meta={`${loc} · ${p.kind.toUpperCase()}`} img={p.thumb || p.hero} alt={`${p.name}: ${p.kind}, ${p.location || 'Istanbul'}`}
-                  accent={p.accent} wm={p.cat} fit={p.slug === 'yesim-evi' ? 'contain' : 'cover'} />
+                  accent={p.accent} wm={p.cat} fit={p.slug === 'submarine' ? 'contain' : 'cover'} />
                 </div>
                 <div className="title-line" onClick={() => go({ id: 'project', project: p })} style={{ cursor: 'pointer' }}>
                   <span className="title">{p.name}</span>
