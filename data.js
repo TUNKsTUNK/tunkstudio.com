@@ -60,7 +60,7 @@ window.DATA = {
       { name: "Product & Lighting", role: "Custom furniture, lighting & collectible design" }
     ],
     clients: [
-      "Pera Museum", "Istanbul Modern", "Akbank Sanat", "Yapı Kredi Kültür Sanat", "AKM Opera House",
+      "Pera Museum", "Istanbul Modern", "Akbank Sanat", "Yapı Kredi Kültür Sanat", "AKM Opera House", "Sanatorium",
       "Goethe-Institut", "İBB", "MSGSÜ",
       "Parfumlab", "Boyner", "Türk Telekom", "Kahve Dünyası", "Emaar Square Mall", "Hilltown", "Postane",
       "Pana Yapı", "NOHlab", "BEK", "Adorno Design"
