@@ -63,7 +63,7 @@ window.DATA = {
   press: {
     eyebrow: "№ 03 · PRESS",
     title: "Press & coverage.",
-    intro: "For press enquiries, image requests and interview availability, write to press@tunk.studio. Selected coverage below; high-resolution images are available on request, with credit to the studio and named photographer.",
+    intro: "For press enquiries, image requests and interview availability, write to tunc@tunkstudio.com. Selected coverage below; high-resolution images are available on request, with credit to the studio and named photographer.",
     items: [
       { n: "01", name: "OCULUS",            pub: "ArchDaily",    year: "2016", type: "Installation feature", url: "https://www.archdaily.com/874142/nohlab-and-busra-tunc-create-immersive-installation-based-on-centuries-old-architecture" },
       { n: "02", name: "OCULUS",            pub: "Designboom",   year: "2016", type: "Installation feature", url: "https://www.designboom.com/art/nohlab-busra-tunc-oculus-sound-light-performance-has-architects-istanbul-05-23-2017/" },
