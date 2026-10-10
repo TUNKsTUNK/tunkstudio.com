@@ -97,8 +97,8 @@ function pageSEO(page) {
       url: base + '/work',
     },
     about: {
-      title: `Hakkında / About: Buşra Tunç ve TUNK · İstanbul Mimarlık ve Tasarım Ofisi`,
-      desc: 'Buşra Tunç tarafından 2014\u2019te kurulan TUNK, Galata, İstanbul\u2019da mimarlık, sergi tasarımı, ürün tasarımı ve enstalasyon üzerine çalışan disiplinlerarası bir stüdyo. ' + String(DATA.about.p1 || SITE_DESC).split('\n')[0],
+      title: `Hakkında / About: TUNK · İstanbul Mimarlık ve Tasarım Stüdyosu`,
+      desc: 'TUNK, İstanbul merkezli bir mimarlık ve tasarım stüdyosu: mimarlık, iç mekan, sergi tasarımı, enstalasyon, aydınlatma ve ürün tasarımı. ' + String(DATA.about.p1 || SITE_DESC).split('\n')[0],
       url: base + '/about',
     },
     press: {
