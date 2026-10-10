@@ -31,13 +31,42 @@ const SITE_TAGLINE = 'Architecture, Exhibition, Product & Installation Design, I
 const SITE_DESC = "TUNK Studio: mimarlık ofisi, sergi tasarımı, mekansal enstalasyon, aydınlatma ve ürün tasarımı stüdyosu, Galata, İstanbul. Architecture, exhibition, installation and product design studio in Istanbul, with retail interiors, museum exhibitions, spatial installations, lighting, furniture and residential architecture.";
 const DEFAULT_IMAGE = window.SITE_URL + '/assets/logo-tunk-black.png';
 
+// project.kind / project.category (English, from data.js) -> Turkish search phrase
+const KIND_TR = {
+  'Interior & Lighting': 'İç Mekan ve Aydınlatma Tasarımı',
+  'Immersive Exhibition': 'Sürükleyici Sergi Tasarımı',
+  'Exhibition Architecture': 'Sergi Mimarisi ve Sergi Tasarımı',
+  'Exhibition': 'Sergi Tasarımı',
+  'Commercial Interior': 'Ticari İç Mekan Tasarımı',
+  'Residential Interior': 'Konut İç Mimarisi',
+  'Office Interior': 'Ofis İç Mimarisi',
+  'Education Interior': 'Atölye ve Eğitim Mekanı Tasarımı',
+  'Residential': 'Konut Mimarisi',
+  'Retail Design': 'Mağaza Tasarımı',
+  'Lighting Design': 'Aydınlatma Tasarımı',
+  'Installation': 'Enstalasyon Tasarımı',
+  'Installation · Performance': 'Işık ve Ses Enstalasyonu',
+  'Permanent Installation': 'Kalıcı Enstalasyon',
+  'Temporary Installation': 'Geçici Enstalasyon',
+  'Proposal · Unrealised': 'Mimari Öneri',
+  'Architecture': 'Mimarlık',
+  'Product Design': 'Ürün Tasarımı',
+};
+const trPlace = (s) => String(s || 'Istanbul').replace(/Istanbul/g, 'İstanbul').replace(/ Museum/g, ' Müzesi');
+
 function pageSEO(page) {
   const base = window.SITE_URL;
   if (page.id === 'project' && page.project) {
     const p = page.project;
     const loc = p.location || 'Istanbul';
-    const title = `${p.name}: ${SITE_NAME}`;
-    const desc = (p.summary || SITE_DESC) + ` ${p.kind || p.category || ''}, ${loc}.`;
+    // Turkish discipline + place in the title/description: most searches for
+    // this kind of work are in Turkish ("sergi tasarımı", "konut iç mimarisi").
+    const kindTR = KIND_TR[p.kind] || KIND_TR[p.category] || '';
+    const locTR = trPlace(loc);
+    const title = `${p.name} | ${kindTR ? kindTR + ', ' : ''}${locTR} · TUNK Studio`;
+    const desc = [kindTR, locTR, p.yearLabel].filter(Boolean).join(' · ') + '. '
+      + (p.summary || '') + ` ${p.kind || p.category || ''}, ${loc}. `
+      + 'TUNK Studio: İstanbul mimarlık, sergi tasarımı ve enstalasyon ofisi.';
     return {
       title, desc,
       url: base + '/work/' + p.slug,
@@ -58,28 +87,28 @@ function pageSEO(page) {
   }
   const map = {
     home: {
-      title: `${SITE_NAME}: ${SITE_TAGLINE}`,
+      title: `TUNK Studio | İstanbul Mimarlık, Sergi Tasarımı ve Enstalasyon Ofisi`,
       desc: SITE_DESC,
       url: base + '/',
     },
     work: {
-      title: `Work: ${SITE_NAME} | Architecture, Exhibition & Installation Projects`,
+      title: `Projeler / Work: Mimarlık, Sergi Tasarımı ve Enstalasyon · TUNK Studio İstanbul`,
       desc: 'Selected work by TUNK Studio: sergi tasarımı, mekansal enstalasyon, perakende mağaza tasarımı, aydınlatma tasarımı ve konut mimarisi. Exhibition architecture, retail interiors, installation art, lighting design and residential architecture in Istanbul.',
       url: base + '/work',
     },
     about: {
-      title: `About: ${SITE_NAME} | Istanbul Architecture & Design Studio`,
-      desc: DATA.about.p1 || SITE_DESC,
+      title: `Hakkında / About: Büşra Tunç ve TUNK Studio · İstanbul Mimarlık ve Tasarım Ofisi`,
+      desc: 'Büşra Tunç tarafından 2014\u2019te kurulan TUNK Studio, Galata, İstanbul\u2019da mimarlık, sergi tasarımı, ürün tasarımı ve enstalasyon üzerine çalışan disiplinlerarası bir stüdyo. ' + String(DATA.about.p1 || SITE_DESC).split('\n')[0],
       url: base + '/about',
     },
     press: {
-      title: `Press: ${SITE_NAME}`,
-      desc: 'Press and coverage of TUNK Studio\u2019s architecture, exhibition and installation work, featured in Arkitera, ArchDaily and Designboom.',
+      title: `Basın / Press: TUNK Studio · ArchDaily, Designboom, Arkitera`,
+      desc: 'TUNK Studio basında: ArchDaily, Designboom ve Arkitera\u2019da yayımlanan mimarlık, sergi ve enstalasyon projeleri. Press and coverage of TUNK Studio\u2019s architecture, exhibition and installation work, featured in Arkitera, ArchDaily and Designboom.',
       url: base + '/press',
     },
     contact: {
-      title: `Contact: ${SITE_NAME} | Galata, Istanbul`,
-      desc: 'Get in touch with TUNK Studio, an architecture, exhibition and installation design studio in Galata, Istanbul.',
+      title: `İletişim / Contact: TUNK Studio · Galata, İstanbul Mimarlık Ofisi`,
+      desc: 'TUNK Studio ile iletişim: Galata, İstanbul. Mimarlık, iç mimarlık, mağaza ve sergi tasarımı, enstalasyon projeleri için. Get in touch with TUNK Studio, an architecture, exhibition and installation design studio in Galata, Istanbul.',
       url: base + '/contact',
     },
   };
