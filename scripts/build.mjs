@@ -22,7 +22,11 @@ const OUT = path.resolve(process.argv[2] || '_site');
 const SKIP = new Set(['.git', '.github', 'node_modules', 'scripts', path.basename(OUT)]);
 
 fs.rmSync(OUT, { recursive: true, force: true });
-fs.cpSync(ROOT, OUT, { recursive: true, filter: (src) => !SKIP.has(path.relative(ROOT, src).split(path.sep)[0]) });
+fs.mkdirSync(OUT, { recursive: true });
+// entry by entry: OUT sits inside ROOT, and cpSync refuses to copy a folder into itself
+for (const entry of fs.readdirSync(ROOT)) {
+  if (!SKIP.has(entry)) fs.cpSync(path.join(ROOT, entry), path.join(OUT, entry), { recursive: true });
+}
 
 const indexPath = path.join(OUT, 'index.html');
 let html = fs.readFileSync(indexPath, 'utf8');
