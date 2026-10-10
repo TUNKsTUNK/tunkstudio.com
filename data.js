@@ -56,7 +56,7 @@ window.DATA = {
       { name: "Retail & Brand Spaces", role: "Flagship stores · kiosks · window displays · display systems" },
       { name: "Brand Collaborations & Creative Direction", role: "Concept · creative direction · brand experiences & activations" },
       { name: "Exhibition Design", role: "Museum & gallery exhibitions" },
-      { name: "Installation, Light & Sound", role: "Immersive, site-specific & permanent works" },
+      { name: "Immersive, Light & Audiovisual Installations", role: "Immersive spatial experiences · light, sound & audiovisual installations · site-specific, permanent & temporary works · public art" },
       { name: "Set & Atmosphere Design", role: "Sets and atmospheres for product & studio photography" },
       { name: "Product & Lighting", role: "Custom furniture, lighting & collectible design" }
     ],
