@@ -63,7 +63,7 @@ window.DATA = {
       "Pera Museum", "Istanbul Modern", "Akbank Sanat", "Yapı Kredi Kültür Sanat", "AKM Opera House",
       "Goethe-Institut", "İBB", "MSGSÜ",
       "Parfumlab", "Boyner", "Türk Telekom", "Kahve Dünyası", "Emaar Square Mall", "Hilltown", "Postane",
-      "Pana Yapı", "NOHlab", "Adorno Design"
+      "Pana Yapı", "NOHlab", "BEK", "Adorno Design"
     ]
   },
 
