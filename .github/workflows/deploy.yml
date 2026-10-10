@@ -24,6 +24,8 @@ jobs:
   build:
     if: github.ref_name != 'onizleme'
     runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.changed.outputs.urls }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -32,6 +34,11 @@ jobs:
       - run: npm install --no-save --no-package-lock @babel/standalone@7.29.0
       - run: node scripts/build.mjs _site
       - run: TUNK_ROOT=_site python3 scripts/prerender.py
+
+      # pages whose HTML differs from what is live now (for IndexNow after deploy)
+      - id: changed
+        if: github.ref_name == 'main'
+        run: echo "urls=$(python3 scripts/indexnow.py changed _site)" >> "$GITHUB_OUTPUT"
 
       - if: github.ref_name == 'main'
         uses: actions/upload-pages-artifact@v3
@@ -58,3 +65,12 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  # Bing, Yandex & co. (IndexNow) learn about edited pages right away
+  indexnow:
+    if: github.ref_name == 'main' && needs.build.outputs.changed != ''
+    needs: [build, deploy]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/indexnow.py submit ${{ needs.build.outputs.changed }}
