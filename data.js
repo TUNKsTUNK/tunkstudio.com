@@ -75,9 +75,12 @@ window.DATA = {
       { n: "08", name: "LIMINAL",           pub: "Designboom",   year: "2016", type: "Product feature", url: "https://www.designboom.com/design/busra-tunc-atolye-labs-lamalight-adaptablelamp-06-19-2016/" },
       { n: "09", name: "LIMINAL",           pub: "Design Milk",  year: "2016", type: "Product feature", url: "https://design-milk.com/a-minimal-lamp-inspired-by-a-single-line/" },
       { n: "10", name: "LIMINAL",           pub: "Arkitera",     year: "2016", type: "Product feature", url: "https://www.arkitera.com/haber/minimal-ve-cok-islevli-aydinlatma-birimi-liminal/" },
-      { n: "11", name: "PNEUMA I",          pub: "Frame",        year: "2026", type: "Project feature", url: "https://frameweb.com/project/124442" },
-      { n: "12", name: "THE PAINTER",       pub: "Arkitera",     year: "2024", type: "Project feature", url: "https://www.arkitera.com/proje/bir-mimar-bir-sanatci-performatif-bir-yerlestirme/" },
-      { n: "13", name: "THE PAINTER",       pub: "XXI",          year: "2024", type: "Project feature", url: "https://www.xxi.com.tr/proje/ic-mekan/boyaci-dukkani" }
+      { n: "11", name: "PNEUMA I",          pub: "Frame",        year: "2026", type: "FRAME Awards · Silver", url: "https://frameweb.com/project/124442" },
+      { n: "12", name: "PNEUMA I",          pub: "bi_özet",      year: "2026", type: "Project of the week", url: "https://bi-ozet.com/2026/09/14/proje-pneuma/" },
+      { n: "13", name: "PNEUMA I",          pub: "Superfuture",  year: "2026", type: "Store opening", url: "https://superfuture.com/2026/09/new-shops/istanbul-parfumlab-store-opening/" },
+      { n: "14", name: "PNEUMA I",          pub: "Retail Design Blog", year: "2026", type: "Project feature", url: "https://retaildesignblog.net/2026/09/17/parfumlab-store-by-tunk/" },
+      { n: "15", name: "THE PAINTER",       pub: "Arkitera",     year: "2024", type: "Project feature", url: "https://www.arkitera.com/proje/bir-mimar-bir-sanatci-performatif-bir-yerlestirme/" },
+      { n: "16", name: "THE PAINTER",       pub: "XXI",          year: "2024", type: "Project feature", url: "https://www.xxi.com.tr/proje/ic-mekan/boyaci-dukkani" }
     ],
     downloads: [
       { n: "01", name: "Studio biography",  meta: "DOCX · 6 KB",  langs: "EN · TR" },
@@ -333,7 +336,7 @@ window.DATA = {
       cat: "17", slug: "parfumlab-pneuma", name: "PNEUMA I",
       category: "Architecture", kind: "Retail Design",
       year: 2026, yearLabel: "2026", location: "Istanbul", status: "Completed",
-      tags: ["Architecture"], press: ["Frame"],
+      tags: ["Architecture"], press: ["Frame", "bi_özet", "Superfuture", "Retail Design Blog"], award: "FRAME Awards 2026 · Silver, Single-Brand Store",
       hero: "assets/projects/pneuma-hero.jpg",
       thumb: "assets/projects/pneuma/foto_01.jpg",
       thumbPos: "center 62%",

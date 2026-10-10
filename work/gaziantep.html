@@ -1263,6 +1263,7 @@ function ProjectPage({ project, go }) {
     p.status ? ['Status', p.status] : null,
     p.collab ? ['Collaboration', p.collab] : null,
     p.press ? ['Press', p.press.join(' · ')] : null,
+    p.award ? ['Award', p.award] : null,
   ].filter(Boolean);
 
   const [heroMuted, setHeroMuted] = useState(true);

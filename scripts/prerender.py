@@ -165,7 +165,7 @@ def main():
         facts = [('Year', p.get('yearLabel')), ('Location', loc), ('Type', p.get('kind')),
                  ('Category', p.get('category')), ('Status', p.get('status')),
                  ('Scope', ', '.join(p.get('scope') or [])), ('Photography', p.get('photographer')),
-                 ('Press', ', '.join(p.get('press') or []))]
+                 ('Press', ', '.join(p.get('press') or [])), ('Award', p.get('award'))]
         dl = '<dl>' + ''.join(f'<dt>{k}</dt><dd>{esc(v)}</dd>' for k, v in facts if v) + '</dl>'
         # <noscript>: browsers running the app never fetch these twice
         imgs = '<noscript>' + ''.join(
