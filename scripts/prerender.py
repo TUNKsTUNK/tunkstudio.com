@@ -164,8 +164,11 @@ def main():
         loc = p.get('location') or 'Istanbul'
         facts = [('Year', p.get('yearLabel')), ('Location', loc), ('Type', p.get('kind')),
                  ('Category', p.get('category')), ('Status', p.get('status')),
-                 ('Scope', ', '.join(p.get('scope') or [])), ('Photography', p.get('photographer')),
+                 ('Scope', ', '.join(p.get('scope') or [])),
                  ('Press', ', '.join(p.get('press') or [])), ('Award', p.get('award'))]
+        # credits as on the page: roles first, graphics and photography last
+        facts += [tuple(c) for c in p.get('credits') or []] + [('Graphics', p.get('graphics')),
+                                                                ('Photography', p.get('photographer'))]
         dl = '<dl>' + ''.join(f'<dt>{k}</dt><dd>{esc(v)}</dd>' for k, v in facts if v) + '</dl>'
         # <noscript>: browsers running the app never fetch these twice
         imgs = '<noscript>' + ''.join(
