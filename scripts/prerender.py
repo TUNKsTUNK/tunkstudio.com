@@ -18,7 +18,7 @@ tags and JSON-LD, plus a plain-text copy of the page inside #root, which
 React replaces as soon as the app mounts.
 
 Run it after any change to data.js or index.html:  python3 scripts/prerender.py
-(The GitHub workflow in .github/workflows/prerender.yml runs it on every push.)
+(.github/workflows/deploy.yml runs it on the built copy before every deploy.)
 """
 import html
 import json
@@ -28,7 +28,9 @@ import shutil
 import subprocess
 import sys
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# TUNK_ROOT: the built copy (_site) when run from the deploy workflow
+ROOT = os.environ.get('TUNK_ROOT') or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT = os.path.abspath(ROOT)
 SITE = 'https://tunkstudio.com'
 SITE_NAME = 'TUNK'
 DEFAULT_IMAGE = SITE + '/assets/logo-tunk-black.png'

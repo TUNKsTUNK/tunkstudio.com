@@ -1,0 +1,60 @@
+# Builds the site (compiled app, no in-browser Babel, per-route pages,
+# sitemap) and publishes it to GitHub Pages. Requires Settings → Pages →
+# Source: "GitHub Actions". The repository itself stays exactly what Claude
+# Design edits; only the published copy is built.
+#
+# Pushes to any other branch build too, and the result is pushed to the
+# "onizleme" branch so it can be checked before going live.
+name: deploy
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    if: github.ref_name != 'onizleme'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install --no-save --no-package-lock @babel/standalone@7.29.0
+      - run: node scripts/build.mjs _site
+      - run: TUNK_ROOT=_site python3 scripts/prerender.py
+
+      - if: github.ref_name == 'main'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Push preview build
+        if: github.ref_name != 'main'
+        run: |
+          cd _site
+          git init -q -b onizleme
+          git add -A
+          git -c user.name="github-actions[bot]" -c user.email="41898283+github-actions[bot]@users.noreply.github.com" \
+            commit -q -m "preview of ${GITHUB_REF_NAME} @ ${GITHUB_SHA::7}"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${GITHUB_REPOSITORY}.git" onizleme
+
+  deploy:
+    if: github.ref_name == 'main'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
