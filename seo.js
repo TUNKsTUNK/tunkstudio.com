@@ -102,7 +102,7 @@ function pageSEO(page) {
       url: base + '/about',
     },
     press: {
-      title: `Basın / Press: TUNK · ArchDaily, Designboom, Arkitera`,
+      title: `Basın / Press: TUNK · Frame, ArchDaily, Designboom, Design Milk`,
       desc: 'TUNK basında: ArchDaily, Designboom ve Arkitera\u2019da yayımlanan mimarlık, sergi ve enstalasyon projeleri. Press and coverage of TUNK\u2019s architecture, exhibition and installation work, featured in Arkitera, ArchDaily and Designboom.',
       url: base + '/press',
     },
