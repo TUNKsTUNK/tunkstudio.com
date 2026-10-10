@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TUNK Studio | İstanbul Mimarlık, Sergi Tasarımı ve Enstalasyon Ofisi</title>
-  <meta name="description" content="TUNK Studio: mimarlık, sergi tasarımı, mekansal enstalasyon ve ürün tasarımı stüdyosu, İstanbul. Architecture, exhibition, installation and product design studio in Istanbul." />
+  <title>TUNK | İstanbul Mimarlık, Sergi Tasarımı ve Enstalasyon Ofisi</title>
+  <meta name="description" content="TUNK: mimarlık, sergi tasarımı, mekansal enstalasyon ve ürün tasarımı stüdyosu, İstanbul. Architecture, exhibition, installation and product design studio in Istanbul." />
   <meta name="p:domain_verify" content="427c8b661999f220a868b5418b8eeb01" />
 
   <!-- favicons -->
@@ -41,14 +41,14 @@
   {
     "@context": "https://schema.org",
     "@type": ["Organization", "ProfessionalService"],
-    "name": "TUNK Studio",
-    "alternateName": ["TUNK", "TUNK Mimarlık", "TUNK Tasarım"],
+    "name": "TUNK",
+    "alternateName": ["TUNK Mimarlık", "TUNK Tasarım"],
     "url": "https://tunkstudio.com",
     "logo": "https://tunkstudio.com/assets/logo-tunk-black.png",
-    "description": "TUNK Studio is an architecture, exhibition, product and installation design studio based in Galata, Istanbul, with retail interiors, museum exhibitions, spatial installations, lighting and furniture design, and residential architecture.",
+    "description": "TUNK is an architecture, exhibition, product and installation design studio based in Galata, Istanbul, with retail interiors, museum exhibitions, spatial installations, lighting and furniture design, and residential architecture.",
     "email": "tunc@tunkstudio.com",
     "foundingDate": "2014",
-    "founder": { "@type": "Person", "name": "Büşra Tunç", "alternateName": "Busra Tunc", "jobTitle": "Architect, artist", "url": "https://www.tuncbusra.com" },
+    "founder": { "@type": "Person", "name": "Buşra Tunç", "alternateName": "Busra Tunc", "jobTitle": "Architect, artist", "url": "https://www.tuncbusra.com" },
     "areaServed": ["Istanbul", "Türkiye", "United Arab Emirates", "Qatar"],
     "image": "https://tunkstudio.com/assets/projects/pneuma-hero.jpg",
     "address": { "@type": "PostalAddress", "addressLocality": "Galata", "addressRegion": "Istanbul", "addressCountry": "TR" },
@@ -65,7 +65,7 @@
       "Aydınlatma tasarımı", "İç mekan tasarımı", "Konut tasarımı", "Villa tasarımı", "Lüks konut iç mekan tasarımı",
       "Kafe iç mekan tasarımı", "Restoran iç mekan tasarımı", "Otel iç mimari", "Otel aydınlatma tasarımı",
       "Ürün tasarımı", "Koleksiyon tasarım ürünler", "Kiosk tasarımı", "Eğitim yapıları", "Atölye tasarımı",
-      "Marka mekanı tasarımı", "ParfumLab mağaza", "TUNK Studio", "TUNK", "TUNK Mimarlık", "TUNK Tasarım",
+      "Marka mekanı tasarımı", "ParfumLab mağaza", "TUNK", "TUNK Mimarlık", "TUNK Tasarım",
       "Architecture studio Istanbul", "Boutique architecture studio", "Exhibition design", "Exhibition architecture",
       "Scenography", "Museum exhibition design", "Retail store design", "Retail interior architecture",
       "Flagship store design", "Spatial design Istanbul", "Site-specific design", "Site-specific installation",
@@ -1378,7 +1378,7 @@ function ProjectPage({ project, go }) {
                       <figcaption className="pl-cap">{String(k + 1).padStart(2, '0')} · FILM</figcaption>
                     </figure>
                     <figure className="g-cell g-pair-img" onClick={() => openLb(next)}>
-                      <img src={next} alt={`${p.name}, ${p.kind}, ${p.location || 'Istanbul'}: TUNK Studio ${String(k + 2).padStart(2, '0')}`} loading="lazy" decoding="async" {...imgAttrs(next)} sizes={HALF_SIZES} />
+                      <img src={next} alt={`${p.name}, ${p.kind}, ${p.location || 'Istanbul'}: TUNK ${String(k + 2).padStart(2, '0')}`} loading="lazy" decoding="async" {...imgAttrs(next)} sizes={HALF_SIZES} />
                       <figcaption className="pl-cap">{String(k + 2).padStart(2, '0')}</figcaption>
                     </figure>
                   </Reveal>
@@ -1393,7 +1393,7 @@ function ProjectPage({ project, go }) {
                       <figcaption className="pl-cap">{String(k + 1).padStart(2, '0')} · FILM</figcaption>
                     </Reveal>
                   : <Reveal as="figure" className={`g-cell${featureSrcs.has(g) ? ' g-feature' : wideSrcs.has(g) ? ' g-wide' : ''}`} key={k} delay={(k % 3) * 60} onClick={() => openLb(g)}>
-                      <img src={g} alt={`${p.name}, ${p.kind}, ${p.location || 'Istanbul'}: TUNK Studio ${String(k + 1).padStart(2, '0')}`} loading="lazy" decoding="async" {...imgAttrs(g)} sizes={featureSrcs.has(g) || wideSrcs.has(g) ? '100vw' : HALF_SIZES} />
+                      <img src={g} alt={`${p.name}, ${p.kind}, ${p.location || 'Istanbul'}: TUNK ${String(k + 1).padStart(2, '0')}`} loading="lazy" decoding="async" {...imgAttrs(g)} sizes={featureSrcs.has(g) || wideSrcs.has(g) ? '100vw' : HALF_SIZES} />
                       <figcaption className="pl-cap">{String(k + 1).padStart(2, '0')}</figcaption>
                     </Reveal>
               );

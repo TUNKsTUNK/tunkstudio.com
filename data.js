@@ -8,7 +8,7 @@ window.DATA = {
   site: {
     discipline: "ARCHITECTURE · EXHIBITION · PRODUCT · INSTALLATION",
     language: "EN · TR",
-    copyright: "© TUNK STUDIO · ISTANBUL · EST. 2014",
+    copyright: "© TUNK · ISTANBUL · EST. 2014",
   },
 
   nav: [

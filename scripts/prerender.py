@@ -169,7 +169,7 @@ def main():
         dl = '<dl>' + ''.join(f'<dt>{k}</dt><dd>{esc(v)}</dd>' for k, v in facts if v) + '</dl>'
         # <noscript>: browsers running the app never fetch these twice
         imgs = '<noscript>' + ''.join(
-            f'<img src="/{esc(g.lstrip("./"))}" alt="{esc(p["name"])}, {esc(p.get("kind"))}, {esc(loc)}: TUNK Studio" />'
+            f'<img src="/{esc(g.lstrip("./"))}" alt="{esc(p["name"])}, {esc(p.get("kind"))}, {esc(loc)}: TUNK" />'
             for g in [p.get('hero')] + [x.get('src') if isinstance(x, dict) else x
                                         for x in p.get('gallery') or []] if g) + '</noscript>'
         nxt = projects[(i + 1) % len(projects)]
