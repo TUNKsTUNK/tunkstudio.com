@@ -1426,8 +1426,8 @@ function AboutPage({ go }) {
         <Reveal className="about-row">
           <div className="label">Practice</div>
           <div>
-            <p>{a.p1}</p>
-            <p className="small">{a.p2}</p>
+            {String(a.p1).split('\n\n').map((x, i) => <p key={'a' + i} style={{ marginBottom: '1em' }}>{x}</p>)}
+            {String(a.p2).split('\n\n').map((x, i) => <p className="small" key={'b' + i} style={{ marginTop: '1em' }}>{x}</p>)}
           </div>
         </Reveal>
         <Reveal className="about-row">

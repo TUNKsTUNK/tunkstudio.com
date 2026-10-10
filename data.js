@@ -26,7 +26,7 @@ window.DATA = {
     intro1: "TUNK is a studio for architecture, art and design, based in Galata, Istanbul. The work moves across four disciplines: architecture, exhibition, product and installation.",
     intro2: "From houses on the Aegean coast to museum exhibitions at the Pera Museum, retail concepts, furniture and lighting, and light-and-sound installations made with collaborators such as NOHlab.",
     metaCols: [
-      { k: "Studio", v: "2014 to 2023 as MUDAHALE\n2023: TUNK\nIstanbul" },
+      { k: "Studio", v: "Founded 2014\nIstanbul" },
       { k: "Work", v: "36 projects\n2014 to 2026" },
       { k: "Based", v: "Galata\nIstanbul" },
       { k: "Exhibited", v: "Pera Museum\nAkbank Sanat" }
@@ -48,16 +48,23 @@ window.DATA = {
 
   about: {
     eyebrow: "№ 02 · ABOUT",
-    heading: "A studio for architecture, exhibition, product & installation.",
-    p1: "TUNK is an interdisciplinary studio for architecture, art and design, based in Istanbul. Founded by Busra Tunc in 2014 under the name MUDAHALE, the studio took the name TUNK in 2023. The work moves across four disciplines: architecture, exhibition design, product & collectible design and immersive installation.\n\nProjects range from houses on the Aegean coast and interiors across Istanbul to museum and institutional exhibitions at the Pera Museum, Istanbul Modern, Akbank Sanat and the AKM Opera House. The studio designs retail concepts for Parfumlab, develops furniture and lighting collections, and produces immersive light, sound and spatial installations. Its collectible design pieces are represented internationally by Adorno Design and have been shown at design fairs including Milan Design Week and 3 Days of Design.",
-    p2: "Each project begins from its own site and brief, building a specific spatial logic rather than repeating a fixed style. Recent work has been published by ArchDaily, Designboom, Frame Magazine, Dezeen and Design Milk, among others.",
+    heading: "Architecture, installation and spatial design, from concept to the built object.",
+    p1: "TUNK is an Istanbul-based architecture and multidisciplinary design practice founded by Buşra Tunç. The studio works across architecture, interiors, exhibition design, installation, lighting and product, treating each project as a spatial system built from scratch rather than a style to be applied.\n\nIts approach brings together architectural thinking, artistic research and material experimentation, with light, sound and technology used as working materials. The practice studies how materials, industrial processes and technical systems shape the way a space is experienced, and turns that research into built work.\n\nIdea and making are developed together. For each project TUNK devises its own production methods, working with Istanbul's metal, glass and craft workshops and with manufacturers from design and prototyping through to fabrication, so that concept, technical detail and physical result are held to the same standard.",
+    p2: "The work ranges from experimental and immersive installations and site-specific interventions to museum and gallery exhibitions at the Pera Museum, Istanbul Modern, Akbank Sanat and the AKM Opera House; retail environments such as the Pneuma Flagship Store for Parfumlab, awarded Silver at the FRAME Awards 2026; residential, restaurant and interior projects; and custom lighting and collectible design, represented by Adorno Design and shown at Milan Design Week and 3 Days of Design. Projects have been published by Frame, ArchDaily, Designboom, Dezeen and Design Milk.\n\nTUNK works with brands, cultural institutions, developers, artists and private clients looking for a space made specifically for them. For a site, a brief or an idea that needs a spatial form: tunc@tunkstudio.com",
     disciplines: [
-      { name: "Architecture", role: "Residential · interior · office · commercial · retail" },
-      { name: "Exhibition Architecture", role: "Museum & gallery exhibition design" },
-      { name: "Product Design", role: "Custom furniture & lighting" },
-      { name: "Installation", role: "Permanent installations & art projects" }
+      { name: "Architecture & Interiors", role: "Residential · office · commercial · restaurant & hospitality" },
+      { name: "Retail & Brand Spaces", role: "Flagship stores · kiosks · window displays · display systems" },
+      { name: "Exhibition Design", role: "Museum & gallery exhibitions" },
+      { name: "Installation, Light & Sound", role: "Immersive, site-specific & permanent works" },
+      { name: "Set & Atmosphere Design", role: "Sets and atmospheres for product & studio photography" },
+      { name: "Product & Lighting", role: "Custom furniture, lighting & collectible design" }
     ],
-    clients: ["Pera Museum", "Akbank Sanat", "Parfumlab", "NOHlab", "Pana Yapı", "MSGSÜ", "Arkitera", "ArchDaily", "Designboom"],
+    clients: [
+      "Pera Museum", "Istanbul Modern", "Akbank Sanat", "Yapı Kredi Kültür Sanat", "AKM Opera House",
+      "Goethe-Institut", "İBB", "MSGSÜ",
+      "Parfumlab", "Boyner", "Türk Telekom", "Kahve Dünyası", "Emaar Square Mall", "Hilltown", "Postane",
+      "Pana Yapı", "NOHlab", "Adorno Design"
+    ]
   },
 
   press: {
