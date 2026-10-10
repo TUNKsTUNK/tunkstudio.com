@@ -54,6 +54,7 @@ window.DATA = {
     disciplines: [
       { name: "Architecture & Interiors", role: "Residential · office · commercial · restaurant & hospitality" },
       { name: "Retail & Brand Spaces", role: "Flagship stores · kiosks · window displays · display systems" },
+      { name: "Brand Collaborations & Creative Direction", role: "Concept · creative direction · brand experiences & activations" },
       { name: "Exhibition Design", role: "Museum & gallery exhibitions" },
       { name: "Installation, Light & Sound", role: "Immersive, site-specific & permanent works" },
       { name: "Set & Atmosphere Design", role: "Sets and atmospheres for product & studio photography" },
