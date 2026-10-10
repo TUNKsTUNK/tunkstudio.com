@@ -74,6 +74,7 @@ def paragraphs(text):
 
 def render_head(tpl, title, desc, url, image, og_type, ld, preload=None):
     tpl = re.sub(r'\n[^\n]*data-home-only[^\n]*', '', tpl)  # home-page-only hints (hero preload)
+    tpl = re.sub(r'\n\s*<meta (?:property="og:|name="twitter:)[^>]*>', '', tpl)  # home's share tags; each page gets its own
     # index.html computes its <base> in JS (it may be previewed from a nested path), but the
     # browser's preload scanner fetches CSS/JS before that runs, so on /work/x it first asked
     # for /work/app.css etc. (404s, then refetch). Generated pages always live at the site root.
@@ -117,6 +118,31 @@ def write(rel, content):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, 'w', encoding='utf-8') as f:
         f.write(content)
+
+
+def render_llms(data, seo, projects):
+    about, contact, press = data['about'], data['contact'], data['press']
+    clean = lambda t: re.sub(r'\s+', ' ', str(t or '')).strip()
+    out = ['# TUNK', '',
+           '> ' + clean(about.get('p1', '').split('\n')[0]), '',
+           *[y for x in str(about.get('p1', '')).split('\n\n')[1:] for y in (clean(x), '')],
+           *[y for x in str(about.get('p2', '')).split('\n\n') for y in (clean(x), '')],
+           f"Contact: {(contact.get('email') or '').lower()} · Galata, Istanbul, Türkiye", '',
+           '## Disciplines', '']
+    out += [f"- {d['name']}: {d['role']}" for d in about.get('disciplines', [])]
+    out += ['', '## Studio pages', '',
+            f'- [About]({SITE}/about): practice, disciplines, clients and collaborators',
+            f'- [Work]({SITE}/work): all projects',
+            f'- [Press]({SITE}/press): publications and awards',
+            f'- [Contact]({SITE}/contact): commissions and enquiries',
+            '', '## Projects', '']
+    for p in projects:
+        facts = ', '.join(x for x in [p.get('kind'), p.get('location'), p.get('yearLabel'), p.get('award')] if x)
+        out.append(f"- [{p['name']}]({SITE}/work/{p['slug']}): {clean(p.get('summary'))} ({facts})")
+    out += ['', '## Clients and collaborators', '', ', '.join(about.get('clients', [])),
+            '', '## Selected press', '']
+    out += [f"- [{clean(i.get('name'))}]({i.get('url')}): {i.get('pub')}, {i.get('year')}" for i in press.get('items', [])]
+    return '\n'.join(out) + '\n'
 
 
 def main():
@@ -199,6 +225,9 @@ def main():
                   f'<script>location.replace({json.dumps(to)})</script></head>'
                   f'<body><a href="{to}">{to}</a></body></html>\n')
             redirects += 1
+
+    # --- llms.txt: a plain-language map of the studio for AI assistants (llmstxt.org)
+    write('llms.txt', render_llms(data, seo, projects))
 
     # --- sitemap
     # project heroes are listed as image entries so they can surface in image search

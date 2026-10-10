@@ -79,9 +79,10 @@ function pageSEO(page) {
         url: base + '/work/' + p.slug,
         image: p.hero ? base + '/' + p.hero.replace(/^\.?\//, '') : undefined,
         dateCreated: p.yearLabel || String(p.year || ''),
-        creator: { '@type': 'Organization', name: SITE_NAME, url: base },
         locationCreated: { '@type': 'Place', name: loc },
         keywords: [p.category, p.kind, ...(p.tags || [])].filter(Boolean).join(', '),
+        award: p.award || undefined,
+        creator: { '@type': 'Organization', '@id': base + '/#studio', name: SITE_NAME, url: base },
       },
     };
   }

@@ -112,6 +112,13 @@ window.DATA = {
     instagram: "Instagram →",
     instagramUrl: "https://www.instagram.com/tunkstudiotunk/",
     newsletter: "Newsletter →",
+    social: [
+      { label: "Instagram", url: "https://www.instagram.com/tunkstudiotunk/" },
+      { label: "LinkedIn", url: "https://www.linkedin.com/company/126163923/" },
+      { label: "Vimeo", url: "https://vimeo.com/tuncbu" },
+      { label: "Behance", url: "https://www.behance.net/tunks" },
+      { label: "Pinterest", url: "https://www.pinterest.com/tunkstudiotunk/" }
+    ],
   },
 
   filters: ["All", "Architecture", "Exhibition Architecture", "Product Design", "Installation"],
