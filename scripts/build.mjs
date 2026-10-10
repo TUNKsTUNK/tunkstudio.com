@@ -42,6 +42,13 @@ const name = `app.${crypto.createHash('sha1').update(code).digest('hex').slice(0
 fs.writeFileSync(path.join(OUT, name), code);
 
 html = html.replace(blocks[0][0], () => `<script src="${name}"></script>`).replace(babelTag, '');
+// data.js etc. are cached by browsers for hours; version each local ?v= link by its
+// content so an edit shows up immediately (no more bumping ?v= by hand)
+html = html.replace(/(href|src)="([^":?]+\.(?:js|css))\?v=[^"]*"/g, (m, attr, file) => {
+  const f = path.join(OUT, file);
+  if (!fs.existsSync(f)) return m;
+  return `${attr}="${file}?v=${crypto.createHash('sha1').update(fs.readFileSync(f)).digest('hex').slice(0, 10)}"`;
+});
 fs.writeFileSync(indexPath, html);
 // GitHub Pages serves 404.html for unknown paths; the app shows its home page there
 fs.writeFileSync(path.join(OUT, '404.html'), html);
