@@ -28,6 +28,25 @@ for (const entry of fs.readdirSync(ROOT)) {
   if (!SKIP.has(entry)) fs.cpSync(path.join(ROOT, entry), path.join(OUT, entry), { recursive: true });
 }
 
+// Images are cached for hours by Cloudflare and browsers, so a replaced photo kept
+// showing its old version. Version every asset path in the data files by content,
+// the same way the scripts and styles are: an edited image gets a new URL at once.
+// (Both data.js and img-variants.js are rewritten, so variant lookups still match.)
+const assetVersion = {};
+const versionAssets = (file) => {
+  const f = path.join(OUT, file);
+  if (!fs.existsSync(f)) return;
+  const src = fs.readFileSync(f, 'utf8').replace(/assets\/[^"'\s?]+\.(?:jpe?g|png|webp|gif|mp4|webm)/gi, (m) => {
+    const a = path.join(OUT, m);
+    if (!fs.existsSync(a)) return m;
+    assetVersion[m] = assetVersion[m] || crypto.createHash('sha1').update(fs.readFileSync(a)).digest('hex').slice(0, 8);
+    return `${m}?v=${assetVersion[m]}`;
+  });
+  fs.writeFileSync(f, src);
+};
+versionAssets('data.js');
+versionAssets('assets/img-variants.js');
+
 const indexPath = path.join(OUT, 'index.html');
 let html = fs.readFileSync(indexPath, 'utf8');
 
