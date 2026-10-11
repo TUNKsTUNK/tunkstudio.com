@@ -18,6 +18,7 @@ window.DATA = {
     "postane",            // POSTANE
     "hali-atolyesi",      // WEAVING THE STRUCTURE
     "liminal",            // LIMINAL
+    "louis-kahn",         // RE/FRAMING LOUIS KAHN
     "submarine",          // SUBMARINE
     "parajanov",          // PARAJANOV WITH SARKIS
     "gorunmeyen-anitlar", // INVISIBLE MONUMENTS
@@ -196,12 +197,32 @@ window.DATA = {
     },
     {
       cat: "03", slug: "louis-kahn", name: "RE/FRAMING LOUIS KAHN",
-      category: "Exhibition Architecture", kind: "Exhibition Architecture",
-      year: 2016, yearLabel: "2016", location: "Pera Museum, Istanbul", status: "Completed",
+      category: "Installation", kind: "Spatial Video Installation",
+      year: 2017, yearLabel: "2017", location: "Pera Museum, Istanbul", status: "Completed",
       press: ["Pera Museum"],
-      tags: ["Exhibition Architecture"],
-      summary: "Exhibition architecture for the Pera Museum's Louis Kahn retrospective.",
-      para: "The exhibition architecture carries drawings, models and photographs of Kahn's work, holding the galleries to the same quiet, ordered measure as the buildings on the walls.",
+      tags: ["Installation", "Exhibition Architecture"],
+      summary: "A spatial video installation for the exhibition Re/Framing Louis Kahn at the Pera Museum, forming spatial photographs of Kahn's buildings.",
+      para: "The installation sets out to form spatial photographs of Louis Kahn's buildings. The boundaries of the room set the scale of the video, so that walls and images are intertwined and the piece is experienced as one integrated space. Neither the room nor the audience is static: both act in the viewing, and the work invites visitors to move through the space with its sound and images. An atmospheric soundtrack edited from Kahn's own voice, and the formal relation between the flow of the video and the measurements of the room, carry this moving structure.",
+      hero: "assets/projects/kahn/00-hero-viewer.jpg",
+      thumb: "assets/projects/kahn/04-installation-wide.jpg",
+      credits: [
+        ["Exhibition", "Re/Framing Louis Kahn, Pera Museum, Istanbul"],
+        ["Video", "37″, sound edited from Louis Kahn's voice"],
+      ],
+      galleryRows: true,
+      gallery: [
+        { src: "assets/projects/kahn/01-installation-panorama.jpg", wide: true },
+        "assets/projects/kahn/02-installation-light.jpg",
+        "assets/projects/kahn/03-installation-room.jpg",
+        { src: "assets/projects/kahn/04-installation-wide.jpg", wide: true },
+        "assets/projects/kahn/05-wall-drawing-1.jpg",
+        "assets/projects/kahn/06-wall-drawing-2.jpg",
+        "assets/projects/kahn/07-exhibition-drawings.jpg",
+        "assets/projects/kahn/08-exhibition-tables.jpg",
+        "assets/projects/kahn/09-exhibition-walls.jpg",
+        "assets/projects/kahn/10-exhibition-models.jpg",
+        { src: "assets/projects/kahn/11-making-installation.jpg", wide: true }
+      ]
     },
     {
       cat: "04", slug: "parajanov", name: "PARAJANOV WITH SARKIS",
