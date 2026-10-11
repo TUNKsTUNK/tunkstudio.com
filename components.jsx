@@ -1,0 +1,279 @@
+/* TUNK: shared components. Exports to window for cross-file Babel scope. */
+
+const { useState, useEffect, useRef } = React;
+
+/* ---------- scroll-reveal (brand-legal: opacity + small translate) ----------
+   IntersectionObserver is unreliable inside preview iframes, so we use a
+   shared rAF/scroll checker against getBoundingClientRect, plus a hard
+   fallback that reveals everything after a beat; content is never stuck. */
+const _revealEls = new Set();
+let _revealWired = false;
+function _checkReveals() {
+  const vh = window.innerHeight || 800;
+  _revealEls.forEach((el) => {
+    const top = el.getBoundingClientRect().top;
+    if (top < vh * 0.92) {
+      const d = +el.dataset.revealDelay || 0;
+      setTimeout(() => el.classList.add('in'), d);
+      _revealEls.delete(el);
+    }
+  });
+}
+function _wireReveals() {
+  if (_revealWired) return;
+  _revealWired = true;
+  window.addEventListener('scroll', _checkReveals, { passive: true });
+  window.addEventListener('resize', _checkReveals);
+}
+function _registerReveal(el, delay) {
+  if (!el) return;
+  el.dataset.revealDelay = delay || 0;
+  _revealEls.add(el);
+  _wireReveals();
+  requestAnimationFrame(() => requestAnimationFrame(_checkReveals));
+  // hard safety: never leave anything hidden
+  setTimeout(() => {if (_revealEls.has(el)) {el.classList.add('in');_revealEls.delete(el);}}, 1600);
+}
+
+function Reveal({ as = 'div', delay = 0, className = '', style = {}, children, ...rest }) {
+  const ref = useRef(null);
+  useEffect(() => {
+    const el = ref.current;if (!el) return;
+    el.classList.remove('in');
+    _registerReveal(el, delay);
+  }, [delay]);
+  const Tag = as;
+  return <Tag ref={ref} className={`reveal ${className}`} style={style} {...rest}>{children}</Tag>;
+}
+
+/* ---------- live clock (Istanbul) ---------- */
+function Clock() {
+  const [t, setT] = useState('');
+  useEffect(() => {
+    const tick = () => {
+      try {
+        const s = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Europe/Istanbul' }).format(new Date());
+        setT(s);
+      } catch (e) {setT('');}
+    };
+    tick();const id = setInterval(tick, 10000);return () => clearInterval(id);
+  }, []);
+  return <span className="clock">IST {t}</span>;
+}
+
+/* ---------- placeholder / real-image frame ---------- */
+function Frame({ ratio = '4/3', num = '№ 00', meta = '', dim = '', accent = null, wm = null, img = null, alt = '', bare = false, style = {}, fit = 'cover', imgStyle = {} }) {
+  // bare = just the photograph: no frame chrome, crop marks, numbers, labels.
+  if (bare) {
+    return (
+      <div className={`frame bare ${img ? 'has-img' : ''}`} style={{ aspectRatio: ratio, ...style }}>
+        {img ?
+        <img className="frame-img" src={img} alt={alt} loading="lazy" style={{ objectFit: fit, ...imgStyle }} /> :
+        <React.Fragment><div className="grain" /><div className="inset" /></React.Fragment>}
+      </div>);
+  }
+  return (
+    <div className={`frame ${img ? 'has-img' : ''}`} style={{ aspectRatio: ratio, ...style }}>
+      {img ?
+      <img className="frame-img" src={img} alt={alt} loading="lazy" style={{ objectFit: fit, ...imgStyle }} /> :
+
+      <React.Fragment>
+          <div className="grain" />
+          <div className="inset" />
+        </React.Fragment>
+      }
+      <span className="crop-tl" /><span className="crop-br" />
+      {wm && <div className="wm">{wm}</div>}
+      <span className="f-num lab">{num}</span>
+      {meta && <span className="f-meta lab">{meta}</span>}
+      {dim && <span className="f-dim lab">{dim}</span>}
+      {accent && !img && <div className="accent-wash" style={{ backgroundColor: `var(--${accent}-tr)` }} />}
+    </div>);
+
+}
+
+/* ---------- nav ---------- */
+function Nav({ page, go, dark = false }) {
+  const [solid, setSolid] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setSolid(window.scrollY > 24);
+    onScroll();window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+  // lock body scroll when the mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
+  // Over the slideshow / image hero (not scrolled): transparent nav, white
+  // text & logo. Once scrolled (solid white nav) or on other pages: black.
+  // When the mobile menu is open the overlay is white, so force dark chrome.
+  const overlay = dark && !solid && !menuOpen;
+  const cls = `nav2 ${solid || !dark || menuOpen ? 'solid' : ''}`;
+  const logo = overlay ? window.TUNK_LOGO_WHITE : window.TUNK_LOGO_BLACK;
+  const col = overlay ? 'var(--paper)' : 'var(--ink)';
+  const nav = (id) => { setMenuOpen(false); go({ id }); };
+  return (
+    <header className={cls} style={{ color: col, height: "66px" }}>
+      <div className="brand" onClick={() => nav('home')}>
+        <img src={logo} alt="TUNK" style={{ height: "30px" }} />
+        <span className="disc" style={{ opacity: "1" }}>{DATA.site.discipline}</span>
+      </div>
+      <nav className={`links ${menuOpen ? 'open' : ''}`}>
+        {DATA.nav.map((l) =>
+        <a key={l.id}
+        className={page.id === l.id || l.id === 'work' && page.id === 'project' ? 'is-active' : ''}
+        onClick={() => nav(l.id)}>{l.label}</a>
+        )}
+      </nav>
+      <button className={`burger ${menuOpen ? 'open' : ''}`} aria-label="Menu"
+        onClick={() => setMenuOpen(v => !v)}>
+        <span /><span /><span />
+      </button>
+    </header>);
+
+}
+
+/* ---------- footer ---------- */
+function Footer({ go }) {
+  const f = DATA.footer;
+  return (
+    <footer className="foot">
+      <div className="wrap">
+        <div className="top">
+          <div>
+            <div className="word">TUNK</div>
+            <div className="mono" style={{ color: 'var(--aluminium)', marginTop: 18 }}>
+              {f.tagline}<br />{f.location}
+            </div>
+          </div>
+          <div>
+            <div className="h">Studio</div>
+            <div className="links">
+              <a onClick={() => go({ id: 'work' })}>Work</a>
+              <a onClick={() => go({ id: 'about' })}>About</a>
+              <a onClick={() => go({ id: 'press' })}>Press</a>
+            </div>
+          </div>
+          <div>
+            <div className="h">Contact</div>
+            <div className="mono">{DATA.contact.email}</div>
+          </div>
+          <div>
+            <div className="h">Follow</div>
+            <div className="links">
+              <a href={f.instagramUrl || 'https://www.instagram.com/tunkstudiotunk/'} target="_blank" rel="noopener noreferrer">{f.instagram}</a>
+              <a>{f.newsletter}</a>
+            </div>
+          </div>
+        </div>
+        <div className="legal">
+          <span>{DATA.site.copyright}</span>
+          <span></span>
+        </div>
+      </div>
+    </footer>);
+
+}
+
+/* ---------- lazy video: only downloads/plays once scrolled near viewport ---------- */
+function LazyVideo({ src, className = '', onSized }) {
+  const ref = useRef(null);
+  const [armed, setArmed] = useState(false);
+  const [muted, setMuted] = useState(true);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) { setArmed(true); io.disconnect(); }
+    }, { rootMargin: '600px 0px' }); // start loading a bit before it's on screen
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return (
+    <div className="lazyvid-wrap">
+      <video
+        ref={ref}
+        className={className}
+        src={armed ? src : undefined}
+        autoPlay={armed} playsInline preload="none" loop muted={muted}
+        onLoadedMetadata={(e) => {
+          const v = e.target;
+          if (onSized) onSized(v.videoWidth, v.videoHeight);
+        }}
+      />
+      {/* browsers only allow autoplay when muted; this lets the visitor opt into sound with one tap */}
+      <button
+        className="lazyvid-mute" aria-label={muted ? 'Unmute' : 'Mute'}
+        onClick={(e) => { e.stopPropagation(); setMuted((m) => !m); }}
+      >
+        {muted ? 'SOUND OFF' : 'SOUND ON'}
+      </button>
+    </div>
+  );
+}
+
+/* ---------- work tile ---------- */
+function Tile({ p, go }) {
+  const loc = p.location ? p.location.split(',')[0].toUpperCase() : 'ISTANBUL';
+  return (
+    <div className="tile2" onClick={() => go({ id: 'project', project: p })}>
+      <Frame ratio="4/3" num={`№ ${p.cat}`} meta={`${loc} · ${p.kind.toUpperCase()}`}
+      img={p.thumb || p.hero} alt={`${p.name}: ${p.kind}, ${p.location || 'Istanbul'}`} accent={p.accent} wm={p.cat}
+      imgStyle={p.thumbPos ? { objectPosition: p.thumbPos } : undefined} />
+      <div className="meta">
+        <div className="nm">{p.name}</div>
+        <div className="yr">{p.yearLabel}</div>
+      </div>
+      <div className="sub">{p.category} · {p.kind}</div>
+    </div>);
+
+}
+
+/* ---------- lightbox: fullscreen image viewer with prev/next + swipe ---------- */
+function Lightbox({ images = [], index = 0, title = '', onClose }) {
+  const [i, setI] = useState(index);
+  useEffect(() => {setI(index);}, [index]);
+  const n = images.length;
+  const go = (d) => setI((v) => (v + d + n) % n);
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === 'Escape') onClose();else
+      if (e.key === 'ArrowRight') go(1);else
+      if (e.key === 'ArrowLeft') go(-1);
+    };
+    window.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => {window.removeEventListener('keydown', onKey);document.body.style.overflow = '';};
+  }, [n]);
+  // swipe
+  const tx = useRef(null);
+  const onTS = (e) => {tx.current = e.touches[0].clientX;};
+  const onTE = (e) => {
+    if (tx.current == null) return;
+    const dx = e.changedTouches[0].clientX - tx.current;
+    if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
+    tx.current = null;
+  };
+  if (!n) return null;
+  return (
+    <div className="lb" onClick={onClose} onTouchStart={onTS} onTouchEnd={onTE}>
+      <div className="lb-top" onClick={(e) => e.stopPropagation()}>
+        <span className="lab" style={{ color: 'var(--paper)' }}>{title}</span>
+        <span className="lab" style={{ color: 'var(--paper)' }}>{String(i + 1).padStart(2, '0')} / {String(n).padStart(2, '0')}</span>
+        <button className="lb-x" aria-label="Close" onClick={onClose}>✕</button>
+      </div>
+      <button className="lb-arrow prev" aria-label="Previous" onClick={(e) => {e.stopPropagation();go(-1);}}>←</button>
+      <img className="lb-img" src={images[i]} alt={`${title} ${i + 1}`} onClick={(e) => e.stopPropagation()} />
+      <button className="lb-arrow next" aria-label="Next" onClick={(e) => {e.stopPropagation();go(1);}}>→</button>
+      <div className="lb-dots" onClick={(e) => e.stopPropagation()}>
+        {images.map((s, k) =>
+        <button key={k} className={`dot ${k === i ? 'on' : ''}`} aria-label={`Image ${k + 1}`} onClick={() => setI(k)} />
+        )}
+      </div>
+    </div>);
+
+}
+
+Object.assign(window, { Reveal, Clock, Frame, Nav, Footer, Tile, Lightbox });
