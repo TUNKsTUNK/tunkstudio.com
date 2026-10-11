@@ -429,6 +429,7 @@ h1,h2,h3,h4,h5,h6,button,input,textarea,select { font-family: var(--font-sans); 
 }
 .pj-grid-g.grid-rows .g-cell { margin-bottom: 0; }
 .pj-grid-g.grid-rows .g-wide { grid-column: 1 / -1; }
+.pj-grid-g.grid-rows .g-vid { grid-column: 1 / -1; height: auto; max-height: none; margin-bottom: 0; aspect-ratio: 16 / 9; }
 @media (max-width: 540px) { .pj-grid-g.grid-rows { grid-template-columns: 1fr; } }
 @media (max-width: 900px) { .pj-grid-g { column-count: 2; } }
 @media (max-width: 540px) { .pj-grid-g { column-count: 1; } }

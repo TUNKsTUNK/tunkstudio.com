@@ -24,7 +24,7 @@ window.DATA = {
     "samih-rifat",        // SAMIH RIFAT
     "paintstore",         // THE PAINTER
     "pneuma-ii",          // PNEUMA II, Mersin
-    "parfumlab-cepa"      // PNEUMA I KIOSK
+    "pneuma-kiosk"        // PNEUMA I KIOSK
   ],
 
   nav: [
@@ -487,29 +487,35 @@ window.DATA = {
       para: "A Parfumlab store completed in Mersin as part of the retail programme. The interior extends the Pneuma language \u2014 a wall of vertical tubes carrying perfume bottles like a pneumatic system, a tiled counter and a family of display plinths \u2014 tuned to the footprint of this location.",
     },
     {
-      cat: "21", slug: "parfumlab-cepa", name: "PNEUMA I KIOSK",
+      cat: "21", slug: "pneuma-kiosk", name: "PNEUMA I KIOSK",
       category: "Architecture", kind: "Retail Design",
       year: 2025, yearLabel: "2025\u20132026", location: "Ankara, Istanbul", status: "Completed",
       tags: ["Architecture"],
       hero: "assets/projects/kiosk/01.jpg",
       heroVideoLocal: "assets/projects/kiosk/xray.mp4",
-      thumb: "assets/projects/kiosk/02.jpg",
+      thumb: "assets/projects/kiosk/g10-exterior-wide.jpg",
       thumbPos: "center 50%",
+      galleryRows: true,
       gallery: [
-        "assets/projects/kiosk/g01-signage.jpg",
-        "assets/projects/kiosk/g10-exterior-wide.jpg",
+        { src: "assets/projects/kiosk/g10-exterior-wide.jpg", wide: true },
         "assets/projects/kiosk/g11-exterior-detail.jpg",
-        "assets/projects/kiosk/g04-detail-counter.jpg",
+        "assets/projects/kiosk/g01-signage.jpg",
+        "assets/projects/kiosk/g05-overview-clean.jpg",
+        "assets/projects/kiosk/g03-context.jpg",
+        { src: "assets/projects/kiosk/g04-detail-counter.jpg", wide: true },
         "assets/projects/kiosk/g12-bottle-column.jpg",
+        "assets/projects/kiosk/g07-pipe-column.jpg",
         "assets/projects/kiosk/g13-formula-cards.jpg",
         "assets/projects/kiosk/g14-formula-cards-alt.jpg",
         "assets/projects/kiosk/g06-pipes-wide.jpg",
-        "assets/projects/kiosk/g07-pipe-column.jpg",
         "assets/projects/kiosk/g08-pipe-abstract.jpg",
         "assets/projects/kiosk/g15-plan-overview.jpg",
-        "assets/projects/kiosk/02.jpg", "assets/projects/kiosk/03.jpg",
-        "assets/projects/kiosk/04.jpg", "assets/projects/kiosk/05.jpg",
+        "assets/projects/kiosk/g02-overview.jpg",
         "assets/projects/kiosk/perspective.mp4",
+        "assets/projects/kiosk/02.jpg",
+        "assets/projects/kiosk/03.jpg",
+        "assets/projects/kiosk/04.jpg",
+        "assets/projects/kiosk/05.jpg",
         "assets/projects/kiosk/axon1.mp4"
       ],
       summary: "A repeatable kiosk format for Parfumlab, built in three footprints.",
