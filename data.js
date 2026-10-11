@@ -204,7 +204,7 @@ window.DATA = {
       summary: "A spatial video installation for the exhibition Re/Framing Louis Kahn at the Pera Museum, forming spatial photographs of Kahn's buildings.",
       para: "The installation sets out to form spatial photographs of Louis Kahn's buildings. The boundaries of the room set the scale of the video, so that walls and images are intertwined and the piece is experienced as one integrated space. Neither the room nor the audience is static: both act in the viewing, and the work invites visitors to move through the space with its sound and images. An atmospheric soundtrack edited from Kahn's own voice, and the formal relation between the flow of the video and the measurements of the room, carry this moving structure.",
       hero: "assets/projects/kahn/00-hero-viewer.jpg",
-      thumb: "assets/projects/kahn/04-installation-wide.jpg",
+      thumb: "assets/projects/kahn/07-exhibition-drawings.jpg",
       credits: [
         ["Exhibition", "Re/Framing Louis Kahn, Pera Museum, Istanbul"],
         ["Video", "37 min, sound edited from Louis Kahn's voice"],
