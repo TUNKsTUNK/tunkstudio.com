@@ -81,16 +81,17 @@ window.DATA = {
       { n: "06", name: "NOHlab and Buşra Tunç Create Immersive Installation Based on Centuries-Old Architecture", pub: "ArchDaily",    year: "2016", type: "Installation feature", url: "https://www.archdaily.com/874142/nohlab-and-busra-tunc-create-immersive-installation-based-on-centuries-old-architecture" },
       { n: "07", name: "NOHlab x Buşra Tunç Present OCULUS as an Interactive Light + Sound Performance", pub: "Designboom",   year: "2016", type: "Installation feature", url: "https://www.designboom.com/art/nohlab-busra-tunc-oculus-sound-light-performance-has-architects-istanbul-05-23-2017/" },
       { n: "08", name: "A Different Spatial Experience in a Historic Venue Through Sound and Light", pub: "Arkitera",     year: "2016", type: "Installation feature", url: "https://www.arkitera.com/haber/ses-ve-isik-oyunlariyla-tarihi-mekanda-farkli-bir-mekansal-deneyim/" },
-      { n: "09", name: "Adil Dükkanlar Interior and Lighting Design: POSTANE", pub: "Arkitera",     year: "2021", type: "Project feature", url: "https://www.arkitera.com/proje/adil-dukkanlar-ic-mekan-ve-aydinlatma-tasarimi/" },
-      { n: "10", name: "Redesign and System Design of the MSGSÜ Weaving Workshop", pub: "Arkitera", year: "2022", type: "Project feature", url: "https://www.arkitera.com/proje/msgsu-dokuma-atolyesi-yeniden-duzenlenmesi-ve-sistem-tasarimi/" },
-      { n: "11", name: "Projects Selected for the Turkey Architecture Yearbook 2022", pub: "Arkitera", year: "2023", type: "Yearbook selection", url: "https://www.arkitera.com/haber/turkiye-mimarlik-yilligi-2022ye-secilen-projeler-belli-oldu/" },
-      { n: "12", name: "Re/Framing Louis Kahn", pub: "Pera Museum",  year: "2016", type: "Exhibition architecture", url: "https://www.peramuseum.org/exhibition/re-framing-louis-kahn/217" },
-      { n: "13", name: "Parajanov with Sarkis", pub: "Pera Museum",  year: "2018", type: "Exhibition architecture", url: "https://www.peramuseum.org/exhibition/parajanov-with-sarkis/235" },
-      { n: "14", name: "Liminal from Buşra Tunç", pub: "Designboom",   year: "2016", type: "Product feature", url: "https://www.designboom.com/design/busra-tunc-atolye-labs-lamalight-adaptablelamp-06-19-2016/" },
-      { n: "15", name: "A Minimal Lamp Inspired by a Single Line", pub: "Design Milk",  year: "2016", type: "Product feature", url: "https://design-milk.com/a-minimal-lamp-inspired-by-a-single-line/" },
-      { n: "16", name: "A Minimal, Multifunctional Lighting Unit: LIMINAL", pub: "Arkitera",     year: "2016", type: "Product feature", url: "https://www.arkitera.com/haber/minimal-ve-cok-islevli-aydinlatma-birimi-liminal/" },
-      { n: "17", name: "An Architect, an Artist: A Performative Installation", pub: "Arkitera",     year: "2024", type: "Project feature", url: "https://www.arkitera.com/proje/bir-mimar-bir-sanatci-performatif-bir-yerlestirme/" },
-      { n: "18", name: "The Painter's Shop", pub: "XXI",          year: "2024", type: "Project feature", url: "https://www.xxi.com.tr/proje/ic-mekan/boyaci-dukkani" }
+      { n: "09", name: "Adil Dükkanlar Interior and Lighting Design: POSTANE", pub: "Arkitera",     year: "2022", type: "Project feature", url: "https://www.arkitera.com/proje/adil-dukkanlar-ic-mekan-ve-aydinlatma-tasarimi/" },
+      { n: "10", name: "Projects Selected for the Turkey Architecture Yearbook 2021", pub: "Arkitera", year: "2022", type: "Yearbook selection", url: "https://www.arkitera.com/haber/turkiye-mimarlik-yilligi-2021-icin-secilen-projeler-belli-oldu/" },
+      { n: "11", name: "Redesign and System Design of the MSGSÜ Weaving Workshop", pub: "Arkitera", year: "2023", type: "Project feature", url: "https://www.arkitera.com/proje/msgsu-dokuma-atolyesi-yeniden-duzenlenmesi-ve-sistem-tasarimi/" },
+      { n: "12", name: "Projects Selected for the Turkey Architecture Yearbook 2022", pub: "Arkitera", year: "2023", type: "Yearbook selection", url: "https://www.arkitera.com/haber/turkiye-mimarlik-yilligi-2022ye-secilen-projeler-belli-oldu/" },
+      { n: "13", name: "Re/Framing Louis Kahn", pub: "Pera Museum",  year: "2016", type: "Exhibition architecture", url: "https://www.peramuseum.org/exhibition/re-framing-louis-kahn/217" },
+      { n: "14", name: "Parajanov with Sarkis", pub: "Pera Museum",  year: "2018", type: "Exhibition architecture", url: "https://www.peramuseum.org/exhibition/parajanov-with-sarkis/235" },
+      { n: "15", name: "Liminal from Buşra Tunç", pub: "Designboom",   year: "2016", type: "Product feature", url: "https://www.designboom.com/design/busra-tunc-atolye-labs-lamalight-adaptablelamp-06-19-2016/" },
+      { n: "16", name: "A Minimal Lamp Inspired by a Single Line", pub: "Design Milk",  year: "2016", type: "Product feature", url: "https://design-milk.com/a-minimal-lamp-inspired-by-a-single-line/" },
+      { n: "17", name: "A Minimal, Multifunctional Lighting Unit: LIMINAL", pub: "Arkitera",     year: "2016", type: "Product feature", url: "https://www.arkitera.com/haber/minimal-ve-cok-islevli-aydinlatma-birimi-liminal/" },
+      { n: "18", name: "An Architect, an Artist: A Performative Installation", pub: "Arkitera",     year: "2024", type: "Project feature", url: "https://www.arkitera.com/proje/bir-mimar-bir-sanatci-performatif-bir-yerlestirme/" },
+      { n: "19", name: "The Painter's Shop", pub: "XXI",          year: "2024", type: "Project feature", url: "https://www.xxi.com.tr/proje/ic-mekan/boyaci-dukkani" }
     ],
     downloads: [
       { n: "01", name: "Studio biography",  meta: "DOCX · 6 KB",  langs: "EN · TR" },
@@ -134,8 +135,8 @@ window.DATA = {
     {
       cat: "01", slug: "postane", name: "POSTANE",
       category: "Architecture", kind: "Interior & Lighting",
-      year: 2021, yearLabel: "2021", location: "Istanbul", status: "Completed",
-      scope: ["Furniture", "Lighting"], press: ["Arkitera"],
+      year: 2021, yearLabel: "2021", location: "Galata, Istanbul", status: "Completed",
+      scope: ["Furniture", "Lighting"], press: ["Arkitera"], award: "Türkiye Mimarlık Yıllığı 2021 (Turkey Architecture Yearbook), selected project",
       tags: ["Architecture", "Product Design"],
       hero: "assets/projects/postane/hero.jpg",
       gallery: [
@@ -150,8 +151,8 @@ window.DATA = {
         "assets/projects/postane/g/28.jpg", "assets/projects/postane/g/29.jpg"
       ],
       photographer: "Emirkan Corut",
-      summary: "Interior and lighting for Postane, a social and cultural hub in the Old British Post Office in Galata, completed in 1859.",
-      para: "The design was drawn from what the building revealed in restoration: the volta vaulted ceiling, the wall niches, the radial motif above the door, the gridded window frames. For the two ground-floor fair-trade shops, Postane Shop and Café, each piece was designed and fabricated alongside its craftsman: a produce stand raised from the window's cast light, a gallery light tracing the grid, a deployable publications display, a bookcase angled 10° to follow the vault, and a hand-bent sun light. The studio also carried the lighting for the whole building: facade, four floors, terrace. 73 m².",
+      summary: "Lighting for the whole of Postane, the restored Old British Post Office in Galata, and the interiors of its two fair-trade shops, designed from what the building revealed during restoration.",
+      para: "Postane is a place for social, environmental and urban initiatives and shared cultural production. Involved from the restoration stage, the studio could study the building as it was opened up, floors lifted and walls stripped back, and the elements that surfaced became the brief: the volta ceiling, the wall niches, the sun motif above the entrance, the gridded window frames. For the shop and café on the ground floor, which offer goods from cooperatives and social enterprises, each piece was designed and made together with its craftsmen. The light falling through the gridded windows is lifted off the floor into a produce counter that also carries the café; above it, a gallery light follows and breaks up the window grid, its colour changing with the use of the floor above. A publications display is built from frames that bend towards the viewer, with adjustable holders for each title. The bookcase takes the rhythm and slope of the iron beams of the vaulted ceiling and turns 10° to meet the wall. At the second entrance, a new light hangs through the double-height space as a counterpart to the sun motif above the door, its parabolic curves shaped by hand. The making was documented from the first day, so the project is told through workshops and installation as much as through the finished rooms.",
     },
     {
       cat: "02", slug: "40-kapili-oda", name: "THE ROOM WITH FORTY DOORS",
