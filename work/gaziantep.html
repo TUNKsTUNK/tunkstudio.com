@@ -1246,7 +1246,10 @@ function WorkPage({ go }) {
   const base = filter === 'All' ? DATA.projects : DATA.projects.filter(p => p.tags.includes(filter));
   // Only published projects (with photography) appear here. Un-photographed
   // ones stay hidden until a gallery is added; no empty placeholder tiles.
+  // DATA.workOrder (data.js) sets the curated order; projects not listed follow, newest first
+  const rank = (p) => { const k = (DATA.workOrder || []).indexOf(p.slug); return k < 0 ? Infinity : k; };
   const filtered = [...base].filter(hasPhotos).sort((a, b) => {
+    if (rank(a) !== rank(b)) return rank(a) - rank(b);
     if (a.year == null && b.year == null) return 0;
     if (a.year == null) return 1;
     if (b.year == null) return -1;

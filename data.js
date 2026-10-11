@@ -11,6 +11,22 @@ window.DATA = {
     copyright: "© TUNK · ISTANBUL · EST. 2014",
   },
 
+  // Work page order: strongest photography first (edit freely; unlisted projects follow by year)
+  workOrder: [
+    "parfumlab-pneuma",   // PNEUMA FLAGSHIP STORE
+    "oculus",             // OCULUS
+    "postane",            // POSTANE
+    "hali-atolyesi",      // WEAVING THE STRUCTURE
+    "liminal",            // LIMINAL
+    "submarine",          // SUBMARINE
+    "parajanov",          // PARAJANOV WITH SARKIS
+    "gorunmeyen-anitlar", // INVISIBLE MONUMENTS
+    "samih-rifat",        // SAMIH RIFAT
+    "paintstore",         // THE PAINTER
+    "pneuma-ii",          // PNEUMA II, Mersin
+    "parfumlab-cepa"      // PNEUMA I KIOSK
+  ],
+
   nav: [
     { id: "home",    label: "Studio"  },
     { id: "work",    label: "Work"    },
