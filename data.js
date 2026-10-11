@@ -84,14 +84,13 @@ window.DATA = {
       { n: "09", name: "Adil Dükkanlar Interior and Lighting Design: POSTANE", pub: "Arkitera",     year: "2021", type: "Project feature", url: "https://www.arkitera.com/proje/adil-dukkanlar-ic-mekan-ve-aydinlatma-tasarimi/" },
       { n: "10", name: "Redesign and System Design of the MSGSÜ Weaving Workshop", pub: "Arkitera", year: "2022", type: "Project feature", url: "https://www.arkitera.com/proje/msgsu-dokuma-atolyesi-yeniden-duzenlenmesi-ve-sistem-tasarimi/" },
       { n: "11", name: "Projects Selected for the Turkey Architecture Yearbook 2022", pub: "Arkitera", year: "2023", type: "Yearbook selection", url: "https://www.arkitera.com/haber/turkiye-mimarlik-yilligi-2022ye-secilen-projeler-belli-oldu/" },
-      { n: "12", name: "Turkey Architecture Yearbook 2022 Panels: MSGSÜ Weaving Atelier", pub: "Arkitera · YouTube", year: "2023", type: "Talk", url: "https://www.youtube.com/watch?v=BHZE8sspstI" },
-      { n: "13", name: "Re/Framing Louis Kahn", pub: "Pera Museum",  year: "2016", type: "Exhibition architecture", url: "https://www.peramuseum.org/exhibition/re-framing-louis-kahn/217" },
-      { n: "14", name: "Parajanov with Sarkis", pub: "Pera Museum",  year: "2018", type: "Exhibition architecture", url: "https://www.peramuseum.org/exhibition/parajanov-with-sarkis/235" },
-      { n: "15", name: "Liminal from Buşra Tunç", pub: "Designboom",   year: "2016", type: "Product feature", url: "https://www.designboom.com/design/busra-tunc-atolye-labs-lamalight-adaptablelamp-06-19-2016/" },
-      { n: "16", name: "A Minimal Lamp Inspired by a Single Line", pub: "Design Milk",  year: "2016", type: "Product feature", url: "https://design-milk.com/a-minimal-lamp-inspired-by-a-single-line/" },
-      { n: "17", name: "A Minimal, Multifunctional Lighting Unit: LIMINAL", pub: "Arkitera",     year: "2016", type: "Product feature", url: "https://www.arkitera.com/haber/minimal-ve-cok-islevli-aydinlatma-birimi-liminal/" },
-      { n: "18", name: "An Architect, an Artist: A Performative Installation", pub: "Arkitera",     year: "2024", type: "Project feature", url: "https://www.arkitera.com/proje/bir-mimar-bir-sanatci-performatif-bir-yerlestirme/" },
-      { n: "19", name: "The Painter's Shop", pub: "XXI",          year: "2024", type: "Project feature", url: "https://www.xxi.com.tr/proje/ic-mekan/boyaci-dukkani" }
+      { n: "12", name: "Re/Framing Louis Kahn", pub: "Pera Museum",  year: "2016", type: "Exhibition architecture", url: "https://www.peramuseum.org/exhibition/re-framing-louis-kahn/217" },
+      { n: "13", name: "Parajanov with Sarkis", pub: "Pera Museum",  year: "2018", type: "Exhibition architecture", url: "https://www.peramuseum.org/exhibition/parajanov-with-sarkis/235" },
+      { n: "14", name: "Liminal from Buşra Tunç", pub: "Designboom",   year: "2016", type: "Product feature", url: "https://www.designboom.com/design/busra-tunc-atolye-labs-lamalight-adaptablelamp-06-19-2016/" },
+      { n: "15", name: "A Minimal Lamp Inspired by a Single Line", pub: "Design Milk",  year: "2016", type: "Product feature", url: "https://design-milk.com/a-minimal-lamp-inspired-by-a-single-line/" },
+      { n: "16", name: "A Minimal, Multifunctional Lighting Unit: LIMINAL", pub: "Arkitera",     year: "2016", type: "Product feature", url: "https://www.arkitera.com/haber/minimal-ve-cok-islevli-aydinlatma-birimi-liminal/" },
+      { n: "17", name: "An Architect, an Artist: A Performative Installation", pub: "Arkitera",     year: "2024", type: "Project feature", url: "https://www.arkitera.com/proje/bir-mimar-bir-sanatci-performatif-bir-yerlestirme/" },
+      { n: "18", name: "The Painter's Shop", pub: "XXI",          year: "2024", type: "Project feature", url: "https://www.xxi.com.tr/proje/ic-mekan/boyaci-dukkani" }
     ],
     downloads: [
       { n: "01", name: "Studio biography",  meta: "DOCX · 6 KB",  langs: "EN · TR" },
