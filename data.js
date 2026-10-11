@@ -333,7 +333,7 @@ window.DATA = {
     {
       cat: "16", slug: "hali-atolyesi", name: "MSGSU Weaving",
       category: "Architecture", kind: "Education Interior",
-      year: 2022, yearLabel: "2022", location: "Istanbul", status: "Completed",
+      year: 2022, yearLabel: "2022", location: "Fındıklı, Istanbul", status: "Completed",
       press: ["Arkitera"],
       tags: ["Architecture"],
       hero: "assets/projects/msgsu/v2/00-hero-atelier.jpg",
@@ -367,8 +367,8 @@ window.DATA = {
         "assets/projects/msgsu/v2/18-halidayiz.jpg"
       ],
       photographer: "Emirkan Corut",
-      summary: "A new working system for the weaving workshop at Mimar Sinan Fine Arts University: looms, dye storage and circulation re-set around the craft.",
-      para: "The existing studio was re-planned around how the work is actually made. A blue steel armature carries the stair, the tool screens and the open shelving; dyed yarn is sorted into a wall of stacked translucent bins, read at a glance by colour. Everything new is fabricated in mild steel and left exposed: welded on site, levelled against the original arched windows and timber ceiling. Published by Arkitera.",
+      summary: "A new spatial system for the carpet-weaving atelier of the Painting Department at Mimar Sinan Fine Arts University, in which the structure itself is woven.",
+      para: "The atelier explores the contemporary possibilities of carpet-weaving techniques and stays open to current debates in art. For a room where weaving is the daily work, the intervention became a study in weaving a structure: three steel profiles, 60×20, 40×20 and 20×20 mm, are interlaced, and the way they meet becomes the most present element of the space. Storage is not hidden but made part of the room's structure: dyed yarn sits in a wall of stacked translucent bins along the mezzanine, read by colour. The lighting was deliberately taken from the university's own inventory. The globe lamps that line the whole Fındıklı building continue into the atelier, keeping its tie to the corridors of a school whose doors are always open.",
     },
     {
       cat: "17", slug: "parfumlab-pneuma", name: "PNEUMA FLAGSHIP STORE",
