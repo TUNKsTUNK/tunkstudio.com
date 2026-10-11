@@ -94,8 +94,6 @@ window.IMG_VARIANTS = {
   "assets/projects/msgsu/v2/07-stair-drawers.jpg": [1600, 2400, "assets/projects/msgsu/v2/07-stair-drawers.w1200.jpg"],
   "assets/projects/msgsu/v2/08-loom.jpg": [1600, 2400, "assets/projects/msgsu/v2/08-loom.w1200.jpg"],
   "assets/projects/msgsu/v2/09-tool-wall.jpg": [1600, 2400, "assets/projects/msgsu/v2/09-tool-wall.w1200.jpg"],
-  "assets/projects/msgsu/v2/10-tool-screen.jpg": [1600, 2400, "assets/projects/msgsu/v2/10-tool-screen.w1200.jpg"],
-  "assets/projects/msgsu/v2/11-sewing-corner.jpg": [1600, 2400, "assets/projects/msgsu/v2/11-sewing-corner.w1200.jpg"],
   "assets/projects/msgsu/v2/12-arched-window.jpg": [1600, 2400, "assets/projects/msgsu/v2/12-arched-window.w1200.jpg"],
   "assets/projects/msgsu/v2/13-making-installation.jpg": [2400, 1600, "assets/projects/msgsu/v2/13-making-installation.w1200.jpg"],
   "assets/projects/msgsu/v2/14-making-steel.jpg": [2400, 1600, "assets/projects/msgsu/v2/14-making-steel.w1200.jpg"],

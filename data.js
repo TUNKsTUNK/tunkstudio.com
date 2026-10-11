@@ -331,7 +331,7 @@ window.DATA = {
       para: "A commercial fit-out completed in 2018.",
     },
     {
-      cat: "16", slug: "hali-atolyesi", name: "MSGSU Weaving",
+      cat: "16", slug: "hali-atolyesi", name: "WEAVING THE STRUCTURE",
       category: "Architecture", kind: "Education Interior",
       year: 2022, yearLabel: "2022", location: "Fındıklı, Istanbul", status: "Completed",
       press: ["Arkitera"],
@@ -354,8 +354,6 @@ window.DATA = {
         "assets/projects/msgsu/v2/07-stair-drawers.jpg",
         "assets/projects/msgsu/v2/08-loom.jpg",
         "assets/projects/msgsu/v2/09-tool-wall.jpg",
-        "assets/projects/msgsu/v2/10-tool-screen.jpg",
-        "assets/projects/msgsu/v2/11-sewing-corner.jpg",
         "assets/projects/msgsu/v2/13-making-installation.jpg",
         "assets/projects/msgsu/v2/14-making-steel.jpg",
         { src: "assets/projects/msgsu/v2/m2-making-colour-test.jpg", wide: true },
