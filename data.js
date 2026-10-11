@@ -672,7 +672,7 @@ window.DATA = {
     {
       cat: "30", slug: "paintstore", name: "The Painter",
       category: "Installation", kind: "Installation",
-      year: 2023, yearLabel: "2023", location: "Istanbul", status: "Completed",
+      year: 2023, yearLabel: "2023", location: "Sanatorium, Istanbul", status: "Completed",
       tags: ["Installation"], press: ["Arkitera", "XXI"],
       hero: "assets/projects/painter/g/03.jpg",
       thumb: "assets/projects/painter/g/09.jpg",
@@ -685,9 +685,15 @@ window.DATA = {
         "assets/projects/painter/g/18.jpg", "assets/projects/painter/g/19.jpg",
         "assets/projects/painter/store.mp4"
       ],
-      photographer: "Emirkan Corut, Zeynep Fırat",
-      summary: "Installation design. The painter",
-      para: "An installation realised in 2023 for artist Yağız Özgen's solo exhibition the Painter.",
+      credits: [
+        ["Artist", "Yağız Özgen"],
+        ["Construction Design", "Buşra Tunç, TUNK"],
+        ["Exhibition", "Boyacı (Painter), Sanatorium, Istanbul"],
+        ["Exhibition Text", "Oğuz Karayemiş"],
+      ],
+      photographer: "Zeynep Fırat, Emirkan Corut",
+      summary: "A painter's shop rebuilt inside a gallery: a demountable construction for Yağız Özgen's solo exhibition Boyacı (Painter) at Sanatorium, Istanbul, in which the structure itself performs.",
+      para: "Yağız Özgen's exhibition sets out the material components and processes of painting as an installation, starting from the paint and hardware shops of Perşembe Pazarı in Karaköy. For the painter's shop at its centre, the studio designed a construction that hides nothing of what it is made of, in line with the exhibition's refusal to disguise materials. It draws on two references: the crating used to store and ship artworks, and the wooden stretcher on which a canvas is pulled, rebuilt as a three-dimensional frame; like materials are used at like dimensions throughout. Measuring 258 × 355 × 260 cm and set at the centre of the gallery with its back to the entrance, the double-walled, demountable structure is met first as a bare skeleton, like a film set seen from behind. Inside, found and treated objects are arranged on its shelves to plan, recreating the atmosphere of a Perşembe Pazarı paint shop. The technical drawings were coloured with the industrial paint colours the artist had reproduced, so that no relation in the work was left to chance. The journey of an artwork, from its protection to its display, is staged as an open, performative object.",
     },
     {
       cat: "31", slug: "maslak-venue", name: "Maslak Venue",
