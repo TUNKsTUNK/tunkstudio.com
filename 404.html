@@ -1439,7 +1439,7 @@ function ProjectPage({ project, go }) {
       </section>
 
       <section className={`pj-gallery wrap${p.wideGallery ? ' gallery-wide' : ''}`}>
-        <div className={`pj-grid-g${p.wideGallery ? ' grid-wide' : ''}`}>
+        <div className={`pj-grid-g${p.wideGallery ? ' grid-wide' : ''}${p.galleryRows ? ' grid-rows' : ''}`}>
           {(() => {
             const out = [];
             for (let k = 0; k < gal.length; k++) {

@@ -419,6 +419,17 @@ h1,h2,h3,h4,h5,h6,button,input,textarea,select { font-family: var(--font-sans); 
   display: block; width: 100%; height: auto; object-fit: contain;
   transition: opacity var(--dur) var(--ease);
 }
+/* galleryRows (data.js): a told sequence instead of masonry. Two columns read
+   strictly left→right, top→bottom; `wide` items take the full row. Pair
+   portraits with portraits and landscapes with landscapes in data.js. */
+.pj-grid-g.grid-rows {
+  column-count: auto; columns: auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: var(--gutter, 24px); align-items: center;
+}
+.pj-grid-g.grid-rows .g-cell { margin-bottom: 0; }
+.pj-grid-g.grid-rows .g-wide { grid-column: 1 / -1; }
+@media (max-width: 540px) { .pj-grid-g.grid-rows { grid-template-columns: 1fr; } }
 @media (max-width: 900px) { .pj-grid-g { column-count: 2; } }
 @media (max-width: 540px) { .pj-grid-g { column-count: 1; } }
 .pj-grid-g .g-cell:hover img { opacity: .88; }
