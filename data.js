@@ -207,7 +207,7 @@ window.DATA = {
       thumb: "assets/projects/kahn/04-installation-wide.jpg",
       credits: [
         ["Exhibition", "Re/Framing Louis Kahn, Pera Museum, Istanbul"],
-        ["Video", "37″, sound edited from Louis Kahn's voice"],
+        ["Video", "37 min, sound edited from Louis Kahn's voice"],
       ],
       galleryRows: true,
       gallery: [
