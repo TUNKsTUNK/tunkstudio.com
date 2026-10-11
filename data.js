@@ -215,12 +215,17 @@ window.DATA = {
         "assets/projects/kahn/02-installation-light.jpg",
         "assets/projects/kahn/03-installation-room.jpg",
         { src: "assets/projects/kahn/04-installation-wide.jpg", wide: true },
+        "assets/projects/kahn/s1-kahn-salk.jpg",
+        "assets/projects/kahn/s2-kahn-brick.jpg",
+        { src: "assets/projects/kahn/s3-silence-and-light.jpg", wide: true },
         "assets/projects/kahn/05-wall-drawing-1.jpg",
         "assets/projects/kahn/06-wall-drawing-2.jpg",
         "assets/projects/kahn/07-exhibition-drawings.jpg",
+        "assets/projects/kahn/e1-exhibition-room.jpg",
         "assets/projects/kahn/08-exhibition-tables.jpg",
-        "assets/projects/kahn/09-exhibition-walls.jpg",
+        "assets/projects/kahn/e2-exhibition-photographs.jpg",
         "assets/projects/kahn/10-exhibition-models.jpg",
+        "assets/projects/kahn/09-exhibition-walls.jpg",
         { src: "assets/projects/kahn/11-making-installation.jpg", wide: true }
       ]
     },
