@@ -38,9 +38,9 @@ window.DATA = {
 
   home: {
     eyebrow: "STUDIO · ISTANBUL",
-    statement: "Architecture, exhibition, product & installation.",
+    statement: "Architecture, immersive installations & exhibition design.",
     statementShort: "Spatial work,\nbuilt precisely.",
-    intro1: "TUNK is a studio for architecture, art and design, based in Galata, Istanbul. The work moves across four disciplines: architecture, exhibition, product and installation.",
+    intro1: "TUNK is a studio for architecture, art and design, based in Galata, Istanbul. The work moves across architecture, immersive installations and exhibition design.",
     intro2: "From houses on the Aegean coast to museum exhibitions at the Pera Museum, retail concepts, furniture and lighting, and light-and-sound installations made with collaborators such as NOHlab.",
     metaCols: [
       { k: "Studio", v: "Founded 2014\nIstanbul" },
