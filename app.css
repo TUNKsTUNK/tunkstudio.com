@@ -46,8 +46,9 @@ h1,h2,h3,h4,h5,h6,button,input,textarea,select { font-family: var(--font-sans); 
 .nav2 .brand img { height: 20px; display: block; transition: opacity var(--dur) var(--ease); }
 .nav2 .brand .disc {
   font-family: var(--font-sans); font-weight: 400; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
-  color: currentColor; padding-left: 14px; border-left: 1px solid currentColor; opacity: .5;
+  color: currentColor; padding-left: 14px; border-left: 1px solid currentColor; opacity: .5; white-space: nowrap;
 }
+@media (max-width: 1100px) { .nav2 .brand .disc { display: none; } }
 .nav2 .links { display: flex; gap: 28px; align-items: center; }
 .nav2 .links a {
   font-weight: 500; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;

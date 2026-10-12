@@ -6,7 +6,7 @@
 window.hasPhotos = (p) => !!(p && p.gallery && p.gallery.length);
 window.DATA = {
   site: {
-    discipline: "ARCHITECTURE · EXHIBITION · PRODUCT · INSTALLATION",
+    discipline: "ARCHITECTURE · IMMERSIVE INSTALLATIONS · EXHIBITION DESIGN",
     language: "EN · TR",
     copyright: "© TUNK · ISTANBUL · EST. 2014",
   },
@@ -126,7 +126,7 @@ window.DATA = {
   },
 
   footer: {
-    tagline: "Architecture · Exhibition · Product · Installation",
+    tagline: "Architecture · Immersive Installations · Exhibition Design",
     location: "Istanbul",
     studioLinks: ["Work", "About", "Press"],
     instagram: "Instagram →",
@@ -183,7 +183,7 @@ window.DATA = {
         "assets/projects/postane/g/23.jpg",
         { src: "assets/projects/postane/g/27.jpg", wide: true }
       ],
-      photographer: "Emirkan Corut",
+      photographer: "Emirkan Cörüt",
       summary: "Lighting for the whole of Postane, the restored Old British Post Office in Galata, and the interiors of its two fair-trade shops, designed from what the building revealed during restoration.",
       para: "Postane is a place for social, environmental and urban initiatives and shared cultural production. Involved from the restoration stage, the studio could study the building as it was opened up, floors lifted and walls stripped back, and the elements that surfaced became the brief: the volta ceiling, the wall niches, the sun motif above the entrance, the gridded window frames. For the shop and café on the ground floor, which offer goods from cooperatives and social enterprises, each piece was designed and made together with its craftsmen. The light falling through the gridded windows is lifted off the floor into a produce counter that also carries the café; above it, a gallery light follows and breaks up the window grid, its colour changing with the use of the floor above. A publications display is built from frames that bend towards the viewer, with adjustable holders for each title. The bookcase takes the rhythm and slope of the iron beams of the vaulted ceiling and turns 10° to meet the wall. At the second entrance, a new light hangs through the double-height space as a counterpart to the sun motif above the door, its parabolic curves shaped by hand. The making was documented from the first day, so the project is told through workshops and installation as much as through the finished rooms.",
     },
@@ -424,7 +424,7 @@ window.DATA = {
         "assets/projects/msgsu/v2/12-arched-window.jpg",
         "assets/projects/msgsu/v2/18-halidayiz.jpg"
       ],
-      photographer: "Emirkan Corut",
+      photographer: "Emirkan Cörüt",
       summary: "A new spatial system for the carpet-weaving atelier of the Painting Department at Mimar Sinan Fine Arts University, in which the structure itself is woven.",
       para: "The atelier explores the contemporary possibilities of carpet-weaving techniques and stays open to current debates in art. For a room where weaving is the daily work, the intervention became a study in weaving a structure: three steel profiles, 60×20, 40×20 and 20×20 mm, are interlaced, and the way they meet becomes the most present element of the space. Storage is not hidden but made part of the room's structure: dyed yarn sits in a wall of stacked translucent bins along the mezzanine, read by colour. The lighting was deliberately taken from the university's own inventory. The globe lamps that line the whole Fındıklı building continue into the atelier, keeping its tie to the corridors of a school whose doors are always open.",
     },
@@ -727,7 +727,7 @@ window.DATA = {
         ["Exhibition", "Boyacı (Painter), Sanatorium, Istanbul"],
         ["Exhibition Text", "Oğuz Karayemiş"],
       ],
-      photographer: "Zeynep Fırat, Emirkan Corut",
+      photographer: "Zeynep Fırat, Emirkan Cörüt",
       summary: "A painter's shop rebuilt inside a gallery: a demountable construction for Yağız Özgen's solo exhibition Boyacı (Painter) at Sanatorium, Istanbul, in which the structure itself performs.",
       para: "Yağız Özgen's exhibition sets out the material components and processes of painting as an installation, starting from the paint and hardware shops of Perşembe Pazarı in Karaköy. For the painter's shop at its centre, the studio designed a construction that hides nothing of what it is made of, in line with the exhibition's refusal to disguise materials. It draws on two references: the crating used to store and ship artworks, and the wooden stretcher on which a canvas is pulled, rebuilt as a three-dimensional frame; like materials are used at like dimensions throughout. Measuring 258 × 355 × 260 cm and set at the centre of the gallery with its back to the entrance, the double-walled, demountable structure is met first as a bare skeleton, like a film set seen from behind. Inside, found and treated objects are arranged on its shelves to plan, recreating the atmosphere of a Perşembe Pazarı paint shop. The technical drawings were coloured with the industrial paint colours the artist had reproduced, so that no relation in the work was left to chance. The journey of an artwork, from its protection to its display, is staged as an open, performative object.",
     },
