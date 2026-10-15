@@ -485,6 +485,13 @@ h1,h2,h3,h4,h5,h6,button,input,textarea,select { font-family: var(--font-sans); 
 
 .contact-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 96px; padding: 64px var(--m) 0; border-top: 1px solid var(--ink); margin: 0 0 0; }
 @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; gap: 40px; } }
+.contact-email-hero {
+  display: inline-block; font-family: var(--font-sans); font-weight: 900; text-transform: uppercase;
+  font-size: clamp(21px, 3.2vw, 52px); line-height: 1.1; letter-spacing: -0.01em; white-space: nowrap;
+  color: var(--ink); border-bottom: 3px solid var(--accent); padding-bottom: 6px;
+  transition: opacity var(--dur) var(--ease);
+}
+.contact-email-hero:hover { opacity: .6; }
 .field { display: grid; gap: 8px; }
 .field label { font-weight: 500; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
 .field input, .field textarea {
