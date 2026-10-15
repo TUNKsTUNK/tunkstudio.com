@@ -1565,7 +1565,6 @@ function PressPage({ go }) {
 
 function ContactPage({ go }) {
   const c = DATA.contact;
-  const fields = [['Name', ''], ['Email', ''], ['Subject', 'New project'], ['Budget', 'Approx. range']];
   return (
     <main className="route">
       <div className="lede-block">
@@ -1574,29 +1573,17 @@ function ContactPage({ go }) {
           <h1 className="mega" style={{ }}>{c.title}</h1>
         </div>
       </div>
-      <div className="wrap" style={{ marginTop: 72 }}>
+      <div className="wrap" style={{ marginTop: 72, marginBottom: 160 }}>
         <div className="contact-grid">
           <div>
             <div className="lab lab-ink" style={{ marginBottom: 20 }}>Studio</div>
             <div className="mono" style={{ fontFamily: 'var(--font-mono)', fontSize: 13, lineHeight: 1.8, letterSpacing: '.02em', textTransform: 'uppercase', whiteSpace: 'pre-line' }}>
-              {c.address}{'\n\n'}<a href={`mailto:${c.email}`} className="contact-email">{c.email}</a>
+              {c.address}
             </div>
           </div>
           <div>
-            <div className="lab lab-ink" style={{ marginBottom: 24 }}>Enquire</div>
-            <form onSubmit={(e) => { e.preventDefault(); alert('Submitted (demo).'); }} className="form-grid">
-              {fields.map(([l, ph]) => (
-                <div className="field" key={l}>
-                  <label>{l}</label>
-                  <input defaultValue="" placeholder={ph} />
-                </div>
-              ))}
-              <div className="field full">
-                <label>Message</label>
-                <textarea rows="4" placeholder="A short description of the project, site and timeline." />
-              </div>
-              <button type="submit" className="btn2 primary" style={{ justifySelf: 'start' }}>Send enquiry →</button>
-            </form>
+            <div className="lab lab-ink" style={{ marginBottom: 24 }}>Projects &amp; collaborations</div>
+            <a href={`mailto:${c.email.toLowerCase()}`} className="contact-email-hero">{c.email}</a>
           </div>
         </div>
       </div>
