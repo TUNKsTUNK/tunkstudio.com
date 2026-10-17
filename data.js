@@ -679,7 +679,7 @@ window.DATA = {
     {
       cat: "28", slug: "skins", name: "SKINS",
       category: "Installation", kind: "Installation Design",
-      year: 2019, yearLabel: "2019", location: "Istanbul", status: "Completed",
+      year: 2019, yearLabel: "2019", location: "Sanatorium, Istanbul", status: "Completed",
       tags: ["Installation"],
       hero: "assets/projects/skins/01-overview.jpg",
       thumb: "assets/projects/skins/01-overview.jpg",
@@ -699,6 +699,7 @@ window.DATA = {
       credits: [
         ["Artist", "Kerem Ozan Bayraktar"],
         ["Curator", "Kevser Güler"],
+        ["Exhibition", "Rocks and Winds, Germs and Words, Sanatorium, Istanbul"],
         ["Installation Design", "Buşra Tunç, TUNK"],
       ],
       summary: "Installation design for Skins, Kerem Ozan Bayraktar's series of digitally rendered portraits of plants, animals and objects: a freestanding steel grid that holds each being in its own box, like a specimen in a collection.",
