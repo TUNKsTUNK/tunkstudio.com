@@ -28,7 +28,7 @@ function upsertLD(id, obj) {
 
 const SITE_NAME = 'TUNK';
 const SITE_TAGLINE = 'Architecture, Immersive Installations & Exhibition Design, Istanbul';
-const SITE_DESC = "TUNK: mimarlık ofisi, sergi tasarımı, mekansal enstalasyon, aydınlatma ve ürün tasarımı stüdyosu, Galata, İstanbul. Architecture, immersive installation and exhibition design studio in Istanbul, with retail interiors, museum exhibitions, spatial installations, lighting, furniture and residential architecture.";
+const SITE_DESC = "TUNK: mimarlık ofisi, sergi tasarımı, mekansal enstalasyon, aydınlatma ve ürün tasarımı stüdyosu, Galata, İstanbul. Architecture, immersive installation and exhibition design studio in Istanbul, with retail interiors and kiosks, museum exhibitions, installation design for artists, lighting, furniture and residential architecture.";
 const DEFAULT_IMAGE = window.SITE_URL + '/assets/logo-tunk-black.png';
 
 // project.kind / project.category (English, from data.js) -> Turkish search phrase
