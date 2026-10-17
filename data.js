@@ -539,8 +539,6 @@ window.DATA = {
       ],
       photographer: "Orhan Kolukısa",
       credits: [
-        ["Concept & Interior Design", "TUNK"],
-        ["Creative Direction / Lead Architect", "Buşra Tunç, TUNK"],
         ["Client", "Parfumlab"],
       ],
       summary: "A repeatable kiosk format for Parfumlab that carries the pneumatic language of the PNEUMA flagship store into shopping-mall concourses, built in three footprints.",
