@@ -537,8 +537,14 @@ window.DATA = {
         "assets/projects/kiosk/05.jpg",
         "assets/projects/kiosk/axon1.mp4"
       ],
-      summary: "A repeatable kiosk format for Parfumlab, built in three footprints.",
-      para: "A modular kiosk system for Parfumlab, repeated across Ankara and Istanbul through 2025\u20132026 at three footprints \u2014 4\u00d73 m, 4\u00d74 m and 5\u00d74 m \u2014 to fit each site. A pneumatic system, display counter and a family of display units and cubes form one kit of parts, reconfigured per location.",
+      photographer: "Orhan Kolukısa",
+      credits: [
+        ["Concept & Interior Design", "TUNK"],
+        ["Creative Direction / Lead Architect", "Buşra Tunç, TUNK"],
+        ["Client", "Parfumlab"],
+      ],
+      summary: "A repeatable kiosk format for Parfumlab that carries the pneumatic language of the PNEUMA flagship store into shopping-mall concourses, built in three footprints.",
+      para: "Sharing the system of the PNEUMA flagship store, the kiosk condenses its idea of circulation into a freestanding island that reads from every side of a mall concourse. A network of white tubes rises from a backlit central column and runs above the counter, carrying signage, lighting and display, so the pneumatic system becomes the kiosk's structure and outline. Below it, a white-tiled counter on a brushed stainless-steel base steps down into cubes that hold bottles, testers and formula cards at different heights. Pipe network, counter, display units and cubes form one kit of parts, built at three footprints (4\u00d73, 4\u00d74 and 5\u00d74 m) and reconfigured for each site; the format has been repeated across Ankara and Istanbul through 2025\u20132026.",
     },
     {
       cat: "22", slug: "parfumlab-atlantis", name: "PNEUMA DISPLAY",
