@@ -230,15 +230,25 @@ def main():
     write('llms.txt', render_llms(data, seo, projects))
 
     # --- sitemap
-    # project heroes are listed as image entries so they can surface in image search
-    urls = [(SITE + '/', None)] + [(f'{SITE}/{s}', None) for s in sections] + \
-           [(f'{SITE}/work/{p["slug"]}', p.get('hero')) for p in projects]
+    # every project photo is listed as an image entry so the work itself surfaces in image
+    # search (videos skipped); the home page carries each published project's cover
+    def photos(p):
+        srcs = [p.get('hero'), p.get('thumb')] + [x.get('src') if isinstance(x, dict) else x
+                                                  for x in p.get('gallery') or []]
+        seen = []
+        for g in srcs:
+            if g and re.search(r'\.(jpe?g|png|webp)$', g, re.I) and g not in seen:
+                seen.append(g)
+        return seen
+    covers = [p.get('thumb') or p.get('hero') for p in projects if p.get('gallery')]
+    urls = [(SITE + '/', [c for c in covers if c])] + [(f'{SITE}/{s}', []) for s in sections] + \
+           [(f'{SITE}/work/{p["slug"]}', photos(p)) for p in projects]
     write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n'
           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
           'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n'
           + ''.join(f'  <url><loc>{u}</loc>'
-                    + (f'<image:image><image:loc>{esc(abs_url(img))}</image:loc></image:image>' if img else '')
-                    + '</url>\n' for u, img in urls) + '</urlset>\n')
+                    + ''.join(f'<image:image><image:loc>{esc(abs_url(img))}</image:loc></image:image>' for img in imgs)
+                    + '</url>\n' for u, imgs in urls) + '</urlset>\n')
 
     print(f'prerender: {len(sections)} sections, {len(projects)} projects, '
           f'{redirects} redirects, sitemap {len(urls)} urls')

@@ -79,7 +79,18 @@ function pageSEO(page) {
         name: p.name,
         description: p.summary || desc,
         url: base + '/work/' + p.slug,
-        image: p.hero ? base + '/' + p.hero.replace(/^\.?\//, '') : undefined,
+        // every project photo, captioned with the studio name so image search ties the work to TUNK
+        image: (() => {
+          const srcs = [p.hero, ...(p.gallery || []).map((g) => (typeof g === 'string' ? g : g.src))]
+            .filter((g, k, a) => g && /\.(jpe?g|png|webp)$/i.test(g) && a.indexOf(g) === k);
+          return srcs.length ? srcs.map((g) => ({
+            '@type': 'ImageObject',
+            contentUrl: base + '/' + g.replace(/^\.?\//, ''),
+            caption: `${p.name} by TUNK, ${p.kind || p.category || ''}, ${loc}`,
+            creditText: p.photographer || undefined,
+            creator: { '@type': 'Organization', '@id': base + '/#studio', name: SITE_NAME },
+          })) : undefined;
+        })(),
         dateCreated: p.yearLabel || String(p.year || ''),
         locationCreated: { '@type': 'Place', name: loc },
         keywords: [p.category, p.kind, ...(p.tags || [])].filter(Boolean).join(', '),
