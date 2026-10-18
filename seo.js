@@ -68,7 +68,7 @@ function pageSEO(page) {
     const title = `${p.name} | ${kindTR ? kindTR + ', ' : ''}${locTR} · TUNK`;
     const desc = [kindTR, locTR, p.yearLabel].filter(Boolean).join(' · ') + '. '
       + (p.summary || '') + ` ${p.kind || p.category || ''}, ${loc}. `
-      + 'TUNK: İstanbul mimarlık, sergi tasarımı ve enstalasyon ofisi.';
+      + 'TUNK: İstanbul mimarlık, sergi tasarımı ve enstalasyon stüdyosu.';
     return {
       title, desc,
       url: base + '/work/' + p.slug,
@@ -90,7 +90,7 @@ function pageSEO(page) {
   }
   const map = {
     home: {
-      title: `TUNK | İstanbul Mimarlık, Sergi Tasarımı ve Enstalasyon Ofisi`,
+      title: `TUNK | İstanbul Mimarlık, Sergi Tasarımı ve Enstalasyon Stüdyosu`,
       desc: SITE_DESC,
       url: base + '/',
     },
