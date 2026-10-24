@@ -26,7 +26,7 @@ window.DATA = {
     "paintstore",         // THE PAINTER
     "pneuma-ii",          // PNEUMA II, Mersin
     "pneuma-kiosk",       // PNEUMA I KIOSK
-    "parfumlab-studio"    // THREE WORLDS (Parfumlab studio sets)
+    "parfumlab-studio"    // ATMOSPHERES FOR SCENT (Parfumlab studio sets)
   ],
 
   nav: [
@@ -545,7 +545,7 @@ window.DATA = {
       para: "Sharing the system of the PNEUMA flagship store, the kiosk condenses its idea of circulation into a freestanding island that reads from every side of a mall concourse. A network of white tubes rises from a backlit central column and runs above the counter, carrying signage, lighting and display, so the pneumatic system becomes the kiosk's structure and outline. Below it, a white-tiled counter on a brushed stainless-steel base steps down into cubes that hold bottles, testers and formula cards at different heights. Pipe network, counter, display units and cubes form one kit of parts, built at three footprints (4\u00d73, 4\u00d74 and 5\u00d74 m) and reconfigured for each site; the format has been repeated across Ankara and Istanbul through 2025\u20132026.",
     },
     {
-      cat: "37", slug: "parfumlab-studio", name: "THREE WORLDS",
+      cat: "37", slug: "parfumlab-studio", name: "ATMOSPHERES FOR SCENT",
       category: "Installation", kind: "Spatial Set Design",
       year: 2025, yearLabel: "2025", location: "Istanbul", status: "Completed",
       tags: ["Installation", "Product Design"],
