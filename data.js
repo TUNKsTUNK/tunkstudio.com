@@ -25,7 +25,8 @@ window.DATA = {
     "samih-rifat",        // SAMIH RIFAT
     "paintstore",         // THE PAINTER
     "pneuma-ii",          // PNEUMA II, Mersin
-    "pneuma-kiosk"        // PNEUMA I KIOSK
+    "pneuma-kiosk",       // PNEUMA I KIOSK
+    "parfumlab-studio"    // THREE WORLDS (Parfumlab studio sets)
   ],
 
   nav: [
@@ -542,6 +543,38 @@ window.DATA = {
       ],
       summary: "A repeatable kiosk format for Parfumlab that carries the pneumatic language of the PNEUMA flagship store into shopping-mall concourses, built in three footprints.",
       para: "Sharing the system of the PNEUMA flagship store, the kiosk condenses its idea of circulation into a freestanding island that reads from every side of a mall concourse. A network of white tubes rises from a backlit central column and runs above the counter, carrying signage, lighting and display, so the pneumatic system becomes the kiosk's structure and outline. Below it, a white-tiled counter on a brushed stainless-steel base steps down into cubes that hold bottles, testers and formula cards at different heights. Pipe network, counter, display units and cubes form one kit of parts, built at three footprints (4\u00d73, 4\u00d74 and 5\u00d74 m) and reconfigured for each site; the format has been repeated across Ankara and Istanbul through 2025\u20132026.",
+    },
+    {
+      cat: "37", slug: "parfumlab-studio", name: "THREE WORLDS",
+      category: "Installation", kind: "Set & Atmosphere Design",
+      year: 2025, yearLabel: "2025", location: "Istanbul", status: "Completed",
+      tags: ["Installation", "Product Design"],
+      hero: "assets/projects/parfumlab-studio/00-hero-amber-rock.jpg",
+      thumb: "assets/projects/parfumlab-studio/00-hero-amber-rock.jpg",
+      galleryRows: true,
+      gallery: [
+        { src: "assets/projects/parfumlab-studio/01-amber-stand.jpg", wide: true },
+        "assets/projects/parfumlab-studio/02-amber-stones.jpg",
+        "assets/projects/parfumlab-studio/03-amber-glass.jpg",
+        "assets/projects/parfumlab-studio/04-amber-sphere.jpg",
+        "assets/projects/parfumlab-studio/05-amber-rings.jpg",
+        { src: "assets/projects/parfumlab-studio/06-white-molten-metal.jpg", wide: true },
+        "assets/projects/parfumlab-studio/07-white-metal-stone.jpg",
+        "assets/projects/parfumlab-studio/08-white-yellow-tube.jpg",
+        "assets/projects/parfumlab-studio/09-white-lenses-top.jpg",
+        "assets/projects/parfumlab-studio/10-white-cable-top.jpg",
+        { src: "assets/projects/parfumlab-studio/11-home-collection.jpg", wide: true },
+        "assets/projects/parfumlab-studio/12-home-sprays.jpg",
+        "assets/projects/parfumlab-studio/13-home-candles.jpg",
+        "assets/projects/parfumlab-studio/14-home-copper.jpg",
+        "assets/projects/parfumlab-studio/15-home-diffuser.jpg"
+      ],
+      credits: [
+        ["Set & Atmosphere Design", "Buşra Tunç, TUNK"],
+        ["Client", "Parfumlab"],
+      ],
+      summary: "Sets for Parfumlab's studio product photography: three worlds for the brand's three product families, each with its own objects and its own light.",
+      para: "Each of Parfumlab's three product families was given a world of its own for the brand's studio photography. The sets draw on materials and artistic research from Buşra Tunç's studio: pieces of melted and cast metal, whose fluid surfaces recall the way a scent spreads and dissolves, carry the brand's character into the frame. Custom-made metal props sit alongside ready-made laboratory objects, clamps, stands, magnifying lenses and measuring instruments, arranged to create moments of close, almost microscopic looking that follow the laboratory logic behind the brand. Light was the deciding element. Each family has its own atmosphere: a warm amber light for the perfumes, a cool, clear white around the molten metal, and a soft low daylight with long leaf shadows for the home collection, so that the three worlds read as distinct while belonging to one brand.",
     },
     {
       cat: "22", slug: "parfumlab-atlantis", name: "PNEUMA DISPLAY",
