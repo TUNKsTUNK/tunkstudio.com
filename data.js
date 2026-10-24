@@ -546,7 +546,7 @@ window.DATA = {
     },
     {
       cat: "37", slug: "parfumlab-studio", name: "THREE WORLDS",
-      category: "Installation", kind: "Set & Atmosphere Design",
+      category: "Installation", kind: "Spatial Set Design",
       year: 2025, yearLabel: "2025", location: "Istanbul", status: "Completed",
       tags: ["Installation", "Product Design"],
       hero: "assets/projects/parfumlab-studio/00-hero-amber-rock.jpg",
@@ -569,12 +569,16 @@ window.DATA = {
         "assets/projects/parfumlab-studio/14-home-copper.jpg",
         "assets/projects/parfumlab-studio/15-home-diffuser.jpg"
       ],
+      photographer: "Öncü Hrant Gültekin",
       credits: [
-        ["Set & Atmosphere Design", "Buşra Tunç, TUNK"],
-        ["Client", "Parfumlab"],
+        ["Creative Direction", "Önder Dündar"],
+        ["Spatial Set Design", "Buşra Tunç, TUNK"],
+        ["Set Production", "TUNK"],
+        ["Production Assistant", "Selin Açku"],
+        ["Brand", "Parfumlab"],
       ],
-      summary: "Sets for Parfumlab's studio product photography: three worlds for the brand's three product families, each with its own objects and its own light.",
-      para: "Each of Parfumlab's three product families was given a world of its own for the brand's studio photography. The sets draw on materials and artistic research from Buşra Tunç's studio: pieces of melted and cast metal, whose fluid surfaces recall the way a scent spreads and dissolves, carry the brand's character into the frame. Custom-made metal props sit alongside ready-made laboratory objects, clamps, stands, magnifying lenses and measuring instruments, arranged to create moments of close, almost microscopic looking that follow the laboratory logic behind the brand. Light was the deciding element. Each family has its own atmosphere: a warm amber light for the perfumes, a cool, clear white around the molten metal, and a soft low daylight with long leaf shadows for the home collection, so that the three worlds read as distinct while belonging to one brand.",
+      summary: "Creative scenes for Parfumlab's studio photography: three worlds for the brand's three product families, each with its own objects and its own light.",
+      para: "The scenes were assembled from objects, prototypes and found materials that have moved with Buşra Tunç's practice since the first workshop in 2013, brought together here for a single brand universe. Pieces of melted and cast metal, whose fluid surfaces recall the way a scent spreads and dissolves, sit alongside custom-made metal props and ready-made laboratory objects: clamps, stands, magnifying lenses and measuring instruments, arranged to create moments of close, almost microscopic looking that follow the laboratory logic behind the brand. Each composition came out of research, tests and improvisation in the studio. Light was the deciding element. Each product family has its own atmosphere: a warm amber light for the Private Formula perfumes, a cool, clear white around the molten metal, and a soft low daylight with long leaf shadows for the home collection, so that the three worlds read as distinct while belonging to one brand.",
     },
     {
       cat: "22", slug: "parfumlab-atlantis", name: "PNEUMA DISPLAY",
