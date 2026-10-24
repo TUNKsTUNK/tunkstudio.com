@@ -571,8 +571,8 @@ window.DATA = {
       ],
       credits: [
         ["Brand", "Parfumlab"],
-        ["Creative Direction", "Önder Dündar"],
         ["Spatial Set Design", "Buşra Tunç, TUNK"],
+        ["Creative Direction", "Önder Dündar"],
         ["Set Production", "TUNK"],
         ["Photography", "Öncü Hrant Gültekin"],
         ["Production Assistant", "Selin Açku"],
