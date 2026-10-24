@@ -570,12 +570,12 @@ window.DATA = {
         "assets/projects/parfumlab-studio/15-home-diffuser.jpg"
       ],
       credits: [
-        ["Brand", "Parfumlab"],
         ["Spatial Set Design", "Buşra Tunç, TUNK"],
-        ["Creative Direction", "Önder Dündar"],
         ["Set Production", "TUNK"],
+        ["Creative Direction", "Önder Dündar"],
         ["Photography", "Öncü Hrant Gültekin"],
-        ["Production Assistant", "Selin Açku"],
+        ["Production Assistant", "Selin Açku, TUNK"],
+        ["Brand", "Parfumlab"],
       ],
       summary: "Creative scenes for Parfumlab's studio photography: three worlds for the brand's three product families, each with its own objects and its own light.",
       para: "The scenes were assembled from objects, prototypes and found materials that have moved with Buşra Tunç's practice since the first workshop in 2013, brought together here for a single brand universe. Pieces of melted and cast metal, whose fluid surfaces recall the way a scent spreads and dissolves, sit alongside custom-made metal props and ready-made laboratory objects: clamps, stands, magnifying lenses and measuring instruments, arranged to create moments of close, almost microscopic looking that follow the laboratory logic behind the brand. Each composition came out of research, tests and improvisation in the studio. Light was the deciding element. Each product family has its own atmosphere: a warm amber light for Private Formula, a cool, clear white around the molten metal for Creative Formula, and a soft low daylight with long leaf shadows for the Complementary Series of home fragrances, so that the three worlds read as distinct while belonging to one brand.",
