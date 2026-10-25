@@ -272,6 +272,7 @@ window.IMG_VARIANTS = {
   "assets/projects/postane/g/drawing-01.jpg": [2400, 1413, "assets/projects/postane/g/drawing-01.w1200.jpg"],
   "assets/projects/postane/g/drawing-02.jpg": [2400, 1431, "assets/projects/postane/g/drawing-02.w1200.jpg"],
   "assets/projects/postane/g/drawing-entrance.jpg": [1800, 2400, "assets/projects/postane/g/drawing-entrance.w1200.jpg"],
+  "assets/projects/postane/g/section-green.jpg": [1800, 2400, "assets/projects/postane/g/section-green.w1200.jpg"],
   "assets/projects/postane/g/stair-blue.jpg": [1800, 2400, "assets/projects/postane/g/stair-blue.w1200.jpg"],
   "assets/projects/postane/g/sun-lit.jpg": [1800, 2400, "assets/projects/postane/g/sun-lit.w1200.jpg"],
   "assets/projects/postane/g/sun-making.jpg": [1800, 2400, "assets/projects/postane/g/sun-making.w1200.jpg"],
