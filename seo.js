@@ -153,6 +153,11 @@ function applySEO(page) {
   upsertMeta('name', 'twitter:description', seo.desc);
   upsertMeta('name', 'twitter:image', seo.image || DEFAULT_IMAGE);
 
+  // the privacy page is reachable only by its link (ad forms), never listed by search engines
+  const robots = document.head.querySelector('meta[name="robots"]');
+  if (page.id === 'kvkk') upsertMeta('name', 'robots', 'noindex, nofollow');
+  else if (robots) robots.remove();
+
   if (seo.ld) upsertLD('ld-page', seo.ld);
   else { const el = document.getElementById('ld-page'); if (el) el.remove(); }
 }

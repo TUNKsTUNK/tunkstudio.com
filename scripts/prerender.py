@@ -185,8 +185,10 @@ def main():
         write(f'{sid}.html', page)
         if sid == 'work':  # in case Pages answers /work with the directory instead of work.html
             write('work/index.html', page)
-        if sid == 'kvkk':  # English address for ad platforms' privacy-policy field; canonical stays /kvkk
-            write('privacy.html', page)
+        if sid == 'kvkk':  # link-only page: kept out of search results and the sitemap
+            page = page.replace('</head>', '  <meta name="robots" content="noindex, nofollow" />\n</head>', 1)
+            write('kvkk.html', page)
+            write('privacy.html', page)  # English address for ad platforms' privacy-policy field
 
     # --- project pages
     for i, p in enumerate(projects):
@@ -245,7 +247,7 @@ def main():
                 seen.append(g)
         return seen
     covers = [p.get('thumb') or p.get('hero') for p in projects if p.get('gallery')]
-    urls = [(SITE + '/', [c for c in covers if c])] + [(f'{SITE}/{s}', []) for s in sections] + \
+    urls = [(SITE + '/', [c for c in covers if c])] + [(f'{SITE}/{s}', []) for s in sections if s != 'kvkk'] + \
            [(f'{SITE}/work/{p["slug"]}', photos(p)) for p in projects]
     write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n'
           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
