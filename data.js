@@ -142,7 +142,7 @@ window.DATA = {
     ],
   },
 
-  filters: ["All", "Architecture", "Exhibition Architecture", "Product Design", "Installation"],
+  filters: ["All", "Architecture", "Exhibition Architecture", "Product Design", "Installation", "Set Design"],
 
   /* ---------------------------------------------------------------------
      Projects: ordered by the source list's recommended top 10 first,
@@ -546,9 +546,9 @@ window.DATA = {
     },
     {
       cat: "37", slug: "parfumlab-studio", name: "ATMOSPHERES FOR SCENT",
-      category: "Installation", kind: "Spatial Set Design",
+      category: "Set Design", kind: "Spatial Set Design",
       year: 2025, yearLabel: "2025", location: "Istanbul", status: "Completed",
-      tags: ["Installation", "Product Design"],
+      tags: ["Set Design", "Installation"],
       hero: "assets/projects/parfumlab-studio/00-hero-amber-rock.jpg",
       thumb: "assets/projects/parfumlab-studio/00-hero-amber-rock.jpg",
       galleryRows: true,

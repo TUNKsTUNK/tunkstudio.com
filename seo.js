@@ -48,6 +48,7 @@ const KIND_TR = {
   'Installation Design': 'Enstalasyon Tasarımı',
   'Set & Atmosphere Design': 'Set ve Atmosfer Tasarımı',
   'Spatial Set Design': 'Mekânsal Set Tasarımı',
+  'Set Design': 'Set Tasarımı',
   'Installation · Performance': 'Işık ve Ses Enstalasyonu',
   'Spatial Video Installation': 'Mekânsal Video Enstalasyonu',
   'Permanent Installation': 'Kalıcı Enstalasyon',
