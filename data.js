@@ -199,7 +199,6 @@ window.DATA = {
         { src: "assets/projects/postane/g/sun-wide.jpg", wide: true },
         "assets/projects/postane/g/sun-lit.jpg",
         "assets/projects/postane/g/vertical-lights.jpg",
-        { src: "assets/projects/postane/g/29.jpg", wide: true },
         "assets/projects/postane/g/13.jpg",
         "assets/projects/postane/g/19.jpg",
         "assets/projects/postane/g/28.jpg",
