@@ -8,7 +8,7 @@ page, but search engines received HTTP 404 and dropped it from the index.
 This script writes one real HTML file per route, all built from index.html
 (so the React app still boots exactly as before):
 
-  work.html, work/index.html, about.html, press.html, contact.html
+  work.html, work/index.html, about.html, press.html, contact.html, kvkk.html
   work/<slug>.html                 one per project in data.js
   work/<old-slug>.html             redirect stubs for the 301 lines in _redirects
   sitemap.xml                      regenerated from data.js
@@ -45,7 +45,7 @@ def load_data():
     """
     src = '\n'.join(open(os.path.join(ROOT, f), encoding='utf-8').read() for f in ('data.js', 'seo.js'))
     expr = ('JSON.stringify({data: DATA, seo: Object.fromEntries('
-            '["home","work","about","press","contact"].map(id => [id, pageSEO({id})]).concat('
+            '["home","work","about","press","contact","kvkk"].map(id => [id, pageSEO({id})]).concat('
             'DATA.projects.map(p => ["project:" + p.slug, pageSEO({id: "project", project: p})]))'
             ')})')
     if shutil.which('node'):
@@ -175,6 +175,8 @@ def main():
         'press': f'<h1>{esc(press.get("title"))}</h1>{paragraphs(press.get("intro"))}{press_list}',
         'contact': (f'<h1>{esc(contact.get("title"))}</h1><p>{esc(contact.get("address")).replace(chr(10), ", ")}</p>'
                     f'<p><a href="mailto:{esc(email)}">{esc(email)}</a></p>'),
+        'kvkk': f'<h1>{esc(data["privacy"]["title"])}</h1>{paragraphs(data["privacy"]["intro"])}' + ''.join(
+            f'<h2>{esc(x["h"])}</h2>{paragraphs(x["body"])}' for x in data['privacy']['sections']),
     }
     for sid, body in sections.items():
         s = seo[sid]
@@ -183,6 +185,8 @@ def main():
         write(f'{sid}.html', page)
         if sid == 'work':  # in case Pages answers /work with the directory instead of work.html
             write('work/index.html', page)
+        if sid == 'kvkk':  # English address for ad platforms' privacy-policy field; canonical stays /kvkk
+            write('privacy.html', page)
 
     # --- project pages
     for i, p in enumerate(projects):

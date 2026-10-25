@@ -128,6 +128,11 @@ function pageSEO(page) {
       desc: 'TUNK ile iletişim: Galata, İstanbul. Mimarlık, iç mimarlık, mağaza ve sergi tasarımı, enstalasyon projeleri için. Get in touch with TUNK, an architecture, exhibition and installation design studio in Galata, Istanbul.',
       url: base + '/contact',
     },
+    kvkk: {
+      title: `KVKK ve Gizlilik Politikası · TUNK`,
+      desc: 'TUNK KVKK aydınlatma metni ve gizlilik politikası: tunkstudio.com ziyaretçilerinin ve stüdyo ile iletişime geçenlerin kişisel verilerinin işlenmesi, haklar ve başvuru yolu. Privacy policy.',
+      url: base + '/kvkk',
+    },
   };
   return map[page.id] || map.home;
 }
