@@ -698,10 +698,10 @@ window.DATA = {
       year: null, yearLabel: "N/A", location: null, status: "Completed",
       scope: ["Lighting"],
       tags: ["Product Design"], press: ["Designboom", "Design Milk", "Arkitera"],
-      hero: "assets/projects/liminal/g/04.jpg",
-      thumb: "assets/projects/liminal/g/15.jpg",
+      hero: "assets/projects/liminal/g/01.jpg",
+      thumb: "assets/projects/liminal/g/01.jpg",
       gallery: [
-        "assets/projects/liminal/g/01.jpg", "assets/projects/liminal/g/02.jpg", "assets/projects/liminal/g/03.jpg",
+        "assets/projects/liminal/g/04.jpg", "assets/projects/liminal/g/02.jpg", "assets/projects/liminal/g/03.jpg",
         "assets/projects/liminal/g/05.jpg",
         "assets/projects/liminal/g/06.jpg", "assets/projects/liminal/g/07.jpg", "assets/projects/liminal/g/08.jpg",
         "assets/projects/liminal/g/09.jpg", "assets/projects/liminal/g/12.jpg", "assets/projects/liminal/g/13.jpg",
