@@ -737,10 +737,10 @@ window.DATA = {
         ["Team", "Kerem Alper, Elif Karaköse, Yılmaz Korkmaz, Beril Odabaşı"],
         ["Prototyping", "Yüksel Demirel"],
         ["Process Video", "Berkay Tunalı (direction), Umut Gonca (music)"],
-        ["Specifications", "800 × 40 × 15 mm · 0.56 kg · aluminium · LED, CRI >90, 500 lm, 2700 K"],
+        ["Specifications", "800 × 40 × 15 mm · 0.56 kg · aluminium, stainless steel · LED, CRI >90, 500 lm, 2700 K"],
       ],
       summary: "A minimal, adaptable lighting unit drawn from a single line, designed by Buşra Tunç.",
-      para: "Rather than offering a single way of use, LIMINAL changes its form. The lamp is one long line with light on two surfaces; aluminium joints that rotate through 270° and adjustable modules let it lie flat, stand, lean or close into a frame, so the same object works as a task light, a table lamp or a wall unit, at home, in a studio, a library or a restaurant. Eight configurations, Efflux, Diffuse, Flow Up, Epsilon, Focus, Versatile, Delta and Flow Down, each direct the light differently. The body is machined from solid aluminium, powder coated in matte anthracite and finished by hand, and folds flat into a slim case. LIMINAL was developed over more than a year, from a hand sketch to a full research and development process spanning industrial design, mechatronics and service design, with prototypes made alongside craftsmen near the studio in Istanbul. It was launched on Kickstarter in 2016, where the campaign was successfully funded.",
+      para: "Rather than offering a single way of use, LIMINAL changes its form. The lamp is one long line with light on two surfaces; stainless steel joints that rotate through 270° and adjustable modules let it lie flat, stand, lean or close into a frame, so the same object works as a task light, a table lamp or a wall unit, at home, in a studio, a library or a restaurant. Eight configurations, Efflux, Diffuse, Flow Up, Epsilon, Focus, Versatile, Delta and Flow Down, each direct the light differently. The body is machined from solid aluminium, powder coated in matte anthracite and finished by hand, and folds flat into a slim case. LIMINAL was developed over more than a year, from a hand sketch to a full research and development process spanning industrial design, mechatronics and service design, with prototypes made alongside craftsmen near the studio in Istanbul. It was launched on Kickstarter in 2016, where the campaign was successfully funded.",
     },
     {
       cat: "28", slug: "skins", name: "SKINS",
