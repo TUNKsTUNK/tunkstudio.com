@@ -222,8 +222,7 @@ window.DATA = {
         "assets/projects/postane/g/18.jpg",
         "assets/projects/postane/g/21.jpg",
         "assets/projects/postane/g/23.jpg",
-        "assets/projects/postane/g/sun-making.jpg",
-        { src: "assets/projects/postane/g/27.jpg", wide: true }
+        "assets/projects/postane/g/sun-making.jpg"
       ],
       photographer: "Emirkan Cörüt",
       summary: "Lighting for the whole of Postane, the restored Old British Post Office in Galata, and the interiors of its two fair-trade shops, designed from what the building revealed during restoration.",
