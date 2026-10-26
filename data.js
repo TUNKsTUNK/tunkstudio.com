@@ -602,11 +602,10 @@ window.DATA = {
         "assets/projects/parfumlab-studio/08-white-yellow-tube.jpg",
         "assets/projects/parfumlab-studio/09-white-lenses-top.jpg",
         "assets/projects/parfumlab-studio/10-white-cable-top.jpg",
-        { src: "assets/projects/parfumlab-studio/11-home-collection.jpg", wide: true },
         "assets/projects/parfumlab-studio/12-home-sprays.jpg",
         "assets/projects/parfumlab-studio/13-home-candles.jpg",
-        "assets/projects/parfumlab-studio/14-home-copper.jpg",
-        "assets/projects/parfumlab-studio/15-home-diffuser.jpg"
+        { src: "assets/projects/parfumlab-studio/14-home-copper.jpg", wide: true },
+        { src: "assets/projects/parfumlab-studio/15-home-diffuser.jpg", wide: true }
       ],
       credits: [
         ["Spatial Set Design", "Buşra Tunç, TUNK"],
