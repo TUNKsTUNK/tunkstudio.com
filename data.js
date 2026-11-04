@@ -24,6 +24,7 @@ window.DATA = {
     "parajanov",          // PARAJANOV WITH SARKIS
     "gorunmeyen-anitlar", // INVISIBLE MONUMENTS
     "samih-rifat",        // SAMIH RIFAT
+    "sakir-eczacibasi",   // SELECTED MOMENTS
     "paintstore",         // THE PAINTER
     "pneuma-ii",          // PNEUMA II, Mersin
     "pneuma-kiosk",       // PNEUMA I KIOSK
@@ -642,11 +643,43 @@ window.DATA = {
     },
     {
       cat: "24", slug: "sakir-eczacibasi", name: "SELECTED MOMENTS",
-      category: "Exhibition Architecture", kind: "Exhibition Architecture",
-      year: null, yearLabel: "N/A", location: "Istanbul", status: "Completed",
-      tags: ["Exhibition Architecture"],
-      summary: "Exhibition architecture for a Şakir Eczacıbaşı exhibition.",
-      para: "Exhibition architecture for a show of Şakir Eczacıbaşı's work.",
+      category: "Exhibition Architecture", kind: "Exhibition & Projection Design",
+      year: 2020, yearLabel: "2020", location: "Istanbul Modern, Istanbul", status: "Completed",
+      tags: ["Exhibition Architecture"], press: ["Istanbul Modern"],
+      hero: "assets/projects/sakir-eczacibasi/01-projection-room.jpg",
+      thumb: "assets/projects/sakir-eczacibasi/04-portraits.jpg",
+      galleryRows: true,
+      gallery: [
+        { src: "assets/projects/sakir-eczacibasi/01-projection-room.jpg", wide: true },
+        "assets/projects/sakir-eczacibasi/02-visitor-blue.jpg",
+        "assets/projects/sakir-eczacibasi/03-visitor-sky.jpg",
+        { src: "assets/projects/sakir-eczacibasi/04-portraits.jpg", wide: true },
+        "assets/projects/sakir-eczacibasi/05-room-wall.jpg",
+        "assets/projects/sakir-eczacibasi/06-room-wall-b.jpg",
+        { src: "assets/projects/sakir-eczacibasi/07-projection-door.jpg", wide: true },
+        "assets/projects/sakir-eczacibasi/08-photo-wall.jpg",
+        "assets/projects/sakir-eczacibasi/09-photo-corridor.jpg",
+        { src: "assets/projects/sakir-eczacibasi/10-projection-motion.jpg", wide: true },
+        "assets/projects/sakir-eczacibasi/11-intro-wall.jpg",
+        "assets/projects/sakir-eczacibasi/12-photo-wall-b.jpg",
+        { src: "assets/projects/sakir-eczacibasi/13-projection-orange.jpg", wide: true },
+        { src: "assets/projects/sakir-eczacibasi/14-portraits-b.jpg", wide: true },
+        "assets/projects/sakir-eczacibasi/15-mapping-test.jpg",
+        "assets/projects/sakir-eczacibasi/16-hanging.jpg",
+        "assets/projects/sakir-eczacibasi/17-blue-test.jpg",
+        "assets/projects/sakir-eczacibasi/18-projectors.jpg",
+        { src: "assets/projects/sakir-eczacibasi/19-plan.jpg", wide: true },
+        { src: "assets/projects/sakir-eczacibasi/20-projection-diagram.jpg", wide: true }
+      ],
+      photographer: "TUNK",
+      credits: [
+        ["Exhibition", "Şakir Eczacıbaşı: Selected Moments, Istanbul Modern, 25.11.2020–05.06.2021"],
+        ["Curator", "Bülent Erkmen"],
+        ["Sponsor", "Eczacıbaşı Group"],
+        ["Exhibition & Projection Design", "Buşra Tunç, TUNK"],
+      ],
+      summary: "Exhibition and projection design for Şakir Eczacıbaşı: Selected Moments at Istanbul Modern, where more than 300 of his photographs met the visitor on the walls and as moving projections around a dark room.",
+      para: "Istanbul Modern marked the tenth anniversary of Şakir Eczacıbaşı's death (1929–2010) with Selected Moments, curated by Bülent Erkmen: more than 300 photographs, from the impressionist colour work of the 1960s to the pictures from the 1980s on that question the formalism of the medium to catch the movement, uncertainty and change of daily life. Erkmen's point was that 50, 100 or 150 photographs were not enough to show a photographer who took pictures of every moment and everything he looked at. The design answers that abundance in two registers. On the gallery walls the framed prints are hung in dense, irregular clusters, so the walls read as a continuous album of streets, Anatolian landscapes and portraits. In the dark room, the photographs leave the frame: sets of images were sequenced and projected across the walls at room scale, so visitors walk between them, cast their shadows on them and stand inside his streets and faces rather than in front of them. The projection space was planned, mapped and tested on site, from the projector layout and image sets to the final sequences.",
     },
     {
       cat: "25", slug: "samih-rifat", name: "Samih Rıfat “Much Is to Be Done”",
