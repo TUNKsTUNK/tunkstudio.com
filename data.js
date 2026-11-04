@@ -671,7 +671,7 @@ window.DATA = {
         { src: "assets/projects/sakir-eczacibasi/19-plan.jpg", wide: true },
         { src: "assets/projects/sakir-eczacibasi/20-projection-diagram.jpg", wide: true }
       ],
-      photographer: "TUNK",
+      photographer: "Hadiye Cangökçe",
       credits: [
         ["Exhibition", "Şakir Eczacıbaşı: Selected Moments, Istanbul Modern, 25.11.2020–05.06.2021"],
         ["Curator", "Bülent Erkmen"],
