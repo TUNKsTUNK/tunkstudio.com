@@ -18,6 +18,7 @@ window.DATA = {
     "postane",            // POSTANE
     "hali-atolyesi",      // WEAVING THE STRUCTURE
     "liminal",            // LIMINAL
+    "ather",              // ÄTHER
     "louis-kahn",         // RE/FRAMING LOUIS KAHN
     "submarine",          // SUBMARINE
     "parajanov",          // PARAJANOV WITH SARKIS
@@ -109,7 +110,12 @@ window.DATA = {
       { n: "16", name: "LIMINAL: A Minimal Lamp Inspired by a Single Line", pub: "Design Milk",  year: "2016", type: "Product feature", url: "https://design-milk.com/a-minimal-lamp-inspired-by-a-single-line/" },
       { n: "17", name: "LIMINAL: A Minimal, Multifunctional Lighting Unit: LIMINAL", pub: "Arkitera",     year: "2016", type: "Product feature", url: "https://www.arkitera.com/haber/minimal-ve-cok-islevli-aydinlatma-birimi-liminal/" },
       { n: "18", name: "PAINTER: An Architect, an Artist: A Performative Installation", pub: "Arkitera",     year: "2024", type: "Project feature", url: "https://www.arkitera.com/proje/bir-mimar-bir-sanatci-performatif-bir-yerlestirme/" },
-      { n: "19", name: "PAINTER: The Painter's Shop", pub: "XXI",          year: "2024", type: "Project feature", url: "https://www.xxi.com.tr/proje/ic-mekan/boyaci-dukkani" }
+      { n: "19", name: "PAINTER: The Painter's Shop", pub: "XXI",          year: "2024", type: "Project feature", url: "https://www.xxi.com.tr/proje/ic-mekan/boyaci-dukkani" },
+      { n: "20", name: "ÄTHER: Buşra Tunç Illuminates Goethe-Institut in Istanbul with Fluorescent Light Installation", pub: "Designboom", year: "2020", type: "Installation feature", url: "https://www.designboom.com/art/busra-tunc-goethe-institut-istanbul-fluorescent-light-installation-08-12-2020/" },
+      { n: "21", name: "ÄTHER: Buşra Tunç, Artists' Directory", pub: "Aesthetica", year: "2024", type: "Artist profile", url: "https://aestheticamagazine.com/profile/busra-tunc/" },
+      { n: "22", name: "ÄTHER: Lighting the Way: Bold Lamp Designs by Women & Non-Binary Designers", pub: "Adorno", year: "2024", type: "Editorial", url: "https://adorno.design/editorial/lighting-the-way-16-bold-lamp-designs-by-women/" },
+      { n: "23", name: "ÄTHER: Minimalist Lighting: 10 Lamps for a Calm Interior", pub: "Adorno", year: "2023", type: "Editorial", url: "https://adorno.design/editorial/minimalist-lighting-10-lamps-for-a-calm-interior/" },
+      { n: "24", name: "ÄTHER: A Site for Discovering Contemporary, Collectible Design", pub: "ICFF", year: "2025", type: "Editorial", url: "https://icff.com/stories/a-site-for-discovering-contemporary-collectible-design/" }
     ],
     downloads: [
       { n: "01", name: "Studio biography",  meta: "DOCX · 6 KB",  langs: "EN · TR" },
@@ -779,6 +785,53 @@ window.DATA = {
       ],
       summary: "A minimal, adaptable lighting unit drawn from a single line, designed by Buşra Tunç.",
       para: "Rather than offering a single way of use, LIMINAL changes its form. The lamp is one long line with light on two surfaces; stainless steel joints that rotate through 270° and adjustable modules let it lie flat, stand, lean or close into a frame, so the same object works as a task light, a table lamp or a wall unit, at home, in a studio, a library or a restaurant. Eight configurations, Efflux, Diffuse, Flow Up, Epsilon, Focus, Versatile, Delta and Flow Down, each direct the light differently. The body is machined from solid aluminium, powder coated in matte anthracite and finished by hand, and folds flat into a slim case. LIMINAL was developed over more than a year, from a hand sketch to a full research and development process spanning industrial design, mechatronics and service design, with prototypes made alongside craftsmen near the studio in Istanbul. It was launched on Kickstarter in 2016, where the campaign was successfully funded.",
+    },
+    {
+      cat: "38", slug: "ather", name: "ÄTHER",
+      category: "Installation", kind: "Site-Specific Light Installation",
+      year: 2020, yearLabel: "2020", location: "Goethe-Institut, Galatasaray, Istanbul", status: "Completed",
+      scope: ["Lighting"],
+      tags: ["Installation"], press: ["Designboom", "Aesthetica", "ICFF", "Adorno"],
+      hero: "assets/projects/ather/02-orange-niche.jpg",
+      thumb: "assets/projects/ather/01-visitor.jpg",
+      galleryRows: true,
+      gallery: [
+        { src: "assets/projects/ather/01-visitor.jpg", wide: true },
+        "assets/projects/ather/02-orange-niche.jpg",
+        "assets/projects/ather/03-pink-niche.jpg",
+        { src: "assets/projects/ather/04-ring-detail.jpg", wide: true },
+        "assets/projects/ather/05-jar-detail.jpg",
+        "assets/projects/ather/06-clamp-pink.jpg",
+        "assets/projects/ather/07-jar-dark.jpg",
+        "assets/projects/ather/08-jar-dark-detail.jpg",
+        "assets/projects/ather/09-jar-dark-dog.jpg",
+        "assets/projects/ather/10-xvi-wall.jpg",
+        "assets/projects/ather/11-xvi-wall-side.jpg",
+        "assets/projects/ather/12-xvi-hands.jpg",
+        { src: "assets/projects/ather/13-xvi-room.jpg", wide: true },
+        { src: "assets/projects/ather/14-xvi-yellow-jar.jpg", wide: true },
+        { src: "assets/projects/ather/15-xvi-yellow-detail.jpg", wide: true },
+        { src: "assets/projects/ather/16-bracket-orange.jpg", wide: true },
+        "assets/projects/ather/17-ring-clamp.jpg",
+        "assets/projects/ather/18-clamp.jpg",
+        "assets/projects/ather/19-profile-a.jpg",
+        "assets/projects/ather/20-profile-b.jpg",
+        "assets/projects/ather/21-profile-rail.jpg",
+        "assets/projects/ather/22-wall-fixing.jpg"
+      ],
+      photographer: "Orhan Kolukısa (Yerçekim Architectural Photography), Emirkan Cörüt",
+      credits: [
+        ["Artist", "Buşra Tunç"],
+        ["Exhibition", "Curious Objects (Meraklı Nesneler), Goethe-Institut Istanbul, 13.02–15.09.2020"],
+        ["Curator", "Ekmel Ertan"],
+        ["Text", "Kerem Ozan Bayraktar"],
+        ["Materials", "Fluorescent lights of various colours and sizes, specimen bell jars, glass tubes, shards of fluorescent tubes, glass sand, glass powder, phosphorus"],
+        ["Later shown", "Boşlukta Mevcut, Taksim Sanat, Istanbul, 2022"],
+        ["Editions", "Adorno Design"],
+        ["Thanks to", "Karabey Yaman, Yervant Demirçi, Thomas Demirçi"],
+      ],
+      summary: "Four site-specific works for the staircase niches of the Goethe-Institut in Galatasaray: fluorescent lights held in specimen bell jars, after the cabinets of curiosity of the Italian Renaissance.",
+      para: "Designed for the niches along the staircase of the Goethe-Institut building in Galatasaray, the four works of Äther take up the object and the acts of collecting, storing and preserving, after the cabinets of curiosity of the Italian Renaissance. Inside specimen bell jars, fluorescent lights take a different composition on each floor, arranged after the aesthetics of preservation spaces such as cabinets of curiosity and laboratories. The cabinet was made to hold the unique; the fluorescent tube is the most ordinary of industrial objects, and the installation sets the two against each other. Light, too, resists being kept. Instead of illuminating other objects, it shows itself, and because it passes through the glass, it is never truly stored. In one compartment the jars are filled with phosphor and glass powder, the materials fluorescent tubes are made from, and debris and defective tubes are shown alongside working ones, putting the nature and alteration of objects before any hierarchy of collectibles. Äther was the first installation of Curious Objects, the Goethe-Institut's 2020 exhibition series on the Wunderkammer curated by Ekmel Ertan. The work has since continued as a series of light pieces, shown again in Boşlukta Mevcut at Taksim Sanat in 2022 and made as editions with Adorno Design.",
     },
     {
       cat: "28", slug: "skins", name: "SKINS",
