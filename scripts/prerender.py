@@ -68,6 +68,11 @@ def abs_url(path):
     return SITE + '/' + path.lstrip('./') if path else DEFAULT_IMAGE
 
 
+def read_more(p):
+    r = p.get('readMore')
+    return f'<p><a href="{esc(r["url"])}">{esc(r["label"])}</a></p>' if r else ''
+
+
 def paragraphs(text):
     return ''.join(f'<p>{esc(p)}</p>' for p in str(text or '').split('\n\n') if p.strip())
 
@@ -209,7 +214,7 @@ def main():
                                         for x in p.get('gallery') or []] if g) + '</noscript>'
         nxt = projects[(i + 1) % len(projects)]
         body = (f'{nav}<article><h1>{esc(p["name"])}</h1><p>{esc(s["desc"])}</p>'
-                f'{paragraphs(p.get("para"))}{dl}{imgs}</article>'
+                f'{paragraphs(p.get("para"))}{read_more(p)}{dl}{imgs}</article>'
                 f'<p><a href="/work">All projects</a> · Next: <a href="/work/{esc(nxt["slug"])}">{esc(nxt["name"])}</a></p>')
         hero = p.get('hero') if not (p.get('heroVideo') or p.get('heroVideoLocal')) else None
         write(f'work/{p["slug"]}.html',
