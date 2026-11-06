@@ -485,6 +485,7 @@ window.DATA = {
         "assets/projects/msgsu/v2/18-halidayiz.jpg"
       ],
       photographer: "Emirkan Cörüt",
+      creditNote: "A MÜDAHALE project",
       readMore: { label: "Read on Arkitera", url: "https://www.arkitera.com/proje/msgsu-dokuma-atolyesi-yeniden-duzenlenmesi-ve-sistem-tasarimi/" },
       summary: "A new spatial system for the carpet-weaving atelier of the Painting Department at Mimar Sinan Fine Arts University, in which the structure itself is woven.",
       para: "The atelier explores the contemporary possibilities of carpet-weaving techniques and stays open to current debates in art. For a room where weaving is the daily work, the intervention became a study in weaving a structure: three steel profiles, 60×20, 40×20 and 20×20 mm, are interlaced, and the way they meet becomes the most present element of the space. Storage is not hidden but made part of the room's structure: dyed yarn sits in a wall of stacked translucent bins along the mezzanine, read by colour. The lighting was deliberately taken from the university's own inventory. The globe lamps that line the whole Fındıklı building continue into the atelier, keeping its tie to the corridors of a school whose doors are always open.",
