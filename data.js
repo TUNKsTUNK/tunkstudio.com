@@ -484,6 +484,18 @@ window.DATA = {
         "assets/projects/msgsu/v2/12-arched-window.jpg",
         "assets/projects/msgsu/v2/18-halidayiz.jpg"
       ],
+      credits: [
+        ["Studio", "TUNK"],
+        ["Design Team", "Buşra Tunç, Jorela Karriqi, Barışcan Avcı, Emirkan Cörüt"],
+        ["Architecture Team", "Buşra Tunç, Jorela Karriqi"],
+        ["Client", "Mimar Sinan Fine Arts University, Department of Painting"],
+        ["Main Contractor", "TUNK"],
+        ["Location", "Mimar Sinan Fine Arts University (MSGSÜ), Fındıklı Campus"],
+        ["Project Type", "Workshop / Production Space"],
+        ["Design", "2022"],
+        ["Construction", "2022"],
+        ["Area", "80 m²"],
+      ],
       photographer: "Emirkan Cörüt",
       creditNote: "A MÜDAHALE project",
       readMore: { label: "Read on Arkitera", url: "https://www.arkitera.com/proje/msgsu-dokuma-atolyesi-yeniden-duzenlenmesi-ve-sistem-tasarimi/" },
