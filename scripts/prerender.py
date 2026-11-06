@@ -207,6 +207,7 @@ def main():
         facts += [tuple(c) for c in p.get('credits') or []] + [('Graphics', p.get('graphics')),
                                                                 ('Photography', p.get('photographer'))]
         dl = '<dl>' + ''.join(f'<dt>{k}</dt><dd>{esc(v)}</dd>' for k, v in facts if v) + '</dl>'
+        note = f'<p>{esc(p["creditNote"])}</p>' if p.get('creditNote') else ''
         # <noscript>: browsers running the app never fetch these twice
         imgs = '<noscript>' + ''.join(
             f'<img src="/{esc(g.lstrip("./"))}" alt="{esc(p["name"])}, {esc(p.get("kind"))}, {esc(loc)}: TUNK" />'
@@ -214,7 +215,7 @@ def main():
                                         for x in p.get('gallery') or []] if g) + '</noscript>'
         nxt = projects[(i + 1) % len(projects)]
         body = (f'{nav}<article><h1>{esc(p["name"])}</h1><p>{esc(s["desc"])}</p>'
-                f'{paragraphs(p.get("para"))}{read_more(p)}{dl}{imgs}</article>'
+                f'{paragraphs(p.get("para"))}{read_more(p)}{dl}{note}{imgs}</article>'
                 f'<p><a href="/work">All projects</a> · Next: <a href="/work/{esc(nxt["slug"])}">{esc(nxt["name"])}</a></p>')
         hero = p.get('hero') if not (p.get('heroVideo') or p.get('heroVideoLocal')) else None
         write(f'work/{p["slug"]}.html',
