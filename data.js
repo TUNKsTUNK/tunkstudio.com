@@ -236,7 +236,7 @@ window.DATA = {
         ["Assistant Architect", "Emirkan Cörüt"],
         ["Client", "English Post Office"],
         ["Main Contractor", "TUNK"],
-        ["Electrical Design", "Ak-iş, Hüsnü Barluk, Erdoğan Yılmaz"],
+        ["Electrical Design", "Ak-İş, Hüsnü Barluk, Erdoğan Yılmaz"],
         ["Project Type", "Store / Showroom, Restaurant / Café / Bar"],
         ["Design", "2020–2021"],
         ["Construction", "2021"],
