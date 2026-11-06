@@ -230,6 +230,18 @@ window.DATA = {
         "assets/projects/postane/g/diagram-fixture.jpg",
         "assets/projects/postane/g/sun-making.jpg"
       ],
+      credits: [
+        ["Studio", "TUNK"],
+        ["Design Team", "Buşra Tunç, Jorela Karriqi"],
+        ["Assistant Architect", "Emirkan Cörüt"],
+        ["Client", "English Post Office"],
+        ["Main Contractor", "TUNK"],
+        ["Electrical Design", "Ak-iş, Hüsnü Barluk, Erdoğan Yılmaz"],
+        ["Project Type", "Store / Showroom, Restaurant / Café / Bar"],
+        ["Design", "2020–2021"],
+        ["Construction", "2021"],
+        ["Area", "73 m²"],
+      ],
       photographer: "Emirkan Cörüt",
       readMore: { label: "Read on Arkitera", url: "https://www.arkitera.com/proje/adil-dukkanlar-ic-mekan-ve-aydinlatma-tasarimi/" },
       summary: "Lighting for the whole of Postane, the restored Old British Post Office in Galata, and the interiors of its two fair-trade shops, designed from what the building revealed during restoration.",
