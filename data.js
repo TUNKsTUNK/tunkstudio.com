@@ -487,7 +487,6 @@ window.DATA = {
       credits: [
         ["Studio", "TUNK"],
         ["Design Team", "Buşra Tunç, Jorela Karriqi, Barışcan Avcı, Emirkan Cörüt"],
-        ["Architecture Team", "Buşra Tunç, Jorela Karriqi"],
         ["Client", "Mimar Sinan Fine Arts University, Department of Painting"],
         ["Main Contractor", "TUNK"],
         ["Location", "Mimar Sinan Fine Arts University (MSGSÜ), Fındıklı Campus"],
