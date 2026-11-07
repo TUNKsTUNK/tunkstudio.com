@@ -116,7 +116,8 @@ window.DATA = {
       { n: "21", name: "ÄTHER: Buşra Tunç, Artists' Directory", pub: "Aesthetica", year: "2024", type: "Artist profile", url: "https://aestheticamagazine.com/profile/busra-tunc/" },
       { n: "22", name: "ÄTHER: Lighting the Way: Bold Lamp Designs by Women & Non-Binary Designers", pub: "Adorno", year: "2024", type: "Editorial", url: "https://adorno.design/editorial/lighting-the-way-16-bold-lamp-designs-by-women/" },
       { n: "23", name: "ÄTHER: Minimalist Lighting: 10 Lamps for a Calm Interior", pub: "Adorno", year: "2023", type: "Editorial", url: "https://adorno.design/editorial/minimalist-lighting-10-lamps-for-a-calm-interior/" },
-      { n: "24", name: "ÄTHER: A Site for Discovering Contemporary, Collectible Design", pub: "ICFF", year: "2025", type: "Editorial", url: "https://icff.com/stories/a-site-for-discovering-contemporary-collectible-design/" }
+      { n: "24", name: "ÄTHER: A Site for Discovering Contemporary, Collectible Design", pub: "ICFF", year: "2025", type: "Editorial", url: "https://icff.com/stories/a-site-for-discovering-contemporary-collectible-design/" },
+      { n: "25", name: "POSTANE: Best of Interior Design 2022 Selection", pub: "SPACE", year: "2022", type: "Selection", url: "https://space.dacistanbul.com/space-2022/" }
     ],
     downloads: [
       { n: "01", name: "Studio biography",  meta: "DOCX · 6 KB",  langs: "EN · TR" },
@@ -192,7 +193,7 @@ window.DATA = {
       cat: "01", slug: "postane", name: "POSTANE",
       category: "Architecture", kind: "Interior & Lighting",
       year: 2021, yearLabel: "2021", location: "Galata, Istanbul", status: "Completed",
-      scope: ["Furniture", "Lighting"], press: ["Arkitera"], award: "Türkiye Mimarlık Yıllığı 2021 (Turkey Architecture Yearbook), selected project",
+      scope: ["Furniture", "Lighting"], press: ["Arkitera", "SPACE"], award: "Türkiye Mimarlık Yıllığı 2021 (Turkey Architecture Yearbook), selected project · SPACE Best of Interior Design 2022, selection",
       tags: ["Architecture", "Product Design"],
       hero: "assets/projects/postane/hero.jpg",
       galleryRows: true,
@@ -234,10 +235,9 @@ window.DATA = {
         ["Studio", "TUNK"],
         ["Design Team", "Buşra Tunç, Jorela Karriqi"],
         ["Assistant Architect", "Emirkan Cörüt"],
-        ["Client", "English Post Office"],
+        ["Client", "Postane", "https://www.postane.co"],
         ["Main Contractor", "TUNK"],
         ["Electrical Design", "Ak-İş, Hüsnü Barluk, Erdoğan Yılmaz"],
-        ["Project Type", "Store / Showroom, Restaurant / Café / Bar"],
         ["Design", "2020–2021"],
         ["Construction", "2021"],
         ["Area", "73 m²"],

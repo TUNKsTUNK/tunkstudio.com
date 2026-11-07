@@ -204,7 +204,7 @@ def main():
                  ('Scope', ', '.join(p.get('scope') or [])),
                  ('Press', ', '.join(p.get('press') or [])), ('Award', p.get('award'))]
         # credits as on the page: roles first, graphics and photography last
-        facts += [tuple(c) for c in p.get('credits') or []] + [('Graphics', p.get('graphics')),
+        facts += [tuple(c[:2]) for c in p.get('credits') or []] + [('Graphics', p.get('graphics')),
                                                                 ('Photography', p.get('photographer'))]
         dl = '<dl>' + ''.join(f'<dt>{k}</dt><dd>{esc(v)}</dd>' for k, v in facts if v) + '</dl>'
         note = f'<p>{esc(p["creditNote"])}</p>' if p.get('creditNote') else ''
