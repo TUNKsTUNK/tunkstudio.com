@@ -454,7 +454,7 @@ window.DATA = {
     {
       cat: "16", slug: "hali-atolyesi", name: "WEAVING THE STRUCTURE",
       category: "Architecture", kind: "Education Interior",
-      year: 2022, yearLabel: "2022", location: "Fındıklı, Istanbul", status: "Completed",
+      year: 2022, yearLabel: "2022", location: "Mimar Sinan Fine Arts University, Istanbul", status: "Completed",
       press: ["Arkitera"], award: "Türkiye Mimarlık Yıllığı 2022 (Turkey Architecture Yearbook), selected project",
       tags: ["Architecture"],
       hero: "assets/projects/msgsu/v2/00-hero-atelier.jpg",
