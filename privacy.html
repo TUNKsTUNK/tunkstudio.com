@@ -797,24 +797,44 @@ function imgAttrs(src) {
 }
 const HALF_SIZES = '(max-width: 760px) 100vw, 50vw';
 
+/* Lazy photo that does not rely on the browser's loading="lazy": iOS Safari
+   left those frames black. The real src/srcset are only set once the image
+   is within ~800px of the screen (IntersectionObserver), then it loads normally. */
+function LazyImg({ src, srcSet, sizes, alt, ...rest }) {
+  const ref = React.useRef(null);
+  const [on, setOn] = React.useState(typeof IntersectionObserver === 'undefined');
+  React.useEffect(() => {
+    if (on || !ref.current) return;
+    const io = new IntersectionObserver((es) => {
+      if (es.some((e) => e.isIntersecting)) { setOn(true); io.disconnect(); }
+    }, { rootMargin: '800px 0px' });
+    io.observe(ref.current);
+    return () => io.disconnect();
+  }, [on]);
+  return on
+    ? <img ref={ref} {...rest} alt={alt} sizes={sizes} srcSet={srcSet} src={src} />
+    : <img ref={ref} {...rest} alt="" style={{ ...(rest.style || {}), ...(rest.width && rest.height ? { aspectRatio: `${rest.width} / ${rest.height}` } : {}) }} />;
+}
+
 function Frame({ ratio = '4/3', num = '№ 00', meta = '', dim = '', accent = null, wm = null, img = null, alt = '', bare = false, style = {}, fit = 'cover', eager = false, sizes = HALF_SIZES }) {
   // eager = above the fold (project hero): load first, no srcset (cover-cropped full screen needs the full file)
   const imgProps = eager
     ? { loading: 'eager', fetchpriority: 'high', decoding: 'async' }
-    : { loading: 'lazy', decoding: 'async', ...imgAttrs(img), sizes };
+    : { decoding: 'async', ...imgAttrs(img), sizes };
+  const Img = eager ? 'img' : LazyImg;
   // bare = just the photograph: no frame chrome, crop marks, numbers, labels.
   if (bare) {
     return (
       <div className={`frame bare ${img ? 'has-img' : ''}`} style={{ aspectRatio: ratio, ...style }}>
         {img ?
-        <img className="frame-img" src={img} alt={alt} {...imgProps} style={{ objectFit: fit }} /> :
+        <Img className="frame-img" src={img} alt={alt} {...imgProps} style={{ objectFit: fit }} /> :
         <React.Fragment><div className="grain" /><div className="inset" /></React.Fragment>}
       </div>);
   }
   return (
     <div className={`frame ${img ? 'has-img' : ''}`} style={{ aspectRatio: ratio, ...style }}>
       {img ?
-      <img className="frame-img" src={img} alt={alt} {...imgProps} style={{ objectFit: fit }} /> :
+      <Img className="frame-img" src={img} alt={alt} {...imgProps} style={{ objectFit: fit }} /> :
 
       <React.Fragment>
           <div className="grain" />
@@ -1465,7 +1485,7 @@ function ProjectPage({ project, go }) {
                       <figcaption className="pl-cap">{String(k + 1).padStart(2, '0')} · FILM</figcaption>
                     </figure>
                     <figure className="g-cell g-pair-img" onClick={() => openLb(next)}>
-                      <img src={next} alt={`${p.name}, ${p.kind}, ${p.location || 'Istanbul'}: TUNK ${String(k + 2).padStart(2, '0')}`} loading="lazy" decoding="async" {...imgAttrs(next)} sizes={HALF_SIZES} />
+                      <LazyImg src={next} alt={`${p.name}, ${p.kind}, ${p.location || 'Istanbul'}: TUNK ${String(k + 2).padStart(2, '0')}`} decoding="async" {...imgAttrs(next)} sizes={HALF_SIZES} />
                       <figcaption className="pl-cap">{String(k + 2).padStart(2, '0')}</figcaption>
                     </figure>
                   </Reveal>
@@ -1480,7 +1500,7 @@ function ProjectPage({ project, go }) {
                       <figcaption className="pl-cap">{String(k + 1).padStart(2, '0')} · FILM</figcaption>
                     </Reveal>
                   : <Reveal as="figure" className={`g-cell${featureSrcs.has(g) ? ' g-feature' : wideSrcs.has(g) ? ' g-wide' : ''}`} key={k} delay={(k % 3) * 60} onClick={() => openLb(g)}>
-                      <img src={g} alt={`${p.name}, ${p.kind}, ${p.location || 'Istanbul'}: TUNK ${String(k + 1).padStart(2, '0')}`} loading="lazy" decoding="async" {...imgAttrs(g)} sizes={featureSrcs.has(g) || wideSrcs.has(g) ? '100vw' : HALF_SIZES} />
+                      <LazyImg src={g} alt={`${p.name}, ${p.kind}, ${p.location || 'Istanbul'}: TUNK ${String(k + 1).padStart(2, '0')}`} decoding="async" {...imgAttrs(g)} sizes={featureSrcs.has(g) || wideSrcs.has(g) ? '100vw' : HALF_SIZES} />
                       <figcaption className="pl-cap">{String(k + 1).padStart(2, '0')}</figcaption>
                     </Reveal>
               );
