@@ -605,8 +605,6 @@ window.DATA = {
         "assets/projects/kiosk/g14-formula-cards-alt.jpg",
         { src: "assets/projects/kiosk/g06-pipes-wide.jpg", wide: true },
         "assets/projects/kiosk/perspective.mp4",
-        "assets/projects/kiosk/04.jpg",
-        "assets/projects/kiosk/05.jpg",
         "assets/projects/kiosk/axon1.mp4"
       ],
       photographer: "Orhan Kolukısa",
