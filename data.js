@@ -523,7 +523,6 @@ window.DATA = {
         "assets/projects/pneuma/foto_12.jpg",
         "assets/projects/pneuma/foto_13.jpg",
         "assets/projects/pneuma/foto_14.jpg",
-        "assets/projects/pneuma/dg-complementary.jpg",
         "assets/projects/pneuma/dg-complementary-detail.jpg",
         "assets/projects/pneuma/foto_16.jpg",
         "assets/projects/pneuma/foto_17.jpg",
