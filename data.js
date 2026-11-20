@@ -852,7 +852,7 @@ window.DATA = {
       scope: ["Lighting"],
       tags: ["Installation"], press: ["Designboom", "Aesthetica", "ICFF", "Adorno"],
       hero: "assets/projects/ather/02-orange-niche.jpg",
-      thumb: "assets/projects/ather/01-visitor.jpg",
+      thumb: "assets/projects/ather/08-jar-dark-detail.jpg",
       galleryRows: true,
       gallery: [
         { src: "assets/projects/ather/01-visitor.jpg", wide: true },
