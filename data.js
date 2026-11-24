@@ -554,7 +554,7 @@ window.DATA = {
       category: "Architecture", kind: "Retail Design",
       year: 2025, yearLabel: "2025", location: "Mersin", status: "Completed",
       tags: ["Architecture"],
-      hero: "assets/projects/mersin/foto_05.jpg",
+      hero: "assets/projects/mersin/hero-night.jpg",
       thumb: "assets/projects/mersin/foto_02.jpg",
       thumbPos: "center 9%",
       gallery: [

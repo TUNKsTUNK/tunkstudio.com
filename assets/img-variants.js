@@ -128,6 +128,7 @@ window.IMG_VARIANTS = {
   "assets/projects/mersin/foto_20.jpg": [1800, 2400, "assets/projects/mersin/foto_20.w1200.jpg"],
   "assets/projects/mersin/graphic-elevation.jpg": [2000, 2000, "assets/projects/mersin/graphic-elevation.w1200.jpg"],
   "assets/projects/mersin/graphic-plan.jpg": [2400, 2400, "assets/projects/mersin/graphic-plan.w1200.jpg"],
+  "assets/projects/mersin/hero-night.jpg": [2000, 1082, "assets/projects/mersin/hero-night.w1200.jpg"],
   "assets/projects/msgsu/v2/00-hero-atelier.jpg": [2400, 1539, "assets/projects/msgsu/v2/00-hero-atelier.w1200.jpg"],
   "assets/projects/msgsu/v2/01-mezzanine.jpg": [2400, 1600, "assets/projects/msgsu/v2/01-mezzanine.w1200.jpg"],
   "assets/projects/msgsu/v2/02-drawing-existing.jpg": [2400, 1697, "assets/projects/msgsu/v2/02-drawing-existing.w1200.jpg"],
