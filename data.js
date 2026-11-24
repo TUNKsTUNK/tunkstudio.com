@@ -558,6 +558,7 @@ window.DATA = {
       thumb: "assets/projects/mersin/foto_02.jpg",
       thumbPos: "center 9%",
       gallery: [
+        "assets/projects/mersin/foto_05.jpg",
         "assets/projects/mersin/graphic-plan.jpg",
         "assets/projects/mersin/foto_02.jpg",
         "assets/projects/mersin/foto_01.jpg",
