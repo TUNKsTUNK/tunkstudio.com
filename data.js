@@ -16,6 +16,7 @@ window.DATA = {
     "parfumlab-pneuma",   // PNEUMA FLAGSHIP STORE
     "oculus",             // OCULUS
     "postane",            // POSTANE
+    "gaziantep",          // KARAPINAR HOUSE
     "hali-atolyesi",      // WEAVING THE STRUCTURE
     "liminal",            // LIMINAL
     "ather",              // ÄTHER
@@ -420,12 +421,47 @@ window.DATA = {
       para: "Concrete volumes step into the slope and open through full-height glass to the bay and the sunset. A circular oculus is cut through the upper floor, drawing daylight down into the stone-walled rooms below. A custom furniture collection in mild steel and oak (shelving, a hall console, a bench) was drawn for the interior and fabricated to the same line as the architecture.",
     },
     {
-      cat: "12", slug: "gaziantep", name: "Gaziantep House",
+      cat: "12", slug: "gaziantep", name: "KARAPINAR HOUSE",
       category: "Architecture", kind: "Residential",
       year: 2022, yearLabel: "2022", location: "Karapınar, Gaziantep", status: "Completed",
       tags: ["Architecture"],
-      summary: "A residence in Karapınar, Gaziantep.",
-      para: "A house completed in 2022 in the Karapınar district of Gaziantep.",
+      hero: "assets/projects/gaziantep/04-entrance.jpg",
+      thumb: "assets/projects/gaziantep/00-hero.jpg",
+      galleryRows: true,
+      gallery: [
+        { src: "assets/projects/gaziantep/00-hero.jpg", wide: true },
+        "assets/projects/gaziantep/01-exterior-steps.jpg",
+        "assets/projects/gaziantep/02-veranda.jpg",
+        "assets/projects/gaziantep/03-frame-sky.jpg",
+        "assets/projects/gaziantep/05-courtyard-opening.jpg",
+        { src: "assets/projects/gaziantep/06-enfilade.jpg", wide: true },
+        "assets/projects/gaziantep/07-room-clerestory.jpg",
+        "assets/projects/gaziantep/08-light-band.jpg",
+        "assets/projects/gaziantep/09-room-window.jpg",
+        "assets/projects/gaziantep/10-window-olives.jpg",
+        "assets/projects/gaziantep/11-corridor.jpg",
+        "assets/projects/gaziantep/12-room-light.jpg",
+        { src: "assets/projects/gaziantep/13-plan.jpg", wide: true },
+        "assets/projects/gaziantep/14-axo.jpg",
+        "assets/projects/gaziantep/15-axo-b.jpg",
+        { src: "assets/projects/gaziantep/16-section.jpg", wide: true },
+        { src: "assets/projects/gaziantep/17-elevation-south.jpg", wide: true },
+        "assets/projects/gaziantep/18-roof-study.jpg",
+        "assets/projects/gaziantep/19-roof-study-b.jpg",
+        "assets/projects/gaziantep/20-site-visit.jpg",
+        "assets/projects/gaziantep/21-site-frame.jpg",
+        "assets/projects/gaziantep/22-concrete-frame.jpg",
+        "assets/projects/gaziantep/23-concrete-sky.jpg",
+        "assets/projects/gaziantep/24-block-walls.jpg",
+        "assets/projects/gaziantep/25-plaster-works.jpg"
+      ],
+      credits: [
+        ["Studio", "TUNK"],
+        ["Architectural Design", "Buşra Tunç"],
+      ],
+      creditNote: "A MÜDAHALE project",
+      summary: "A single-storey private house in Karapınar, Gaziantep, designed and built in 2022.",
+      para: "A single-storey private house among the olive trees of a site in Karapınar, Gaziantep. The house is laid out as a group of white, flat-roofed volumes; a band of openings under the roof edge brings daylight deep into the rooms, and a timber-columned veranda opens the living spaces to the garden. Plans, sections and roof studies were drawn alongside the work on site, which was followed from the concrete frame and block walls to the finished plaster surfaces.",
     },
     {
       cat: "13", slug: "sazli", name: "Sazlı House",
