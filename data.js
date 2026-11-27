@@ -455,11 +455,6 @@ window.DATA = {
         "assets/projects/gaziantep/24-block-walls.jpg",
         "assets/projects/gaziantep/25-plaster-works.jpg"
       ],
-      credits: [
-        ["Studio", "TUNK"],
-        ["Architectural Design", "Buşra Tunç"],
-      ],
-      creditNote: "A MÜDAHALE project",
       summary: "A single-storey private house in Karapınar, Gaziantep, designed and built in 2022.",
       para: "A single-storey private house among the olive trees of a site in Karapınar, Gaziantep. The house is laid out as a group of white, flat-roofed volumes; a band of openings under the roof edge brings daylight deep into the rooms, and a timber-columned veranda opens the living spaces to the garden. Plans, sections and roof studies were drawn alongside the work on site, which was followed from the concrete frame and block walls to the finished plaster surfaces.",
     },
